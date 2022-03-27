@@ -7,6 +7,8 @@
 <title>Lista de Documentos</title>
 	
 <script>
+
+//Função que faz um pop-up na tela pra confirmar a exclusão de um documento.
 function confirmacao(id) {
      var resposta = confirm("Deseja remover este documento?");
      if (resposta == true) {
@@ -25,45 +27,44 @@ function confirmacao(id) {
 
 <?php
 
-include_once "conecta.php";
+require_once "conecta.php";
 
 echo '<center> <table id = "biblioteca" class = "tabela">';
 
 echo "<tr> <th> Nome do Documento </th> <th> Forma </th> <th> Formato </th> <th> Especie </th>  <th colspan = 4> Operações </th> </tr> <br>";
 
+//Realizando o comando select para puxar os documentos do Banco de dados
+
 $sql = "SELECT `id`, `titulo`, `forma`, `formato`, `especie` FROM `biblioteca`";
+
 $resultado = mysqli_query($conexao, $sql);
 
+//Criando o array com todos os documentos
 
+while($documentos = mysqli_fetch_array($resultado, MYSQLI_BOTH)){
 
-
-while($linha = mysqli_fetch_assoc($resultado)){
-
-  $id = $linha['id'];
-  $titulo = $linha['titulo'];
-  $forma = $linha['forma'];
-  $formato = $linha['formato'];
-  $especie = $linha['especie'];
-  
-
-  echo "<tr>";
-  echo "<td>" . $titulo. "</td>";
-  echo "<td>" . $forma . "</td>";
-  echo "<td>" . $formato . "</td>";
-  echo "<td>" . $especie . "</td>";
-
-
-  echo "<td class ='vermais'> <a href = 'vermais.php?id=$id'> Ver mais </a>";
-  echo "<td class ='alterar'> <a href= 'formaltera.php?id=$id'> Editar </a>";
-  echo "<td class ='excluir'> <a href='#'" . "onclick='confirmacao($id)'>" . "Excluir </a>" ;
-  echo "<a href='inicio.html' class ='voltar'>";
-
-  echo "</tr>";
-
-
+     echo "<tr>";
+     
+     echo "<td>" . $documentos['titulo']. "</td>";
+     echo "<td>" . $documentos['forma'] . "</td>";
+     echo "<td>" . $documentos['formato'] . "</td>";
+     echo "<td>" . $documentos['especie'] . "</td>";
+   
+   
+     echo "<td class ='vermais'> <a href = 'vermais.php?id=$documentos[id]'> Ver mais </a>";
+     echo "<td class ='alterar'> <a href= 'formaltera.php?id=$documentos[id]'> Editar </a>";
+     echo "<td class ='excluir'> <a href='#'" . "onclick='confirmacao($documentos[id])'>" . "Excluir </a>" ;
+     echo "<a href='inicio.html' class ='voltar'>";
+   
+     echo "</tr>";
+   
 }
+     
+     
 
-echo "</table>";
+
+
+    
 
 
 ?>
