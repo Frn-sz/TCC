@@ -10,7 +10,7 @@
 function confirmacao(id) {
      var resposta = confirm("Deseja remover este documento?");
      if (resposta == true) {
-          window.location.href = "excluir.php?id="+id;
+          window.location.href = "excluirt.php?id="+id;
      }
 }
 
@@ -34,13 +34,13 @@ $result = mysqli_query($conexao, $sql);
 
 echo '<table id = "topicos" class = "tabela" border = "1">';
 
-echo "<tr> <th> ID </th> <th> Tópico </th> <th colspan = 4> Operações</th> </tr> <br>";
+echo "<tr> <th> Tópico </th> <th colspan = 4> Operações</th> </tr> <br>";
 
 while($listatopicos = mysqli_fetch_array($result, MYSQLI_BOTH)){
 
      echo "<tr>";
      
-     echo "<td>" . $listatopicos['id']."</td>";
+    
      echo "<td>" . $listatopicos['topicos'] ."</td>";
      
      

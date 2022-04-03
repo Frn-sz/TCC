@@ -4,28 +4,22 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/index.css">
 
-<title>Lista de Documentos</title>
-	
-<script>
+<title>Resultado da Pesquisa</title>
 
-//Função que faz um pop-up na tela pra confirmar a exclusão de um documento.
-function confirmacao(id) {
-     var resposta = confirm("Deseja remover este documento?");
-     if (resposta == true) {
-          window.location.href = "excluir.php?id="+id;
-     }
-}
 
-</script>
-<h1> <center> Lista de Documentos <cente></h1>
+<h1> <center> Resultado da pesquisa <center></h1>
 
 </head>
 
  <body>
 
- 
 
 <?php
+
+if(!isset($_GET['busca'])){
+    header("location:inicio.html");
+}
+$pesquisa = "%". trim($_GET['busca']) . "%";
 
 require_once "conecta.php";
 
@@ -35,11 +29,19 @@ echo "<tr> <th> Nome do Documento </th> <th> Forma </th> <th> Formato </th> <th>
 
 //Realizando o comando select para puxar os documentos do Banco de dados
 
-$sql = "SELECT `id`, `titulo`, `forma`, `formato`, `especie` FROM `biblioteca`";
-
+$sql = "SELECT `id`, `titulo`, `forma`, `formato`, `especie` FROM `biblioteca` WHERE `id` LIKE '$pesquisa' 
+OR `titulo` LIKE '$pesquisa' 
+OR `forma` LIKE '$pesquisa' 
+OR `formato` LIKE '$pesquisa'
+OR `especie` LIKE '$pesquisa'
+OR `genero`LIKE '$pesquisa'
+OR `locali`LIKE '$pesquisa'
+OR `nv1` LIKE '$pesquisa'
+OR `nv2` LIKE '$pesquisa'
+OR `nv3` LIKE '$pesquisa'
+OR `nv4` LIKE '$pesquisa'
+OR `nv5` LIKE '$pesquisa';";
 $resultado = mysqli_query($conexao, $sql);
-
-//Criando o array com todos os documentos
 
 while($documentos = mysqli_fetch_array($resultado, MYSQLI_BOTH)){
 
@@ -60,20 +62,16 @@ while($documentos = mysqli_fetch_array($resultado, MYSQLI_BOTH)){
    
 }
      echo "</table>";
-     echo "<p><a id='bot' href='insereform.php' class = 'button'> Adicionar Documento </a></p>";
-     echo "<br>";
-     echo "<a href='topicos.php'> Lista de Tópicos </a>";
+
 ?>
 
-<br>
 
-<br>
-<br>
 
 <input type="hidden" name="id" value="
 
 <?php echo $documentos['id'];?>">
 
 <a href="inicio.html">Voltar para o inicio</a>
-</body>                       
+         
+</body>     
 </html>

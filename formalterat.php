@@ -17,9 +17,9 @@
 
     $id = $_GET['id'];
 
-    $sql = "SELECT * FROM topicos WHERE id=$id";
+    $sq = "SELECT * FROM topicos WHERE id=$id";
 
-    $resultado = mysqli_query($conexao,$sql);
+    $resultado = mysqli_query($conexao,$sq);
 
     $listatopicos = mysqli_fetch_array($resultado, MYSQLI_BOTH);
     

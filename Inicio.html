@@ -3,16 +3,24 @@
     <head>
         <meta charset="utf-8">
         <title> Página Inicial </title>
-		<link rel="stylesheet" type="text/css" href="estiloinicio.css">		
+		<link rel="stylesheet" type="text/css" href="css/estiloinicio.css">		
 
      
     </head>
     <body>
         <center><h1>Sistema de Catalogação de Documentos</h1></center>
 
- 
-        <a class = "button" href = "index.php"> Listagem de Obras</a><br>
-        <a class = "button1" href = "insere.html"> Cadastrar Obra</a>
+        <form action="pesquisa.php" method="get">
+            <label for = "txtBusca"><img class = "lupa" src="lupa.png" id="btnBusca" alt="Buscar" width = 25px/></label>
+           
+             <input class="cxbusca" type="text" name="busca" id="txtBusca" placeholder="Buscar..."/>
+             <br> <br>
+             <input class = "button" type = "submit" id = "botao" value = "Buscar"/>
+           
+           <br>
+            </form>
+        <a class = "button" href = "index.php"> Listagem de Documentos</a><br>
+
         
     </body>
         </html>
