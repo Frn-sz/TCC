@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 
 
-<title>Lista de Documentos</title>
+<title>Lista de Tópicos</title>
 	
 <script>
 function confirmacao(id) {
      var resposta = confirm("Deseja remover este documento?");
      if (resposta == true) {
-          window.location.href = "excluir.php?id="+id;
+          window.location.href = "excluirt.php?id="+id;
      }
 }
 
@@ -28,23 +28,37 @@ function confirmacao(id) {
 include_once "conecta.php";
 
 
-echo "Tópicos cadastrados:";
 
 $sql = "SELECT * FROM `topicos`";
-$resultado = mysqli_query($conexao, $sql);
+$result = mysqli_query($conexao, $sql);
 
-while($linha = mysqli_fetch_assoc($resultado)){
+echo '<table id = "topicos" class = "tabela" border = "1">';
 
-  $id = $linha['id'];
-  $topicos = $linha['topicos'];
-  
-echo   "<p>" . $topicos . "</p>";
+echo "<tr> <th> ID </th> <th> Tópico </th> <th colspan = 4> Operações</th> </tr> <br>";
+
+while($listatopicos = mysqli_fetch_array($result, MYSQLI_BOTH)){
+
+     echo "<tr>";
+     
+     echo "<td>" . $listatopicos['id']."</td>";
+     echo "<td>" . $listatopicos['topicos'] ."</td>";
+     
+     echo "<td class ='alterar'> <a href= 'formalterat.php?id=$listatopicos[id]'> Editar </a>";
+echo "<td class ='excluir'> <a href='#'" . "onclick='confirmacao($listatopicos[id])'>" . "Excluir </a>" ;
+     echo "</tr>";
 
 
+
+ 
 
 }
 
 
+echo "</table>";
+
+
+
+echo "<a href='inicio.html' class ='voltar'>";
 ?>
 
 
@@ -53,7 +67,5 @@ echo   "<p>" . $topicos . "</p>";
 <input type="hidden" name="id" value="
 
 <?php echo $linha['id'];?>">
-</center>
-
 </body>                       
 </html>

@@ -29,7 +29,7 @@ function confirmacao(id) {
 
 require_once "conecta.php";
 
-echo '<center> <table id = "biblioteca" class = "tabela">';
+echo '<table id = "biblioteca" class = "tabela">';
 
 echo "<tr> <th> Nome do Documento </th> <th> Forma </th> <th> Formato </th> <th> Especie </th>  <th colspan = 4> Operações </th> </tr> <br>";
 
