@@ -27,7 +27,7 @@ echo '<table id = "biblioteca" class = "tabela" border = 1>';
 
 echo "<tr> <th> Nome do Documento </th> <th> Forma </th> <th> Formato </th> <th> Especie </th>  <th colspan = 4> Operações </th> </tr> <br>";
 
-//Realizando o comando select para puxar os documentos do Banco de dados
+//Realizando o comando select para pesquisar no banco de dados
 
 $sql = "SELECT `id`, `titulo`, `forma`, `formato`, `especie` FROM `biblioteca` WHERE `id` LIKE '$pesquisa' 
 OR `titulo` LIKE '$pesquisa' 
