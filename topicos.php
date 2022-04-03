@@ -10,7 +10,7 @@
 function confirmacao(id) {
      var resposta = confirm("Deseja remover este documento?");
      if (resposta == true) {
-          window.location.href = "excluirt.php?id="+id;
+          window.location.href = "excluir.php?id="+id;
      }
 }
 
@@ -43,11 +43,11 @@ while($listatopicos = mysqli_fetch_array($result, MYSQLI_BOTH)){
      echo "<td>" . $listatopicos['id']."</td>";
      echo "<td>" . $listatopicos['topicos'] ."</td>";
      
+     
      echo "<td class ='alterar'> <a href= 'formalterat.php?id=$listatopicos[id]'> Editar </a>";
-echo "<td class ='excluir'> <a href='#'" . "onclick='confirmacao($listatopicos[id])'>" . "Excluir </a>" ;
+     echo "<td class ='excluir'> <a href='#'" . "onclick='confirmacao($listatopicos[id])'>" . "Excluir </a>" ;
+
      echo "</tr>";
-
-
 
  
 

@@ -20,16 +20,21 @@
 
 
         <p> Formato: <input type="text"name="formato" required></p>
-	    <p> Espécie: <input type="text" name="especie" required></p>		
+	      <p> Espécie: <input type="text" name="especie" required></p>		
         <p> Gênero: <input type="text" name="genero" required></p>	
         <p> Localização:  <input type="text" name="locali" required></p>	
 
+
+        <!--Fazendo o cadastro dos niveis didáticos-->
         <p> Nivel Didático 1: <select name = "nv1">
              <?php
             include "conecta.php"; 
+
             $sql = "SELECT `id`, `topicos` FROM `topicos`";
             $resultado = mysqli_query($conexao, $sql);
+
             echo "<option value = ''></option>";
+
             while($linha = mysqli_fetch_assoc($resultado)){
               $id = $linha['id'];
               $topicos = $linha['topicos'];
@@ -42,12 +47,19 @@
 
         </p>
 
-        <p> Nivel Didático 2: <select name = "nv2">
+        <p> Nivel Didático 2: 
+          
+        <select name = "nv2">
              <?php
+
             include_once "conecta.php"; 
+
             $sql = "SELECT `id`, `topicos` FROM `topicos`";
+
             $resultado = mysqli_query($conexao, $sql);
+
             echo "<option value = ''></option>";
+
             while($linha = mysqli_fetch_assoc($resultado)){
               $id = $linha['id'];
               $topicos = $linha['topicos'];
@@ -55,21 +67,33 @@
             }
            
             ?>
-</select></p>	
-        <p> Nivel Didático 3: <select name = "nv3">
+            </select></p>	
+
+        <p> Nivel Didático 3:
+          
+        <select name = "nv3">
+
              <?php
+
             include_once "conecta.php"; 
+
             $sql = "SELECT `id`, `topicos` FROM `topicos`";
+
             $resultado = mysqli_query($conexao, $sql);
+
             echo "<option value = ''></option>";
+
             while($linha = mysqli_fetch_assoc($resultado)){
+
               $id = $linha['id'];
+
               $topicos = $linha['topicos'];
+
                 echo "<option value='$topicos'>". $topicos . "</option>";
             }
            
             ?>
-</select></p>		
+            </select></p>		
         <p> Nivel Didático 4: <select name = "nv4">
              <?php
             include_once "conecta.php"; 

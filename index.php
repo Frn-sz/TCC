@@ -29,7 +29,7 @@ function confirmacao(id) {
 
 require_once "conecta.php";
 
-echo '<table id = "biblioteca" class = "tabela">';
+echo '<table id = "biblioteca" class = "tabela" border = 1>';
 
 echo "<tr> <th> Nome do Documento </th> <th> Forma </th> <th> Formato </th> <th> Especie </th>  <th colspan = 4> Operações </th> </tr> <br>";
 
@@ -55,30 +55,24 @@ while($documentos = mysqli_fetch_array($resultado, MYSQLI_BOTH)){
      echo "<td class ='alterar'> <a href= 'formaltera.php?id=$documentos[id]'> Editar </a>";
      echo "<td class ='excluir'> <a href='#'" . "onclick='confirmacao($documentos[id])'>" . "Excluir </a>" ;
      echo "<a href='inicio.html' class ='voltar'>";
-   
      echo "</tr>";
    
+   
 }
-     
-     
-
-
-
-    
-
-
+     echo "</table>";
+     echo "<p><a id='bot' href='insereform.php' class = 'button'> Adicionar Documento </a></p>";
+     echo "<br>";
+     echo "<a href='topicos.php'> Lista de Tópicos </a>";
 ?>
 
 <br>
-<a id="bot" href="inserex.php" class = "button"> Adicionar Documento </a>
+
 <br>
 <br>
 
-<a href="topicos.php"> Lista de Tópicos </a>
 <input type="hidden" name="id" value="
 
-<?php echo $linha['id'];?>">
-</center>
+<?php echo $documentos['id'];?>">
 
 </body>                       
 </html>
