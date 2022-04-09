@@ -13,7 +13,7 @@
 
 <div class="tudo">
 <?php
-    include "conecta.php";
+    include "../conecta.php";
     $id = $_GET['id'];
     $sql = "SELECT * FROM biblioteca WHERE id=$id";
     $resultado = mysqli_query($conexao,$sql);
@@ -80,7 +80,7 @@
     
 <select name="nv1">
              <?php
-            include "conecta.php"; 
+            include "../conecta.php"; 
             $sql = "SELECT `id`,`topicos` FROM `topicos`";
             $resultado = mysqli_query($conexao, $sql);
             echo "<option value = ''></option>";
@@ -99,7 +99,7 @@
 
 <select name="nv2">
              <?php
-            include "conecta.php"; 
+            include "../conecta.php"; 
             $sql = "SELECT `id`,`topicos` FROM `topicos`";
             $resultado = mysqli_query($conexao, $sql);
             echo "<option value = ''></option>";
@@ -119,7 +119,7 @@
 
 <select name="nv3">
              <?php
-            include "conecta.php"; 
+            include "../conecta.php"; 
             $sql = "SELECT `id`,`topicos` FROM `topicos`";
             $resultado = mysqli_query($conexao, $sql);
             echo "<option value = ''></option>";
@@ -137,7 +137,7 @@
 
 <select name="nv4">
              <?php
-            include "conecta.php"; 
+            include "../conecta.php"; 
             $sql = "SELECT `id`,`topicos` FROM `topicos`";
             $resultado = mysqli_query($conexao, $sql);
             echo "<option value = ''></option>";
@@ -154,7 +154,7 @@
 
 <select name="nv5">
              <?php
-            include "conecta.php"; 
+            include "../conecta.php"; 
             $sql = "SELECT `id`,`topicos` FROM `topicos`";
             $resultado = mysqli_query($conexao, $sql);
             echo "<option value = ''></option>";
@@ -171,9 +171,9 @@
 </form>
 
 <br>
-<a href="index.php" class="button1"> Listar Documentos</a class="button1">
+<a href="../Inicio/index.php" class="button1"> Listar Documentos</a class="button1">
 <br><br>
-<a href="index.php" class="voltar">Voltar</a class="voltar">
+<a href="../Inicio/index.php" class="voltar">Voltar</a class="voltar">
 </div>
 
 

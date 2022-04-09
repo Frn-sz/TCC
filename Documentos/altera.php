@@ -1,7 +1,7 @@
 
 <?php
 
-require_once "conecta.php";
+require_once "../conecta.php";
 
     $id = $_POST['id'];
     $titulo = $_POST['titulo'];
@@ -25,7 +25,7 @@ $resultado = mysqli_query($conexao,$sql);
 mysqli_close($conexao);
 
 if($resultado){
-    header("Location: index.php");
+    header("Location: ../Inicio/index.php");
 }
 
 

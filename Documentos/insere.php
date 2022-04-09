@@ -6,7 +6,7 @@
  <body>
 
 <?php
-include_once "conecta.php";
+include_once "../conecta.php";
 
 $titulo = $_GET['titulo'];
 $forma = $_GET['forma'];
@@ -29,7 +29,7 @@ mysqli_close($conexao);
 
 if ($resultado)
 {
-	header("Location:index.php");
+	header("Location:../Inicio/index.php");
 }
 ?>
 </body>

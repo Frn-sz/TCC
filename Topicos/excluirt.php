@@ -5,7 +5,7 @@
 </head>
 <body>
 <?php
-include "conecta.php";
+include "../conecta.php";
 $id = $_GET['id'];
 
 $sql = "DELETE FROM topicos WHERE id=$id";

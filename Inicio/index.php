@@ -3,7 +3,7 @@
  <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/index.css">
-<link rel = "stylesheet" href="css/materialize.css">
+<link rel = "stylesheet" href="../css/materialize.css">
 <title>Lista de Documentos</title>
 	
 
@@ -13,7 +13,7 @@
 function confirmacao(id) {
      var resposta = confirm("Deseja remover este documento?");
      if (resposta == true) {
-          window.location.href = "excluir.php?id="+id;
+          window.location.href = "../Documentos/excluir.php?id="+id;
      }
 }
 
@@ -46,10 +46,10 @@ function confirmacao(id) {
 <div class = "container">
      <div class = "row">
 
- <a class = "col s2 offset-s1 waves-effect waves-light btn offset-s1.5 " id='bot' href='insereform.php'> Adicionar Documento </a>
+ <a class = "col s2 offset-s1 waves-effect waves-light btn offset-s1.5 " id='bot' href='../Documentos/insereform.php'> Adicionar Documento </a>
 
 
-<a  class = "col s2 waves-effect waves-light btn offset-s2" href='topicos.php'> Lista de Tópicos </a>
+<a  class = "col s2 waves-effect waves-light btn offset-s2" href='../Topicos/topicos.php'> Lista de Tópicos </a>
     
 
 <!--Passando o ID no modo hidden-->
@@ -63,7 +63,7 @@ function confirmacao(id) {
 
 <?php
 
-require_once "conecta.php";
+require_once "../conecta.php";
 
 
 echo '<table id = "biblioteca" class = "highlight " border = 2>';
@@ -88,8 +88,8 @@ while($documentos = mysqli_fetch_array($resultado, MYSQLI_BOTH)){
      echo "<td>" . $documentos['especie'] . "</td>";
    
    
-     echo "<td class ='waves-effect waves-teal btn-flat'> <a href = 'vermais.php?id=$documentos[id]'> Ver mais </a>";
-     echo "<td class ='waves-effect waves-teal btn-flat'> <a href= 'formaltera.php?id=$documentos[id]'> Editar </a>";
+     echo "<td class ='waves-effect waves-teal btn-flat'> <a href = '../Documentos/vermais.php?id=$documentos[id]'> Ver mais </a>";
+     echo "<td class ='waves-effect waves-teal btn-flat'> <a href= '../Documentos/formaltera.php?id=$documentos[id]'> Editar </a>";
      echo "<td class ='waves-effect waves-teal btn-flat'> <a href='#'" . "onclick='confirmacao($documentos[id])'>" . "Excluir </a>" ;
      echo "<a href='inicio.html' class ='voltar'>";
      echo "</tr>";

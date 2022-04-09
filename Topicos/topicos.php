@@ -8,7 +8,7 @@
 	
 <script>
 function confirmacao(id) {
-     var resposta = confirm("Deseja remover este documento?");
+     var resposta = confirm("Deseja remover este tópico?");
      if (resposta == true) {
           window.location.href = "excluirt.php?id="+id;
      }
@@ -25,7 +25,7 @@ function confirmacao(id) {
 
 <?php
 
-include_once "conecta.php";
+include_once "../conecta.php";
 
 
 

@@ -28,7 +28,7 @@
         <!--Fazendo o cadastro dos niveis didáticos-->
         <p> Nivel Didático 1: <select name = "nv1">
              <?php
-            include "conecta.php"; 
+            include "../conecta.php"; 
 
             $sql = "SELECT `id`, `topicos` FROM `topicos`";
             $resultado = mysqli_query($conexao, $sql);
@@ -52,7 +52,7 @@
         <select name = "nv2">
              <?php
 
-            include_once "conecta.php"; 
+            include_once "../conecta.php"; 
 
             $sql = "SELECT `id`, `topicos` FROM `topicos`";
 
@@ -75,7 +75,7 @@
 
              <?php
 
-            include_once "conecta.php"; 
+            include_once "../conecta.php"; 
 
             $sql = "SELECT `id`, `topicos` FROM `topicos`";
 
@@ -96,7 +96,7 @@
             </select></p>		
         <p> Nivel Didático 4: <select name = "nv4">
              <?php
-            include_once "conecta.php"; 
+            include_once "../conecta.php"; 
             $sql = "SELECT `id`, `topicos` FROM `topicos`";
             $resultado = mysqli_query($conexao, $sql);
             echo "<option value = ''></option>";
@@ -110,7 +110,7 @@
 </select></p>
         <p> Nivel Didático 5: <select name = "nv5">
              <?php
-            include_once "conecta.php"; 
+            include_once "../conecta.php"; 
             $sql = "SELECT `id`, `topicos` FROM `topicos`";
             $resultado = mysqli_query($conexao, $sql);
             echo "<option value = ''></option>";

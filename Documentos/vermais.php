@@ -9,7 +9,7 @@
 
 <div class = "tabela">
 <?php
-include "conecta.php";
+include "../conecta.php";
 $id = $_GET['id'];
 
 
@@ -70,7 +70,7 @@ mysqli_close($conexao);
 
 ?>
 </div>
-<a href='index.php' class="voltar"> Voltar </a>
+<a href='../Inicio/index.php' class="voltar"> Voltar </a>
 
 
 </body>

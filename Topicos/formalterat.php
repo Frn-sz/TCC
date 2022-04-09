@@ -13,7 +13,7 @@
 
 <?php
 
-    include "conecta.php";
+    include "../conecta.php";
 
     $id = $_GET['id'];
 

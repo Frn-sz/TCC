@@ -7,7 +7,7 @@
 
 <?php
 
-include_once "conecta.php";
+include_once "../conecta.php";
 $topico = $_GET['topicos'];
 $sql = "INSERT INTO `topicos`(`topicos`) VALUES ('$topico')";
 $resultado = mysqli_query($conexao,$sql);

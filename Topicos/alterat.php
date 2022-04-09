@@ -1,7 +1,7 @@
 
 <?php
 
-require_once "conecta.php";
+require_once "../conecta.php";
 
     $id = $_POST['id'];
     $topico = $_POST['topico'];
