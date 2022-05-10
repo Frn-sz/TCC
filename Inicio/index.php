@@ -2,6 +2,7 @@
 <html>
  <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/index.css">
 <link rel = "stylesheet" href="../css/materialize.css">
 <title>Lista de Documentos</title>
@@ -23,6 +24,8 @@ function confirmacao(id) {
 </head>
 
  <body>
+
+
  
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  <!--Materialize-->
@@ -63,6 +66,7 @@ function confirmacao(id) {
 
 <?php
 
+require_once "../Corretor/Corretor.php";
 require_once "../conecta.php";
 
 

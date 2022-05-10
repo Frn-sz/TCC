@@ -21,7 +21,8 @@ if(!isset($_GET['busca'])){
 }
 $pesquisa = "%". trim($_GET['busca']) . "%";
 
-require_once "conecta.php";
+require_once "../Corretor/Corretor.php";
+require_once "../conecta.php";
 
 echo '<table id = "biblioteca" class = "tabela" border = 1>';
 
