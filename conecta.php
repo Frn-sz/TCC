@@ -2,7 +2,7 @@
 $bdServidor = '127.0.0.1';
 $bdUsuario = 'root';
 $bdSenha = '';
-$bdBanco = 'biblioteca';
+$bdBanco = 'arquivo';
 $conexao = mysqli_connect($bdServidor,$bdUsuario,$bdSenha,$bdBanco);
 
 if ($conexao === false)

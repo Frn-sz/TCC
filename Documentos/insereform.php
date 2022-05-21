@@ -5,9 +5,35 @@
 	
     </head>
     <body>
+<?php
+
+
+function puxartopicos(){
+
+   include "../conecta.php"; 
+
+  $sql = "SELECT `id`, `titulo` FROM `topicos`";
+  $resultado = mysqli_query($conexao, $sql);
+  
+  $topicos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
+  
+  var_dump($topicos);
+  foreach($topicos as $chave => $topico){
+      $titulo = $topico['titulo'];
+      $id = $topico['id'];
+  
+      echo "<option value = $id> $titulo </option>";
+  }
+  
+  
+
+}
+
+?>
+ 
        <h1> Ficha de Cadastro </h1> 
  
-        <form action="insere.php" method="get">    
+        <form action="insere.php" method="post" enctype="multipart/form-data">    
 
 		<p> Titulo: <input type="text" name="titulo" required> </p>
 
@@ -22,109 +48,39 @@
         <p> Formato: <input type="text"name="formato" required></p>
 	      <p> Espécie: <input type="text" name="especie" required></p>		
         <p> Gênero: <input type="text" name="genero" required></p>	
-        <p> Localização:  <input type="text" name="locali" required></p>	
+        <p> Localização:  <input type="text" name="localizacao" required></p>	
 
 
         <!--Fazendo o cadastro dos niveis didáticos-->
-        <p> Nivel Didático 1: <select name = "nv1">
-             <?php
-            include "../conecta.php"; 
-
-            $sql = "SELECT `id`, `topicos` FROM `topicos`";
-            $resultado = mysqli_query($conexao, $sql);
-
-            echo "<option value = ''></option>";
-
-            while($linha = mysqli_fetch_assoc($resultado)){
-              $id = $linha['id'];
-              $topicos = $linha['topicos'];
-               
-                echo "<option value='$topicos'>". $topicos . "</option>";
-            }
-           
-            ?>
-</select>
+        <p> Nivel Didático 1: <select name = "topico1">  <?php puxartopicos() ?> </select>
 
         </p>
 
         <p> Nivel Didático 2: 
           
-        <select name = "nv2">
-             <?php
-
-            include_once "../conecta.php"; 
-
-            $sql = "SELECT `id`, `topicos` FROM `topicos`";
-
-            $resultado = mysqli_query($conexao, $sql);
-
-            echo "<option value = ''></option>";
-
-            while($linha = mysqli_fetch_assoc($resultado)){
-              $id = $linha['id'];
-              $topicos = $linha['topicos'];
-                echo "<option value='$topicos'>". $topicos . "</option>";
-            }
-           
-            ?>
+        <select name = "topico2">
+      <?php puxartopicos() ?>
             </select></p>	
 
         <p> Nivel Didático 3:
           
-        <select name = "nv3">
-
-             <?php
-
-            include_once "../conecta.php"; 
-
-            $sql = "SELECT `id`, `topicos` FROM `topicos`";
-
-            $resultado = mysqli_query($conexao, $sql);
-
-            echo "<option value = ''></option>";
-
-            while($linha = mysqli_fetch_assoc($resultado)){
-
-              $id = $linha['id'];
-
-              $topicos = $linha['topicos'];
-
-                echo "<option value='$topicos'>". $topicos . "</option>";
-            }
-           
-            ?>
+        <select name = "topico3">
+        <?php puxartopicos() ?>
             </select></p>		
-        <p> Nivel Didático 4: <select name = "nv4">
-             <?php
-            include_once "../conecta.php"; 
-            $sql = "SELECT `id`, `topicos` FROM `topicos`";
-            $resultado = mysqli_query($conexao, $sql);
-            echo "<option value = ''></option>";
-            while($linha = mysqli_fetch_assoc($resultado)){
-              $id = $linha['id'];
-              $topicos = $linha['topicos'];
-                echo "<option value='$topicos'>". $topicos . "</option>";
-            }
-           
-            ?>
+        <p> Nivel Didático 4: <select name = "topico4">
+       
+        <?php puxartopicos() ?>
 </select></p>
-        <p> Nivel Didático 5: <select name = "nv5">
-             <?php
-            include_once "../conecta.php"; 
-            $sql = "SELECT `id`, `topicos` FROM `topicos`";
-            $resultado = mysqli_query($conexao, $sql);
-            echo "<option value = ''></option>";
-            while($linha = mysqli_fetch_assoc($resultado)){
-              $id = $linha['id'];
-              $topicos = $linha['topicos'];
-                echo "<option value='$topicos'>". $topicos . "</option>";
-            }
-           
-            ?>
+        <p> Nivel Didático 5: <select name = "topico5">
+        <?php puxartopicos() ?>
 </select></p>
+
+<p><input name = "arquivo" type = "file"/></p>
         <input type="submit" value="Adicionar Documento" class="button">	
         
         
+        
+
     </div>  
 			
         </form>			

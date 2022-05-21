@@ -34,25 +34,24 @@ $result = mysqli_query($conexao, $sql);
 
 echo '<table id = "topicos" class = "tabela" border = "1">';
 
-echo "<tr> <th> Tópico </th> <th colspan = 4> Operações</th> </tr> <br>";
+echo "<tr> <th> ID </th> <th> Tópico </th> <th colspan = 4> Operações</th> </tr> <br>";
 
-while($listatopicos = mysqli_fetch_array($result, MYSQLI_BOTH)){
+$topicos = mysqli_fetch_all($result, MYSQLI_BOTH);
+
+foreach($topicos as $chave => $topico){
 
      echo "<tr>";
      
-    
-     echo "<td>" . $listatopicos['topicos'] ."</td>";
+     echo "<td>" . $topico['id']."</td  >";
+     echo "<td>" . $topico['titulo'] ."</td>";
      
      
-     echo "<td class ='alterar'> <a href= 'formalterat.php?id=$listatopicos[id]'> Editar </a>";
-     echo "<td class ='excluir'> <a href='#'" . "onclick='confirmacao($listatopicos[id])'>" . "Excluir </a>" ;
+     echo "<td class ='alterar'> <a href= 'formalterat.php?id=$$topico[id]'> Editar </a>";
+     echo "<td class ='excluir'> <a href='#'" . "onclick='confirmacao($topico[id])'>" . "Excluir </a>" ;
 
      echo "</tr>";
 
- 
-
 }
-
 
 echo "</table>";
 

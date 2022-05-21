@@ -70,13 +70,13 @@ require_once "../Corretor/Corretor.php";
 require_once "../conecta.php";
 
 
-echo '<table id = "biblioteca" class = "highlight " border = 2>';
+echo '<table id = "documentos" class = "highlight " border = 2>';
 
 echo "<tr> <th> Nome do Documento </th> <th> Forma </th> <th> Formato </th> <th> Especie </th>  <th colspan = 5> Operações </th> </tr> <br>";
 
 //Realizando o comando select para puxar os documentos do Banco de dados
 
-$sql = "SELECT `id`, `titulo`, `forma`, `formato`, `especie` FROM `biblioteca`";
+$sql = "SELECT `id`, `titulo`, `forma`, `formato`, `especie` FROM `documentos`";
 
 $resultado = mysqli_query($conexao, $sql);
 

@@ -9,16 +9,17 @@ require_once "../conecta.php";
     $formato = $_POST['formato'];
     $especie = $_POST['especie'];
     $genero = $_POST['genero'];
-    $locali = $_POST['locali'];
-    $nv1 = $_POST['nv1'];
-    $nv2 = $_POST['nv2'];
-    $nv3 = $_POST['nv3'];
-    $nv4 = $_POST['nv4'];
-    $nv5 = $_POST['nv5'];
+    $localizacao = $_POST['localizacao'];
+    $topico1 = $_POST['topico1'];
+    $topico2 = $_POST['topico2'];
+    $topico3 = $_POST['topico3'];
+    $topico4 = $_POST['topico4'];
+    $topcio5 = $_POST['topico5'];
+    //$imagem  = $_FILES['imagem'];
     
-$sql = "UPDATE biblioteca SET titulo='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',locali='$locali',
+$sql = "UPDATE documentos SET titulo='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao',
 
-nv1='$nv1',nv2='$nv2',nv3='$nv3',nv4='$nv4',nv5='$nv5' WHERE id=$id "; 
+topico1='$topico1',topico2='$topico2',topico3='$topico3',topico4='$topico4',topico5='$topico4' WHERE id=$id "; 
 
 $resultado = mysqli_query($conexao,$sql);
 
