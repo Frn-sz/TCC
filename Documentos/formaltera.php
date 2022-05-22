@@ -15,31 +15,51 @@
 <?php
     include "../conecta.php";
     $id = $_GET['id'];
-    $sql = "SELECT * FROM biblioteca WHERE id=$id";
+    $sql = "SELECT * FROM documentos WHERE id=$id";
     $resultado = mysqli_query($conexao,$sql);
-    $linha = mysqli_fetch_array($resultado);
+    $documento = mysqli_fetch_array($resultado);
     
     mysqli_close($conexao);
+
+    
+function puxartopicos(){
+  
+  include "../conecta.php";
+
+  $sql = "SELECT `id`, `titulo` FROM `topicos`";
+  $resultado = mysqli_query($conexao, $sql);
+  
+  $topicos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
+  
+  var_dump($topicos);
+  foreach($topicos as $chave => $topico){
+      $titulo = $topico['titulo'];
+      $id = $topico['id'];
+  
+      echo "<option value = $id> $titulo </option>";
+  }
+}
+  
 ?>
 
-<form action="altera.php" method="post" id="alteracao">
+<form action="altera.php" method="post" enctype="multipart/form-data">
     
 <input type="hidden" name="id" value="
 
-<?php echo $linha['id'];?>">
+<?php echo $documento['id'];?>">
 
 <p>Titulo:
 
 <input type="text" name="titulo" value="
 
-<?php echo $linha['titulo'];?>">
+<?php echo $documento['titulo'];?>">
 
 </p>
 <p>Forma:
 
 <input type="text" name="forma" value="
 
-<?php echo $linha['forma'];?>">
+<?php echo $documento['forma'];?>">
 
 </p>
 
@@ -47,21 +67,21 @@
 
 <input type="text" name="formato" value="
 
-<?php echo $linha['formato'];?>">
+<?php echo $documento['formato'];?>">
 </p>
 
 <p>Espécie:
 
 <input type="text" name="especie" value="
 
-<?php echo $linha['especie'];?>">
+<?php echo $documento['especie'];?>">
 
 </p>
 <p>Gênero:
 
 <input type="text" name="genero" value="
 
-<?php echo $linha['genero'];?>">
+<?php echo $documento['genero'];?>">
 
 </p>
 
@@ -70,7 +90,7 @@
 
 <input type="text" name="locali" value="
 
-<?php echo $linha['locali'];
+<?php echo $documento['localizacao'];
 
 ?>">
 

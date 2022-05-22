@@ -35,38 +35,19 @@ function confirmacao(id) {
 <!-- Fazendo o titulo da página -->
 
      
-<div class = "card valign-wrapper"> 
-     <div class = "card-content valign center-block">
-          <div class = "row">
-               <h1 class = "center-align black-text"> Lista de Documentos </h1>
+
                     
-                    </div>
-               </div>
-          </div>
-</div>
-
-
-<div class = "container">
-     <div class = "row">
-
- <a class = "col s2 offset-s1 waves-effect waves-light btn offset-s1.5 " id='bot' href='../Documentos/insereform.php'> Adicionar Documento </a>
-
-
-<a  class = "col s2 waves-effect waves-light btn offset-s2" href='../Topicos/topicos.php'> Lista de Tópicos </a>
-    
+ 
 
 <!--Passando o ID no modo hidden-->
 
 <input type="hidden" name="id" value="<?=$documentos['id'];?>">
 
-<a class = "col s2 waves-effect waves-light btn offset-s2" href="inicio.html">Voltar para o inicio</a>
 
-     </div>
-</div>
 
 <?php
 
-require_once "../Corretor/Corretor.php";
+require_once "../interfaces/header.php";
 require_once "../conecta.php";
 
 

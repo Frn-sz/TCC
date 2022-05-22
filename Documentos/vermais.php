@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 </head>
 <body>
 
@@ -31,6 +32,7 @@ $topico2 = $documentos['topico2'];
 $topico3 = $documentos['topico3'];
 $topico4 = $documentos['topico4'];
 $topico5 = $documentos['topico5'];
+$imagem = $documentos['imagem'];
 
 $sql = "SELECT * FROM `topicos` WHERE `id`='$topico1' or `id` = '$topico2' or `id`='$topico3' or `id`='$topico4'  or `id`='$topico5'";
 $result = mysqli_query($conexao,$sql);
@@ -48,33 +50,35 @@ $i = 0;
 foreach($topicos as $chave => $topico){
 
 
-echo "<i>Nível Didático 1: </i> " . $titulo . "<br><br>";
+echo "<i>Tópico 1: </i> " . $titulo . "<br><br>";
 
     $id = $topico['id'];
     $titulo = $topico ['titulo'];
 
 if($topico2 != "" and $topico2 != $topico1){
 $i++;
-echo "<i>Nível Didático $i:</i>" . $titulo . "<br><br>";
+echo "<i>Tópico $i:</i>" . $titulo . "<br><br>";
 
 }if($topico3 != ""and $topico3 != $topico2 and $topico3 != $topico1){
     $i++;
-echo "<i>Nível Didático $i: </i> " . $titulo . "<br><br>";
+echo "<i>Tópico $i: </i> " . $titulo . "<br><br>";
 
 }if($topico4 != ""and $topico4 != $topico3 and $topico4 != $topico2 and $topico4 != $topico1){
     $i++;
-echo "<i>Nível Didático $i: </i>" . $titulo . "<br><br>";
+echo "<i>Tópico $i: </i>" . $titulo . "<br><br>";
 
 }if($topico5 != "" and $topico5 != $topico4 and $topico5 != $topico3 and $topico5 != $topico2 and $topico5 != $topico1){
     $i++;
-echo "<i>Nível Didático $i:</i>" . $titulo . "<br><br>";
+echo "<i>Tópico $i:</i>" . $titulo . "<br><br>";
 
 }
 }
+
 mysqli_close($conexao);
 
-
+echo "<img class = 'right col s2' width = 400 src = '../upload/$imagem' ";
 ?>
+
 </div>
 <a href='../Inicio/index.php' class="voltar"> Voltar </a>
 
