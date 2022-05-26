@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+  
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!--Import Google Icon Font-->
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -22,7 +23,8 @@
       <a href="../Inicio/Inicio.php" class="brand-logo">&nbsp<img src= "../imagens/logo.png" width = 60></a>
       <ul class="right hide-on-med-and-down">
 
-            <li>
+            <li><a href="../Documentos/insereform.php">Registrar Documentos</a></li>
+            <li><a href="../Topicos/topicos.php">Lista de Tópicos</a></li>
       </ul>
     </div>
 

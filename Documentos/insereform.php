@@ -3,7 +3,8 @@
         <meta charset="utf-8">
         <title> Tela de Cadastro</title>
 	
-    </head>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script></head>
     <body>
 <?php
 
@@ -37,7 +38,7 @@ function puxartopicos(){
 
 		<p> Titulo: <input type="text" name="titulo" required> </p>
 
-        <p> Forma: <select name = "forma">
+        <p> Forma: <select  name = "forma">
 
           <option value = "Cópia">Cópia</option>
           <option value = "Original">Original</option>
@@ -52,36 +53,18 @@ function puxartopicos(){
 
 
         <!--Fazendo o cadastro dos niveis didáticos-->
-        <p> Nivel Didático 1: <select name = "topico1">  <?php puxartopicos() ?> </select>
-
-        </p>
-
-        <p> Nivel Didático 2: 
-          
-        <select name = "topico2">
-      <?php puxartopicos() ?>
-            </select></p>	
-
-        <p> Nivel Didático 3:
-          
-        <select name = "topico3">
-        <?php puxartopicos() ?>
-            </select></p>		
-        <p> Nivel Didático 4: <select name = "topico4">
        
-        <?php puxartopicos() ?>
-</select></p>
-        <p> Nivel Didático 5: <select name = "topico5">
-        <?php puxartopicos() ?>
-</select></p>
+        <p> Tópico 1: <select  name = "topico1"> <?php puxartopicos(); ?> </select> </p>
+        <p> Tópico 2: <select  name = "topico2"> <?php puxartopicos() ?> </select></p>	
+        <p> Tópico 3:  <select  name = "topico3"> <?php puxartopicos() ?> </select></p>		
+        <p> Tópico 4: <select  name = "topico4">  <?php puxartopicos() ?> </select></p>
+        <p> Tópico 5: <select  name = "topico5">  <?php puxartopicos() ?> </select></p>
 
 <p><input name = "arquivo" type = "file"/></p>
         <input type="submit" value="Adicionar Documento" class="button">	
         
-        
-        
 
-    </div>  
+
 			
         </form>			
 </body>

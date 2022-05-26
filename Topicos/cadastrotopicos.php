@@ -8,8 +8,8 @@
 <?php
 
 include_once "../conecta.php";
-$topico = $_GET['topicos'];
-$sql = "INSERT INTO `topicos`(`topicos`) VALUES ('$topico')";
+$titulo = $_POST['titulo'];
+$sql = "INSERT INTO `topicos`(`titulo`) VALUES ('$titulo')";
 $resultado = mysqli_query($conexao,$sql);
 mysqli_close($conexao);
 

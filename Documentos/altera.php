@@ -24,15 +24,21 @@ if(isset($_FILES['arquivo'])){
     $topico4 = $_POST['topico4'];
     $topcio5 = $_POST['topico5'];
     $imagem  = $nome;
+    $imagemx = $_POST['imagem'];
     
-if(!$imagem = ""){
+if(isset($_FILES['arquivo'])){
 $sql = "UPDATE documentos SET titulo='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao',
 
 topico1='$topico1',topico2='$topico2',topico3='$topico3',topico4='$topico4',topico5='$topico5', imagem = '$imagem' WHERE id=$id "; 
-}else{
+
+var_dump($sql);
+}
+
+else if(!isset($_FILE['arquivo'])){
+
     $sql = "UPDATE documentos SET titulo='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao',
 
-topico1='$topico1',topico2='$topico2',topico3='$topico3',topico4='$topico4',topico5='$topico5' WHERE id=$id "; 
+topico1='$topico1',topico2='$topico2',topico3='$topico3',topico4='$topico4',topico5='$topico5', imagem='$imagemx' WHERE id=$id "; 
 
 }
 $resultado = mysqli_query($conexao,$sql);

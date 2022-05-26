@@ -16,33 +16,20 @@
     include "../conecta.php";
 
     $id = $_GET['id'];
-
-    $sq = "SELECT * FROM topicos WHERE id=$id";
-
-    $resultado = mysqli_query($conexao,$sq);
-
-    $listatopicos = mysqli_fetch_array($resultado, MYSQLI_BOTH);
-    
+    $sql = "SELECT * FROM topicos WHERE id='$id'";
+    $resultado = mysqli_query($conexao,$sql);
+    $topicos = mysqli_fetch_array($resultado, MYSQLI_BOTH);
     mysqli_close($conexao);
 ?>
 
-<form action="alterat.php" method="post" id="alteracao">
+<form action="alterat.php" method="get">
     
-<input type="hidden" name="id" value="
 
-<?= $listatopicos['id'];?>">
-
-<p>Tópico:
-
-<input type="text" name="topico" value="
-
-<?= $listatopicos['topicos'];?>">
-
-</p>
+<p>Título: <input type="text" name="titulo" value=" <?= $topicos['titulo'];?> "> </p>
 
 
 
-<i> <input type="submit" value="Confirmar Alteração" class="button"> </i>
+<input type="submit" value="Confirmar Alteração" class="button">
 </form>
 
 <br>
