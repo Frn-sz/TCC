@@ -2,11 +2,11 @@
     <head>
         <meta charset="utf-8">
         <title> Tela de Cadastro de Tópicos</title>
-	
+        
     </head>
     <body>
-       <h1> Ficha de Cadastro de Tópicos</h1> 
-
+      
+        <?php require_once "../interfaces/header.php";?>
         <form action="cadastrotopicos.php" method="post">    
 
            

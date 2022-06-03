@@ -4,26 +4,28 @@
 <meta charset="UTF-8">
 <title>Alterar</title>
 
-<link rel="stylesheet" type="text/css" href="estiloalterat.css">	
+
 </head>
 
 <body>
  
-<h1 class= "titulo"> Alterar Tópico </h1>
+
 
 <?php
 
     include "../conecta.php";
+    require_once "../interfaces/header.php";
 
     $id = $_GET['id'];
+ 
     $sql = "SELECT * FROM topicos WHERE id='$id'";
     $resultado = mysqli_query($conexao,$sql);
     $topicos = mysqli_fetch_array($resultado, MYSQLI_BOTH);
     mysqli_close($conexao);
 ?>
 
-<form action="alterat.php" method="get">
-    
+<form action="alterat.php" method="post">
+    <input type = "hidden" name ="id" value = "<?= $topicos['id'];?>">
 
 <p>Título: <input type="text" name="titulo" value=" <?= $topicos['titulo'];?> "> </p>
 

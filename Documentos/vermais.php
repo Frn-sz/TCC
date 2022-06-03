@@ -12,7 +12,6 @@
 <?php
 include "../conecta.php";
 
-
 $id = $_GET['id'];
 
 $sql = "SELECT * FROM documentos WHERE id=$id";
@@ -50,7 +49,7 @@ echo "<i>Localização: </i>" . $locali . "<br><br>";
 echo "<i>Gênero :</i> " . $genero . "<br><br>";
 $i = 1;
 foreach($topicos as $chave => $topico){
-    $id = $topico['id'];
+$id = $topico['id'];
    
 echo "<i> Tópico $i: </i> " . $topico['titulo'] . "<br><br>";
 if($topico2 != "" and $topico2 != $topico1){

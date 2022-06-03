@@ -18,12 +18,13 @@
      <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
 
-      <nav>
-    <div class="nav-wrapper">
-      <a href="../Inicio/Inicio.php" class="brand-logo">&nbsp<img src= "../imagens/logo.png" width = 60></a>
-      <ul class="right hide-on-med-and-down">
-
-            <li><a href="../Documentos/insereform.php">Registrar Documentos</a></li>
+      <nav class = "blue darken-1>">
+    <div class="nav-wrapper container">
+    <a href= "../Inicio/Inicio.php"><img class = "left white-text" width = 70px src = "../Imagens/livrob.png"> </a> 
+    
+    <ul class="right hide-on-med-and-med">
+    
+            <li><a href="../Inicio/index.php">Lista de Documentos</a></li>
             <li><a href="../Topicos/topicos.php">Lista de Tópicos</a></li>
       </ul>
     </div>

@@ -3,10 +3,10 @@
 
 require_once "../conecta.php";
 
-    $id = $_GET['id'];
-    $titulo = $_GET['titulo'];
-    
+    $id = $_POST['id'];
+    $titulo = $_POST['titulo'];
         $sql = "UPDATE `topicos` SET `titulo`='$titulo' WHERE id='$id'"; 
+        var_dump($sql);
         $resultado = mysqli_query($conexao,$sql);
 
         mysqli_close($conexao);
