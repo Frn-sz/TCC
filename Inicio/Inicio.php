@@ -28,15 +28,15 @@
            
              <p> <input name="busca" type="text" placeholder="Buscar..."/> </p>
             
-             <p> <input  type = "submit" id ="botao" value = "Buscar"/> </p>
+             <p> <input  class = "waves-effect  btn blue darken-1" type = "submit" id ="botao" value = "Buscar"/> </p>
            
            <br>
 
             </form>
-
+    <a class = "waves-effect  btn blue darken-1" href = "index.php"> Listagem de Documentos</a><br>  
             </main>
 
-        <a class = "button" href = "index.php"> Listagem de Documentos</a><br>
+    
         <?php require_once "../interfaces/footer.php"; ?>
 
     </body>

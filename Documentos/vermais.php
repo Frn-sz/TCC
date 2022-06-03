@@ -2,16 +2,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="../css/materialize.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style type="text/css">
+body{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  </style>
 
 </head>
 <body>
-
-<link rel="stylesheet" type="text/css" href="estilovermais.css">	
-
-<div class = "tabela">
+<main>
+	
 <?php
 include "../conecta.php";
-
+include_once "../interfaces/header.php";
 $id = $_GET['id'];
 
 $sql = "SELECT * FROM documentos WHERE id=$id";
@@ -26,59 +45,59 @@ $formato = $documentos['formato'];
 $especie = $documentos['especie'];
 $genero = $documentos['genero'];
 $locali = $documentos['localizacao'];
-$topico1 = $documentos['topico1'];
-$topico2 = $documentos['topico2'];
-$topico3 = $documentos['topico3'];
-$topico4 = $documentos['topico4'];
-$topico5 = $documentos['topico5'];
+$topicos = array($documentos['topico1'], $documentos['topico2'],$documentos['topico3'],$documentos['topico4'],$documentos['topico5']);
 $imagem = $documentos['imagem'];
 
-$sql = "SELECT * FROM `topicos` WHERE `id`='$topico1' or `id` = '$topico2' or `id`='$topico3' or `id`='$topico4'  or `id`='$topico5'";
+
+?>
+
+<?php
+
+$sql = "SELECT * FROM `topicos` WHERE `id`='$topicos[0]' or `id` = '$topicos[1]' or `id`='$topicos[2]' or `id`='$topicos[3]'  or `id`='$topicos[4]'";
 $result = mysqli_query($conexao,$sql);
 
 
 
 $topicos = mysqli_fetch_all($result, MYSQLI_BOTH);
 
+//Fazendo Tabela de Informações do Documento 
 
-echo  "<h1>" . $titulo ."</h1><br><br>";
-echo "<i>Forma:</i> " . $forma . "<br><br>";
-echo "<i>Formato: </i>" . $formato . "<br><br>";
-echo "<i>Espécie: </i> " . $especie . "<br><br>";
-echo "<i>Localização: </i>" . $locali . "<br><br>";
-echo "<i>Gênero :</i> " . $genero . "<br><br>";
-$i = 1;
+echo "<table class = 'bordered'> <thead>  <th>Imagem</th> <th> Título </th> <th> Forma </th> <th>Formato</th> <th>Espécie</th> <th>Localização</th> <th>Gênero</th> </thead>";
+
+echo "<tbody> <tr>  <td> <img width = 200 src= '../upload/$imagem'> </td>
+<td> $titulo </td>";
+echo "<td> $forma </td>";
+echo "<td> $formato </td>";
+echo "<td> $especie </td>";
+echo "<td> $locali </td>";
+echo "<td> $genero </td> </tr></tbody></table>";
+
+$i = 0;
+
+echo "<br><br><table class = 'highlight'> <thead>";
 foreach($topicos as $chave => $topico){
-$id = $topico['id'];
-   
-echo "<i> Tópico $i: </i> " . $topico['titulo'] . "<br><br>";
-if($topico2 != "" and $topico2 != $topico1){
-$i++;
-echo "<i>Tópico $i: </i>" . $topico['titulo'] . "<br><br>";
-}if($topico3 != "" and $topico3 != $topico2 and $topico3 != $topico1){
-
-$i++;
-echo "<i>Tópico $i: </i> " . $topico['titulo'] . "<br><br>";
-
-}if($topico4 != "" and $topico4 != $topico3 and $topico4 != $topico2 and $topico4 != $topico1){
-    $i++;
-echo "<i>Tópico $i: </i>" . $topico['titulo'] . "<br><br>";
-
-}if($topico5 != "" and $topico5 != $topico4 and $topico5 != $topico3 and $topico5 != $topico2 and $topico5 != $topico1){
-    $i++;
-echo "<i>Tópico $i:</i>" . $topico['titulo'] . "<br><br>";
-
+   $i++;
+   echo "<th> Tópico $i </th>";
 }
+echo "</thead><tbody><tr>";
+foreach($topicos as $chave => $topico){
+    echo "<td>". $topico['titulo']."</td>";
 }
+echo "</tr> </tbody> </table>";
+
+
 
 mysqli_close($conexao);
 
-echo "<img class = 'right col s2' width = 400 src = '../upload/$imagem' ";
+
 ?>
 
-</div>
-<a href='../Inicio/index.php' class="voltar"> Voltar </a>
+<br><br>
 
 
+
+</main>
+<br>
+<?php include_once "../interfaces/footer.php"; ?>
 </body>
 </html>
