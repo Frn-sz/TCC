@@ -9,9 +9,9 @@
 
 <body>
  
-<h1 class= "titulo"> Alterar </h1>
+<main>
 
-<div class="tudo">
+
 <?php
 
     include "../conecta.php";
@@ -42,7 +42,7 @@ function puxartopicos(){
 }
   
 ?>
-
+ <?php require_once "../interfaces/header.php"; ?>
 <form action="altera.php" method="post" enctype="multipart/form-data">
     
 <input type="hidden" name="id" value="
@@ -148,8 +148,9 @@ if($documento['forma'] == "Cópia"){
 <br>
 
 <a href="../Inicio/index.php" class="voltar">Cancelar</a class="voltar">
-</div>
 
 
+</main>
+<?php require_once "../interfaces/footer.php"; ?>
 </body>
 </html>
