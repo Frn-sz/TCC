@@ -7,7 +7,6 @@ if(isset($_FILES['arquivo'])){
 	$ext = strrchr($_FILES['arquivo']['name'], '.');
 	$nome = md5(time()).$ext;
 	$dir = "../upload/";
-
 	move_uploaded_file($_FILES['arquivo']['tmp_name'], $dir.$nome);
 
 }
@@ -32,13 +31,11 @@ $sql = "UPDATE documentos SET titulo='$titulo',forma='$forma',formato='$formato'
 topico1='$topico1',topico2='$topico2',topico3='$topico3',topico4='$topico4',topico5='$topico5', imagem = '$imagem' WHERE id=$id "; 
 
 var_dump($sql);
-}
-
-else if(!isset($_FILE['arquivo'])){
+}else{
 
     $sql = "UPDATE documentos SET titulo='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao',
 
-topico1='$topico1',topico2='$topico2',topico3='$topico3',topico4='$topico4',topico5='$topico5', imagem='$imagemx' WHERE id=$id "; 
+topico1='$topico1',topico2='$topico2',topico3='$topico3',topico4='$topico4',topico5='$topico5' WHERE id=$id "; 
 
 }
 $resultado = mysqli_query($conexao,$sql);

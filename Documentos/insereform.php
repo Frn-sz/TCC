@@ -49,9 +49,6 @@ function puxartopicos(){
   
       echo "<option value = $id> $titulo </option>";
   }
-  
-  
-
 }
 
 ?>
