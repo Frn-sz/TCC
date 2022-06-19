@@ -1,33 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!--Import Google Icon Font-->
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="../css/materialize.css"  media="screen,projection"/>
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<style type="text/css">
-body{
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-
-  main {
-    flex: 1 0 auto;
-  }
-
-  </style>
-
-</head>
-<body>
-<main>
-	
 <?php
 include "../conecta.php";
 include_once "../interfaces/header.php";
@@ -45,46 +16,71 @@ $formato = $documentos['formato'];
 $especie = $documentos['especie'];
 $genero = $documentos['genero'];
 $locali = $documentos['localizacao'];
-$topicos = array($documentos['topico1'], $documentos['topico2'],$documentos['topico3'],$documentos['topico4'],$documentos['topico5']);
+
 $imagem = $documentos['imagem'];
 
 
 ?>
+<style>
+   li{
+    font-size: 25px;
+    padding:10px;
+    
+    
+   }#lista{
+    border-radius: 20px;
+   }
+</style>
+<main>
 
 <?php
 
-$sql = "SELECT * FROM `topicos` WHERE `id`='$topicos[0]' or `id` = '$topicos[1]' or `id`='$topicos[2]' or `id`='$topicos[3]'  or `id`='$topicos[4]'";
-$result = mysqli_query($conexao,$sql);
+$sql2 = "SELECT id_topico FROM `tabela_assoc` WHERE `id_doc`= $documentos[id]";
+$result = mysqli_query($conexao,$sql2);
+$id_topicos = mysqli_fetch_all($result);
 
+for($i = 0; $i < count($id_topicos); $i++){
+ 
+    for($x = 0; $x < count($id_topicos[$i]); $x++){
+    $y = $id_topicos[$i][$x];
+    $sql3 = "SELECT * FROM `topicos` WHERE id=$y";
+    $result = mysqli_query($conexao,$sql3);
+    $topicos = mysqli_fetch_assoc($result);
 
+    $topicos_doc[] = $topicos["titulo"];
+    
+    }
 
-$topicos = mysqli_fetch_all($result, MYSQLI_BOTH);
+}   
 
 //Fazendo Tabela de Informações do Documento 
 
-echo "<table class = 'bordered'> <thead>  <th>Imagem</th> <th> Título </th> <th> Forma </th> <th>Formato</th> <th>Espécie</th> <th>Localização</th> <th>Gênero</th> </thead>";
+echo "<br> <div id = 'lista' class = 'container collection'>";
+if($documentos['imagem'] != ""){
 
-echo "<tbody> <tr>  <td> <img width = 200 src= '../upload/$imagem'> </td>
-<td> $titulo </td>";
-echo "<td> $forma </td>";
-echo "<td> $formato </td>";
-echo "<td> $especie </td>";
-echo "<td> $locali </td>";
-echo "<td> $genero </td> </tr></tbody></table>";
+    echo "<p> <img style = 'padding:20px;margin-left:10%;' class = 'right' width = 500 src= '../upload/$imagem'> </p>";
+    
+    }else{
+        echo "<p>" ."Sem Imagem"  . "</p>";
+    
+    }
 
-$i = 0;
+echo "<li> Título do documento: ". $titulo . "</li><br>";
+echo "<li>Forma: " .$forma  . "</li><br>";
+echo "<li>Formato: " .$formato  . "</li><br>";
+echo "<li>Espécie: " .$especie  . "</li><br>";
+echo "<li>Localização: " .$locali  . "</li><br>";
+echo "<li>Gênero: " .$genero  . "</li><br>";
 
-echo "<br><br><table class = 'highlight'> <thead>";
-foreach($topicos as $chave => $topico){
-   $i++;
-   echo "<th> Tópico $i </th>";
+
+
+
+echo "<li>Tópicos do documento: ";
+foreach($topicos_doc as $chave => $topico){
+    
+   echo " <div class='chip'><a href = #> $topico </a> </div>";
 }
-echo "</thead><tbody><tr>";
-foreach($topicos as $chave => $topico){
-    echo "<td>". $topico['titulo']."</td>";
-}
-echo "</tr> </tbody> </table>";
-
+echo "</li>";
 
 
 mysqli_close($conexao);

@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
+
 <?php
 include "../conecta.php";
 $id = $_GET['id'];
@@ -17,5 +12,3 @@ if($resultado){
     header("Location:topicos.php");
 }
 ?>
-</body>
-</html>

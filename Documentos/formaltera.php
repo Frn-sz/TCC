@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
 <title>Alterar</title>
 
 <link rel="stylesheet" type="text/css" href="estiloaltera.css">	
@@ -10,7 +7,6 @@
 <body>
  
 <main>
-
 
 <?php
 
@@ -22,28 +18,28 @@
     
     mysqli_close($conexao);
 
-    
-function puxartopicos(){
-  
-  include "../conecta.php";
+    function puxartopicos(){
 
-  $sql = "SELECT `id`, `titulo` FROM `topicos`";
-  $resultado = mysqli_query($conexao, $sql);
-  
-  $topicos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
-  
-  
-  foreach($topicos as $chave => $topico){
-      $titulo = $topico['titulo'];
-      $id = $topico['id'];
-  
-      echo "<option value = $id> $titulo </option>";
-  }
-}
+      include "../conecta.php";
+    
+    
+      $sql = "SELECT `id`, `titulo` FROM `topicos`";
+      $resultado = mysqli_query($conexao, $sql);
+    
+      $topicos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
+      foreach ($topicos as $chave => $topico) {
+        $titulo = $topico['titulo'];
+        $id = $topico['id'];
+    
+        echo "<option value = $id> $titulo </option>";
+      }
+    }
   
 ?>
  <?php require_once "../interfaces/header.php"; ?>
-<form action="altera.php" method="post" enctype="multipart/form-data">
+
+
+<form class = "container" action="altera1.php" method="post" enctype="multipart/form-data">
     
 <input type="hidden" name="id" value="
 
@@ -100,57 +96,46 @@ if($documento['forma'] == "Cópia"){
 
 </p>
 
-<p> Nivel Didático 1:
+
+      <p> Tópico 1: <select name="0"> <?php puxartopicos() ?> </select> </p>
+      <p> Tópico 2: <select name="1"> <?php puxartopicos() ?> </select></p>
+      <p> Tópico 3: <select name="2"> <?php puxartopicos() ?> </select></p>
+      <p> Tópico 4: <select name="3"> <?php puxartopicos() ?> </select></p>
+      <p> Tópico 5: <select name="4"> <?php puxartopicos() ?> </select></p>
+  
+
+<div class="file-field input-field">
+      <div class="btn blue darken-4">
+        <span><i class = "material-icons large">attach_file</i> </span>
+        <input name = "arquivo" type="file">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    <button id = "y" style = 'border-radius:10px;' class = "btn waves-effect waves-light blue darken-4" type = "reset">
+    <i class = "material-icons">cancel</i>
+  </button>
+    <button id = "x" style = 'border-radius:10px;'class="btn waves-effect waves-light blue darken-4" type="submit" name="action">
+      <i class="material-icons">check</i>
+  </button>
+
     
-<select name="topico1">
-             <?php
-           puxartopicos();    
-            ?>
-</select>
-
-        </p>
-
-
-<p>Nivel Didático 2:
-
-<select name="topico2">
-             <?php
-           puxartopicos();    
-            ?>
-</select>
-
-        </p>
-
-
-</p>
-<p>Nível Didático 3: 
-
-<select name="topico3">    <?php puxartopicos(); ?> </select>
-
-        </p>
-
-<p>Nível Didático 4: 
-
-<select name="topico4"> <?php puxartopicos();     ?></select>
-
-        </p>
-<p>Nível Didático 5: 
-
-<select name="topico5"> <?php puxartopicos(); ?>
-</select>
-
-        </p>
-
-        <p><input name = "arquivo" type = "file"></p>
-<input type="submit" value="Confirmar Alteração" class="button"> 
 </form>
+
 
 <br>
 
-<a href="../Inicio/index.php" class="voltar">Cancelar</a class="voltar">
 
 
 </main>
 <?php require_once "../interfaces/footer.php"; ?>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="../js/materialize.min.js"></script>
 </body>
+<script>
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+  </script>
 </html>

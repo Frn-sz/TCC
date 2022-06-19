@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html>
- <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="../css/materialize.css">
 
 <title>Resultado da Pesquisa</title>
 
@@ -15,19 +10,6 @@ function confirmacao(id) {
      }
 }
 </script>
-<style type="text/css">
-         body{
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-
-  main {
-    flex: 1 0 auto;
-  }
-
-  </style>
-
 </head>
 
  <body>
@@ -41,52 +23,82 @@ if(!isset($_GET['busca'])){
 $pesquisa = "%". trim($_GET['busca']) . "%";
 
 
+
+
 require_once "../conecta.php";
 require_once "../interfaces/header.php";
-echo '<table id = "documentos" class = "tabela" border = 1>';
 
-echo "<tr> <th> Nome do Documento </th> <th> Forma </th> <th> Formato </th> <th> Especie </th>  <th colspan = 4> Operações </th> </tr> <br>";
 
-//Realizando o comando select para pesquisar no banco de dados
 
-$sql = "SELECT `id`, `titulo`, `forma`, `formato`, `especie` FROM `documentos` WHERE  
-`titulo` LIKE '$pesquisa' OR
-`topico1` LIKE '$pesquisa'
-OR `topico2` LIKE '$pesquisa'
-OR `topico3` LIKE '$pesquisa'
-OR `topico4` LIKE '$pesquisa'
-OR `topico5` LIKE '$pesquisa';";
+$sql = "SELECT * FROM `topicos` WHERE `titulo` LIKE '$pesquisa'";
 $resultado = mysqli_query($conexao, $sql);
+$topicos = mysqli_fetch_all($resultado,MYSQLI_BOTH);
 
-while($documentos = mysqli_fetch_array($resultado, MYSQLI_BOTH)){
+$documentos[0] = 0; 
+foreach($topicos as $chave => $topico){
+     $sql2 = "SELECT id_doc FROM `tabela_assoc`WHERE  id_topico = $topico[id]";
+     $result = mysqli_query($conexao,$sql2);
+     $ids = mysqli_fetch_all($result, MYSQLI_ASSOC);
+     for($i = 0; $i < count($ids); $i++){
+          $idsearch = $ids[$i]['id_doc'];
+          $sql3 = "SELECT id FROM `documentos` WHERE id = '$idsearch'";
+          $search = mysqli_query($conexao,$sql3);
+          $documentos[$i] = mysqli_fetch_assoc($search);
+          
+     }
+}
 
-     echo "<tr>";
+foreach($documentos as $chave => $documento){
+     $id = $documento['id'];
+     $sql4 = $sql3 = "SELECT * FROM `documentos` WHERE id = '$id'";
+     $resultados = mysqli_query($conexao,$sql4);
+     $busca[] = mysqli_fetch_all($resultados, MYSQLI_BOTH);
      
-     echo "<td>" . $documentos['titulo']. "</td>";
-     echo "<td>" . $documentos['forma'] . "</td>";
-     echo "<td>" . $documentos['formato'] . "</td>";
-     echo "<td>" . $documentos['especie'] . "</td>";
+}
+
+echo '<table id = "documentos" class = "container " border = 2>';
+
+echo "<tr><thead>  <th> Imagem </th><th> Nome do Documento </th> <th> Forma </th> <th> Formato </th> <th> Especie </th>  <th colspan = 4> Operações </th> </tr> <thead> <tdbody><br>";
+
+for($i = 0; $i < count($busca);$i++){
+foreach($busca[$i] as $chave => $documento){
+
+$id = $documento['id'];
+
+     if($documento['imagem'] != ""){ 
+          
+     echo "<td> <img width = 250 src = ../upload/" . $documento['imagem'] . "></td>";
+
+}    else{
+     
+     echo "<td>Sem Imagem</td>";
+
+}
+     echo "<td>" . $documento['titulo']. "</td>";
+     echo "<td>" . $documento['forma'] . "</td>";
+     echo "<td>" . $documento['formato'] . "</td>";
+     echo "<td>" . $documento['especie'] . "</td>";
+     
    
    
-     echo "<td class ='vermais'> <a href = '../Documentos/vermais.php?id=$documentos[id]'> Ver mais </a>";
-     echo "<td class ='alterar'> <a href= '../Documentos/formaltera.php?id=$documentos[id]'> Editar </a>";
-     echo "<td class ='excluir'> <a href='#'" . "onclick='confirmacao($documentos[id])'>" . "Excluir </a>" ;
+     echo "<td class =''> <a href = '../Documentos/vermais.php?id=$id' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>";
+     echo "<td class =''> <a href= '../Documentos/formaltera.php?id=$id' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>";
+     echo "<td class =''> <a href='#'" . "onclick='confirmacao($id)' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'>" . "delete </i> </a>" ;
      echo "<a href='inicio.html' class ='voltar'>";
      echo "</tr>";
    
    
-}
-     echo "</table>";
+}}
 
+     echo "<tdbody> </table>";
+    
 ?>
 
 
 
-<input type="hidden" name="id" value="
 
-<?php echo $documentos['id'];?>">
 
-<a href="inicio.php">Voltar para o inicio</a>
+
 </main>
 <?php require_once "../interfaces/footer.php" ?>
 </body>     

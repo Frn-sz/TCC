@@ -24,23 +24,29 @@ $formato = $_POST['formato'];
 $especie = $_POST['especie'];
 $genero = $_POST['genero'];
 $localizacao = $_POST['localizacao'];
-$topico1 = $_POST['topico1'];
-$topico2 = $_POST['topico2'];
-$topico3 = $_POST['topico3'];
-$topico4 = $_POST['topico4'];
-$topico5 = $_POST['topico5'];
 $imagem = $nome;
 
-$sql = "INSERT INTO `documentos`(`titulo`,`forma`,`formato`, `especie`, `genero`, `localizacao`, `topico1`, `topico2`,`topico3`, `topico4`, `topico5`,`imagem`) 
-VALUES ('$titulo','$forma','$formato','$especie','$genero ','$localizacao','$topico1','$topico2','$topico3','$topico4', '$topico5', '$imagem')";
+if($_FILES['arquivo']['error'] == 0){
 
+$sql = "INSERT INTO `documentos`(`titulo`,`forma`,`formato`, `especie`, `genero`, `localizacao`,`imagem`) 
+VALUES ('$titulo','$forma','$formato','$especie','$genero ','$localizacao', '$imagem')";
+
+}else{
+	$sql = "INSERT INTO `documentos`(`titulo`,`forma`,`formato`, `especie`, `genero`, `localizacao`,`imagem`) 
+VALUES ('$titulo','$forma','$formato','$especie','$genero ','$localizacao', '')";
+
+}
 $resultado = mysqli_query($conexao,$sql);
+
 mysqli_close($conexao);
 
-if ($resultado)
-{
-	header("Location:../Inicio/index.php");
+if($resultado){
+	header("location:inseretopic.php");
 }
+
+
+
+
 ?>
 </body>
 </html>

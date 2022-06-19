@@ -18,14 +18,8 @@ function confirmacao(id) {
 </script>
 
 <style type="text/css">
-         body{
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-
-  main {
-    flex: 1 0 auto;
+     #inserir{
+     margin-left: 50%;
   }
 
   </style>
@@ -34,26 +28,19 @@ function confirmacao(id) {
 
  <body>
 <main>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
- <!--Materialize-->
- <script src="js/materialize.js"></script>
-
-<!--Passando o ID no modo hidden-->
-
-
-<input type="hidden" name="id" value="<?=$documentos['id'];?>">
-
 
 <?php
 require_once "../interfaces/header.php";
 require_once "../conecta.php";
 ?>
 <br>
+
+
 <div class = "container">
-<div class = "col s3 l" ><a class = 'waves-effect  btn blue darken-1' href = '../Documentos/insereform.php'> Inserir Documento </a></div>
+<div><a id = "inserir" class = 'waves-effect btn-floating blue darken-4' href = '../Documentos/insereform.php'><i class = "material-icons">add</i> </a></div>
 </div>
 <?php
-echo '<table id = "documentos" class = "highlight " border = 2>';
+echo '<table id = "documentos" class = "container " border = 2>';
 
 echo "<tr><thead>  <th> Imagem </th><th> Nome do Documento </th> <th> Forma </th> <th> Formato </th> <th> Especie </th>  <th colspan = 4> Operações </th> </tr> <thead> <tdbody><br>";
 
@@ -64,13 +51,25 @@ $sql = "SELECT `id`, `titulo`, `forma`, `formato`, `especie`, `imagem`FROM `docu
 $resultado = mysqli_query($conexao, $sql);
 
 //Criando o array com todos os documentos
+?>
+
+<?php
+
 
 $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
 
 
      foreach($documentos as $chave => $documento){
      echo "<tr>";
-     if(isset($documento['imagem'])){ echo "<td> <img width = 250 src = ../upload/" . $documento['imagem'] . "></td>";}
+     if($documento['imagem'] != ""){ 
+          
+     echo "<td> <img width = 250 src = ../upload/" . $documento['imagem'] . "></td>";
+
+}    else{
+     
+     echo "<td>Sem Imagem</td>";
+
+}
      echo "<td>" . $documento['titulo']. "</td>";
      echo "<td>" . $documento['forma'] . "</td>";
      echo "<td>" . $documento['formato'] . "</td>";
@@ -78,9 +77,9 @@ $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
      
    
    
-     echo "<td class =''> <a href = '../Documentos/vermais.php?id=$documento[id]'> Ver mais </a>";
-     echo "<td class =''> <a href= '../Documentos/formaltera.php?id=$documento[id]'> Editar </a>";
-     echo "<td class =''> <a href='#'" . "onclick='confirmacao($documento[id])'>" . "Excluir </a>" ;
+     echo "<td class =''> <a href = '../Documentos/vermais.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>";
+     echo "<td class =''> <a href= '../Documentos/formaltera.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>";
+     echo "<td class =''> <a href='#'" . "onclick='confirmacao($documento[id])' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'>" . "delete </i> </a>" ;
      echo "<a href='inicio.html' class ='voltar'>";
      echo "</tr>";
    
@@ -88,8 +87,9 @@ $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
 }
 
      echo "<tdbody> </table>";
-    
-?>
+     ?>
+    </div>
+
 
 
 

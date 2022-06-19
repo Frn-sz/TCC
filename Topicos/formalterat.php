@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
 <title>Alterar</title>
-
-
-</head>
-
-<body>
- 
-
 
 <?php
 
@@ -24,21 +14,22 @@
     mysqli_close($conexao);
 ?>
 
-<form action="alterat.php" method="post">
+<form action="alterat.php" method="post" class = "container" T>
     <input type = "hidden" name ="id" value = "<?= $topicos['id'];?>">
 
 <p>Título: <input type="text" name="titulo" value=" <?= $topicos['titulo'];?> "> </p>
 
 
 
-<input type="submit" value="Confirmar Alteração" class="button">
-</form>
-
-<br>
-<a href="topicos.php" class="button1"> Listar Tópicos</a class="button1">
-<br><br>
-<a href="index.php" class="voltar">Voltar para o inicio</a class="voltar">
+<div id = "botões">
+        <button style = 'border-radius:10px;' class = "btn waves-effect waves-light blue darken-4" type = "reset">
+    <i class = "material-icons">cancel</i>
+        </button>
+    <button  style = 'border-radius:10px;'class="btn waves-effect waves-light blue darken-4" type="submit" name="action">
+      <i class="material-icons">check</i>
+  </button>	
 </div>
+</form>
 
 
 </body>
