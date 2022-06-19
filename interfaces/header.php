@@ -26,6 +26,8 @@ body{
     flex: 1 0 auto;
   }#botões{
     margin-left: 50%;
+  }#botaoinsere{
+    margin-left:50%;
   }
   </style>
 </head>
@@ -38,13 +40,15 @@ body{
     <div class="nav-wrapper container">
       <a href="../Inicio/"><img class="left white-text" width=70px src="../Imagens/livrob.png"> </a>
       <ul class="right hide-on-med-and-med">
-      <li><div class="input-field col s6 s12 red-text">
-        <form action = "../Inicio/pesquisa.php" method = "get">
-                            <i class="white-text material-icons prefix">search</i>
-                            <input type="text" placeholder="Buscar.." name = "busca" id="autocomplete-input" class="autocomplete white-text" >
-        </form></div></li>
+     
         <li><a href="../Inicio/index.php">Lista de Documentos</a></li>
         <li><a href="../Topicos/topicos.php">Lista de Tópicos</a></li>
+        <li><a href="../usuarios/listausers.php">Lista de Usuários</a></li>
+        <li><div class="input-field col s6 s12 red-text">
+        <form action = "../Inicio/pesquisa.php" method = "get">
+                            <label class = "prefix" for = "busca"><i class="white-text material-icons ">search</i></label>
+                            <input type="search" placeholder="Buscar.." name = "busca" id="busca" class="" >
+        </form></div></li>
       </ul>
       
     </div>

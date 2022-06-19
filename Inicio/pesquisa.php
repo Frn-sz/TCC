@@ -17,12 +17,15 @@ function confirmacao(id) {
 <main>
 <?php
 
-if(!isset($_GET['busca'])){
-    header("location:inicio.php");
+if($_GET['busca'] == ""){
+
+    header("location:index.php");
 }
+
+
 $pesquisa = "%". trim($_GET['busca']) . "%";
 
-
+echo $pesquisa;
 
 
 require_once "../conecta.php";
