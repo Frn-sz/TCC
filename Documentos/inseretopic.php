@@ -38,6 +38,7 @@ function puxartopicos(){
     $id = $topico['id'];
 
     echo "<option value = $id> $titulo </option>";
+    
   }
 }
 ?>
@@ -45,26 +46,23 @@ function puxartopicos(){
     <main>  
     <form action = "inseretop.php" method="post">
     <div class="container">
-      <p> Tópico 1: <select name="1"> <?php puxartopicos() ?> </select> </p>
-      <p> Tópico 2: <select name="2"> <?php puxartopicos() ?> </select></p>
-      <p> Tópico 3: <select name="3"> <?php puxartopicos() ?> </select></p>
-      <p> Tópico 4: <select name="4"> <?php puxartopicos() ?> </select></p>
-      <p> Tópico 5: <select name="5"> <?php puxartopicos() ?> </select></p>
       <ol class="pessoa-famosa-info">
         <div class="form--area--famosa--00 event--form--clone">
             <li class="event--form--clone--01 event--remove--li">
-            <select name=""> <?php puxartopicos() ?> </select>
+            <select class = "input--form--clone" style="display:block!important;" name="topicos_"> <?php puxartopicos() ?> </select>
+
             </li>
         </div>
+        <div class="teste"></div>
         <div class="form--area--famosa--01">
             <div class="button--add event--button--add flex--button-add" title="adicionar mais um membro">
             </div>
-            <div style='display: none;' class="flex--button-add button--add event--button--remove " title="adicionar mais um membro">
+            <div style='display: none;' id = "adicionar" class="flex--button-add button--add event--button--remove " title="adicionar mais um membro">
                 <div class="flex--button-add button--remove event--remove " title="remover membro da familia">
                 </div>
             </div>
         </div>
-        <input value='' name="qt_famoso" class='qt_famoso' type="hidden">
+        <input value='0' name="" class='qt_topicos' type="hidden">
     </ol>
     <script type="text/javascript" src="../script.js"></script>
       <button id = "x" class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Cadastrar<i class="material-icons right">check</i></button>

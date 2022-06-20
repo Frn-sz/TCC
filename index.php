@@ -46,6 +46,6 @@
         </div>
         <input value='' name="qt_famoso" class='qt_famoso' type="hidden">
     </ol>
-    <script type="text/javascript" src="script.js"></script>
+    
 </body>
 </html>
