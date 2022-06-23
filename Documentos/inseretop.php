@@ -15,6 +15,9 @@ for($i=0;$i<count($id_top);$i++){
    echo  var_dump($sql). "<br>";
 }
 
+if($result){
+    header("location:../Inicio/");
+}
 
 
 

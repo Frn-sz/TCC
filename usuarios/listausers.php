@@ -15,6 +15,7 @@ $usuarios = mysqli_fetch_all($result, MYSQLI_BOTH);
 <title>Lista de Usuários</title>
 
 <body>
+     <main>
     <?php include "../interfaces/header.php";?>
 
     <br>
@@ -54,7 +55,7 @@ echo "<tr><thead>  <th> Imagem </th><th> Nome </th> <th> Email </th>  <th colspa
 
      echo "<tdbody> </table>";
 ?>
+</main>
 </body>
 
-
-</html>
+<?php require_once "../interfaces/footer.php"; ?>
