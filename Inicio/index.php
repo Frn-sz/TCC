@@ -30,13 +30,11 @@ require_once "../conecta.php";
 <br>
 
 
-<div class = "container">
-<div><a id = "inserir" class = 'waves-effect btn-floating blue darken-4' href = '../Documentos/insereform.php'><i class = "material-icons">add</i> </a></div>
-</div>
-<?php
-echo '<table id = "documentos" class = "container " border = 2>';
 
-echo "<tr><thead>  <th> Imagem </th><th> Nome do Documento </th> <th> Forma </th> <th> Formato </th> <th> Especie </th>  <th colspan = 4> Operações </th> </tr> <thead> <tdbody><br>";
+<div><a id = "inserir" class = 'waves-effect btn-floating blue darken-4' href = '../Documentos/insereform.php'><i class = "material-icons">add</i> </a></div>
+
+<?php
+
 
 //Realizando o comando select para puxar os documentos do Banco de dados
 
@@ -47,42 +45,50 @@ $resultado = mysqli_query($conexao, $sql);
 //Criando o array com todos os documentos
 ?>
 
+
 <?php
 
 
 $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
 
+echo "<div class = 'container'><div class='row'>";
+foreach($documentos as $chave => $documento){
 
-     foreach($documentos as $chave => $documento){
-     echo "<tr>";
-     if($documento['imagem'] != ""){ 
-          
-     echo "<td> <img width = 250 src = ../upload/" . $documento['imagem'] . "></td>";
+     echo "
+     <div class='col s2 m3'>
+       <div class='card'>
+         <div class='card-image'>";
 
-}    else{
-     
-     echo "<td>Sem Imagem</td>";
+
+         if($documento['imagem'] != ""){  
+          echo "<img class='materialboxed' src ='../upload/$documento[imagem]'>";
+         }else{
+          echo "<div class='center'>";
+          echo "Sem imagem";
+          echo "</div>";
+         }
+
+         echo "<span class='card-title black-text'>$documento[titulo]</span>
+         </div>
+         <div class='card-content'>
+           <p> Forma: $documento[forma] <br></p>
+           <p> Formato: $documento[formato] <br></p>
+           <p> Espécie: $documento[especie] </p>
+         </div>
+         <div class='card-action center'>
+         <a href = '../Documentos/vermais.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>
+         <a href= '../Documentos/formaltera.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>
+         <a href='#'" . "onclick='confirmacao($documento[id])' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'>" . "delete </i> </a>
+         </div>
+       </div>
+     </div>";
+
 
 }
-     echo "<td>" . $documento['titulo']. "</td>";
-     echo "<td>" . $documento['forma'] . "</td>";
-     echo "<td>" . $documento['formato'] . "</td>";
-     echo "<td>" . $documento['especie'] . "</td>";
-     
-   
-   
-     echo "<td class =''> <a href = '../Documentos/vermais.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>";
-     echo "<td class =''> <a href= '../Documentos/formaltera.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>";
-     echo "<td class =''> <a href='#'" . "onclick='confirmacao($documento[id])' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'>" . "delete </i> </a>" ;
-     echo "<a href='inicio.html' class ='voltar'>";
-     echo "</tr>";
-   
-   
-}
+echo "</div></div>";
 
-     echo "<tdbody> </table>";
      ?>
-    </div>
+  
 
 
 

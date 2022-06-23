@@ -4,9 +4,6 @@
 <link rel="stylesheet" type="text/css" href="estiloaltera.css">	
 </head>
 
-<body>
- 
-<main>
 
 <?php
 
@@ -110,16 +107,19 @@ if($documento['forma'] == "Cópia"){
         <input name = "arquivo" type="file">
       </div>
       <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
+        <input class="file-path validate" type="text" placeholder="Insira uma imagem">
       </div>
     </div>
+    <div class="row">
+  <div class="col offset-s6">
     <button id = "y" style = 'border-radius:10px;' class = "btn waves-effect waves-light blue darken-4" type = "reset">
     <i class = "material-icons">cancel</i>
   </button>
     <button id = "x" style = 'border-radius:10px;'class="btn waves-effect waves-light blue darken-4" type="submit" name="action">
       <i class="material-icons">check</i>
   </button>
-
+  </div>
+  </div>
     
 </form>
 

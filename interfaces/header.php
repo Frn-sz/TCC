@@ -31,26 +31,42 @@ body{
   }
   </style>
 </head>
-
-<body>
-
-
-
-  <nav class="blue darken-4">
-    <div class="nav-wrapper container">
+ 
+<nav class = "blue darken-4 ">
+<button href="#" data-target="slide-out" class="sidenav-trigger btn-flat"><i class="material-icons white-text">menu</i></button>
+<div class="nav-wrapper">
+      <div class="container">
       <a href="../Inicio/"><img class="left white-text" width=70px src="../Imagens/livrob.png"> </a>
       <ul class="right hide-on-med-and-med">
-     
-        <li><a href="../Inicio/index.php">Lista de Documentos</a></li>
-        <li><a href="../Topicos/topicos.php">Lista de Tópicos</a></li>
-        <li><a href="../usuarios/listausers.php">Lista de Usuários</a></li>
-        <li><div class="input-field col s6 s12 red-text">
+    
+        
+
+        <li><div class="input-field col s6 black-text">
         <form action = "../Inicio/pesquisa.php" method = "get">
                             <label class = "prefix" for = "busca"><i class="white-text material-icons ">search</i></label>
-                            <input type="search" placeholder="Buscar.." name = "busca" id="busca" class="" >
+                            <input type="search" placeholder="Buscar.." name = "busca" id="busca">
         </form></div></li>
       </ul>
-      
-    </div>
+</div>
+      </div>
+  
+</nav>
 
-  </nav>
+
+<ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="../imagens/biblioteca.jpg">
+      </div>
+      <a href="#!user"><i class = "material-icons large">person</i></a>
+      <span class="white-text name">John Doe</span>
+      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div></li>
+    <li><a href="../Inicio/index.php">Lista de Documentos</a></li>
+        <li><a href="../Topicos/topicos.php">Lista de Tópicos</a></li>
+        <li><a href="../usuarios/listausers.php">Lista de Usuários</a></li>
+  </ul>
+  </ul>
+  
+
+  <body>

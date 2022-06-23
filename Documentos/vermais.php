@@ -1,7 +1,7 @@
 
 <?php
 include "../conecta.php";
-include_once "../interfaces/header.php";
+
 $id = $_GET['id'];
 
 $sql = "SELECT * FROM documentos WHERE id=$id";
@@ -34,7 +34,7 @@ $imagem = $documentos['imagem'];
 <main>
 
 <?php
-
+include_once "../interfaces/header.php";
 $sql2 = "SELECT id_topico FROM `tabela_assoc` WHERE `id_doc`= $documentos[id]";
 $result = mysqli_query($conexao,$sql2);
 $id_topicos = mysqli_fetch_all($result);
@@ -58,7 +58,7 @@ for($i = 0; $i < count($id_topicos); $i++){
 echo "<br> <div id = 'lista' class = 'container collection'>";
 if($documentos['imagem'] != ""){
 
-    echo "<p> <img style = 'padding:20px;margin-left:10%;' class = 'right' width = 500 src= '../upload/$imagem'> </p>";
+    echo "<p> <img style = 'padding:20px;margin-left:10%;' class = 'materialboxed right' width = 500 src= '../upload/$imagem'> </p>";
     
     }else{
         echo "<p>" ."Sem Imagem"  . "</p>";

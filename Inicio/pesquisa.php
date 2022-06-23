@@ -25,7 +25,7 @@ if($_GET['busca'] == ""){
 
 $pesquisa = "%". trim($_GET['busca']) . "%";
 
-echo $pesquisa;
+
 
 
 require_once "../conecta.php";

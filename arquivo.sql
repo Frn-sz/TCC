@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Jun-2022 às 07:33
+-- Tempo de geração: 23-Jun-2022 às 04:05
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -43,7 +43,8 @@ CREATE TABLE `documentos` (
 --
 
 INSERT INTO `documentos` (`id`, `titulo`, `forma`, `formato`, `especie`, `genero`, `localizacao`, `imagem`) VALUES
-(289, 'a', '', 'a', 'a', 'a ', '  a', 'cb3b4fedaf6e6659c38e76cf7045c5c5.jpg');
+(314, 'a', 'Cópia', 'a', 'a', 'a ', 'a', '57c45be44e04ab0dc6958d5737305f15.jpg'),
+(317, 'a', 'Cópia', 'a', 'a', 'a ', 'a', '');
 
 -- --------------------------------------------------------
 
@@ -62,8 +63,10 @@ CREATE TABLE `tabela_assoc` (
 --
 
 INSERT INTO `tabela_assoc` (`id_tabela`, `id_doc`, `id_topico`) VALUES
-(311, 289, 11),
-(312, 289, 12);
+(425, 314, 12),
+(426, 314, 13),
+(427, 314, 14),
+(429, 317, 12);
 
 -- --------------------------------------------------------
 
@@ -81,10 +84,31 @@ CREATE TABLE `topicos` (
 --
 
 INSERT INTO `topicos` (`id`, `titulo`) VALUES
-(11, 'Escravidão'),
 (12, 'História'),
 (13, 'Português'),
 (14, 'Literatura');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `nivelacesso` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `user`
+--
+
+INSERT INTO `user` (`id`, `nome`, `email`, `senha`, `foto`, `nivelacesso`) VALUES
+(14, 'Fernando', 'fernandogdemedeirosw@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '8ba7e02f3923d10583d17292ba8d5dd1.jpg', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -109,6 +133,12 @@ ALTER TABLE `topicos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
@@ -116,18 +146,24 @@ ALTER TABLE `topicos`
 -- AUTO_INCREMENT de tabela `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=290;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=318;
 
 --
 -- AUTO_INCREMENT de tabela `tabela_assoc`
 --
 ALTER TABLE `tabela_assoc`
-  MODIFY `id_tabela` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=313;
+  MODIFY `id_tabela` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=430;
 
 --
 -- AUTO_INCREMENT de tabela `topicos`
 --
 ALTER TABLE `topicos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de tabela `user`
+--
+ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 

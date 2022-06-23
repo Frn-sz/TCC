@@ -1,20 +1,4 @@
-<html>
 
-<head>
-
-
-
-  </script>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
-
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title> Tela de Cadastro</title>
 <style>
   #x{
@@ -53,20 +37,42 @@
 
     <form class = "container" action="insere.php" method="post" enctype="multipart/form-data">
 
-      <p> Titulo: <input type="text" name="titulo" required> </p>
-
-      <p> Forma: <select name="forma">
+        
+       <div class="row">
+        <div class="input-field">
+       <input id = "title" type="text" name="titulo" required> 
+       <label for="title">Título</label>
+        </div>
+        <div class="row">
+        <div class="input-field">
+      <select id = "form" name="forma">
 
           <option value="Cópia">Cópia</option>
           <option value="Original">Original</option>
 
         </select>
-
-
-      <p> Formato: </label> <input type="text" name="formato" required></p>
-      <p> Espécie: <input type="text" name="especie" required></p>
-      <p> Gênero: <input type="text" name="genero" required></p>
-      <p> Localização: <input type="text" name="localizacao" required></p>
+        <label for="form">Forma</label>
+        </div>
+        <div class="row">
+        <div class="input-field">
+          <input id="formato" type="text" name = "formato">
+          <label for="formato">Formato</label>
+        </div>
+        <div class="row">
+        <div class="input-field">
+           <input id = "esp" type="text" name="especie" required>
+           <label for="esp">Espécie</label>
+        </div>
+        <div class="row">
+        <div class="input-field"> 
+          <input id = "gen" type="text" name="genero" required>
+          <label for="gen">Gênero</label>
+        </div>
+        <div class="row">
+        <div class="input-field">  
+          <input id = "locali" type="text" name="localizacao" required>
+        <label for="locali">Localização</label>
+        </div>
    
 
       <div class="file-field input-field">
@@ -75,14 +81,18 @@
         <input name = "arquivo" type="file">
       </div>
       <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
+        <input class="file-path validate" type="text" placeholder="Insira uma imagem">
       </div>
     </div>
-
+  <div class="row">
+    <div class="col offset-s6">
     <button id = "x" style = 'border-radius:10px;'class="btn waves-effect waves-light blue darken-4" type="submit" name="action">
       <i class="material-icons">check</i>
   </button>
 
+    </div>
+  </div>
+   
 
     </form>
 
@@ -91,6 +101,3 @@
   <?php require_once "../interfaces/footer.php"; ?>
 
  
-</body>
-
-</html>
