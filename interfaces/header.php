@@ -38,9 +38,8 @@ body{
       <div class="container">
       <a href="../Inicio/"><img class="left white-text" width=70px src="../Imagens/livrob.png"> </a>
       <ul class="right hide-on-med-and-med">
-    
-        
-
+      <li><a href = "../usuarios/cadastrouser.php">Cadastre-se</a></li>
+      <li><a href = "../usuarios/telalogin.php">Entrar</a></li>
         <li><div class="input-field col s6 black-text">
         <form action = "../Inicio/pesquisa.php" method = "get">
                             <label class = "prefix" for = "busca"><i class="white-text material-icons ">search</i></label>

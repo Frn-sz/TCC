@@ -11,12 +11,14 @@ if(isset($_FILES['foto'])){
 	move_uploaded_file($_FILES['foto']['tmp_name'], $dir.$nome);
 
 }
-var_dump($_FILES);
-$senha = md5($_POST['senha']);
+
+
+$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+
 if($_FILES['foto']['error'] == 0){
-$sql = "INSERT INTO `user`(nome, email, senha, foto, nivelacesso) VALUES ('$_POST[nome]','$_POST[email]', '$senha', '$nome', 1)";
+$sql = "INSERT INTO `user`(nome, email, senha, foto, tipoUsuario) VALUES ('$_POST[nome]','$_POST[email]', '$senha', '$nome', 2)";
 }else{
-$sql = "INSERT INTO `user`(nome, email, senha, nivelacesso) VALUES ('$_POST[nome]','$_POST[email]', '$senha', 1)";
+$sql = "INSERT INTO `user`(nome, email, senha, tipoUsuario) VALUES ('$_POST[nome]','$_POST[email]', '$senha', 2)";
 }
 $resultado = mysqli_query($conexao,$sql);
 

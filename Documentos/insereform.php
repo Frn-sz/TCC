@@ -78,10 +78,10 @@
       <div class="file-field input-field">
       <div class="btn blue darken-4">
         <span><i class = "material-icons large">attach_file</i> </span>
-        <input name = "arquivo" type="file">
+        <input name = "arquivo" type="file" accept=".jpg,.jpeg,.png">
       </div>
       <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="Insira uma imagem">
+        <input class="file-path validate" accept=".jpg,.jpeg,.png" type="text" placeholder="Insira uma imagem" >
       </div>
     </div>
   <div class="row">
