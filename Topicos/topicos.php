@@ -38,10 +38,12 @@ foreach($topicos as $chave => $topico){
      echo "<td>" . $topico['id']."</td  >";
      echo "<td>" . $topico['titulo'] ."</td>";
      
-     
+     if(isset($_SESSION['nvl_usuario'])){
+          if($_SESSION['nvl_usuario'] == 1){
      echo "<td> <a class = 'btn-floating waves-effect blue darken-4' href='formalterat.php?id=$topico[id]'><i class = 'material-icons'> edit </i> </a>";
      echo "<td> <a class = 'btn-floating waves-effect blue darken-4' href='#'" . "onclick='confirmacao($topico[id])'><i class = 'material-icons'>" . "delete</i></a>" ;
-
+          }
+     }
      echo "</tr>";
 
 }

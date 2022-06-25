@@ -1,4 +1,9 @@
+<?php
 
+if(!isset($_SESSION)){
+     session_start();
+}
+?>
 <title>Lista de Documentos</title>
 	
 
@@ -28,7 +33,7 @@ require_once "../interfaces/header.php";
 require_once "../conecta.php";
 ?>
 <br>
-
+     
 
 
 <div><a id = "inserir" class = 'waves-effect btn-floating blue darken-4' href = '../Documentos/insereform.php'><i class = "material-icons">add</i> </a></div>
@@ -68,18 +73,23 @@ foreach($documentos as $chave => $documento){
           echo "</div>";
          }
 
-         echo "<span class='card-title black-text'>$documento[titulo]</span>
+         echo "
          </div>
          <div class='card-content'>
+         <span class='card-title'>$documento[titulo]</span>
            <p> Forma: $documento[forma] <br></p>
            <p> Formato: $documento[formato] <br></p>
            <p> Espécie: $documento[especie] </p>
          </div>
          <div class='card-action center'>
-         <a href = '../Documentos/vermais.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>
-         <a href= '../Documentos/formaltera.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>
-         <a href='#'" . "onclick='confirmacao($documento[id])' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'>" . "delete </i> </a>
-         </div>
+
+         <a href = '../Documentos/vermais.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>";
+         if(isset($_SESSION['nvl_usuario'])){
+         if($_SESSION['nvl_usuario'] == 1){
+        echo "<a href= '../Documentos/formaltera.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>
+         <a href='#'" . "onclick='confirmacao($documento[id])' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'>" . "delete </i> </a>";
+         }}
+        echo "</div>
        </div>
      </div>";
 

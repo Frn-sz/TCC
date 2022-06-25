@@ -2,6 +2,9 @@
 <?php
 include "../conecta.php";
 
+if(!isset($_SESSION)){
+    session_start();
+}
 $id = $_GET['id'];
 
 $sql = "SELECT * FROM documentos WHERE id=$id";
@@ -21,6 +24,7 @@ $imagem = $documentos['imagem'];
 
 
 ?>
+
 <style>
    li{
     font-size: 25px;
@@ -30,6 +34,7 @@ $imagem = $documentos['imagem'];
    }#lista{
     border-radius: 20px;
    }
+   
 </style>
 <main>
 
@@ -55,10 +60,11 @@ for($i = 0; $i < count($id_topicos); $i++){
 
 //Fazendo Tabela de Informações do Documento 
 
-echo "<br> <div id = 'lista' class = 'container collection'>";
+echo "<br> <div id = 'lista' class = 'container '>";
 if($documentos['imagem'] != ""){
 
-    echo "<p> <img style = 'padding:20px;margin-left:10%;' class = 'materialboxed right' width = 500 src= '../upload/$imagem'> </p>";
+    echo "<img style = 'padding:20px;margin-left:10%;' class = 'materialboxed right' width = 500 src= '../upload/$imagem'> </p>";
+    
     
     }else{
         echo "<p>" ."Sem Imagem"  . "</p>";
@@ -70,7 +76,7 @@ echo "<li>Forma: " .$forma  . "</li><br>";
 echo "<li>Formato: " .$formato  . "</li><br>";
 echo "<li>Espécie: " .$especie  . "</li><br>";
 echo "<li>Localização: " .$locali  . "</li><br>";
-echo "<li>Gênero: " .$genero  . "</li><br>";
+echo "<li>Gênero: " .$genero  . "</lri><br>";
 
 
 
@@ -86,14 +92,26 @@ echo "</li>";
 mysqli_close($conexao);
 
 
+
 ?>
 
-<br><br>
+<?php if(isset($_SESSION['id_usuario'])){ ?>
 
+<form action="addfav.php" method = "post">
+    <div class="row">
+        <div class="col offset-s5">
+            <input type = "hidden" name = "id" value = <?= $id ?>>
+<button class = "btn waves-effect waves-light blue darken-4" type="submit"><i class = "material-icons">star</i> Adicionar aos favoritos</button>
+</div>
+</div>
+</form>
 
+<?php } ?>
 
 </main>
 <br>
 <?php include_once "../interfaces/footer.php"; ?>
 </body>
 </html>
+
+'; ?>

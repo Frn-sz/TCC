@@ -2,6 +2,10 @@
 
 include "../conecta.php";
 
+
+if(isset($_SESSION)){
+	header("location:../Inicio/");
+}
 if(isset($_FILES['foto'])){
 
 	$ext = strrchr($_FILES['foto']['name'], '.');
@@ -20,10 +24,12 @@ $sql = "INSERT INTO `user`(nome, email, senha, foto, tipoUsuario) VALUES ('$_POS
 }else{
 $sql = "INSERT INTO `user`(nome, email, senha, tipoUsuario) VALUES ('$_POST[nome]','$_POST[email]', '$senha', 2)";
 }
+var_dump($sql);
 $resultado = mysqli_query($conexao,$sql);
 
-if($resultado){
-    header("Location:listausers.php");
-}
+
+
+if($resultado)
+header("location:../Inicio/");
 
 ?>

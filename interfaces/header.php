@@ -6,12 +6,8 @@
 <head>
 <?php
 
+if(!isset($_SESSION))
 session_start();
-
-if(!array_key_exists('id_usuario', $_SESSION)){
-  session_destroy();
-}
-  
 
 ?>
   <meta charset="UTF-8">
@@ -39,6 +35,8 @@ body{
     margin-left: 50%;
   }#botaoinsere{
     margin-left:50%;
+  }.usuariologout{
+    color: white;
   }
   </style>
 </head>
@@ -49,14 +47,14 @@ body{
       <div class="container">
       <a href="../Inicio/"><img class="left white-text" width=70px src="../Imagens/livrob.png"> </a>
       <ul class="right hide-on-med-and-med">
-        <?php if(!array_key_exists('id_usuario', $_SESSION)){ ?>
+        <?php if(!isset($_SESSION['id_usuario'])){ ?>
       <li><a href = "../usuarios/cadastrouser.php">Cadastre-se</a></li>
       <li><a href = "../usuarios/telalogin.php">Entrar</a></li>
 
       <?php }else{  ?>
         
         
-        <li><a href = "../usuarios/logout.php">Sair</a></li>
+        <li><a href = "../usuarios/logout.php"><i class = "material-icons"> logout </i></a></li>
         
         <?php  } ?>
         <li><div class="input-field col s6 black-text">
@@ -75,18 +73,29 @@ body{
 <ul id="slide-out" class="sidenav">
     <li><div class="user-view">
       <div class="background">
-      
+      <img width = "500" src = "../Imagens/biblioteca.jpg">
       </div>
-      <?php if(array_key_exists('id_usuario', $_SESSION)){ ?>
-      <img width = 200 src="../upload/<?=$_SESSION['foto']?>">
-      <span class="white-text name">John Doe</span>
-      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-      <?php } else { echo "Usuário não logado"; }?>
+      
+      <?php if(isset($_SESSION['id_usuario'])){ ?>
+      <img style = 'border-radius:50%' width = 200 src="../upload/<?=$_SESSION['foto']?>">
+      <span class="white-text name"><?= $_SESSION['nome_usuario']?></span>
+      <a href="#email"><span class="white-text email"><? $_SESSION['email_usuario'] ?></span></a>
+      
+      <?php } else { echo "<span class = 'usuariologout'> Usuário não logado </span>"; }?>
+
     </div></li>
     <li><a href="../Inicio/index.php">Lista de Documentos</a></li>
         <li><a href="../Topicos/topicos.php">Lista de Tópicos</a></li>
+        <?php if(isset($_SESSION['id_usuario'])){ ?>
+          <li><a href = "../Documentos/favoritos.php"> Lista de Favoritos </a> </li>
+
+          <?php } ?>
+        <?php if(isset($_SESSION['nvl_usuario'])){
+
+                if($_SESSION['nvl_usuario'] == 1){?>
         <li><a href="../usuarios/listausers.php">Lista de Usuários</a></li>
-  </ul>
+          <?php }}?>
+        </ul>
   </ul>
   
 

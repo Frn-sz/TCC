@@ -14,7 +14,8 @@ if(password_verify($_POST['senha'], $usuario['senha'])){
         $_SESSION['nvl_usuario'] = $usuario['tipoUsuario'];
         $_SESSION['foto'] = $usuario['foto'];
         $_SESSION['nome_usuario'] = $usuario['nome'];
-        $_SESSION['email_usuaario'] = $usuario['email'];
+        $_SESSION['email_usuario'] = $usuario['email'];
+        
         header("location:../Inicio/");
     }
 }else{

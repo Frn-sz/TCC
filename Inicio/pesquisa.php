@@ -1,3 +1,10 @@
+<?php 
+
+if(!isset($_SESSION)){
+     session_start();
+}
+
+?>
 
 <title>Resultado da Pesquisa</title>
 
@@ -12,97 +19,103 @@ function confirmacao(id) {
 </script>
 </head>
 
- <body>
+
 
 <main>
+
 <?php
 
-if($_GET['busca'] == ""){
 
-    header("location:index.php");
-}
+include('../conecta.php');
+include('../interfaces/header.php');
 
+?><br><?php
 
-$pesquisa = "%". trim($_GET['busca']) . "%";
+$pesquisa = "%" . trim($_GET['busca']) . "%";
 
+$sql = "SELECT id FROM topicos WHERE titulo LIKE '$pesquisa'";
+$resultado = mysqli_query($conexao,$sql);
+$id_topicos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 
+if(isset($id_topicos[0]['id'])){
+foreach($id_topicos as $chave => $ids){
 
-
-require_once "../conecta.php";
-require_once "../interfaces/header.php";
-
-
-
-$sql = "SELECT * FROM `topicos` WHERE `titulo` LIKE '$pesquisa'";
-$resultado = mysqli_query($conexao, $sql);
-$topicos = mysqli_fetch_all($resultado,MYSQLI_BOTH);
-
-$documentos[0] = 0; 
-foreach($topicos as $chave => $topico){
-     $sql2 = "SELECT id_doc FROM `tabela_assoc`WHERE  id_topico = $topico[id]";
+     $sql2 = "SELECT id_doc FROM tabela_assoc WHERE id_topico = '$ids[id]'";
      $result = mysqli_query($conexao,$sql2);
-     $ids = mysqli_fetch_all($result, MYSQLI_ASSOC);
-     for($i = 0; $i < count($ids); $i++){
-          $idsearch = $ids[$i]['id_doc'];
-          $sql3 = "SELECT id FROM `documentos` WHERE id = '$idsearch'";
-          $search = mysqli_query($conexao,$sql3);
-          $documentos[$i] = mysqli_fetch_assoc($search);
-          
+     $id_docs[] = mysqli_fetch_all($result, MYSQLI_ASSOC);
+     
+} 
+
+foreach($id_docs as $chave => $id_doc){
+     foreach($id_doc as $chave => $id){
+     $sql3 = "SELECT id FROM documentos WHERE id = $id[id_doc] ";
+     $result3 = mysqli_query($conexao,$sql3);
+     $documentos[] = mysqli_fetch_assoc($result3);
      }
 }
 
-foreach($documentos as $chave => $documento){
-     $id = $documento['id'];
-     $sql4 = $sql3 = "SELECT * FROM `documentos` WHERE id = '$id'";
-     $resultados = mysqli_query($conexao,$sql4);
-     $busca[] = mysqli_fetch_all($resultados, MYSQLI_BOTH);
+     foreach($documentos as $chave => $ids_doc){
+          $idsx[] = $ids_doc['id'];
      
-}
+     }
+     $ids_limpos = array_unique($idsx);
 
-echo '<table id = "documentos" class = "container " border = 2>';
+     foreach($ids_limpos as $chave => $idx){
 
-echo "<tr><thead>  <th> Imagem </th><th> Nome do Documento </th> <th> Forma </th> <th> Formato </th> <th> Especie </th>  <th colspan = 4> Operações </th> </tr> <thead> <tdbody><br>";
+          $sql4 = "SELECT * FROM documentos WHERE id = $idx";
+          $resultado4 = mysqli_query($conexao,$sql4);
+          $documentosx[] = mysqli_fetch_assoc($resultado4);
+     }
 
-for($i = 0; $i < count($busca);$i++){
-foreach($busca[$i] as $chave => $documento){
-
-$id = $documento['id'];
-
-     if($documento['imagem'] != ""){ 
+     echo "<div class = 'container'><div class='row'>";
+     foreach($documentosx as $chave => $documentoy){
+     
+          echo 
           
-     echo "<td> <img width = 250 src = ../upload/" . $documento['imagem'] . "></td>";
-
-}    else{
+          "<div class='col s2 m3'>
+            <div class='card'>
+              <div class='card-image'>";
      
-     echo "<td>Sem Imagem</td>";
-
+     
+              if($documentoy['imagem'] != ""){  
+               echo "<img class='materialboxed' src ='../upload/$documentoy[imagem]'>";
+              }else{
+               echo "<div class='center'>";
+               echo "Sem imagem";
+               echo "</div>";
+              }
+     
+              echo "<span class='card-title black-text'>$documentoy[titulo]</span>
+              </div>
+              <div class='card-content'>
+                <p> Forma: $documentoy[forma] <br></p>
+                <p> Formato: $documentoy[formato] <br></p>
+                <p> Espécie: $documentoy[especie] </p>
+              </div>
+              <div class='card-action center'>
+     
+              <a href = '../Documentos/vermais.php?id=$documentoy[id]' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>";
+              if(isset($_SESSION['nvl_usuario'])){
+              if($_SESSION['nvl_usuario'] == 1){
+             echo "<a href= '../Documentos/formaltera.php?id=$documentoy[id]' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>
+              <a href='#'" . "onclick='confirmacao($documentoy[id])' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'>" . "delete </i> </a>";
+              }}
+             echo "</div>
+            </div>
+          </div>";
+     
+     
+     }
+     echo "</div></div>";
+}else{
+     echo "Nenhum resultado encontrado";
 }
-     echo "<td>" . $documento['titulo']. "</td>";
-     echo "<td>" . $documento['forma'] . "</td>";
-     echo "<td>" . $documento['formato'] . "</td>";
-     echo "<td>" . $documento['especie'] . "</td>";
-     
-   
-   
-     echo "<td class =''> <a href = '../Documentos/vermais.php?id=$id' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>";
-     echo "<td class =''> <a href= '../Documentos/formaltera.php?id=$id' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>";
-     echo "<td class =''> <a href='#'" . "onclick='confirmacao($id)' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'>" . "delete </i> </a>" ;
-     echo "<a href='inicio.html' class ='voltar'>";
-     echo "</tr>";
-   
-   
-}}
 
-     echo "<tdbody> </table>";
-    
+
 ?>
-
-
-
-
-
-
 </main>
 <?php require_once "../interfaces/footer.php" ?>
+
+
+
 </body>     
-</html>
