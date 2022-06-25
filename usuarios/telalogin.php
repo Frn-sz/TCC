@@ -1,8 +1,16 @@
 <title>Tela de Login</title>
 
 
-
-
+<style>
+  span.field-icon {
+    float: right;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    z-index: 2;
+}
+</style>
 <body>
     <main>
     <?php 
@@ -22,7 +30,9 @@
       <div class="row">
         <div class="input-field col s12">
           <input id = "senha" name = "senha" type="password" class="validate">
+          <span toggle="#senha" class="field-icon toggle-password "><span class="material-icons">visibility</span></span>
           <label for="senha">Senha</label>
+          
         </div>
       </div>
   
@@ -37,3 +47,5 @@
 
 
 <?php require "../interfaces/footer.php"; ?>
+
+
