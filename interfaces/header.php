@@ -1,8 +1,19 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
+<?php
 
+session_start();
+
+if(!array_key_exists('id_usuario', $_SESSION)){
+  session_destroy();
+}
+  
+
+?>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,9 +49,18 @@ body{
       <div class="container">
       <a href="../Inicio/"><img class="left white-text" width=70px src="../Imagens/livrob.png"> </a>
       <ul class="right hide-on-med-and-med">
+        <?php if(!array_key_exists('id_usuario', $_SESSION)){ ?>
       <li><a href = "../usuarios/cadastrouser.php">Cadastre-se</a></li>
       <li><a href = "../usuarios/telalogin.php">Entrar</a></li>
+
+      <?php }else{  ?>
+        
+        
+        <li><a href = "../usuarios/logout.php">Sair</a></li>
+        
+        <?php  } ?>
         <li><div class="input-field col s6 black-text">
+
         <form action = "../Inicio/pesquisa.php" method = "get">
                             <label class = "prefix" for = "busca"><i class="white-text material-icons ">search</i></label>
                             <input type="search" placeholder="Buscar.." name = "busca" id="busca">
@@ -55,11 +75,13 @@ body{
 <ul id="slide-out" class="sidenav">
     <li><div class="user-view">
       <div class="background">
-        <img src="../imagens/biblioteca.jpg">
+      
       </div>
-      <a href="#!user"><i class = "material-icons large">person</i></a>
+      <?php if(array_key_exists('id_usuario', $_SESSION)){ ?>
+      <img width = 200 src="../upload/<?=$_SESSION['foto']?>">
       <span class="white-text name">John Doe</span>
       <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+      <?php } else { echo "Usuário não logado"; }?>
     </div></li>
     <li><a href="../Inicio/index.php">Lista de Documentos</a></li>
         <li><a href="../Topicos/topicos.php">Lista de Tópicos</a></li>
@@ -69,3 +91,5 @@ body{
   
 
   <body>
+
+
