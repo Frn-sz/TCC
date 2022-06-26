@@ -95,7 +95,7 @@ body{
                 if($_SESSION['nvl_usuario'] == 1){?>
         <li><a href="../usuarios/listausers.php">Lista de Usuários</a></li>
           <?php }}?>
-        </ul>
+        
   </ul>
   
 

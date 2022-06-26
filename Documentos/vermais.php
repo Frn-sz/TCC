@@ -1,4 +1,5 @@
 
+
 <?php
 include "../conecta.php";
 
@@ -24,7 +25,7 @@ $imagem = $documentos['imagem'];
 
 
 ?>
-
+<title><?=$titulo?>    </title>
 <style>
    li{
     font-size: 25px;
@@ -32,6 +33,8 @@ $imagem = $documentos['imagem'];
     
     
    }#lista{
+    border-radius: 20px;
+   }img{
     border-radius: 20px;
    }
    
@@ -63,20 +66,20 @@ for($i = 0; $i < count($id_topicos); $i++){
 echo "<br> <div id = 'lista' class = 'container '>";
 if($documentos['imagem'] != ""){
 
-    echo "<img style = 'padding:20px;margin-left:10%;' class = 'materialboxed right' width = 500 src= '../upload/$imagem'> </p>";
+    echo "<div class = 'row'> <div class = 'col offset-s4'> <img class = 'materialboxed right' width = 500 src= '../upload/$imagem'> </div></div>";
     
     
     }else{
-        echo "<p>" ."Sem Imagem"  . "</p>";
+        echo "<div class = 'row'>" ."Sem Imagem"  . "</div>";
     
     }
 
-echo "<li> Título do documento: ". $titulo . "</li><br>";
-echo "<li>Forma: " .$forma  . "</li><br>";
-echo "<li>Formato: " .$formato  . "</li><br>";
-echo "<li>Espécie: " .$especie  . "</li><br>";
-echo "<li>Localização: " .$locali  . "</li><br>";
-echo "<li>Gênero: " .$genero  . "</lri><br>";
+echo "<div class = 'row'> <li> Título do documento: ". $titulo . "</li> </div> ";
+echo "<div class = 'row'> <li>Forma: " .$forma  . "</li></div> ";
+echo "<div class = 'row'> <li>Formato: " .$formato  . "</li></div> ";
+echo "<div class = 'row'> <li>Espécie: " .$especie  . "</li></div> ";
+echo "<div class = 'row'> <li>Localização: " .$locali  . "</li></div> ";
+echo "<div class = 'row'> <li>Gênero: " .$genero  . "</lri></div>   ";
 
 
 
@@ -112,6 +115,6 @@ mysqli_close($conexao);
 <br>
 <?php include_once "../interfaces/footer.php"; ?>
 </body>
-</html>
+
 
 '; ?>
