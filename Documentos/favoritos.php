@@ -35,11 +35,7 @@ foreach($documentos as $chave => $documento){
          <div class='card-action center'>
 
          <a href = '../Documentos/vermais.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>";
-         if(isset($_SESSION['nvl_usuario'])){
-         if($_SESSION['nvl_usuario'] == 1){
-        echo "<a href= '../Documentos/formaltera.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>
-         <a href='#'" . "onclick='confirmacao($documento[id])' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'>" . "delete </i> </a>";
-         }}
+        echo "<a href = 'removerfavorito.php?id=$documento[id]' class = 'btn waves effect wavves-light blue darken-4'>Remover favorito</a>"; 
         echo "</div>
        </div>
      </div>";

@@ -37,6 +37,9 @@ body{
     margin-left:50%;
   }.usuariologout{
     color: white;
+  }.card-image{
+    height:25vh;
+    font:black;
   }
   </style>
 </head>
