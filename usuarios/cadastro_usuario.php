@@ -1,7 +1,9 @@
 <?php
 
 include "../conecta.php";
-
+if(!isset($_SESSION)){
+	session_start();
+}
 
 if(isset($_SESSION)){
 	header("location:../Inicio/");
@@ -29,7 +31,9 @@ $resultado = mysqli_query($conexao,$sql);
 
 
 
-if($resultado)
-header("location:../Inicio/");
+if($resultado){
+$_SESSION['id_usuario'] = mysqli_insert_id($conexao);
 
+header("location:cadastroAcesso.php");
+}
 ?>

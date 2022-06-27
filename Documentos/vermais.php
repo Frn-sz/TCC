@@ -3,6 +3,9 @@
 <?php
 include "../conecta.php";
 
+
+
+
 if(!isset($_SESSION)){
     session_start();
 }
