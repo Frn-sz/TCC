@@ -31,6 +31,9 @@ function confirmacao(id) {
 <?php
 require_once "../interfaces/header.php";
 require_once "../conecta.php";
+
+if(isset($_SESSION['id_usuario'])){
+     if($_SESSION['nvl_usuario'] == 1){
 ?>
 <br>
      
@@ -40,7 +43,7 @@ require_once "../conecta.php";
 
 <?php
 
-
+}}
 //Realizando o comando select para puxar os documentos do Banco de dados
 
 $sql = "SELECT `id`, `titulo`, `forma`, `formato`, `especie`, `imagem`FROM `documentos`";

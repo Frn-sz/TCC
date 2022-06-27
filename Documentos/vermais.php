@@ -46,6 +46,8 @@ $imagem = $documentos['imagem'];
 
 <?php
 include_once "../interfaces/header.php";
+
+
 $sql2 = "SELECT id_topico FROM `tabela_assoc` WHERE `id_doc`= $documentos[id]";
 $result = mysqli_query($conexao,$sql2);
 $id_topicos = mysqli_fetch_all($result);
@@ -83,8 +85,6 @@ echo "<div class = 'row'> <li>Formato: " .$formato  . "</li></div> ";
 echo "<div class = 'row'> <li>Espécie: " .$especie  . "</li></div> ";
 echo "<div class = 'row'> <li>Localização: " .$locali  . "</li></div> ";
 echo "<div class = 'row'> <li>Gênero: " .$genero  . "</lri></div>   ";
-
-
 
 
 echo "<li>Tópicos do documento: ";

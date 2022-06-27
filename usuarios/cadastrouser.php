@@ -59,6 +59,7 @@
           <label for = "repetirsenha">Confirme a senha</label>
         </div>
       </div>
+      
       <div class="row">
         <div class="col offset-s6">
       <button class="btn-floating waves-effect waves-light blue darken-4" type="submit" name="action">
@@ -83,7 +84,7 @@ let senhaC = document.getElementById('repetirsenha');
 
 function validarSenha() {
   if (senha.value != senhaC.value) {
-    senhaC.setCustomValidity("Senhas diferentes!");
+    senhaC.setCustomValidity(" ");
     senhaC.reportValidity();
     return false;
   } else {
@@ -93,7 +94,7 @@ function validarSenha() {
 }
 
 // verificar também quando o campo for modificado, para que a mensagem suma quando as senhas forem iguais
-
+senha.addEventListener('blur', validarSenha);
 senhaC.addEventListener('input', validarSenha);
 
 </script>

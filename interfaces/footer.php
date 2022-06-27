@@ -63,6 +63,10 @@ $(".toggle-password").click(function (e) {
      input.attr("type", "password");
   }
 });
+$(document).ready(function(){
+    $('.modal').modal();
+  });
+          
 </script>
 
 
