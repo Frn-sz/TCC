@@ -23,9 +23,13 @@ require_once "../interfaces/header.php";
 
 $sql = "SELECT * FROM `topicos`";
 $result = mysqli_query($conexao, $sql);
+echo "<br><div class = 'container'>";   
+if(isset($_SESSION['id_usuario'])){
+     if($_SESSION['id_usuario'] == 1){
 
-echo "<br><div class = 'container'>";
+
 echo "<a id = 'inserir' href='inseretopicos.php' class = 'btn-floating waves-effect blue darken-4'><i class = 'material-icons'> add </i> </a>";
+     }}
 echo '<table id = "topicos" class = " highlight bordered">';
 
 echo "<tr> <th> ID </th> <th> Título </th> <th colspan = 4> Operações</th> </tr> <br>";
