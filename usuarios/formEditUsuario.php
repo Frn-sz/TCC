@@ -4,8 +4,8 @@
    
    <div class="file-field input-field">
      <div class="btn blue darken-4">
-       <span><i class = "material-icons">add_a_photo</i></span>
-       <input type="file" name="foto" onchange="readURL(this);"><?php echo "<img id = 'blah'/>" ?>
+       <span class = "iconeFoto"><i class = "material-icons">add_a_photo</i></span>
+       <input type="file" name="foto" onchange="readURL(this);"><img id = "blah"/>
      </div>
      <div class="file-path-wrapper">
        <label for = "K">Escolha uma foto de perfil</label><input id = "k" class="file-path validate" type="text">
@@ -20,7 +20,7 @@
      </div>
      <div class="row">
        <div class="input-field col s12">
-         <input id = "email" type = "email" name = "email" class = "validate"  value = "<?= $usuario['nome'] ?>">
+         <input id = "email" type = "email" name = "email" class = "validate"  value = "<?= $usuario['email'] ?>">
          <label for="email">Email</label>
        </div>
      </div>

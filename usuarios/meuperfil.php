@@ -51,7 +51,7 @@ include('puxandoUsuario.php');
 
 <?php include('../interfaces/footer.php'); ?>
 
-<!--
+
 <script>
      function readURL(input) {
             if (input.files && input.files[0]) {
@@ -62,10 +62,10 @@ include('puxandoUsuario.php');
                         .attr('src', e.target.result)
                         .width(150)
                         .height(150);
-                
+
                 };
 
                 reader.readAsDataURL(input.files[0]);
             }
         }
-</script>-->
+</script>

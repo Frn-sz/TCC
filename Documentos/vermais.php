@@ -65,48 +65,44 @@ for($i = 0; $i < count($id_topicos); $i++){
     }
 
 }   
-
-//Fazendo Tabela de Informações do Documento 
-
-echo "<br> <div id = 'lista' class = 'container '>";
-if($documentos['imagem'] != ""){
-
-    echo "<div class = 'row'> <div class = 'col offset-s4'> <img class = 'materialboxed right' width = 500 src= '../upload/$imagem'> </div></div>";
-    
-    
-    }else{
-        echo "<div class = 'row'>" ."Sem Imagem"  . "</div>";
-    
-    }
-
-echo "<div class = 'row'> <li> Título do documento: ". $titulo . "</li> </div> ";
-echo "<div class = 'row'> <li>Forma: " .$forma  . "</li></div> ";
-echo "<div class = 'row'> <li>Formato: " .$formato  . "</li></div> ";
-echo "<div class = 'row'> <li>Espécie: " .$especie  . "</li></div> ";
-echo "<div class = 'row'> <li>Localização: " .$locali  . "</li></div> ";
-echo "<div class = 'row'> <li>Gênero: " .$genero  . "</lri></div>   ";
-
-
-echo "<li>Tópicos do documento: ";
-foreach($topicos_doc as $chave => $topico){
-    
-   echo " <div class='chip'><a href = #> $topico </a> </div>";
-}
-echo "</li>";
-
-
-mysqli_close($conexao);
-
-
-
 ?>
+
+
+<br> <div id = 'lista' class = 'container '>
+    <?php if($documentos['imagem'] != ""){ ?>
+
+   <div class = 'row'> <div class = 'col offset-s4'> <img class = 'materialboxed right' width = 500 src= '../upload/<?= $imagem ?>'> </div></div>
+    
+    <?php }else{ ?>
+
+        <div class = 'row'> Sem Imagem </div>
+    
+    <?php } ?>
+
+<div class = 'row'> <li> Título do documento: <?= $titulo ?> </li> </div> 
+<div class = 'row'> <li>Forma: <?= $forma  ?></li></div> 
+<div class = 'row'> <li>Formato: <?= $formato  ?></li></div> 
+<div class = 'row'> <li>Espécie: <?= $especie  ?></li></div> 
+<div class = 'row'> <li>Localização: <?= $locali  ?></li></div> 
+<div class = 'row'> <li>Gênero: <?=  $genero  ?></li></div>   
+
+
+<li>Tópicos do documento: 
+
+<?php foreach($topicos_doc as $chave => $topico){ ?>
+    
+    <div class='chip'><a href = #> <?= $topico ?> </a> </div>
+<?php }  mysqli_close($conexao);?>
+</li>
+
+
 
 <?php if(isset($_SESSION['id_usuario'])){ ?>
 
 <form action="addfav.php" method = "post">
     <div class="row">
         <div class="col offset-s5">
-            <input type = "hidden" name = "id" value = <?= $id ?>>
+<input type = "hidden" name = "id" value = <?= $id ?>>
 <button class = "btn waves-effect waves-light blue darken-4" type="submit"><i class = "material-icons">star</i> Adicionar aos favoritos</button>
 </div>
 </div>
@@ -117,7 +113,3 @@ mysqli_close($conexao);
 </main>
 <br>
 <?php include_once "../interfaces/footer.php"; ?>
-</body>
-
-
-'; ?>

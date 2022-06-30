@@ -8,6 +8,7 @@
 <?php
 
     include "../conecta.php";
+    include('../funcoes.php');
     $id = $_GET['id'];
     $sql = "SELECT * FROM documentos WHERE id=$id";
     $resultado = mysqli_query($conexao,$sql);
@@ -15,22 +16,6 @@
     
     mysqli_close($conexao);
 
-    function puxartopicos(){
-
-      include "../conecta.php";
-    
-    
-      $sql = "SELECT `id`, `titulo` FROM `topicos`";
-      $resultado = mysqli_query($conexao, $sql);
-    
-      $topicos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
-      foreach ($topicos as $chave => $topico) {
-        $titulo = $topico['titulo'];
-        $id = $topico['id'];
-    
-        echo "<option value = $id> $titulo </option>";
-      }
-    }
   
 ?>
  <?php require_once "../interfaces/header.php"; ?>
@@ -53,7 +38,7 @@
 
 <select name = "forma" value = 
   <?php
-if($documento['forma'] == "Cópia"){
+if($documento['forma'] == "Cópia"){ 
   echo "<option value = $documentos[forma]> $documento[forma]</option>";
   echo "<option value = Original> Original </option>";
 }else{

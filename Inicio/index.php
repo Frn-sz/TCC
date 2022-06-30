@@ -29,13 +29,15 @@ function confirmacao(id) {
 <main>
 
 <?php
-require_once "../interfaces/header.php";
+require_once "../interfaces/header.php";?>
+<br>
+<?php
 require_once "../conecta.php";
 
 if(isset($_SESSION['id_usuario'])){
      if($_SESSION['nvl_usuario'] == 1){
 ?>
-<br>
+
      
 
 
@@ -50,65 +52,66 @@ $sql = "SELECT `id`, `titulo`, `forma`, `formato`, `especie`, `imagem`FROM `docu
 
 $resultado = mysqli_query($conexao, $sql);
 
-//Criando o array com todos os documentos
-?>
-
-
-<?php
 
 
 $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
+?>
 
-echo "<div class = 'container'><div class='row'>";
-foreach($documentos as $chave => $documento){
+<div class = 'container' ><div class='row'>
 
-     echo "
-     <div class='col s2 m3'>
+<?php  foreach($documentos as $chave => $documento){ ?>
+
+
+     <div class='col s2 m4'>
        <div class='card'>
-         <div class='card-image'>";
+         <div class='card-image'>
 
+<?php if($documento['imagem'] != ""){  ?>
 
-         if($documento['imagem'] != ""){  
-          echo "<img class='materialboxed' src ='../upload/$documento[imagem]'>";
-         }else{
-          echo "<div class='center'>";
-          echo "Sem imagem";
-          echo "</div>";
-         }
+          <img class='materialboxed imagem' src ='../upload/<?= $documento['imagem'] ?>'>
+         <?php }else{ ?>
+          <div class='center'>
+           "Sem imagem"
+          </div>
+         <?php } ?>
 
-         echo "
+         
          </div>
          <div class='card-content'>
-         <span class='card-title'>$documento[titulo]</span>
-           <p> Forma: $documento[forma] <br></p>
-           <p> Formato: $documento[formato] <br></p>
-           <p> Espécie: $documento[especie] </p>
+         <span class='card-title'><?= $documento['titulo'] ?></span>
+           <p> Forma:<?=  $documento['forma'] ?> <br></p>
+           <p> Formato:<?=  $documento['formato'] ?> <br></p>
+           <p> Espécie:<?=  $documento['especie']  ?></p>
          </div>
          <div class='card-action center'>
 
-         <a href = '../Documentos/vermais.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>";
-         if(isset($_SESSION['nvl_usuario'])){
-         if($_SESSION['nvl_usuario'] == 1){
-        echo "<a href= '../Documentos/formaltera.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>
-         <a href='#'" . "onclick='confirmacao($documento[id])' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'>" . "delete </i> </a>";
-         }}
-        echo "</div>
+          <?php if(!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] != 1){ ?>
+               
+          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>'  class = 'btn-large waves-effect waves-light blue darken-4 '><i class ='material-icons'>search</i>  </a>
+          
+          <?php }else{ ?>
+
+          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>
+
+          <?php } ?>
+
+          <?php if(isset($_SESSION['nvl_usuario'])){ 
+         
+         if($_SESSION['nvl_usuario'] == 1){ ?>
+          <a href= '../Documentos/formaltera.php?id=<?= $documento['id'] ?>' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>
+         <a href='#' onclick="confirmacao(<?=$documento['id']?>)" class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'> delete </i> </a>
+       <?php }} ?>
+          
+        </div>
        </div>
-     </div>";
+     </div>
 
 
-}
-echo "</div></div>";
-
-     ?>
-  
-
-
-
-
+ <?php    } ?>
+</div></div>
 
 </main>
+
 <?php include_once "../interfaces/footer.php";?>
-</body>             
 
 </html>
