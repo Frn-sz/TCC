@@ -69,24 +69,3 @@
 <?php require "../interfaces/footer.php"; ?>
 
 
-<script>
-
-let senha = document.getElementById('senha');
-let senhaC = document.getElementById('repetirsenha');
-
-function validarSenha() {
-  if (senha.value != senhaC.value) {
-    senhaC.setCustomValidity(" ");
-    senhaC.reportValidity();
-    return false;
-  } else {
-    senhaC.setCustomValidity("");
-    return true;
-  }
-}
-
-// verificar também quando o campo for modificado, para que a mensagem suma quando as senhas forem iguais
-senha.addEventListener('blur', validarSenha);
-senhaC.addEventListener('input', validarSenha);
-
-</script>

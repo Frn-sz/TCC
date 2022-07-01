@@ -6,7 +6,7 @@ if(!isset($_SESSION)){
 }
 
 if(isset($_SESSION)){
-	header("location:../Inicio/");
+	//header("location:../Inicio/");
 }
 if(isset($_FILES['foto'])){
 
@@ -18,9 +18,14 @@ if(isset($_FILES['foto'])){
 
 }
 
-
+$email = $_POST['email'];
 $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+$sqlemail = "SELECT email FROM user WHERE email='$email'";
+$resultSet = mysqli_query($conexao, $sqlemail);
+$verificacao = mysqli_fetch_assoc($resultSet);
+ 
 
+if(is_null($verificacao)){
 if($_FILES['foto']['error'] == 0){
 $sql = "INSERT INTO `user`(nome, email, senha, foto, tipoUsuario) VALUES ('$_POST[nome]','$_POST[email]', '$senha', '$nome', 2)";
 }else{
@@ -35,5 +40,9 @@ if($resultado){
 $_SESSION['id_usuario'] = mysqli_insert_id($conexao);
 
 header("location:cadastroAcesso.php");
+}
+
+}else{
+	die("E-mail já cadastrado");
 }
 ?>

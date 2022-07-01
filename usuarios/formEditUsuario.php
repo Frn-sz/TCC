@@ -1,6 +1,6 @@
 <?php include('puxandoUsuario.php'); ?>
 
-<form action = "editar.php" method = "post" enctype = "multipart/form-data" class="col s12">
+<form action = "../usuarios/editar.php" method = "post" enctype = "multipart/form-data" class="col s12">
    
    <div class="file-field input-field">
      <div class="btn blue darken-4">

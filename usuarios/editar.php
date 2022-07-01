@@ -27,10 +27,11 @@ $sql = "UPDATE user SET nome = '$nomeUsuario', email = '$email', foto = '$nomeIm
 $result = mysqli_query($conexao, $sql);
 $url = $_SERVER['HTTP_REFERER'];
 if($result){
-    //header("location:$url");
+    header("location:$url");
     $_SESSION['email_usuario'] = $email;
     $_SESSION['nome_usuario'] = $nomeUsuario;
+    if($_FILES['foto']['error'] == 0){
     $_SESSION['foto'] = $nomeImagem;
-    var_dump($_SESSION);
+    }
 }
 ?>

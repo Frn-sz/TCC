@@ -10,7 +10,6 @@ if(!isset($_SESSION))
 session_start();
 
 
-
 ?>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible">
@@ -108,8 +107,9 @@ body{
 
     <?php if(isset($_SESSION['id_usuario'])){ ?>
       
-    <li><a href="../usuarios/meuperfil.php">Meu Perfil</a></li>
-
+    <li><a class="waves-effect waves-light btn modal-trigger blue darken-4" href="#modal1">Editar perfil</a>  </li>
+ 
+  
   <?php } ?>
         
         <li><a href="../Inicio/index.php">Lista de Documentos</a></li>
@@ -125,7 +125,16 @@ body{
           <?php }}?>
         
   </ul>
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+    
+    <?php include('../usuarios/formEditUsuario.php');?>
 
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sair</a>
+    </div>
+  </div>
 
   
 
