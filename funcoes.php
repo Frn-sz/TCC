@@ -8,8 +8,6 @@ function puxartopicos(){
   $sql = "SELECT `id`, `titulo` FROM `topicos`";
   $resultado = mysqli_query($conexao, $sql);
   $topicos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
-
-  echo "<option value = ''>Escolha um tópico</option>";
   foreach ($topicos as $chave => $topico) {
   $titulo = $topico['titulo'];
   $id = $topico['id'];
@@ -35,6 +33,7 @@ function verificandoNivelUsuario(){
 
   }
 }
+
 
 
 ?>

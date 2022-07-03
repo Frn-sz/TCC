@@ -58,58 +58,62 @@ foreach($id_docs as $chave => $id_doc){
           $idsx[] = $ids_doc['id'];
      
      }
-     $ids_limpos = array_unique($idsx);
 
-     foreach($ids_limpos as $chave => $idx){
+     foreach($idsx as $chave => $idx){
 
           $sql4 = "SELECT * FROM documentos WHERE id = $idx";
           $resultado4 = mysqli_query($conexao,$sql4);
           $documentosx[] = mysqli_fetch_assoc($resultado4);
      }
-
-     echo "<div class = 'container'><div class='row'>";
-     foreach($documentosx as $chave => $documentoy){
+?>
+     <div class = 'container'><div class='row'>
+  <?php    foreach($documentosx as $chave => $documentoy){ ?>
      
-          echo 
-          
-          "<div class='col s2 m3'>
+        <div class='col s2 m4'>
             <div class='card'>
-              <div class='card-image'>";
+              <div class='card-image cardpesquisa'>";
      
      
-              if($documentoy['imagem'] != ""){  
-               echo "<img class='materialboxed' src ='../upload/$documentoy[imagem]'>";
-              }else{
-               echo "<div class='center'>";
-               echo "Sem imagem";
-               echo "</div>";
-              }
+             <?php  if($documentoy['imagem'] != ""){  ?>
+              <img class='materialboxed imagem' src ='../upload/<?=$documentoy['imagem']?>'>
+             <?php }else{ ?>
+              <div class='center'>
+               Sem imagem
+               </div>
+              <?php } ?>
      
-              echo "<span class='card-title black-text'>$documentoy[titulo]</span>
+             <span class='card-title black-text'><?= $documentoy['titulo'] ?></span>
               </div>
               <div class='card-content'>
-                <p> Forma: $documentoy[forma] <br></p>
-                <p> Formato: $documentoy[formato] <br></p>
-                <p> Espécie: $documentoy[especie] </p>
+                <p> Forma:<?=  $documentoy['forma'] ?><br></p>
+                <p> Formato:<?=  $documentoy['formato']?> <br></p>
+                <p> Espécie: <?= $documentoy['especie'] ?></p>
               </div>
               <div class='card-action center'>
-     
-              <a href = '../Documentos/vermais.php?id=$documentoy[id]' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>";
-              if(isset($_SESSION['nvl_usuario'])){
-              if($_SESSION['nvl_usuario'] == 1){
-             echo "<a href= '../Documentos/formaltera.php?id=$documentoy[id]' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>
-              <a href='#'" . "onclick='confirmacao($documentoy[id])' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'>" . "delete </i> </a>";
-              }}
-             echo "</div>
+               <?php if(!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2) { ?>
+              <a href = '../Documentos/vermais.php?id=<?=$documentoy['id']?>' class = 'btn-large waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>
+              <?php } ?>
+              <?php if(isset($_SESSION['nvl_usuario'])){ 
+              if($_SESSION['nvl_usuario'] == 1){?>
+               <a href = '../Documentos/vermais.php?id=<?=$documentoy['id']?>' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>
+               <a href= '../Documentos/formaltera.php?id=<?=$documentoy['id']?>' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>
+               <a href='#' onclick='confirmacao($documentoy[id])' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'> delete </i> </a>
+              <?php }} ?>
+             </div>
             </div>
-          </div>";
+          </div>
      
      
-     }
-     echo "</div></div>";
-}else{
-     echo "Nenhum resultado encontrado";
-}
+     <?php } ?>
+     </div></div>
+     <?php }else{?>
+          <div class="row">
+               <div class="col offset-s2">
+                    <h3>Não foram encontrados resultado </h3>
+               </div>
+          </div>
+
+<?php } ?>
 
 
 ?>

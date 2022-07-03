@@ -23,7 +23,7 @@ foreach($id_documentos as $chave => $id){
     $documentos[] = mysqli_fetch_assoc($result2);
 
 }}else{
-    $documentos = false;
+    
 }
 
 ?>

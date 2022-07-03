@@ -3,6 +3,8 @@
 
 <?php include "../conecta.php"; 
       include "../interfaces/header.php";
+      include "../funcoes.php";
+
 ?>
 
 
@@ -13,6 +15,11 @@
         
     <form action = "cadastro_usuario.php" method = "post" enctype = "multipart/form-data" class="col s12">
    
+    <div class="row">
+      <div class="col s6">
+        <h5 clas = "red darken-4"><?= exibeMensagens() ?> </h5>
+      </div>
+    </div>
     <div class="file-field input-field">
       <div class="btn blue darken-4">
         <span><i class = "material-icons">add_a_photo</i></span>

@@ -1,6 +1,7 @@
 <?php
 
 include "../conecta.php";
+include ('../funcoes.php');
 if(!isset($_SESSION)){
 	session_start();
 }
@@ -21,8 +22,9 @@ if(isset($_FILES['foto'])){
 $email = $_POST['email'];
 $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 $sqlemail = "SELECT email FROM user WHERE email='$email'";
-$resultSet = mysqli_query($conexao, $sqlemail);
-$verificacao = mysqli_fetch_assoc($resultSet);
+$resulset = mysqli_query($conexao,$sqlemail);
+$verificacao = mysqli_fetch_assoc($resulset);
+
  
 
 if(is_null($verificacao)){
@@ -33,8 +35,6 @@ $sql = "INSERT INTO `user`(nome, email, senha, tipoUsuario) VALUES ('$_POST[nome
 }
 var_dump($sql);
 $resultado = mysqli_query($conexao,$sql);
-
-
 
 if($resultado){
 $_SESSION['id_usuario'] = mysqli_insert_id($conexao);

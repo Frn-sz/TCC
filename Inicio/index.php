@@ -64,7 +64,7 @@ $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
 
      <div class='col s2 m4'>
        <div class='card'>
-         <div class='card-image'>
+         <div class='card-image cardindex'>
 
 <?php if($documento['imagem'] != ""){  ?>
 

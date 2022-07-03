@@ -1,3 +1,9 @@
+<?php
+
+include('../funcoes.php');
+
+?>
+
 <title>Tela de Login</title>
 
 
@@ -19,7 +25,13 @@
     <div class="row container">
         
     <form action = "login.php" method = "post" enctype = "multipart/form-data" class="col s12">
-   
+
+
+    <div class="row">
+      <div class="col s6">
+        <h5 clas = "red darken-4"> <?= exibeMensagens() ?> </h5>
+      </div>
+    </div>
 
       <div class="row">
         <div class="input-field col s12">

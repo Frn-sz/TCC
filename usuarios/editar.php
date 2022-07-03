@@ -14,18 +14,38 @@ if(isset($_FILES['foto'])){
 }
 
 
+
+$id = $_SESSION['id_usuario'];
 $nomeUsuario = $_POST['nome'];
 $email = $_POST['email'];
-$id = $_SESSION['id_usuario'];
+$sqlemail = "SELECT email FROM user WHERE id != '$id'";
+$resulset = mysqli_query($conexao,$sqlemail);
+$emails = mysqli_fetch_all($resulset, MYSQLI_ASSOC);
+$verificacao = false;
+
+foreach($emails as $key => $emailx){
+    echo $emailx['email'] . "<br>";
+    if($emailx['email'] == $email){
+        $verificacao = true;
+      
+    }
+}
+
+$url = $_SERVER['HTTP_REFERER'];
+
+if($verificacao == false){
 
 if($_FILES['foto']['error'] == 0){
+
 $sql = "UPDATE user SET nome = '$nomeUsuario', email = '$email', foto = '$nomeImagem' WHERE id = $id";
+
 }else{
+
     $sql = "UPDATE user SET nome = '$nomeUsuario', email = '$email' WHERE id = $id";
+
 }
 
 $result = mysqli_query($conexao, $sql);
-$url = $_SERVER['HTTP_REFERER'];
 if($result){
     header("location:$url");
     $_SESSION['email_usuario'] = $email;
@@ -33,5 +53,8 @@ if($result){
     if($_FILES['foto']['error'] == 0){
     $_SESSION['foto'] = $nomeImagem;
     }
+    
+}}else if ($verificacao == true){
+    header("location:$url");
 }
 ?>

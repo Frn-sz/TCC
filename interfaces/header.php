@@ -38,8 +38,10 @@ body{
     margin-left:50%;
   }.usuariologout{
     color: white;
-  }.card-image{
+  }.cardindex{
     height:40vh;
+   }.cardpesquisa{
+   height: 48vh;;
    }.search{
     width: 10px;
   }.buttonUser{
@@ -67,8 +69,8 @@ body{
         <li><div class="input-field col s6 black-text">
 
         <form action = "../Inicio/pesquisa.php" method = "get">
-                            <label class = "prefix" for = "busca"><i class="white-text material-icons ">search</i></label>
-                            <input class = "search" type="search" placeholder="Buscar.." name = "busca" id="busca">
+            <label class = "prefix" for = "busca"><i class="white-text material-icons ">search</i></label>
+            <input class = "search" type="search" placeholder="Buscar.." name = "busca" id="busca">
         </form></div></li>
        
         <?php if(!isset($_SESSION['id_usuario'])){ ?>
@@ -98,7 +100,7 @@ body{
       
       <?php if(isset($_SESSION['id_usuario'])){ ?>
       <img style = 'border-radius:50%' width = 200 src="../upload/<?=$_SESSION['foto']?>">
-      <span class="white-text name"><?= $_SESSION['nome_usuario']?></span>
+      <span class="white-text name large"><?= $_SESSION['nome_usuario']?></span>
       <a href="#email"><span class="white-text email"><? $_SESSION['email_usuario'] ?></span></a>
       
       <?php } else { echo "<span class = 'usuariologout'> Usuário não logado </span>"; }?>

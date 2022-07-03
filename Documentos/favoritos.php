@@ -10,7 +10,8 @@ include ('../interfaces/header.php');
 
 <div class = 'container'><div class='row'>
   <?php 
-  if($documentos != false){
+  
+  if(isset($documentos)){
     foreach($documentos as $chave => $documento){
 
   ?>
@@ -38,15 +39,20 @@ include ('../interfaces/header.php');
          </div>
          <div class='card-action center'>
 
-         <a href = '../Documentos/vermais.php?id=$documento[id]' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>
-     <a href = 'removerfavorito.php?id=$documento[id]' class = 'btn waves effect wavves-light blue darken-4'>Remover favorito</a> 
+         <a href = '../Documentos/vermais.php?id=<?= $documento['id'] ?>' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>
+         <a href = 'removerfavorito.php?id=<?= $documento['id'] ?>' class = 'btn waves effect wavves-light blue darken-4'>Remover favorito</a> 
         </div>
        </div>
      </div>
 
 
-         <?php }}else?>
-         Não há nenhum favorita ná sua lista. 
+         <?php }}else {?>
+          <div class="row">
+            <div class="col offset-s2">
+            <h3> Não há nenhum favorita ná sua lista. </h3>
+            </div>
+          </div>
+         <?php } ?>
 
 </main>
 

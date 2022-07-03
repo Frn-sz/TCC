@@ -46,6 +46,17 @@ $imagem = $documentos['imagem'];
 
 <?php
 include_once "../interfaces/header.php";
+include('../funcoes.php');
+if(isset($_SESSION['id_usuario'])){
+$sqlfav = "SELECT id_documento FROM favoritos WHERE id_usuario = '$_SESSION[id_usuario]'";
+$resultfavs = mysqli_query($conexao,$sqlfav);
+$verificacaofavs = mysqli_fetch_assoc($resultfavs);
+
+if(is_null($verificacaofavs)){
+  $verificacaofavs = false;
+}else{
+  $verificacaofavs = true;
+}}
 
 
 $sql2 = "SELECT id_topico FROM `tabela_assoc` WHERE `id_doc`= $documentos[id]";
@@ -97,9 +108,9 @@ for($i = 0; $i < count($id_topicos); $i++){
 
 
 
-<?php if(isset($_SESSION['id_usuario'])){ ?>
+<?php if(isset($_SESSION['id_usuario']) and $verificacaofavs == false ){ ?>
 
-<form action="addfav.php" method = "post">
+<form action="addfav.php" method = "get">
     <div class="row">
         <div class="col offset-s5">
 <input type = "hidden" name = "id" value = <?= $id ?>>
@@ -108,8 +119,16 @@ for($i = 0; $i < count($id_topicos); $i++){
 </div>
 </form>
 
+<?php }else if (isset($_SESSION['id_usuario']) and $verificacaofavs == true){ ?>
+    <form action="removerfavorito.php" method = "get">
+    <div class="row">
+        <div class="col offset-s5">
+    <input type = "hidden" name = "id" value = <?= $id ?>>
+    <button class = "btn waves-effect waves-light blue darken-4" type="submit"><i class = "material-icons ">highlight_off</i> Remover dos favoritos</button>
+    </div>
+</div>
+</form>
 <?php } ?>
-
 </main>
 <br>
 <?php include_once "../interfaces/footer.php"; ?>

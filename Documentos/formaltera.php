@@ -9,6 +9,7 @@
 
     include "../conecta.php";
     include('../funcoes.php');
+    verificandoNivelUsuario();
     $id = $_GET['id'];
     $sql = "SELECT * FROM documentos WHERE id=$id";
     $resultado = mysqli_query($conexao,$sql);
