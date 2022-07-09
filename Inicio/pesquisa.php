@@ -71,7 +71,7 @@ foreach($id_docs as $chave => $id_doc){
      
         <div class='col s2 m4'>
             <div class='card'>
-              <div class='card-image cardpesquisa'>";
+              <div class='card-image cardpesquisa'>
      
      
              <?php  if($documentoy['imagem'] != ""){  ?>
@@ -116,7 +116,7 @@ foreach($id_docs as $chave => $id_doc){
 <?php } ?>
 
 
-?>
+
 </main>
 <?php require_once "../interfaces/footer.php" ?>
 

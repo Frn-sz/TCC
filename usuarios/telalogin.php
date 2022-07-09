@@ -35,8 +35,8 @@ include('../funcoes.php');
 
       <div class="row">
         <div class="input-field col s12">
-          <input id = "email" type = "email" name = "email" class = "validate">
-          <label for="email">Email</label>
+          <input id = "emailx" type = "email" name = "email" class = "validate">
+          <label for="emailx">Email</label>
         </div>
       </div>
       <div class="row">
@@ -47,8 +47,8 @@ include('../funcoes.php');
           
         </div>
       </div>
-      <a href="formRecuperarSenha.php" class="btn-flat blue darken-4 waves-ligh waves-effect white-text">Esqueci minha senha</a>
-      <button style = "margin-left:50%;" class="btn-floating waves-effect waves-light blue darken-4" type="submit" name="action">
+      <a href="formRecuperarSenha.php" class="btn blue darken-4 waves-ligh waves-effect white-text">Esqueci minha senha</a>
+      <button style = "margin-left:33%;" class="btn-floating waves-effect waves-light blue darken-4" type="submit" name="action">
     <i class="material-icons right">check</i>
   </button>
     </form>

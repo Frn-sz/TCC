@@ -17,7 +17,7 @@
    
     <div class="row">
       <div class="col s6">
-        <h5 clas = "red darken-4"><?= exibeMensagens() ?> </h5>
+        <h5 clas = "red darken-4"> <?= exibeMensagens() ?> </h5>
       </div>
     </div>
     <div class="file-field input-field">
@@ -38,8 +38,8 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id = "email" type = "email" name = "email" class = "validate">
-          <label for="email">Email</label>
+          <input id = "emailx" type = "email" name = "email" class = "validate">
+          <label for="emailx">Email</label>
         </div>
       </div>
       <div class="row">
@@ -55,6 +55,7 @@
           <input type = "password" name = "repetirsenha" id = "repetirsenha" class = "validate">
           <span toggle="#repetirsenha" class="field-icon toggle-password "><span class="material-icons">visibility</span></span>
           <label for = "repetirsenha">Confirme a senha</label>
+          <span class="helper-text" data-error="Senhas não conferem" ></span>
         </div>
       </div>
 

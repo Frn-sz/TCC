@@ -6,10 +6,11 @@
 <head>
 <?php
 
-if(!isset($_SESSION))
+if(!isset($_SESSION)){
 session_start();
 
-
+}
+//var_dump($_SESSION);
 ?>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible">
@@ -124,6 +125,7 @@ body{
 
                 if($_SESSION['nvl_usuario'] == 1){?>
         <li><a href="../usuarios/listausers.php">Lista de Usuários</a></li>
+        <li><a href="../usuarios/formExcluirConta.php" class = "red-text">Excluir minha conta</a></li>
           <?php }}?>
         
   </ul>

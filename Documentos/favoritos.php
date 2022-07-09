@@ -49,7 +49,7 @@ include ('../interfaces/header.php');
          <?php }}else {?>
           <div class="row">
             <div class="col offset-s2">
-            <h3> Não há nenhum favorita ná sua lista. </h3>
+            <h3> Não há nenhum favorito na sua lista. </h3>
             </div>
           </div>
          <?php } ?>
