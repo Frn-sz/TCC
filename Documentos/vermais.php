@@ -48,14 +48,14 @@ $imagem = $documentos['imagem'];
 include_once "../interfaces/header.php";
 include('../funcoes.php');
 if(isset($_SESSION['id_usuario'])){
-$sqlfav = "SELECT id_documento FROM favoritos WHERE id_usuario = '$_SESSION[id_usuario]'";
+$sqlfav = "SELECT id_documento FROM favoritos WHERE id_usuario = '$_SESSION[id_usuario]' and id_documento = '$id'";
 $resultfavs = mysqli_query($conexao,$sqlfav);
 $verificacaofavs = mysqli_fetch_assoc($resultfavs);
 
 if(is_null($verificacaofavs)){
-  $verificacaofavs = false;
+  $existe = false;
 }else{
-  $verificacaofavs = true;
+  $existe = true;
 }}
 
 
@@ -79,10 +79,14 @@ for($i = 0; $i < count($id_topicos); $i++){
 ?>
 
 
-<br> <div id = 'lista' class = 'container '>
+<br> <div class="container">
     <?php if($documentos['imagem'] != ""){ ?>
 
-   <div class = 'row'> <div class = 'col offset-s4'> <img class = 'materialboxed right' width = 500 src= '../upload/<?= $imagem ?>'> </div></div>
+   <div class = 'row'> 
+    <div class = 'col offset-s3'> 
+        <img class = 'materialboxed' width = 500 src= '../upload/<?= $imagem ?>'> 
+    </div>
+</div>
     
     <?php }else{ ?>
 
@@ -103,12 +107,12 @@ for($i = 0; $i < count($id_topicos); $i++){
 <?php foreach($topicos_doc as $chave => $topico){ ?>
     
     <div class='chip'><a href = #> <?= $topico ?> </a> </div>
-<?php }  mysqli_close($conexao);?>
+<?php }?>
 </li>
 
 
 
-<?php if(isset($_SESSION['id_usuario']) and $verificacaofavs == false ){ ?>
+<?php if(isset($_SESSION['id_usuario']) and $existe == false ){ ?>
 
 <form action="addfav.php" method = "get">
     <div class="row">
@@ -119,7 +123,7 @@ for($i = 0; $i < count($id_topicos); $i++){
 </div>
 </form>
 
-<?php }else if (isset($_SESSION['id_usuario']) and $verificacaofavs == true){ ?>
+<?php }else if (isset($_SESSION['id_usuario']) and $existe == true){ ?>
     <form action="removerfavorito.php" method = "get">
     <div class="row">
         <div class="col offset-s5">
@@ -129,6 +133,7 @@ for($i = 0; $i < count($id_topicos); $i++){
 </div>
 </form>
 <?php } ?>
+</div>
 </main>
 <br>
 <?php include_once "../interfaces/footer.php"; ?>

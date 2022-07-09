@@ -125,8 +125,12 @@ body{
 
                 if($_SESSION['nvl_usuario'] == 1){?>
         <li><a href="../usuarios/listausers.php">Lista de Usuários</a></li>
-        <li><a href="../usuarios/formExcluirConta.php" class = "red-text">Excluir minha conta</a></li>
-          <?php }}?>
+
+          <?php }}if(isset($_SESSION['id_usuario'])){?>
+
+            <li><a href="../usuarios/formExcluirConta.php" class = "red-text">Excluir minha conta</a></li>
+
+            <?php } ?>
         
   </ul>
   <div id="modal1" class="modal">

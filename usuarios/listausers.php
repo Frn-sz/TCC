@@ -31,7 +31,7 @@ echo "<tr><thead>  <th> Imagem </th><th> Nome </th> <th> Email </th> <thead> <td
      echo "<tr>";
      if($usuario['foto'] != ""){ 
           
-     echo "<td> <img width = 250 src = ../upload/" . $usuario['foto'] . "></td>";
+     echo "<td> <img width = 200 src = ../upload/" . $usuario['foto'] . "></td>";
 
 }    else{
      
@@ -41,9 +41,9 @@ echo "<tr><thead>  <th> Imagem </th><th> Nome </th> <th> Email </th> <thead> <td
      echo "<td>" . $usuario['nome']. "</td>";
      echo "<td>" . $usuario['email'] . "</td>";
      if($usuario['tipoUsuario'] == 2){
-     echo "<td><a href='elevarAGerente.php?id=$usuario[id]'>Elevar usuário a gerente</a></td>";
+     echo "<td><a class='btn-large blue darken-4' href='elevarAGerente.php?id=$usuario[id]'>Elevar a gerente</a></td>";
      }else if($usuario['tipoUsuario'] == 3){
-          echo "<td><a href='rebaixarGerente.php?id=$usuario[id]'>Rebaixar gerente</a></td>";  
+          echo "<td><a class='btn-large blue darken-4 shref='rebaixarGerente.php?id=$usuario[id]'>Rebaixar gerente</a></td>";  
      }else{
           echo "<td>Administrador</td>  ";
      }
