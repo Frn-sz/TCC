@@ -33,11 +33,7 @@ $imagem = $documentos['imagem'];
    li{
     font-size: 25px;
     padding:10px;
-    
-    
    }#lista{
-    border-radius: 20px;
-   }img{
     border-radius: 20px;
    }
    
@@ -77,15 +73,16 @@ for($i = 0; $i < count($id_topicos); $i++){
 
 }   
 ?>
+<br><br>
 
-
-<br> <div class="container">
     <?php if($documentos['imagem'] != ""){ ?>
+<div class="container grey lighten-1">
 
-   <div class = 'row'> 
-    <div class = 'col offset-s3'> 
+<br>
+   <div class = 'row'>
+    <div class="col offset-m3"> 
         <img class = 'materialboxed' width = 500 src= '../upload/<?= $imagem ?>'> 
-    </div>
+</div>
 </div>
     
     <?php }else{ ?>
@@ -102,13 +99,15 @@ for($i = 0; $i < count($id_topicos); $i++){
 <div class = 'row'> <li>Gênero: <?=  $genero  ?></li></div>   
 
 
-<li>Tópicos do documento: 
 
+<div class="row">
+    <div class="center">
 <?php foreach($topicos_doc as $chave => $topico){ ?>
     
-    <div class='chip'><a href = #> <?= $topico ?> </a> </div>
+    <div class='chip'><a class = "black-text" href = #> <?= $topico ?> </a> </div>
 <?php }?>
-</li>
+</div>
+</div>
 
 
 
@@ -116,22 +115,24 @@ for($i = 0; $i < count($id_topicos); $i++){
 
 <form action="addfav.php" method = "get">
     <div class="row">
-        <div class="col offset-s5">
+        <div class="center">
 <input type = "hidden" name = "id" value = <?= $id ?>>
-<button class = "btn waves-effect waves-light blue darken-4" type="submit"><i class = "material-icons">star</i> Adicionar aos favoritos</button>
+<button class = "btn waves-effect waves-light grey darken-2" type="submit"><i class = "material-icons">star</i> Adicionar aos favoritos</button>
 </div>
 </div>
 </form>
-
+<br>
 <?php }else if (isset($_SESSION['id_usuario']) and $existe == true){ ?>
     <form action="removerfavorito.php" method = "get">
     <div class="row">
-        <div class="col offset-s5">
+        <div class="center">
     <input type = "hidden" name = "id" value = <?= $id ?>>
-    <button class = "btn waves-effect waves-light blue darken-4" type="submit"><i class = "material-icons ">highlight_off</i> Remover dos favoritos</button>
+    <button class = "btn waves-effect waves-light grey darken-2" type="submit"><i class = "material-icons ">highlight_off</i> Remover dos favoritos</button>
     </div>
 </div>
+
 </form>
+<br>
 <?php } ?>
 </div>
 </main>

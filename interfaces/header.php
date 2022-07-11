@@ -34,8 +34,6 @@ body{
 
   main {
     flex: 1 0 auto;
-  }#botões{
-    margin-left: 50%;
   }#botaoinsere{
     margin-left:50%;
   }.usuariologout{
@@ -55,17 +53,29 @@ body{
     top: 10px;
     cursor: pointer;
     z-index: 2;
+    color: lightgray;
 }.imagem{
   height: 35vh;
   max-width: 100%;
 }.imagemUsuario{
   max-width: 100%;
-}
+}.card{
+  background-color: lightgray;
 
+}input{
+  color:white;
+}.card.hoverable {
+    box-shadow: 0 2px 2px 0 black, 0 3px 1px -2px black, 0 1px 5px 0 black;
+}.card.hoverable:hover {
+    box-shadow: 2px 4px 5px 0 white, 2px 5px 3px -3px white, 2px 5px 10px 0 white;
+}table{
+  
+  max-width: 100%;
+}
   </style>
 </head>
- 
-<nav class = "blue darken-4 ">
+ <div class="navbar-fixed">
+<nav class = "grey darken-2">
 <button href="#" data-target="slide-out" class="sidenav-trigger btn-flat"><i class="material-icons white-text">menu</i></button>
 <div class="nav-wrapper">
       <div class="container">
@@ -96,16 +106,14 @@ body{
       </div>
 
 </nav>
+</div>
 
-
-<ul id="slide-out" class="sidenav">
+<ul id="slide-out" class="sidenav grey darken-4">
     <li><div class="user-view">
-      <div class="background">
-      <img width = "500" src = "../Imagens/biblioteca.jpg">
-      </div>
+    
       
       <?php if(isset($_SESSION['id_usuario'])){ ?>
-      <img style = 'border-radius:50%' width = 200 src="../upload/<?=$_SESSION['foto']?>">
+      <img style = 'border-radius:50%' class = "hoverable materialboxed" width = 200 src="../upload/<?=$_SESSION['foto']?>">
       <span class="white-text name large"><?= $_SESSION['nome_usuario']?></span>
       <a href="#email"><span class="white-text email"><? $_SESSION['email_usuario'] ?></span></a>
       
@@ -115,42 +123,40 @@ body{
 
     <?php if(isset($_SESSION['id_usuario'])){ ?>
       
-    <li><a class="waves-effect waves-light btn modal-trigger blue darken-4" href="#modal1">Editar perfil</a>  </li>
+    <li><a class="waves-effect waves-light btn modal-trigger grey darken-2 white-text" href="#modal1">Editar perfil</a>  </li>
  
   
   <?php } ?>
         
-        <li><a href="../Inicio/index.php">Lista de Documentos</a></li>
-        <li><a href="../Topicos/topicos.php">Lista de Tópicos</a></li>
+        <li ><a class = "white-text" href="../Inicio/index.php">Lista de Documentos</a></li>
+        <li><a  class = "white-text" href="../Topicos/topicos.php">Lista de Tópicos</a></li>
         <?php if(isset($_SESSION['id_usuario'])){ ?>
-          <li><a href = "../Documentos/favoritos.php"> Lista de Favoritos </a> </li>
+          <li><a  class = "white-text" href = "../Documentos/favoritos.php"> Lista de Favoritos </a> </li>
 
           <?php } ?>
         <?php if(isset($_SESSION['nvl_usuario'])){
 
-                if($_SESSION['nvl_usuario'] == 1){?>
-        <li><a href="../usuarios/listausers.php">Lista de Usuários</a></li>
-
+                if($_SESSION['nvl_usuario'] == 1 OR $_SESSION['nvl_usuario'] == 3){?>
+        <li><a   class = "white-text"href="../usuarios/listausers.php">Lista de Usuários</a></li>
+        <?php if($_SESSION['nvl_usuario'] == 1){ ?> 
+        <li><a  class = "white-text" href="../cadastroDeGerentes/formCadastro.php">Cadastrar Gerentes</a></li>
           <?php }}if(isset($_SESSION['id_usuario'])){?>
 
-            <li><a href="../usuarios/formExcluirConta.php" class = "red-text">Excluir minha conta</a></li>
+            <li><a  class = "red lighten-2 white-text" href="../usuarios/formExcluirConta.php" class = "red-text">Excluir minha conta</a></li>
 
-            <?php } ?>
+            <?php }}?>
         
   </ul>
-  <div id="modal1" class="modal">
+  <div id="modal1" class="modal grey darken-4">
     <div class="modal-content">
     
     <?php include('../usuarios/formEditUsuario.php');?>
 
     </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Sair</a>
-    </div>
   </div>
 
   
 
-  <body>
+  <body class = "grey darken-3">
 
 

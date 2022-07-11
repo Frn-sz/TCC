@@ -47,8 +47,8 @@ include('../funcoes.php');
           
         </div>
       </div>
-      <a href="formRecuperarSenha.php" class="btn blue darken-4 waves-ligh waves-effect white-text">Esqueci minha senha</a>
-      <button style = "margin-left:33%;" class="btn-floating waves-effect waves-light blue darken-4" type="submit" name="action">
+      <a href="formRecuperarSenha.php" class="btn grey darken-1 waves-ligh waves-effect white-text">Esqueci minha senha</a>
+      <button style = "margin-left:33%;" class="btn-floating waves-effect waves-light grey darken-1" type="submit" name="action">
     <i class="material-icons right">check</i>
   </button>
     </form>
@@ -60,6 +60,5 @@ include('../funcoes.php');
 
 <?php require "../interfaces/footer.php"; ?>
 
-</html>
 
 

@@ -70,7 +70,7 @@ foreach($id_docs as $chave => $id_doc){
   <?php    foreach($documentosx as $chave => $documentoy){ ?>
      
         <div class='col s2 m4'>
-            <div class='card'>
+            <div class='card hoverable'>
               <div class='card-image cardpesquisa'>
      
      
@@ -91,13 +91,13 @@ foreach($id_docs as $chave => $id_doc){
               </div>
               <div class='card-action center'>
                <?php if(!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2) { ?>
-              <a href = '../Documentos/vermais.php?id=<?=$documentoy['id']?>' class = 'btn-large waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>
+              <a href = '../Documentos/vermais.php?id=<?=$documentoy['id']?>' class = 'btn-large waves-effect waves-light  grey darken-1'><i class ='material-icons'>search</i>  </a>
               <?php } ?>
               <?php if(isset($_SESSION['nvl_usuario'])){ 
               if($_SESSION['nvl_usuario'] == 1){?>
-               <a href = '../Documentos/vermais.php?id=<?=$documentoy['id']?>' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>
-               <a href= '../Documentos/formaltera.php?id=<?=$documentoy['id']?>' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>
-               <a href='#' onclick='confirmacao($documentoy[id])' class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'> delete </i> </a>
+               <a href = '../Documentos/vermais.php?id=<?=$documentoy['id']?>' class = 'btn-floating waves-effect waves-light  grey darken-1'><i class ='material-icons'>search</i>  </a>
+               <a href= '../Documentos/formaltera.php?id=<?=$documentoy['id']?>' class = 'btn-floating waves-effect waves-light  grey darken-1 '> <i class ='material-icons'>edit</i>  </a>
+               <a href='#' onclick='confirmacao($documentoy[id])' class = 'btn-floating waves-effect waves-light grey darken-1 '>  <i class = 'material-icons'> delete </i> </a>
               <?php }} ?>
              </div>
             </div>

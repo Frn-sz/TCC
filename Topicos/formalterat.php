@@ -17,15 +17,17 @@
 <form action="alterat.php" method="post" class = "container" T>
     <input type = "hidden" name ="id" value = "<?= $topicos['id'];?>">
 
-<p>Título: <input type="text" name="titulo" value=" <?= $topicos['titulo'];?> "> </p>
+    <div class="input-field">
+    <span class = "white-text">Título</span>
+    <input type="text" name="titulo" value="<?= $topicos['titulo'];?>">
+    </div>
 
 
-
-<div id = "botões">
-        <button style = 'border-radius:10px;' class = "btn waves-effect waves-light blue darken-4" type = "reset">
+<div class  = "center">
+        <button style = 'border-radius:10px;' class = "btn waves-effect waves-light grey darken-1" type = "reset">
     <i class = "material-icons">restore</i>
         </button>
-    <button  style = 'border-radius:10px;'class="btn waves-effect waves-light blue darken-4" type="submit" name="action">
+    <button  style = 'border-radius:10px;'class="btn waves-effect waves-light grey darken-1" type="submit" name="action">
       <i class="material-icons">check</i>
   </button>	
 </div>

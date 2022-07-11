@@ -16,7 +16,7 @@ foreach($documentos as $chave => $documento){ ?>
 
 
      <div class='col s2 m4'>
-       <div class='card'>
+       <div class='card hoverable'>
          <div class='card-image cardindex'>
 
 <?php if($documento['imagem'] != ""){  ?>
@@ -40,19 +40,19 @@ foreach($documentos as $chave => $documento){ ?>
 
           <?php if(!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] != 1){ ?>
                
-          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>'  class = 'btn-large waves-effect waves-light blue darken-4 '><i class ='material-icons'>search</i>  </a>
+          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>'  class = 'btn-large waves-effect waves-light grey darken-2 '><i class ='material-icons'>search</i>  </a>
           
           <?php }else{ ?>
 
-          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>' class = 'btn-floating waves-effect waves-light  blue darken-4 '><i class ='material-icons'>search</i>  </a>
+          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>' class = 'btn-floating waves-effect waves-light  grey darken-2 '><i class ='material-icons'>search</i>  </a>
 
           <?php } ?>
 
           <?php if(isset($_SESSION['nvl_usuario'])){ 
          
          if($_SESSION['nvl_usuario'] == 1){ ?>
-          <a href= '../Documentos/formaltera.php?id=<?= $documento['id'] ?>' class = 'btn-floating waves-effect waves-light  blue darken-4'> <i class ='material-icons'>edit</i>  </a>
-         <a href='#' onclick="confirmacao(<?=$documento['id']?>)" class = 'btn-floating waves-effect waves-light blue darken-4'>  <i class = 'material-icons'> delete </i> </a>
+          <a href= '../Documentos/formaltera.php?id=<?= $documento['id'] ?>' class = 'btn-floating waves-effect waves-light  grey darken-2'> <i class ='material-icons'>edit</i>  </a>
+         <a href='#' onclick="confirmacao(<?=$documento['id']?>)" class = 'btn-floating waves-effect waves-light grey darken-2'>  <i class = 'material-icons'> delete </i> </a>
        <?php }} ?>
           
         </div>

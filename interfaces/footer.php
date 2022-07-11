@@ -1,6 +1,6 @@
 
 </body>
-<footer class="page-footer blue darken-4">
+<footer class="page-footer grey darken-2">
   <div class="container">
     <div class="row">
       <div class="col l6 s12">

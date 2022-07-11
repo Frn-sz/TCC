@@ -1,29 +1,28 @@
-<html>
-    <head>
-        <meta charset="utf-8">
+
         <title> Tela de Cadastro de Tópicos</title>
-        
-    </head>
-    <body>
+
+   
       
         <?php require_once "../interfaces/header.php";?>
+        <main>
+            <br>    
         <form class = "container" action="cadastrotopicos.php" method="post">    
-
-           
-		<p>  Insira o tópico que deseja Cadastrar <input type="text" name="titulo" required> </p>
-       
-        <div id = "botões">
-        <button style = 'border-radius:10px;' class = "btn waves-effect waves-light blue darken-4" type = "reset">
+        <div class="input-field">
+       <input id = "titulo" type="text" name="titulo" class = "white-text" required> 
+       <label for="titulo">Insira o Tópico que deseja cadastrar</label>
+        </div>
+        <div class = "center">
+        <button style = 'border-radius:10px;' class = "btn waves-effect waves-light grey darken-1" type = "reset">
     <i class = "material-icons">restore</i>
         </button>
-    <button  style = 'border-radius:10px;'class="btn waves-effect waves-light blue darken-4" type="submit" name="action">
+    <button  style = 'border-radius:10px;'class="btn waves-effect waves-light grey darken-1" type="submit" name="action">
       <i class="material-icons">check</i>
   </button>	
-</div>
+
         
         
     </div>  
 			
-        </form>			
-</body>
-</html>
+        </form>		
+        </main>	
+<?php include('../interfaces/footer.php') ?>

@@ -1,20 +1,19 @@
-<title>Cadastro de Usuário</title>
-<style>
+<title>Cadastro de Gerente</title>
 
-</style>
 
-<?php include "../conecta.php"; 
+<?php 
+
+      include "../conecta.php"; 
       include "../interfaces/header.php";
       include "../funcoes.php";
 
 ?>
 
     <main>
-      <br>
     <div class="row container">
         
-    <form action = "cadastro_usuario.php" method = "post" enctype = "multipart/form-data" class="col s12">
-   
+    <form action = "cadastroGerente.php" method = "post" enctype = "multipart/form-data" class="col s12">
+  
     <div class="row">
       <div class="center">
         <h5 class = "red-text darken-4"> <?= exibeMensagens() ?> </h5>
@@ -24,7 +23,7 @@
 <img  width = "300" id = "blah2"/>
 </div>
     <div class="file-field input-field">
-      <div class="btn grey darken-1">
+      <div class="btn grey darken-2">
         <span><i class = "material-icons">add_a_photo</i></span>
         <input id="ImagemCadastro" type="file" name="foto" onchange="readURL(this);">
       </div>
@@ -64,13 +63,12 @@
 
       <div class="row">
         <div class="col offset-s6">
-      <button class="btn-floating waves-effect waves-light grey darken-1" type="submit" name="action">
+      <button class="btn-floating waves-effect waves-light grey darken-2" type="submit" name="action">
     <i class="material-icons right">check</i>
 
   </button>
   </div>
   </div>
-  
     </form>
   </div>
 

@@ -19,9 +19,9 @@ verificandoNivelUsuario();
 
 
     <?php require_once "../interfaces/header.php"; ?>
-
+<br><br>
     <form class = "container" action="insere.php" method="post" enctype="multipart/form-data">
-
+   
         
        <div class="row">
         <div class="input-field">
@@ -61,7 +61,7 @@ verificandoNivelUsuario();
    
 
       <div class="file-field input-field">
-      <div class="btn blue darken-4">
+      <div class="btn grey darken-2">
         <span><i class = "material-icons large">attach_file</i> </span>
         <input name = "arquivo" type="file" accept=".jpg,.jpeg,.png">
       </div>
@@ -71,7 +71,7 @@ verificandoNivelUsuario();
     </div>
   <div class="row">
     <div class="col offset-s6">
-    <button id = "x" style = 'border-radius:10px;'class="btn waves-effect waves-light blue darken-4" type="submit" name="action">
+    <button id = "x" style = 'border-radius:10px;'class="btn waves-effect waves-light grey darken-2" type="submit" name="action">
       <i class="material-icons">check</i>
   </button>
 

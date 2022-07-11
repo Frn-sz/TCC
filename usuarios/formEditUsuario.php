@@ -9,7 +9,7 @@
 
 </div>
    <div class="file-field input-field">
-     <div class="btn blue darken-4">
+     <div class="btn grey darken-2">
     
        <span class = "iconeFoto"><i class = "material-icons">add_a_photo</i></span>
        <input id = "imgInp" type="file" name="foto" onchange="readURL(this);">
@@ -33,7 +33,7 @@
      </div>
      <div class="row">
        <div class="center-align">
-     <button class="btn-floating waves-effect waves-light blue darken-4" type="submit" name="action">
+     <button class="btn-floating waves-effect waves-light grey darken-2" type="submit" name="action">
    <i class="material-icons right">check</i>
     </button>
     </div>

@@ -1,13 +1,9 @@
 
 <?php
-
 include "../conecta.php";
-
 $sql = "SELECT * FROM `user`";
 $result = mysqli_query($conexao,$sql);
-
 $usuarios = mysqli_fetch_all($result, MYSQLI_BOTH);
-
 ?>
 
 
@@ -19,44 +15,43 @@ $usuarios = mysqli_fetch_all($result, MYSQLI_BOTH);
 
     <br>
 
-    <div><a id = "botaoinsere" class = 'waves-effect btn-floating blue darken-4' href = '../usuarios/cadastrouser.php'><i class = "material-icons">add</i> </a></div>
-    <?php 
-    echo '<table id = "documentos" class = "container " border = 2>';
+    <div><a id = "botaoinsere" class = 'waves-effect btn-floating grey darken-2' href = '../usuarios/cadastrouser.php'><i class = "material-icons">add</i> </a></div>
+  
+    <table class = "container grey darken-1 white-text tabela">
+<div class="espaco">
+<tr><thead><th> Imagem </th><th> Nome </th> <th> Email </th><thead><tdbody><br>
 
-echo "<tr><thead>  <th> Imagem </th><th> Nome </th> <th> Email </th> <thead> <tdbody><br>";
 
-
-     foreach($usuarios as $chave => $usuario){
-     echo "<tr>";
-     if($usuario['foto'] != ""){ 
+    <?php foreach($usuarios as $chave => $usuario){ ?>
+     <tr>
+      <?php if($usuario['foto'] != ""){ ?>
           
-     echo "<td> <img width = 200 src = ../upload/" . $usuario['foto'] . "></td>";
+     <td> <img class = 'materialboxed' width = 200 src = ../upload/<?=$usuario['foto']?>></td>
 
-}    else{
+     <?php }else{ ?>
      
-     echo "<td>Sem Imagem</td>";
+     <td>Sem Imagem</td>
 
-}
-     echo "<td>" . $usuario['nome']. "</td>";
-     echo "<td>" . $usuario['email'] . "</td>";
-     if($usuario['tipoUsuario'] == 2){
-     echo "<td><a class='btn-large blue darken-4' href='elevarAGerente.php?id=$usuario[id]'>Elevar a gerente</a></td>";
-     }else if($usuario['tipoUsuario'] == 3){
-          echo "<td><a class='btn-large blue darken-4 shref='rebaixarGerente.php?id=$usuario[id]'>Rebaixar gerente</a></td>";  
-     }else{
-          echo "<td>Administrador</td>  ";
-     }
-     
-   
-     echo "<a href='inicio.html' class ='voltar'>";
-     echo "</tr>";
-   
-   
-}
+     <?php } ?>
+     <td><?= $usuario['nome']?></td>
+     <td><?= $usuario['email']?></td>
+    <?php if($usuario['tipoUsuario'] == 2){ ?>
+     <td><a class='btn-large grey darken-2' href='elevarAGerente.php?id=<?=$usuario['id']?>'>Elevar a gerente</a></td>
+     <?php }else if($usuario['tipoUsuario'] == 3){ ?>
+          <td><a class='btn-large grey darken-2' href='rebaixarGerente.php?id=<?=$usuario['id']?>'>Rebaixar gerente</a></td>
+     <?php }else{ ?>
+          <td>Administrador</td>  
+     <?php } ?>
 
-     echo "<tdbody> </table>";
-?>
+     </tr>
+   
+   
+<?php } ?>
+
+     <tdbody> </table>
+    
 </main>
 
+<br>
 
 <?php require_once "../interfaces/footer.php"; ?>

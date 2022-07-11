@@ -1,9 +1,6 @@
 
 <title>Alterar</title>
 
-<link rel="stylesheet" type="text/css" href="estiloaltera.css">	
-</head>
-
 
 <?php
 
@@ -16,79 +13,73 @@
     $documento = mysqli_fetch_array($resultado);
     
     mysqli_close($conexao);
-
+    
   
 ?>
  <?php require_once "../interfaces/header.php"; ?>
-
+<main>
 
 <form class = "container" action="altera1.php" method="post" enctype="multipart/form-data">
     
-<input type="hidden" name="id" value="
+<input type="hidden" name="id" value="<?=$documento['id'];?>">
+<br>
+<div class="input-field">
+<input type="text" name="titulo" value="<?php echo $documento['titulo'];?>">
+<label for = "titulo">Título</label>
+</div>
 
-<?php echo $documento['id'];?>">
-
-<p>Titulo:
-
-<input type="text" name="titulo" value="
-
-<?php echo $documento['titulo'];?>">
-
-</p>
-<p>Forma:
-
-<select name = "forma" value = 
-  <?php
-if($documento['forma'] == "Cópia"){ 
-  echo "<option value = Cópia> Cópia </option>";
-  echo "<option value = Original> Original </option>";
-}else{
-  echo "<option value = Original >Original</option>";
-  echo "<option value = Cópia> Original </option>";
-}
+<div class="input-field">
+<select name = "forma" value = <?=$documento['forma']?>>
+  <?php if($documento['forma'] == "Cópia"){ ?>
+  <option value = Cópia> Cópia </option>
+  <option value = Original> Original </option>
+<?php }else{ ?>
+  <option value = Original> Original</option>
+  <option value = Cópia> Cópia </option>
+<?php }?>
 ?>>
 </select>
-</p>
+<label for = "forma">Forma</label>
+</div>
 
-<p> Formato:
+<div class="input-field">
+<input type="text" name="formato" value="<?php echo $documento['formato'];?>">
+<label for = "formato">Formato</label>
+</div>
+<div class="input-field">
+<input type="text" name="especie" value="<?php echo $documento['especie'];?>">
+<label for = "especie">Especie</label>
+</div>
+<div class="input-field">
+<input type="text" name="genero" value="<?php echo $documento['genero'];?>">
+<label for = "genero">Gênero</label>
+</div>
 
-<input type="text" name="formato" value="
-
-<?php echo $documento['formato'];?>">
-</p>
-
-<p>Espécie:
-
-<input type="text" name="especie" value="
-
-<?php echo $documento['especie'];?>">
-
-</p>
-<p>Gênero:
-
-<input type="text" name="genero" value="
-
-<?php echo $documento['genero'];?>">
-
-</p>
+<div class="input-field">
+<textarea type="text" class="materialize-textarea white-text" name="localizacao"><?= $documento['localizacao'];?></textarea>
+<label for = "localizacao">Localização</label>
+</div>
 
 
-<p>Localização:<br><br>
 
-<textarea type="text" class="materialize-textarea" name="localizacao"><?= $documento['localizacao'];?></textarea>
-
-</p>
-
-
-      <p> Tópico 1: <select name="0"> <?php puxartopicos() ?> </select> </p>
-      <p> Tópico 2: <select name="1"> <?php puxartopicos() ?> </select></p>
-      <p> Tópico 3: <select name="2"> <?php puxartopicos() ?> </select></p>
-      <p> Tópico 4: <select name="3"> <?php puxartopicos() ?> </select></p>
-      <p> Tópico 5: <select name="4"> <?php puxartopicos() ?> </select></p>
-  
+ <div class="row">
+   <span class = "white-text">Tópico 1</span><select name="0"> <?php puxartopicos() ?> </select> 
+   </div>
+   <div class="row">
+   <span class = "white-text">Tópico 2</span><select name="1"> <?php puxartopicos() ?> </select>
+   </div>
+   <div class="row">
+   <span class = "white-text">Tópico 3</span><select name="2"> <?php puxartopicos() ?> </select>
+   </div>
+   <div class="row">
+   <span class = "white-text">Tópico 4</span><select name="3"> <?php puxartopicos() ?> </select>
+   </div>
+   <div class="row">
+   <span class = "white-text">Tópico 5</span><select name="4"> <?php puxartopicos() ?> </select>
+   </div>
 
 <div class="file-field input-field">
-      <div class="btn blue darken-4">
+      <div class="btn grey darken-1">
         <span><i class = "material-icons large">attach_file</i> </span>
         <input name = "arquivo" type="file">
       </div>
@@ -97,11 +88,11 @@ if($documento['forma'] == "Cópia"){
       </div>
     </div>
     <div class="row">
-  <div class="col offset-s6">
-    <button id = "y" style = 'border-radius:10px;' class = "btn waves-effect waves-light blue darken-4" type = "reset">
+  <div class="center">
+    <button id = "y" style = 'border-radius:10px;' class = "btn waves-effect waves-light grey darken-1" type = "reset">
     <i class = "material-icons">cancel</i>
   </button>
-    <button id = "x" style = 'border-radius:10px;'class="btn waves-effect waves-light blue darken-4" type="submit" name="action">
+    <button id = "x" style = 'border-radius:10px;'class="btn waves-effect waves-light grey darken-1" type="submit" name="action">
       <i class="material-icons">check</i>
   </button>
   </div>
@@ -115,8 +106,6 @@ if($documento['forma'] == "Cópia"){
 
 
 </main>
-<?php require_once "../interfaces/footer.php"; ?>
-<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
-  <script type="text/javascript" src="../js/materialize.min.js"></script>
-</body>
-</html>
+
+
+  <?php require_once "../interfaces/footer.php"; ?>

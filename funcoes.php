@@ -27,7 +27,7 @@ function exibeMensagens() {
 
 function verificandoNivelUsuario(){
   session_start();
-  if(!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] != 1){
+  if(!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2){
       
       header("Location:../Inicio/");
 
