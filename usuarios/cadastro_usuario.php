@@ -24,9 +24,9 @@ $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 $sqlemail = "SELECT email FROM user WHERE email='$email'";
 $resulset = mysqli_query($conexao,$sqlemail);
 $verificacao = mysqli_fetch_assoc($resulset);
-
+$url = $_SERVER['HTTP_REFERER'];
  
-
+if($_POST['senha'] != ""){
 if(is_null($verificacao)){
 if($_FILES['foto']['error'] == 0){
 $sql = "INSERT INTO `user`(nome, email, senha, foto, tipoUsuario) VALUES ('$_POST[nome]','$_POST[email]', '$senha', '$nome', 2)";
@@ -43,6 +43,10 @@ header("location:cadastroAcesso.php");
 }
 
 }else{
-	die("E-mail já cadastrado");
+	$_SESSION['mensagem'] = "E-mail já cadastrado";
+	header("location:$url"	);
+}}else{
+	$_SESSION['mensagem'] = "Você deve inserir uma senha";
+	header("location:$url"	);
 }
 ?>

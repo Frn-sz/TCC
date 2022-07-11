@@ -24,8 +24,6 @@ function confirmacao(id) {
   </style>
 
 
-
- <body>
 <main>
 
 <?php

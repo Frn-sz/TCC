@@ -10,17 +10,18 @@ if(!isset($_SESSION)){
 session_start();
 
 }
-//var_dump($_SESSION);
+
 ?>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
+      
 
-  <!--Let browser know website is optimized for mobile-->
+  <!--Let  browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <style>
@@ -42,7 +43,7 @@ body{
   }.cardindex{
     height:40vh;
    }.cardpesquisa{
-   height: 48vh;;
+   height: 50vh;;
    }.search{
     width: 10px;
   }.buttonUser{
@@ -56,7 +57,11 @@ body{
     z-index: 2;
 }.imagem{
   height: 35vh;
+  max-width: 100%;
+}.imagemUsuario{
+  max-width: 100%;
 }
+
   </style>
 </head>
  
@@ -71,7 +76,7 @@ body{
 
         <form action = "../Inicio/pesquisa.php" method = "get">
             <label class = "prefix" for = "busca"><i class="white-text material-icons ">search</i></label>
-            <input class = "search" type="search" placeholder="Buscar.." name = "busca" id="busca">
+            <input class = "search white black-text" type="search" placeholder="Busque por um tópico" name = "busca" id="busca">
         </form></div></li>
        
         <?php if(!isset($_SESSION['id_usuario'])){ ?>

@@ -9,11 +9,10 @@ if(!isset($_SESSION)){
 include('../conecta.php');
 $id = $_SESSION['id_usuario'];
 
-$sql = "SELECT id_documento FROM favoritos WHERE id_usuario = $id";
+$sql = "SELECT id_documento FROM favoritos WHERE id_usuario = '$id'";
 $resultado = mysqli_query($conexao,$sql);
 
 $id_documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
-
 
 if(!is_null($id_documentos)){
 foreach($id_documentos as $chave => $id){
@@ -22,8 +21,6 @@ foreach($id_documentos as $chave => $id){
     $result2 = mysqli_query($conexao, $sql2);
     $documentos[] = mysqli_fetch_assoc($result2);
 
-}}else{
-    
-}
+}}
 
 ?>

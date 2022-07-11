@@ -2,15 +2,17 @@
 
 <form action = "../usuarios/editar.php" method = "post" enctype = "multipart/form-data" class="col s12">
 <div class="row">
-  <div class="col offset-s6">
-<img style = "border-radius:100%" width = "100" id = "blah"/>
+  
+    <div class="center">
+<img  width = "300" id = "blah"/>
 </div>
+
 </div>
    <div class="file-field input-field">
      <div class="btn blue darken-4">
     
        <span class = "iconeFoto"><i class = "material-icons">add_a_photo</i></span>
-       <input id = "botao" type="file" name="foto" onchange="readURL(this);">
+       <input id = "imgInp" type="file" name="foto" onchange="readURL(this);">
      </div>
      <div class="file-path-wrapper">
        <label for = "K">Escolha uma foto de perfil</label><input id = "k" class="file-path validate" type="text">
@@ -38,7 +40,8 @@
     </div>
   
    </form>
-<script>
+
+   <script>
    function readURL(input) {
 
 if (input.files && input.files[0]) {

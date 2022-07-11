@@ -40,10 +40,10 @@
 <select name = "forma" value = 
   <?php
 if($documento['forma'] == "Cópia"){ 
-  echo "<option value = $documentos[forma]> $documento[forma]</option>";
+  echo "<option value = Cópia> Cópia </option>";
   echo "<option value = Original> Original </option>";
 }else{
-  echo "<option value = $documentos[forma]>$documento[forma]</option>";
+  echo "<option value = Original >Original</option>";
   echo "<option value = Cópia> Original </option>";
 }
 ?>>
@@ -75,7 +75,7 @@ if($documento['forma'] == "Cópia"){
 
 <p>Localização:<br><br>
 
-<input type="text" name="localizacao" value=" <?= $documento['localizacao'];?>">
+<textarea type="text" class="materialize-textarea" name="localizacao"><?= $documento['localizacao'];?></textarea>
 
 </p>
 

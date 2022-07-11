@@ -17,7 +17,7 @@ include('../funcoes.php');
     z-index: 2;
 }
 </style>
-<body>
+
     <main>
     <?php 
       include "../interfaces/header.php";
@@ -55,9 +55,11 @@ include('../funcoes.php');
   </div>
 
     </main>
-</body>
+
 
 
 <?php require "../interfaces/footer.php"; ?>
+
+</html>
 
 

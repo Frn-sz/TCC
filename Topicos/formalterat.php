@@ -23,7 +23,7 @@
 
 <div id = "botões">
         <button style = 'border-radius:10px;' class = "btn waves-effect waves-light blue darken-4" type = "reset">
-    <i class = "material-icons">cancel</i>
+    <i class = "material-icons">restore</i>
         </button>
     <button  style = 'border-radius:10px;'class="btn waves-effect waves-light blue darken-4" type="submit" name="action">
       <i class="material-icons">check</i>

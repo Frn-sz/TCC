@@ -16,23 +16,23 @@ function confirmacao(id) {
 
 </script>
  <main>
-
+     <?php include_once "../conecta.php";
+     require_once "../interfaces/header.php";
+     include('../funcoes.php'); ?>
+ <h5 class = "red-text darken-4 center"> <?= exibeMensagens() ?> </h5>
 <?php
-include_once "../conecta.php";
-require_once "../interfaces/header.php";
+
 
 $sql = "SELECT * FROM `topicos`";
 $result = mysqli_query($conexao, $sql);
 echo "<br><div class = 'container'>";   
 if(isset($_SESSION['id_usuario'])){
-     if($_SESSION['id_usuario'] == 1){
-
-
+     if($_SESSION['nvl_usuario'] == 1){
 echo "<a id = 'inserir' href='inseretopicos.php' class = 'btn-floating waves-effect blue darken-4'><i class = 'material-icons'> add </i> </a>";
      }}
 echo '<table id = "topicos" class = " highlight bordered">';
 
-echo "<tr> <th> ID </th> <th> Título </th> <th colspan = 4> Operações</th> </tr> <br>";
+echo "<tr> <th> ID </th> <th> Título </th></tr> <br>";
 
 $topicos = mysqli_fetch_all($result, MYSQLI_BOTH);
 

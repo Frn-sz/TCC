@@ -26,9 +26,9 @@
   </div>
 </footer>
 
+
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="../js/materialize.min.js"></script>
-
   <script>
    $(document).ready(function(){
     $('select').formSelect();
@@ -63,10 +63,7 @@ $(".toggle-password").click(function (e) {
      input.attr("type", "password");
   }
 });
-$(document).ready(function(){
-    $('.modal').modal();
-  });
-          
+      
 </script>
 
 <script>
@@ -79,16 +76,30 @@ function validarSenha() {
     senhaC.setCustomValidity(" ");
     senhaC.reportValidity();
     return false;
+    senhaC.addEventListener('input', validarSenha);
+senha.addEventListener('blur', validarSenha);
   } else {
     senhaC.setCustomValidity("");
     return true;
+
   }
+
 }
 
 // verificar também quando o campo for modificado, para que a mensagem suma quando as senhas forem iguais
-senha.addEventListener('blur', validarSenha);
 senhaC.addEventListener('input', validarSenha);
-
+senha.addEventListener('blur', validarSenha);
+  
 </script>
+
+
+
+
+<script>
+ $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>
+
 
 </html>
