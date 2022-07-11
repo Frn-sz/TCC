@@ -20,7 +20,7 @@ $token = $_GET['token'];
     <label for = "repetirSenha">Confirme a senha</label>    
 </div>
     <input type="hidden" value="<?= $token ?>" name="token">
-    <button class = "btn waves-light blue darken-4" type="submit">Redefinir Senha</button>
+    <button class = "btn waves-light grey darken-1" type="submit">Redefinir Senha</button>
     </form>
     </div>
     </div>

@@ -13,7 +13,9 @@ include('../interfaces/header.php');
 <div class="input-field">
 <input type = "email" name = "email">
 <label for = "email">Email</label>
-<button type="submit" class="btn waves-light waves-effect blue darken-4">Solicitar recuperação de senha</button>
+<div class="center">
+<button type="submit" class="btn waves-light waves-effect grey darken-1">Solicitar recuperação de senha</button>
+</div>
 </form>
 </div>
 </div>

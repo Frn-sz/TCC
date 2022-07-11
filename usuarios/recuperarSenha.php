@@ -34,7 +34,7 @@ if(is_null($usuario)){
             $mail -> CharSet = "UTF-8";
             $mail -> Encoding = "base64";
             $mail -> setLanguage('br');
-            $mail -> SMTPDebug = 2;
+            $mail -> SMTPDebug = false;
             $mail -> isSMTP();
             $mail -> isHTML(true);
             $mail -> Host = 'smtp.gmail.com';
@@ -47,9 +47,9 @@ if(is_null($usuario)){
             $mail -> addAddress("$email");
             $mail -> Body = "<h1> E-mail de recuperação de senha </h1> Clique no link a seguir para redefinir sua senha 'http://localhost/TCC/usuarios/redefinirSenha.php?token=$token'";
             if($mail -> send())
-                echo "E-mail enviado";
-            else    
-                echo "E-mail não enviado";
+                $_SESSION['mensagem'] = "Senha alterada com sucesso";
+                header("location:telalogin.php");
+            
             
     }
 }
