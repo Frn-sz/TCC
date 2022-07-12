@@ -1,15 +1,16 @@
 <?php
 include_once('../conecta.php');
-$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+if(!isset($_SESSION)){
+    session_start();
+}
 $token = $_POST['token'];
-$sql = "SELECT email FROM passwordReset WHERE token = '$token'";
-$result = mysqli_query($conexao,$sql);
-$email = mysqli_fetch_assoc($result);
-var_dump($email);
-$sql2 = "UPDATE user SET senha = '$senha' WHERE email='$email[email]'";
-var_dump($sql2);
+$email = $_POST['email'];
+
+$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+$sql2 = "UPDATE user SET senha = '$senha' WHERE email='$email'";
 $result2 = mysqli_query($conexao,$sql2);
 
 if($result2){
-    header("location:../Inicio/");
+    $_SESSION['mensagem'] = "Senha alterada com sucesso";
+    header("location:telalogin.php");
 }

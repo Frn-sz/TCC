@@ -55,7 +55,7 @@ verificandoNivelUsuario();
         </div>
         <div class="row">
         <div class="input-field">  
-        <textarea type="text" class="materialize-textarea" name="localizacao" id = "locali" required></textarea>
+        <textarea type="text" class="materialize-textarea white-text" name="localizacao" id = "locali" required></textarea>
         <label for="locali">Localização</label>
         </div>
    

@@ -48,13 +48,10 @@ foreach($documentos as $chave => $documento){ ?>
 
           <?php } ?>
 
-          <?php if(isset($_SESSION['nvl_usuario'])){ 
-         
-         if($_SESSION['nvl_usuario'] == 1){ ?>
-          <a href= '../Documentos/formaltera.php?id=<?= $documento['id'] ?>' class = 'btn-floating waves-effect waves-light  grey darken-2'> <i class ='material-icons'>edit</i>  </a>
-         <a href='#' onclick="confirmacao(<?=$documento['id']?>)" class = 'btn-floating waves-effect waves-light grey darken-2'>  <i class = 'material-icons'> delete </i> </a>
-       <?php }} ?>
+              <a class = "btn-large grey darken-1 white-text" href = "removerfavorito.php?id=<?=$documento['id']?>">Remover favorito</a>
+     
           
+              
         </div>
        </div>
      </div>
@@ -62,7 +59,7 @@ foreach($documentos as $chave => $documento){ ?>
 
  <?php    }}else{ ?>
   <div class="center">
-  <h4> Não há nenhuma favorito na sua lista </h4>
+  <h4 class = "white-text" > Não há nenhuma favorito na sua lista </h4>
   </div>
   <?php } ?>
 

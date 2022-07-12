@@ -60,7 +60,7 @@ $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
 
 <?php  foreach($documentos as $chave => $documento){ ?>
 
-
+<div class="caixa">
      <div class='col s2 m4'>
        <div class='card hoverable'>
          <div class='card-image cardindex'>
@@ -108,7 +108,7 @@ $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
 
  <?php    } ?>
 </div></div>
-
+</div>
 </main>
 
 <?php include_once "../interfaces/footer.php";?>

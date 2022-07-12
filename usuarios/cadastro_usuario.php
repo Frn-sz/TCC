@@ -33,7 +33,6 @@ $sql = "INSERT INTO `user`(nome, email, senha, foto, tipoUsuario) VALUES ('$_POS
 }else{
 $sql = "INSERT INTO `user`(nome, email, senha, tipoUsuario) VALUES ('$_POST[nome]','$_POST[email]', '$senha', 2)";
 }
-var_dump($sql);
 $resultado = mysqli_query($conexao,$sql);
 
 if($resultado){
