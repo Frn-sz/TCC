@@ -35,7 +35,7 @@ if(is_null($passwordReset)){
     <div class="input-field">
     <span toggle="#senha" class="field-icon toggle-password "><span class="material-icons">visibility</span></span>
     <input type="password" name = "senha" id = "senha" class = "validate">
-    <label for = "Senha">Insira a nova senha</label>
+    <label for = "senha">Insira a nova senha</label>
     </div>
     <div class="input-field">
     <span toggle="#repetirsenha" class="field-icon toggle-password "><span class="material-icons">visibility</span></span>

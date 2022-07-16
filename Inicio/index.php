@@ -86,20 +86,45 @@ $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
 
           <?php if(!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2){ ?>
                
-          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>'  class = 'btn-large waves-effect waves-light grey darken-2 '><i class ='material-icons'>search</i>  </a>
+          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>'  class = 'btn-large waves-effect waves-light grey darken-4'><i class ='material-icons'>search</i>  </a>
           
           <?php }else{ ?>
 
-          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>' class = 'btn-floating waves-effect waves-light  grey darken-2 '><i class ='material-icons'>search</i>  </a>
+          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>' class = 'btn-floating waves-effect waves-light grey darken-4 '><i class ='material-icons'>search</i>  </a>
 
           <?php } ?>
 
           <?php if(isset($_SESSION['nvl_usuario'])){ 
          
          if($_SESSION['nvl_usuario'] != 2){ ?>
-          <a href= '../Documentos/formaltera.php?id=<?= $documento['id'] ?>' class = 'btn-floating waves-effect waves-light  grey darken-2'> <i class ='material-icons'>edit</i>  </a>
-         <a href='#' onclick="confirmacao(<?=$documento['id']?>)" class = 'btn-floating waves-effect waves-light grey darken-2'>  <i class = 'material-icons'> delete </i> </a>
-       <?php }} ?>
+          <a href= '../Documentos/formaltera.php?id=<?= $documento['id']?>' class = 'btn-floating waves-effect waves-light  grey darken-4'> <i class ='material-icons'>edit</i>  </a>
+          
+           <a class="waves-effect waves-light btn-floating modal-trigger grey darken-4" href="#modal<?=$documento['id']?>"><i class = "material-icons">delete</i></a>
+           <div id="modal<?=$documento['id']?>"  class="modal">
+    <div class="modal-content">
+    <div class="row">
+    <div class="center">
+    <h4>Deseja mesmo excluir este documento?</h4>
+</div>
+</div>
+<form action="../Documentos/excluir.php" method="get">
+<div class="row">
+    <div class="center">
+    <input type="hidden" name = "id" value="<?=$documento['id'];?>">
+
+</div>
+</div>
+<div class="modal-footer">
+     <div class="center">
+<button type="submit" class="btn grey darken-4">Confirmar</button>
+<a href="#!" class="modal-close waves-effect waves-green btn grey darken-4 ">Cancelar</a>
+</div>
+</div>
+</form>
+    </div>
+  
+  </div>
+           <?php }} ?>
           
         </div>
        </div>

@@ -38,7 +38,7 @@ if(is_null($usuario)){
             $mail -> Host = 'smtp.gmail.com';
             $mail ->SMTPAuth = true;
             $mail -> Username = "fernando.2020316053@aluno.iffar.edu.br";
-            $mail -> Password = "wpoyjizthxziheig";
+            $mail -> Password = "wzkzjcnpqtewpujo";
             $mail -> smtpSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail -> Port = "587";
             $mail -> isHTML(true);
