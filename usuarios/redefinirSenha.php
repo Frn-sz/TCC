@@ -8,11 +8,14 @@ $email = $_GET['email'];
 $verificacaoToken = "SELECT * FROM passwordreset WHERE email='$email' AND token='$token' ";
 $resultado = mysqli_query($conexao, $verificacaoToken);
 $passwordReset = mysqli_fetch_assoc($resultado);
-
+if($passwordReset['tokenVerificacao'] != 0){
+    $_SESSION['mensagem'] = "Token inválido, favor solicitar outro.";
+    header("location:telalogin.php");
+} 
 if(is_null($passwordReset)){
     $_SESSION['mensagem'] = "Token inválido";
-   
     //header("location:telalogin.php");
+
 }else{
    
     $hoje = new DateTime();
@@ -21,7 +24,8 @@ if(is_null($passwordReset)){
         $_SESSION['mensagem'] = "Token inválido, favor solicitar outro.";
         header("location:telalogin.php");
     }
-     
+ 
+    
 }
 ?>
 

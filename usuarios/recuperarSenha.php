@@ -21,7 +21,7 @@ if(is_null($usuario)){
 //'http://localhost/TCC/usuarios/redefinirSenha.php?token=$token'"
     //Gravar a data de expiração
 
-    $sql2 = "INSERT INTO `passwordreset`(`email`, `token`, `dataExpiracao`) VALUES ('$email','$token',\"" . $dataExpiracao -> format('Y-m-d H:i:s') . "\")";
+    $sql2 = "INSERT INTO `passwordreset`(`email`, `token`, `dataExpiracao`, `tokenVerificacao`) VALUES ('$email','$token',\"" . $dataExpiracao -> format('Y-m-d H:i:s') . "\", 0)";
     $result2 = mysqli_query($conexao, $sql2);
 
     if(!$result2){
@@ -38,7 +38,7 @@ if(is_null($usuario)){
             $mail -> Host = 'smtp.gmail.com';
             $mail ->SMTPAuth = true;
             $mail -> Username = "fernando.2020316053@aluno.iffar.edu.br";
-            $mail -> Password = "wzkzjcnpqtewpujo";
+            $mail -> Password = "rkzcqwqxkvuaoxcw";
             $mail -> smtpSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail -> Port = "587";
             $mail -> isHTML(true);

@@ -71,40 +71,42 @@ body{
 }table{
   
   max-width: 100%;
+}.barraPesquisa{
+  padding-left:13% !important;
+  border-top-left-radius:5px !important;
+  border-top-right-radius:5px !important;
 }
   </style>
 </head>
+
  <div class="navbar-fixed">
-<nav class = "grey darken-2">
+<nav class = "grey darken-2 nav-extended">
 <button href="#" data-target="slide-out" class="sidenav-trigger btn-flat"><i class="material-icons white-text">menu</i></button>
 <div class="nav-wrapper">
       <div class="container">
       <a href="../Inicio/"><img class="left white-text" width=70px src="../Imagens/livrob.png"> </a>
       <ul class="right hide-on-med-and-med">
-       
-        <li><div class="input-field col s6 black-text">
-
-        <form action = "../Inicio/pesquisa.php" method = "get">
-            <label class = "prefix" for = "busca"><i class="white-text material-icons ">search</i></label>
-            <input class = "search white black-text" type="search" placeholder="Busque por um tópico" name = "busca" id="busca">
-        </form></div></li>
-       
         <?php if(!isset($_SESSION['id_usuario'])){ ?>
-          
       <li><a class = "buttonUser" href = "../usuarios/cadastrouser.php">Cadastre-se</a></li>
       <li><a  class = "buttonUser"  href = "../usuarios/telalogin.php">Entrar</a></li>
-
       <?php }else{  ?>
-        
-        
         <li><a class = "buttonUser" href = "../usuarios/logout.php"><i class = "material-icons"> logout </i></a></li>
-        
         <?php  } ?>
-       
       </ul>
 </div>
       </div>
+      
+ <div style = "max-width:20%;margin-left:61%" class="nav-content">
 
+      <form action = "../Inicio/pesquisa.php">
+        <div class="input-field">
+          <input class = "barraPesquisa" id="search" type="search"  required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+       
+        </div>
+      </form>
+  
+  
 </nav>
 </div>
 
@@ -158,5 +160,6 @@ body{
   
 
   <body class = "grey darken-3">
+    <br><br><br>
 
 
