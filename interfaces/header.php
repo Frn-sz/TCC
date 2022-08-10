@@ -30,8 +30,13 @@ body{
     display: flex;
     min-height: 150vh;
     flex-direction: column;
-  }
-
+    background: rgb(20,5,38);
+background: radial-gradient(circle, rgba(20,5,38,1) 35%, rgba(41,0,51,1) 100%);
+}footer{
+  background: transparent !important; 
+}.footer-copyright{
+  background-color: transparent !important;
+}
   main {
     flex: 1 0 auto;
   }#botaoinsere{
@@ -40,6 +45,7 @@ body{
     color: white;
   }.cardindex{
     height:40vh;
+    
    }.cardpesquisa{
    height: 50vh;;
    }.search{
@@ -60,31 +66,54 @@ body{
 }.imagemUsuario{
   max-width: 100%;
 }.card{
-  background-color: lightgray;
-
-}input{
-  color:white;
+  background-color: rgba(0,0,0,0.8) !important;
+  color: white !important;
+  
+}.card-content{
+  background-color: transparent !important;
 }.card.hoverable {
     box-shadow: 0 2px 2px 0 black, 0 3px 1px -2px black, 0 1px 5px 0 black;
 }.card.hoverable:hover {
-    box-shadow: 2px 4px 5px 0 white, 2px 5px 3px -3px white, 2px 5px 10px 0 white;
+    box-shadow: 1px 3px 4px 0 rgba(41,0,51,1), 1px 4px 2px -2px rgba(41,0,51,1), 1px 4px 9px 0 rgba(41,0,51,1);
 }table{
   
   max-width: 100%;
 }.barraPesquisa{
-  padding-left:13% !important;
+  padding-left:10% !important;
   border-top-left-radius:5px !important;
   border-top-right-radius:5px !important;
+}.menu {
+  transition: 0.3s;
+  background-color: rgba(0,0,0,0.8) !important;
+}.transparent{
+  transition: 0.3s;
+  background-color: transparent;
+}
+.wrapper {
+  height: 2000px;
+}
+.zoom {
+
+  transition: transform .2s; /* Animation */
+
+}
+.zoom:hover {
+  transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}.logo{
+  padding:7px;
+}.modal,.modal-content,.modal-footer{
+  max-width: 100% !important;
+  background-color: rgba(0,0,0,0.8) !important;
+  border-radius: 10px !important;
+  color:white !important;
 }
   </style>
 </head>
-
- <div class="navbar-fixed">
-<nav class = "grey darken-2 nav-extended">
+<div class="navbar-fixed">
+<nav class = "nav-extended transparent">
 <button href="#" data-target="slide-out" class="sidenav-trigger btn-flat"><i class="material-icons white-text">menu</i></button>
-<div class="nav-wrapper">
-      <div class="container">
-      <a href="../Inicio/"><img class="left white-text" width=70px src="../Imagens/livrob.png"> </a>
+<div class="nav-wrapper">  
+      <a href="../Inicio/"><img class="left white-text logo" width=150px src="../Imagens/LogoTCC.png"> </a>
       <ul class="right hide-on-med-and-med">
         <?php if(!isset($_SESSION['id_usuario'])){ ?>
       <li><a class = "buttonUser" href = "../usuarios/cadastrouser.php">Cadastre-se</a></li>
@@ -94,28 +123,22 @@ body{
         <?php  } ?>
       </ul>
 </div>
-      </div>
-      
- <div style = "max-width:20%;margin-left:61%" class="nav-content">
-
-      <form action = "../Inicio/pesquisa.php">
+ <div style = "max-width:20%;margin-left:75%" class="nav-content">
+      <form action = "../Inicio/pesquisa.php" method = "get">
         <div class="input-field">
-          <input class = "barraPesquisa" id="search" type="search"  required>
+          <input class = "barraPesquisa" name = "busca" id="search" type="search"  required>
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-       
         </div>
       </form>
-  
-  
 </nav>
 </div>
 
-<ul id="slide-out" class="sidenav grey darken-4">
+<ul id="slide-out" class="sidenav black">
     <li><div class="user-view">
     
       
       <?php if(isset($_SESSION['id_usuario'])){ ?>
-      <img style = 'border-radius:50%' class = "hoverable materialboxed" width = 200 src="../upload/<?=$_SESSION['foto']?>">
+      <img style = 'border-radius:5%' class = "hoverable materialboxed" width = 200 src="../upload/<?=$_SESSION['foto']?>">
       <span class="white-text name large"><?= $_SESSION['nome_usuario']?></span>
       <a href="#email"><span class="white-text email"><? $_SESSION['email_usuario'] ?></span></a>
       
@@ -149,7 +172,7 @@ body{
             <?php }}?>
         
   </ul>
-  <div id="modal1" class="modal grey darken-4">
+  <div id="modal1" class="modal white">
     <div class="modal-content">
     
     <?php include('../usuarios/formEditUsuario.php');?>

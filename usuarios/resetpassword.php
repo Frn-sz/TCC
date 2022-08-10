@@ -11,8 +11,6 @@ $email = $_POST['email'];
 $hoje = new DateTime();
 $dataExpiracao = new DateTime($passwordReset['dataExpiracacao']);
 $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-
-
     if($hoje > $dataExpiracao){
         $_SESSION['mensagem'] = "Token expirado, favor solicitar outro.";
         header("location:telalogin.php");
@@ -23,7 +21,7 @@ $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
         }else{
             $sql2 = "UPDATE user SET senha = '$senha' WHERE email='$email'";
             $result2 = mysqli_query($conexao,$sql2);
-            $sql3 = "UPDATE passwordreset SET tokenVerificaca   o = 1 WHERE email='$email' and token = '$token'";
+            $sql3 = "UPDATE passwordreset SET tokenVerificacao = 1 WHERE email='$email' and token = '$token'";
             $result3 = mysqli_query($conexao, $sql3);
             if($result2 and $result3){
                 $_SESSION['mensagem'] = "Senha alterada com sucesso";

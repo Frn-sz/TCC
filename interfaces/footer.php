@@ -1,6 +1,6 @@
 
 </body>
-<footer class="page-footer grey darken-2">
+<footer class="page-footer">
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
@@ -85,21 +85,24 @@ senha.addEventListener('blur', validarSenha);
   }
 
 }
-
 // verificar também quando o campo for modificado, para que a mensagem suma quando as senhas forem iguais
 senhaC.addEventListener('input', validarSenha);
 senha.addEventListener('blur', validarSenha);
-  
 </script>
-
-
-
-
 <script>
  $(document).ready(function(){
     $('.modal').modal();
   });
 </script>
-
+<script>
+$(window).scroll(function() {
+  var scroll = $(window).scrollTop();
+  if (scroll >= 450) {
+    $(".transparent").addClass("menu");
+  } else {
+    $(".transparent").removeClass("menu");
+  }
+});
+</script>
 
 </html>
