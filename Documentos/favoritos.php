@@ -37,18 +37,12 @@ foreach($documentos as $chave => $documento){ ?>
            <p> Espécie:<?=  $documento['especie']  ?></p>
          </div>
          <div class='card-action center'>
-
-          <?php if(!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] != 1){ ?>
                
-          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>'  class = 'btn-large waves-effect waves-light grey darken-2 '><i class ='material-icons'>search</i>  </a>
+          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>'  class = 'btn-large waves-effect waves-light white'><i class ='material-icons black-text'>search</i>  </a>
           
-          <?php }else{ ?>
+          
 
-          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>' class = 'btn-floating waves-effect waves-light  grey darken-2 '><i class ='material-icons'>search</i>  </a>
-
-          <?php } ?>
-
-              <a class = "btn-large grey darken-1 white-text" href = "removerfavorito.php?id=<?=$documento['id']?>">Remover favorito</a>
+              <a class = "btn-large white black-text" href = "removerfavorito.php?id=<?=$documento['id']?>">Remover favorito</a>
      
           
               

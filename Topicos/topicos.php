@@ -3,6 +3,10 @@
 <style>
 #inserir{
      margin-left: 45%;
+}.tabelaTopicos{
+     color: black;
+     background-color: rgba(255,255,255,0.8);
+     border-radius: 10px;
 }
 </style>
 <script>
@@ -28,24 +32,24 @@ $result = mysqli_query($conexao, $sql);
 echo "<br><div class = 'container'>";   
 if(isset($_SESSION['id_usuario'])){
      if($_SESSION['nvl_usuario'] != 2){
-echo "<a id = 'inserir' href='inseretopicos.php' class = 'btn-floating waves-effect grey darken-2'><i class = 'material-icons'> add </i> </a> <br>";
+echo "<a id = 'inserir' href='inseretopicos.php' class = 'btn-floating waves-effect'><i class = 'material-icons black-text white'> add </i> </a> <br>";
      }}
-echo '<table class = "highlight grey darken-2 white-text">';
+echo '<table class = "highlight tabelaTopicos">';
 
-echo "<tr> <th> ID </th> <th> Título </th></tr> <br>";
+echo "<tr> <th class = 'center'> ID </th> <th class = 'center' > Título </th></tr> <br>";
 
 $topicos = mysqli_fetch_all($result, MYSQLI_BOTH);
 
 foreach($topicos as $chave => $topico){
 
      echo "<tr>";
-     echo "<td>" . $topico['id']."</td  >";
-     echo "<td>" . $topico['titulo'] ."</td>";
+     echo "<td class = 'center'>" . $topico['id']."</td  >";
+     echo "<td class = 'center'>" . $topico['titulo'] ."</td>";
      
      if(isset($_SESSION['nvl_usuario'])){
           if($_SESSION['nvl_usuario'] != 2){
-     echo "<td> <a class = 'btn-floating waves-effect grey darken-2' href='formalterat.php?id=$topico[id]'><i class = 'material-icons'> edit </i> </a>";
-     echo "<td> <a class = 'btn-floating waves-effect grey darken-2' href='#'" . "onclick='confirmacao($topico[id])'><i class = 'material-icons'>" . "delete</i></a>" ;
+     echo "<td> <a class = 'btn-floating  waves-effect' href='formalterat.php?id=$topico[id]'><i class = 'material-icons black-text white'> edit </i> </a>";
+     echo "<td> <a class = 'btn-floating waves-effect' href='#'" . "onclick='confirmacao($topico[id])'><i class = 'material-icons black-text white'>" . "delete</i></a>" ;
           }
      }
      echo "</tr>";

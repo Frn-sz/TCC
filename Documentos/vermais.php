@@ -30,11 +30,9 @@ $imagem = $documentos['imagem'];
 ?>
 <title><?=$titulo?>    </title>
 <style>
-   li{
+   .docInfo{
     font-size: 25px;
     padding:10px;
-   }#lista{
-    border-radius: 20px;
    }.caixaDocumento{
     background-color: rgba(255,255,255,0.7);
     border-radius: 25px;
@@ -42,6 +40,7 @@ $imagem = $documentos['imagem'];
     border-radius: 15px;
     border-style: solid;
     border-color: black;
+    margin-left: 30%;
    }
    
 </style>
@@ -87,9 +86,9 @@ for($i = 0; $i < count($id_topicos); $i++){
 
 <br>
    <div class = 'row'>
-    <div class="col offset-m3"> 
+
         <img class = 'materialboxed imagemDocumento' width = 500 src= '../upload/<?= $imagem ?>'> 
-</div>
+
 </div>
     
     <?php }else{ ?>
@@ -98,12 +97,12 @@ for($i = 0; $i < count($id_topicos); $i++){
     
     <?php } ?>
 
-<div class = 'row'> <li> Título do documento: <?= $titulo ?> </li> </div> 
-<div class = 'row'> <li>Forma: <?= $forma  ?></li></div> 
-<div class = 'row'> <li>Formato: <?= $formato  ?></li></div> 
-<div class = 'row'> <li>Espécie: <?= $especie  ?></li></div> 
-<div class = 'row'> <li>Localização: <?= $locali  ?></li></div> 
-<div class = 'row'> <li>Gênero: <?=  $genero  ?></li></div>   
+<div class = 'row'> <li  class = "docInfo"> Título do documento: <?= $titulo ?> </li> </div> 
+<div class = 'row'> <li  class = "docInfo">Forma: <?= $forma  ?></li></div> 
+<div class = 'row'> <li  class = "docInfo">Formato: <?= $formato  ?></li></div> 
+<div class = 'row'> <li  class = "docInfo">Espécie: <?= $especie  ?></li></div> 
+<div class = 'row'> <li  class = "docInfo">Localização: <?= $locali  ?></li></div> 
+<div class = 'row'> <li  class = "docInfo">Gênero: <?=  $genero  ?></li></div>   
 
 
 
@@ -115,6 +114,7 @@ for($i = 0; $i < count($id_topicos); $i++){
 <?php }?>
 </div>
 </div>
+<br>
 
 
 
@@ -143,5 +143,4 @@ for($i = 0; $i < count($id_topicos); $i++){
 <?php } ?>
 </div>
 </main>
-<br>
 <?php include_once "../interfaces/footer.php"; ?>

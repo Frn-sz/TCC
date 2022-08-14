@@ -76,9 +76,6 @@ background: radial-gradient(circle, rgba(20,5,38,1) 35%, rgba(41,0,51,1) 100%);
     box-shadow: 0 2px 2px 0 black, 0 3px 1px -2px black, 0 1px 5px 0 black;
 }.card.hoverable:hover {
     box-shadow: 1px 3px 4px 0 rgba(41,0,51,1), 1px 4px 2px -2px rgba(41,0,51,1), 1px 4px 9px 0 rgba(41,0,51,1);
-}table{
-  
-  max-width: 100%;
 }.barraPesquisa{
   padding-left:10% !important;
   border-top-left-radius:5px !important;
@@ -104,11 +101,11 @@ background: radial-gradient(circle, rgba(20,5,38,1) 35%, rgba(41,0,51,1) 100%);
   padding:7px;
 }.modal,.modal-content,.modal-footer{
   max-width: 100% !important;
-  background-color: rgba(0,0,0,0.8) !important;
+  background-color: rgba(255,255,255,0.8) !important;
   border-radius: 10px !important;
   color:white !important;
 }.sidenav{
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.8);
 }
   </style>
 </head>
@@ -185,7 +182,7 @@ background: radial-gradient(circle, rgba(20,5,38,1) 35%, rgba(41,0,51,1) 100%);
 
   
 
-  <body class = "grey darken-3">
+  <body>
     <br><br><br>
 
 
