@@ -35,6 +35,13 @@ $imagem = $documentos['imagem'];
     padding:10px;
    }#lista{
     border-radius: 20px;
+   }.caixaDocumento{
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 25px;
+   }.imagemDocumento{
+    border-radius: 15px;
+    border-style: solid;
+    border-color: black;
    }
    
 </style>
@@ -76,12 +83,12 @@ for($i = 0; $i < count($id_topicos); $i++){
 <br><br>
 
     <?php if($documentos['imagem'] != ""){ ?>
-<div class="container grey lighten-1">
+<div class="container caixaDocumento">
 
 <br>
    <div class = 'row'>
     <div class="col offset-m3"> 
-        <img class = 'materialboxed' width = 500 src= '../upload/<?= $imagem ?>'> 
+        <img class = 'materialboxed imagemDocumento' width = 500 src= '../upload/<?= $imagem ?>'> 
 </div>
 </div>
     
@@ -104,7 +111,7 @@ for($i = 0; $i < count($id_topicos); $i++){
     <div class="center">
 <?php foreach($topicos_doc as $chave => $topico){ ?>
     
-    <div class='chip'><a class = "black-text" href = #> <?= $topico ?> </a> </div>
+    <div class='chip white'><a class = "black-text" href = #> <?= $topico ?> </a> </div>
 <?php }?>
 </div>
 </div>
@@ -117,7 +124,7 @@ for($i = 0; $i < count($id_topicos); $i++){
     <div class="row">
         <div class="center">
 <input type = "hidden" name = "id" value = <?= $id ?>>
-<button class = "btn waves-effect waves-light grey darken-2" type="submit"><i class = "material-icons">star</i> Adicionar aos favoritos</button>
+<button class = "btn waves-effect waves-light white black-text" type="submit"><i class = "material-icons"> star </i> Adicionar aos favoritos</button>
 </div>
 </div>
 </form>
@@ -127,7 +134,7 @@ for($i = 0; $i < count($id_topicos); $i++){
     <div class="row">
         <div class="center">
     <input type = "hidden" name = "id" value = <?= $id ?>>
-    <button class = "btn waves-effect waves-light grey darken-2" type="submit"><i class = "material-icons ">highlight_off</i> Remover dos favoritos</button>
+    <button class = "btn waves-effect waves-light  white black-text" type="submit"><i class = "material-icons">highlight_off</i> Remover dos favoritos</button>
     </div>
 </div>
 

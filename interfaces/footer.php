@@ -97,7 +97,7 @@ senha.addEventListener('blur', validarSenha);
 <script>
 $(window).scroll(function() {
   var scroll = $(window).scrollTop();
-  if (scroll >= 450) {
+  if (scroll >= 300) {
     $(".transparent").addClass("menu");
   } else {
     $(".transparent").removeClass("menu");

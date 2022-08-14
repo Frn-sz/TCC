@@ -39,6 +39,7 @@ background: radial-gradient(circle, rgba(20,5,38,1) 35%, rgba(41,0,51,1) 100%);
 }
   main {
     flex: 1 0 auto;
+    
   }#botaoinsere{
     margin-left:50%;
   }.usuariologout{
@@ -106,6 +107,8 @@ background: radial-gradient(circle, rgba(20,5,38,1) 35%, rgba(41,0,51,1) 100%);
   background-color: rgba(0,0,0,0.8) !important;
   border-radius: 10px !important;
   color:white !important;
+}.sidenav{
+  background-color: rgba(0,0,0,0.7);
 }
   </style>
 </head>
@@ -133,7 +136,7 @@ background: radial-gradient(circle, rgba(20,5,38,1) 35%, rgba(41,0,51,1) 100%);
 </nav>
 </div>
 
-<ul id="slide-out" class="sidenav black">
+<ul id="slide-out" class="sidenav">
     <li><div class="user-view">
     
       
@@ -148,7 +151,7 @@ background: radial-gradient(circle, rgba(20,5,38,1) 35%, rgba(41,0,51,1) 100%);
 
     <?php if(isset($_SESSION['id_usuario'])){ ?>
       
-    <li><a class="waves-effect waves-light btn modal-trigger grey darken-2 white-text" href="#modal1">Editar perfil</a>  </li>
+    <li><a class="waves-effect waves-light btn modal-trigger white black-text" href="#modal1">Editar perfil</a>  </li>
  
   
   <?php } ?>

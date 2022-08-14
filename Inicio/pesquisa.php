@@ -82,7 +82,7 @@ foreach($id_docs as $chave => $id_doc){
                </div>
               <?php } ?>
      
-             <span class='card-title black-text'><?= $documentoy['titulo'] ?></span>
+             <span class='card-title white-text'><?= $documentoy['titulo'] ?></span>
               </div>
               <div class='card-content'>
                 <p> Forma:<?=  $documentoy['forma'] ?><br></p>
