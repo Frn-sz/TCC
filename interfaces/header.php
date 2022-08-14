@@ -93,7 +93,6 @@ background: radial-gradient(circle, rgba(20,5,38,1) 35%, rgba(41,0,51,1) 100%);
 .zoom {
 
   transition: transform .2s; /* Animation */
-
 }
 .zoom:hover {
   transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */

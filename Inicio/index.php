@@ -105,7 +105,7 @@ $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
                <div class="modal-content">
                   <div class="row">
                     <div class="center">
-                         <h4>Deseja mesmo excluir este documento?</h4>
+                         <h4 class = "black-text">Deseja mesmo excluir este documento?</h4>
                     </div>
                </div>
 <form action="../Documentos/excluir.php" method="get">
