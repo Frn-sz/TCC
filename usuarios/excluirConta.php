@@ -16,6 +16,7 @@ $removerFavoritos = "DELETE FROM favoritos WHERE id_usuario='$id_usuario'";
 $resultSet = mysqli_query($conexao,$removerFavoritos);
 if($result and $resultSet)
 session_destroy();
+unlink("../upload/" . $_SESSION['foto']);
 header("location:../Inicio/");
 }else{
     $_SESSION['mensagem'] = "Senha incorreta";

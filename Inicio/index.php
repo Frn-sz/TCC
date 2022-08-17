@@ -43,7 +43,7 @@ if(isset($_SESSION['id_usuario'])){
 
 //Realizando o comando select para puxar os documentos do Banco de dados
 
-$sql = "SELECT `id`, `titulo`, `forma`, `formato`, `especie`, `imagem`FROM `documentos`";
+$sql = "SELECT `id`, `tituloDoc`, `forma`, `formato`, `especie`, `imagem`FROM `documentos` ORDER BY tituloDoc";
 
 $resultado = mysqli_query($conexao, $sql);
 
@@ -72,7 +72,7 @@ $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
          <?php } ?>
          </div>
          <div class='card-content'>
-         <span class='card-title'><?= $documento['titulo'] ?></span>
+         <span class='card-title'><?= $documento['tituloDoc'] ?></span>
            <p> Forma:<?=  $documento['forma'] ?> <br></p>
            <p> Formato:<?=  $documento['formato'] ?> <br></p>
            <p> Espécie:<?=  $documento['especie']  ?></p>

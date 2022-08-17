@@ -2,7 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
 <?php
 
@@ -108,6 +107,7 @@ background: radial-gradient(circle, rgba(20,5,38,1) 35%, rgba(41,0,51,1) 100%);
 }
   </style>
 </head>
+<a style = "color:white"><?php //var_dump($_SESSION); ?> </a>
 <div class="navbar-fixed">
 <nav class = "nav-extended transparent">
 <button href="#" data-target="slide-out" class="sidenav-trigger btn-flat"><i class="material-icons white-text">menu</i></button>
@@ -123,7 +123,7 @@ background: radial-gradient(circle, rgba(20,5,38,1) 35%, rgba(41,0,51,1) 100%);
       </ul>
 </div>
  <div style = "max-width:20%;margin-left:75%" class="nav-content">
-      <form action = "../Inicio/pesquisa.php" method = "get">
+      <form action = "../Inicio/Newpesquisa.php" method = "get">
         <div class="input-field">
           <input class = "barraPesquisa" name = "busca" id="search" type="search"  required>
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>

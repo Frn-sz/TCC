@@ -71,18 +71,18 @@ $(".toggle-password").click(function (e) {
 let senha = document.getElementById('senha');
 let senhaC = document.getElementById('repetirsenha');
 
-function validarSenha() {
-  if (senha.value != senhaC.value) {
-    senhaC.setCustomValidity(" ");
-    senhaC.reportValidity();
-    return false;
-    senhaC.addEventListener('input', validarSenha);
-senha.addEventListener('blur', validarSenha);
-  } else {
-    senhaC.setCustomValidity("");
-    return true;
+  function validarSenha() {
+    if (senha.value != senhaC.value) {
+      senhaC.setCustomValidity(" ");
+      senhaC.reportValidity();
+      return false;
+      senhaC.addEventListener('input', validarSenha);
+  senha.addEventListener('blur', validarSenha);
+    } else {
+      senhaC.setCustomValidity("");
+      return true;
 
-  }
+    }
 
 }
 // verificar também quando o campo for modificado, para que a mensagem suma quando as senhas forem iguais

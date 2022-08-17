@@ -1,32 +1,23 @@
 
-
 <?php
 include "../conecta.php";
-
-
-
-
 if(!isset($_SESSION)){
     session_start();
 }
-$id = $_GET['id'];
-
-$sql = "SELECT * FROM documentos WHERE id=$id";
+$id = $_GET['idDoc'];
+$sql = "SELECT * FROM documentos WHERE idDoc=$id";
 $resultado = mysqli_query($conexao,$sql);
-
 $documentos = mysqli_fetch_assoc($resultado);
-
-$id = $documentos['id'];
-$titulo = $documentos['titulo'];
+$id = $documentos['idDoc'];
+$titulo = $documentos['tituloDoc'];
 $forma = $documentos['forma'];
 $formato = $documentos['formato'];
 $especie = $documentos['especie'];
 $genero = $documentos['genero'];
 $locali = $documentos['localizacao'];
-
+$anoDoc = $documentos['anoDocumento'];
+$plvsChaves = explode(" ", $documentos['plvsChaves']);
 $imagem = $documentos['imagem'];
-
-
 ?>
 <title><?=$titulo?>    </title>
 <style>
@@ -61,7 +52,7 @@ if(is_null($verificacaofavs)){
 }}
 
 
-$sql2 = "SELECT id_topico FROM `tabela_assoc` WHERE `id_doc`= $documentos[id]";
+$sql2 = "SELECT id_topico FROM `tabela_assoc` WHERE `id_doc`= $documentos[idDoc]";
 $result = mysqli_query($conexao,$sql2);
 $id_topicos = mysqli_fetch_all($result);
 
@@ -69,49 +60,49 @@ for($i = 0; $i < count($id_topicos); $i++){
  
     for($x = 0; $x < count($id_topicos[$i]); $x++){
     $y = $id_topicos[$i][$x];
-    $sql3 = "SELECT * FROM `topicos` WHERE id=$y";
+    $sql3 = "SELECT * FROM `topicos` WHERE idTop=$y";
     $result = mysqli_query($conexao,$sql3);
     $topicos = mysqli_fetch_assoc($result);
 
-    $topicos_doc[] = $topicos["titulo"];
+    $topicos_doc[] = $topicos["tituloTop"];
     
     }
 
 }   
 ?>
 <br><br>
-
-    <?php if($documentos['imagem'] != ""){ ?>
 <div class="container caixaDocumento">
 
 <br>
    <div class = 'row'>
+    <?php if($documentos['imagem'] != ""){ ?>
+
 
         <img class = 'materialboxed imagemDocumento' width = 500 src= '../upload/<?= $imagem ?>'> 
 
-</div>
-    
+
     <?php }else{ ?>
 
         <div class = 'row'> Sem Imagem </div>
     
     <?php } ?>
-
+    </div>
+    
 <div class = 'row'> <li  class = "docInfo"> Título do documento: <?= $titulo ?> </li> </div> 
 <div class = 'row'> <li  class = "docInfo">Forma: <?= $forma  ?></li></div> 
 <div class = 'row'> <li  class = "docInfo">Formato: <?= $formato  ?></li></div> 
 <div class = 'row'> <li  class = "docInfo">Espécie: <?= $especie  ?></li></div> 
 <div class = 'row'> <li  class = "docInfo">Localização: <?= $locali  ?></li></div> 
 <div class = 'row'> <li  class = "docInfo">Gênero: <?=  $genero  ?></li></div>   
-
-
-
+<div class = 'row'> <li  class = "docInfo">Ano do Documento: <?=  $anoDoc  ?></li></div>   
 <div class="row">
     <div class="center">
 <?php foreach($topicos_doc as $chave => $topico){ ?>
-    
     <div class='chip white'><a class = "black-text" href = #> <?= $topico ?> </a> </div>
-<?php }?>
+<?php }foreach($plvsChaves as $plvChave){ 
+        if(!$plvChave == ""){?>
+    <div class='chip white'><a class = "black-text" href = #> <?= $plvChave ?> </a> </div>
+<?php }}?>
 </div>
 </div>
 <br>

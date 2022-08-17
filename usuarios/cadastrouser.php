@@ -5,13 +5,26 @@ input{
 }label{
   color:black !important;
 }.formCadastro{
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(255,255,255,0.9);
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 10px;
 }.input-field input[type=text]:focus {
      border-bottom: 1px solid black !important;
      box-shadow: 0 1px 0 0 black !important;
+}input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  
+  -webkit-text-fill-color: black !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(232,230,234,255) inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
 }
 </style>
 
