@@ -48,4 +48,3 @@ header("location:cadastroAcesso.php");
 	$_SESSION['mensagem'] = "Você deve inserir uma senha";
 	header("location:$url"	);
 }
-?>

@@ -22,4 +22,3 @@ header("location:../Inicio/");
     $_SESSION['mensagem'] = "Senha incorreta";
     header("Location:$url");
 }
-?>

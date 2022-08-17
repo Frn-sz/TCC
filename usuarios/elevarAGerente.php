@@ -7,4 +7,3 @@ $result = mysqli_query($conexao, $sql);
 $url = $_SERVER['HTTP_REFERER'];
 if($result)
 header("location:$url");
-?>

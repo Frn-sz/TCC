@@ -57,4 +57,3 @@ if($result){
 }}else if ($verificacao == true){
     header("location:$url");
 }
-?>

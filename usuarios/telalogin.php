@@ -15,84 +15,72 @@ include('../funcoes.php');
     top: 10px;
     cursor: pointer;
     z-index: 2;
-}
-input{
-  color:black;
-}label{
-  color:black !important;
-}.formLogin{
-  background-color: rgba(255,255,255,0.9) !important;
-  padding-left: 15px !important;
-  padding-right: 15px !important;
-  border-radius: 10px !important;
-}.input-field input[type=text]:focus {
-     border-bottom: 1px solid black !important;
-     box-shadow: 0 1px 0 0 black !important;
-}.buttonCheck{
-  margin-left: 30%;
-}input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-  
-  -webkit-text-fill-color: black !important;
-  -webkit-box-shadow: 0 0 0px 1000px rgba(232,230,234,255) inset !important;
-  transition: background-color 5000s ease-in-out 0s !important;
-}
+  }
+
+  input {
+    color: black;
+  }
+
+  label {
+    color: black !important;
+  }
+
+  .formLogin {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    border-radius: 10px !important;
+  }
+
+  .buttonCheck {
+    margin-left: 30%;
+  }
 </style>
-<?php 
-      include "../interfaces/header.php";
+<?php
+include "../interfaces/header.php";
 ?>
-    <main>
- <br><br><br><br>
+<main>
+  <br><br><br><br>
 
-    <div class="container formLogin">
-        
-    <form action = "login.php" method = "post" enctype = "multipart/form-data">
+  <div class="container formLogin">
+
+    <form action="login.php" method="post" enctype="multipart/form-data">
 
 
-    <div class="row">
-      <div class="col s12">
-        <div class="center">
-        <h5 class = "black-text"> <?=exibeMensagens()?> </h5>
+      <div class="row">
+        <div class="col s12">
+          <div class="center">
+            <h5 class="black-text"> <?= exibeMensagens() ?> </h5>
+          </div>
         </div>
       </div>
-    </div>
 
       <div class="row">
         <div class="input-field">
-          <input id = "emailx" type = "email" name = "email" class = "validate">
+          <input id="emailx" type="email" name="email" class="validate">
           <label for="emailx">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field">
-          <input id = "senha" name = "senha" type="password" class="validate">
+          <input id="senha" name="senha" type="password" class="validate">
           <span toggle="#senha" class="field-icon toggle-password "><span class="material-icons black-text">visibility</span></span>
           <label for="senha">Senha</label>
-          
+
         </div>
       </div>
-      
+
       <a href="formRecuperarSenha.php" class="btn waves-ligh waves-effect white black-text">Esqueci minha senha</a>
       <button class="btn-floating waves-effect waves-light white buttonCheck" type="submit" name="action">
-    <i class="material-icons black-text ">check</i>
-  </button>
+        <i class="material-icons black-text ">check</i>
+      </button>
 
     </form>
     <br>
   </div>
 
-    </main>
+</main>
 
 
 
 <?php require "../interfaces/footer.php"; ?>
-
-
-

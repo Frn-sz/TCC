@@ -17,4 +17,3 @@ $_SESSION['email_usuario'] = $usuario['email'];
 if($result){
     header("Location:../Inicio/");
 }
-?>

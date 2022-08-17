@@ -1,4 +1,3 @@
-
 </body>
 <footer class="page-footer">
   <div class="container">
@@ -28,48 +27,45 @@
 
 
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
-  <script type="text/javascript" src="../js/materialize.min.js"></script>
-  <script>
-   $(document).ready(function(){
+<script type="text/javascript" src="../js/materialize.min.js"></script>
+<script>
+  $(document).ready(function() {
     $('select').formSelect();
   });
- $(document).ready(function(){
+  $(document).ready(function() {
     $('.sidenav').sidenav();
   });
-  $(document).ready(function(){
+  $(document).ready(function() {
     $('.materialboxed').materialbox();
   });
-        
-  </script>
-  <script>
+</script>
+<script>
   var clicked = 0;
 
-$(".toggle-password").click(function (e) {
-   e.preventDefault();
+  $(".toggle-password").click(function(e) {
+    e.preventDefault();
 
-  $(this).toggleClass("toggle-password");
+    $(this).toggleClass("toggle-password");
     if (clicked == 0) {
       $(this).html('<span class="material-icons">visibility_off</span >');
-       clicked = 1;
+      clicked = 1;
     } else {
-       $(this).html('<span class="material-icons">visibility</span >');
-        clicked = 0;
-     }
+      $(this).html('<span class="material-icons">visibility</span >');
+      clicked = 0;
+    }
 
-  var input = $($(this).attr("toggle"));
-  if (input.attr("type") == "password") {
-     input.attr("type", "text");
-  } else {
-     input.attr("type", "password");
-  }
-});
-      
+    var input = $($(this).attr("toggle"));
+    if (input.attr("type") == "password") {
+      input.attr("type", "text");
+    } else {
+      input.attr("type", "password");
+    }
+  });
 </script>
 
 <script>
-
-let senha = document.getElementById('senha');
-let senhaC = document.getElementById('repetirsenha');
+  let senha = document.getElementById('senha');
+  let senhaC = document.getElementById('repetirsenha');
 
   function validarSenha() {
     if (senha.value != senhaC.value) {
@@ -77,32 +73,32 @@ let senhaC = document.getElementById('repetirsenha');
       senhaC.reportValidity();
       return false;
       senhaC.addEventListener('input', validarSenha);
-  senha.addEventListener('blur', validarSenha);
+      senha.addEventListener('blur', validarSenha);
     } else {
       senhaC.setCustomValidity("");
       return true;
 
     }
 
-}
-// verificar também quando o campo for modificado, para que a mensagem suma quando as senhas forem iguais
-senhaC.addEventListener('input', validarSenha);
-senha.addEventListener('blur', validarSenha);
+  }
+  // verificar também quando o campo for modificado, para que a mensagem suma quando as senhas forem iguais
+  senhaC.addEventListener('input', validarSenha);
+  senha.addEventListener('blur', validarSenha);
 </script>
 <script>
- $(document).ready(function(){
+  $(document).ready(function() {
     $('.modal').modal();
   });
 </script>
 <script>
-$(window).scroll(function() {
-  var scroll = $(window).scrollTop();
-  if (scroll >= 10) {
-    $(".transparent").addClass("menu");
-  } else {
-    $(".transparent").removeClass("menu");
-  }
-});
+  $(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+    if (scroll >= 10) {
+      $(".transparent").addClass("menu");
+    } else {
+      $(".transparent").removeClass("menu");
+    }
+  });
 </script>
 
 </html>

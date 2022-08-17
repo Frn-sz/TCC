@@ -1,6 +1,6 @@
 <?php
 
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_start();
 }
 
@@ -10,7 +10,6 @@ $id_documento = $_GET['id'];
 $id_usuario = $_SESSION['id_usuario'];
 $sql = "DELETE FROM favoritos WHERE id_documento = '$id_documento' and id_usuario = '$id_usuario'";
 $result = mysqli_query($conexao, $sql);
-if($result){
+if ($result) {
     header("location: $url");
 }
-?>
