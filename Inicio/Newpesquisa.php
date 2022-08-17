@@ -31,7 +31,9 @@ JOIN topicos As D
 ON T.id_topico = D.idTop
 WHERE D.tituloTop LIKE '$pesquisa' 
 OR F.tituloDoc LIKE '$pesquisa'
-OR F.plvsChaves LIKE '$pesquisa'"; //Fazendo a busca por título e Tópicos e Palavras chaves
+OR F.plvsChaves LIKE '$pesquisa'
+ORDER BY F.tituloDoc
+LIMIT 20"; //Fazendo a busca por título e Tópicos e Palavras chaves
 $resultado = mysqli_query($conexao,$Busca);
 $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 ?>
@@ -60,12 +62,12 @@ $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
               </div>
               <div class='card-action center'>
                <?php if(!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2) { ?>
-              <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>' class = 'btn-large waves-effect waves-light'><i class ='material-icons'>search</i>  </a>
+              <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>' class = 'btn-large waves-effect waves-light white'><i class ='material-icons black-text''>search</i>  </a>
               <?php }if(isset($_SESSION['nvl_usuario'])){ 
               if($_SESSION['nvl_usuario'] == 1){?>
-               <a href = '../Documentos/vermais.php?idDoc=<?=$documento['idDoc']?>' class = 'btn-floating waves-effect waves-light'><i class ='material-icons'>search</i>  </a>
-               <a href= '../Documentos/formaltera.php?idDoc=<?=$documento['idDoc']?>' class = 'btn-floating waves-effect waves-light'> <i class ='material-icons'>edit</i>  </a>
-               <a href='#' onclick='confirmacao($documento[idDoc])' class = 'btn-floating waves-effect waves-light'>  <i class = 'material-icons'> delete </i> </a>
+               <a href = '../Documentos/vermais.php?idDoc=<?=$documento['idDoc']?>' class = 'btn-floating waves-effect waves-light white'><i class ='material-icons black-text'>search</i>  </a>
+               <a href= '../Documentos/formaltera.php?idDoc=<?=$documento['idDoc']?>' class = 'btn-floating waves-effect waves-light white' > <i class ='material-icons black-text'>edit</i>  </a>
+               <a href='#' onclick='confirmacao($documento[idDoc])' class = 'btn-floating waves-effect waves-light white'>  <i class = 'material-icons black-text'> delete </i> </a>
               <?php }} ?>
              </div>
             </div>

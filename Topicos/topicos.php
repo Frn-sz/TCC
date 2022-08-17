@@ -43,13 +43,13 @@ $topicos = mysqli_fetch_all($result, MYSQLI_BOTH);
 foreach($topicos as $chave => $topico){
 
      echo "<tr>";
-     echo "<td class = 'center'>" . $topico['id']."</td  >";
-     echo "<td class = 'center'>" . $topico['titulo'] ."</td>";
+     echo "<td class = 'center'>" . $topico['idTop']."</td  >";
+     echo "<td class = 'center'>" . $topico['tituloTop'] ."</td>";
      
      if(isset($_SESSION['nvl_usuario'])){
           if($_SESSION['nvl_usuario'] != 2){
-     echo "<td> <a class = 'btn-floating  waves-effect' href='formalterat.php?id=$topico[id]'><i class = 'material-icons black-text white'> edit </i> </a>";
-     echo "<td> <a class = 'btn-floating waves-effect' href='#'" . "onclick='confirmacao($topico[id])'><i class = 'material-icons black-text white'>" . "delete</i></a>" ;
+     echo "<td> <a class = 'btn-floating  waves-effect' href='formalterat.php?id=$topico[idTop]'><i class = 'material-icons black-text white'> edit </i> </a>";
+     echo "<td> <a class = 'btn-floating waves-effect' href='#'" . "onclick='confirmacao($topico[idTop])'><i class = 'material-icons black-text white'>" . "delete</i></a>" ;
           }
      }
      echo "</tr>";

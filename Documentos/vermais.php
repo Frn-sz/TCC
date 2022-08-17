@@ -5,7 +5,7 @@ if(!isset($_SESSION)){
     session_start();
 }
 $id = $_GET['idDoc'];
-$sql = "SELECT * FROM documentos WHERE idDoc=$id";
+$sql = "SELECT * FROM documentos WHERE idDoc='$id'";
 $resultado = mysqli_query($conexao,$sql);
 $documentos = mysqli_fetch_assoc($resultado);
 $id = $documentos['idDoc'];

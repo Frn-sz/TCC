@@ -43,7 +43,7 @@ if(isset($_SESSION['id_usuario'])){
 
 //Realizando o comando select para puxar os documentos do Banco de dados
 
-$sql = "SELECT `id`, `tituloDoc`, `forma`, `formato`, `especie`, `imagem`FROM `documentos` ORDER BY tituloDoc";
+$sql = "SELECT `idDoc`, `tituloDoc`, `forma`, `formato`, `especie`, `imagem`FROM `documentos` ORDER BY tituloDoc";
 
 $resultado = mysqli_query($conexao, $sql);
 
@@ -81,11 +81,11 @@ $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
 
           <?php if(!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2){ ?>
                
-          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>'  class = 'btn-large waves-effect waves-light white'><i class ='material-icons black-text'>search</i>  </a>
+          <a href = '../Documentos/vermais.php?idDoc=<?=$documento['idDoc']?>'  class = 'btn-large waves-effect waves-light white'><i class ='material-icons black-text'>search</i>  </a>
           
           <?php }else{ ?>
 
-          <a href = '../Documentos/vermais.php?id=<?=$documento['id']?>' class = 'btn-floating waves-effect waves-light white'><i class ='material-icons black-text'>search</i>  </a>
+          <a href = '../Documentos/vermais.php?idDoc=<?=$documento['idDoc']?>' class = 'btn-floating waves-effect waves-light white'><i class ='material-icons black-text'>search</i>  </a>
 
           <?php } ?>
 
@@ -93,15 +93,15 @@ $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
          
      if($_SESSION['nvl_usuario'] != 2){ ?>
           
-          <a href= '../Documentos/formaltera.php?id=<?= $documento['id']?>' class = 'btn-floating waves-effect waves-light  white'> <i class ='material-icons black-text'>edit</i>  </a>
+          <a href= '../Documentos/formaltera.php?idDoc=<?= $documento['idDoc']?>' class = 'btn-floating waves-effect waves-light  white'> <i class ='material-icons black-text'>edit</i>  </a>
           
-          <a class="waves-effect waves-light btn-floating modal-trigger white " href="#modal<?=$documento['id']?>"><i class = "material-icons black-text">delete</i></a>
+          <a class="waves-effect waves-light btn-floating modal-trigger white " href="#modal<?=$documento['idDoc']?>"><i class = "material-icons black-text">delete</i></a>
           <?php }} ?>     
            </div>
          </div>
      </div>
  </div>
-          <div id="modal<?=$documento['id']?>"  class="modal">
+          <div id="modal<?=$documento['idDoc']?>"  class="modal">
                <div class="modal-content">
                   <div class="row">
                     <div class="center">
@@ -111,7 +111,7 @@ $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
 <form action="../Documentos/excluir.php" method="get">
      <div class="row">
           <div class="center">
-               <input type="hidden" name = "id" value="<?=$documento['id'];?>">
+               <input type="hidden" name = "idDoc" value="<?=$documento['idDoc'];?>">
 
           </div>
      </div>
