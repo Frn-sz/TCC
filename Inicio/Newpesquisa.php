@@ -10,7 +10,7 @@ if (!isset($_SESSION)) {
      function confirmacao(id) {
           var resposta = confirm("Deseja remover este documento?");
           if (resposta == true) {
-               window.location.href = "../Documentos/excluir.php?id=" + id;
+               window.location.href = "../Documentos/excluir.php?idDoc=" + id;
           }
      }
 </script>
@@ -26,13 +26,16 @@ if (!isset($_SESSION)) {
      }
      $Busca =
           "SELECT * FROM documentos AS F
-          INNER JOIN tabela_assoc As T 
-          INNER JOIN topicos As D 
-          WHERE D.tituloTop LIKE '$pesquisa' 
-          OR F.tituloDoc LIKE '$pesquisa'
-          OR F.plvsChaves LIKE '$pesquisa'
-          ORDER BY F.tituloDoc
-          LIMIT 20";
+           JOIN topicos As D
+           JOIN tabela_assoc As T 
+           ON T.id_topico = D.idTop 
+           WHERE D.tituloTop LIKE '$pesquisa' 
+           OR F.tituloDoc LIKE '$pesquisa'
+           OR F.plvsChaves LIKE '$pesquisa'
+           ORDER BY F.tituloDoc
+           LIMIT 20";
+     ?> <a style="color:white"> </a>
+     <?php
      //Fazendo a busca por título e Tópicos e Palavras chaves
      $resultado = mysqli_query($conexao, $Busca);
      $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
@@ -62,7 +65,7 @@ if (!isset($_SESSION)) {
                                    </div>
                                    <div class='card-action center'>
                                         <?php if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2) { ?>
-                                             <a href='../Documentos/vermais.php?id=<?= $documento['id'] ?>' class='btn-large waves-effect waves-light white'><i class='material-icons black-text''>search</i>  </a>
+                                             <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-large waves-effect waves-light white'><i class='material-icons black-text''>search</i>  </a>
               <?php }
                                         if (isset($_SESSION['nvl_usuario'])) {
                                              if ($_SESSION['nvl_usuario'] == 1) { ?>
