@@ -16,6 +16,7 @@ $genero = $documentos['genero'];
 $locali = $documentos['localizacao'];
 $anoDoc = $documentos['anoDocumento'];
 $plvsChaves = explode(" ", $documentos['plvsChaves']);
+$transcricao = $documentos['transcricao'];
 $imagem = $documentos['imagem'];
 ?>
 <title><?= $titulo ?> </title>
@@ -37,14 +38,14 @@ $imagem = $documentos['imagem'];
     }
 
     .adicionarTranscricao {
-        position: absolute;
-        margin-top: -18.8%;
-        margin-left: 12%;
+        position: relative;
+        margin-top: -15%;
+        margin-left: 10% !important;
         color: transparent !important;
-        transition: 0.5s;
+        transition: 0.5s !important;
     }
 
-    .adicionarTranscricao:hover {
+    .Transcricao:hover {
         color: rgba(0, 0, 0, 0.8) !important;
         transition: 0.5s;
     }
@@ -72,7 +73,6 @@ $imagem = $documentos['imagem'];
         $sqlfav = "SELECT id_documento FROM favoritos WHERE id_usuario = '$_SESSION[id_usuario]' and id_documento = '$id'";
         $resultfavs = mysqli_query($conexao, $sqlfav);
         $verificacaofavs = mysqli_fetch_assoc($resultfavs);
-
         if (is_null($verificacaofavs)) {
             $existe = false;
         } else {
@@ -102,17 +102,22 @@ $imagem = $documentos['imagem'];
         <div class='row'>
             <div class="col offset-s3">
                 <?php if ($documentos['imagem'] != "") { ?>
+                    <?php if (isset($_SESSION['id_usuario'])) {
+                        if ($_SESSION['nvl_usuario'] == 1) { ?>
+                            <a href="addTranscricao.php?idDoc=<?= $documentos['idDoc'] ?>" class="adicionarTranscricao"> <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'></a>
+                        <?php } else { ?>
+                            <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'>
+                        <?php }
+                    } else { ?>
+                        <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'>
 
-
-                    <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'>
-                    <?php if ($_SESSION['nvl_usuario'] == 1) { ?>
-                        <a href="addTranscricao.php" class="adicionarTranscricao"><i class="material-icons large">add</i></a>
                     <?php } ?>
                 <?php } else { ?>
 
                     <div class='row'> Sem Imagem </div>
 
                 <?php } ?>
+                <a class="waves-effect waves-light btn modal-trigger" href="#modalDoc">Modal</a>
             </div>
         </div>
 
@@ -176,6 +181,14 @@ $imagem = $documentos['imagem'];
             </form>
             <br>
         <?php } ?>
+    </div>
+    <div id="modalDoc" class="modal">
+        <div class="modal-content ">
+            <a class="black-text"><?php echo $transcricao ?></a>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
     </div>
 </main>
 <?php include_once "../interfaces/footer.php"; ?>

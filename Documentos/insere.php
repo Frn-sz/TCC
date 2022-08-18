@@ -34,10 +34,10 @@
 
 	if ($_FILES['arquivo']['error'] == 0) {
 
-		$sql = "INSERT INTO `documentos`(`titulo`,`forma`,`formato`, `especie`, `genero`, `localizacao`,`imagem`, anoDocumento, plvsChaves) 
+		$sql = "INSERT INTO `documentos`(`tituloDoc	`,`forma`,`formato`, `especie`, `genero`, `localizacao`,`imagem`, anoDocumento, plvsChaves) 
 VALUES ('$titulo','$forma','$formato','$especie','$genero ','$localizacao', '$imagem', '$anoDoc', '$chavesChar')";
 	} else {
-		$sql = "INSERT INTO `documentos`(`titulo`,`forma`,`formato`, `especie`, `genero`, `localizacao`, anoDocumento, plvsChaves) 
+		$sql = "INSERT INTO `documentos`(`tituloDoc`,`forma`,`formato`, `especie`, `genero`, `localizacao`, anoDocumento, plvsChaves) 
 VALUES ('$titulo','$forma','$formato','$especie','$genero ','$localizacao', '$anoDoc', '$chavesChar')";
 	}
 	$resultado = mysqli_query($conexao, $sql);

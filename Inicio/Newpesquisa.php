@@ -26,14 +26,14 @@ if (!isset($_SESSION)) {
      }
      $Busca =
           "SELECT * FROM documentos AS F
-          JOIN tabela_assoc As T 
-          JOIN topicos As D 
-          ON T.id_topico = D.idTop
+          INNER JOIN tabela_assoc As T 
+          INNER JOIN topicos As D 
           WHERE D.tituloTop LIKE '$pesquisa' 
           OR F.tituloDoc LIKE '$pesquisa'
           OR F.plvsChaves LIKE '$pesquisa'
           ORDER BY F.tituloDoc
-          LIMIT 20"; //Fazendo a busca por título e Tópicos e Palavras chaves
+          LIMIT 20";
+     //Fazendo a busca por título e Tópicos e Palavras chaves
      $resultado = mysqli_query($conexao, $Busca);
      $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
      ?>

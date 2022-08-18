@@ -1,7 +1,7 @@
 <?php
 include "../conecta.php";
 
-$pegarid = "SELECT id FROM `documentos`";
+$pegarid = "SELECT idDoc FROM `documentos`";
 $result = mysqli_query($conexao, $pegarid);
 $ids = mysqli_fetch_all($result);
 $id = max($ids);

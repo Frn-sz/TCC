@@ -107,7 +107,7 @@
     }
 
     .barraPesquisa {
-      padding-left: 10% !important;
+      padding-left: 15% !important;
       border-top-left-radius: 5px !important;
       border-top-right-radius: 5px !important;
     }
