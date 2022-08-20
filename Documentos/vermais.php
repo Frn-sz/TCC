@@ -80,10 +80,9 @@ if (isset($_SESSION['id_usuario'])) {
         $existe = true;
     }
 }
-//$sql2 = "SELECT id_topico FROM `tabela_assoc` WHERE `id_doc`= '$id'";
-$pegandoTopicos = "SELECT * FROM topicos INNER JOIN tabela_assoc AS T ON T.id_doc = '$id' WHERE idTop = T.id_topico";
+$pegandoTopicos = "SELECT tituloTop FROM topicos INNER JOIN tabela_assoc AS T ON T.id_doc = '$id' WHERE idTop = T.id_topico";
 $resultSet = mysqli_query($conexao, $pegandoTopicos);
-$topicos = mysqli_fetch_all($resultSet);
+$topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
 ?>
 <main>
     <br><br>
@@ -135,8 +134,9 @@ $topicos = mysqli_fetch_all($resultSet);
         </div>
         <div class="row">
             <div class="center">
-                <?php foreach ($topicos as $chave => $topico) { ?>
-                    <div class='chip white'><a class="black-text" href=#> <?= $topico ?> </a> </div>
+                <?php
+                foreach ($topicos as $chave => $topico) { ?>
+                    <div class='chip white'><a class="black-text" href=#> <?= $topico['tituloTop'] ?> </a> </div>
                     <?php }
                 foreach ($plvsChaves as $plvChave) {
                     if (!$plvChave == "") { ?>
