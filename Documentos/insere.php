@@ -30,7 +30,9 @@
 	}
 	$resultado = mysqli_query($conexao, $sql);
 	$id = mysqli_insert_id($conexao);
+	var_dump($sql);
 	if ($resultado) {
+		echo "sas";
 		foreach ($idsTopicos as $idTopico) {
 
 			//Fazendo a associação de Topicos e Documentos na tabela associativa (tabela_assoc)
@@ -42,8 +44,7 @@
 				}
 			}
 		}
-
-
+		echo "sus";
 		header("location:../Inicio/index.php");
 	}
 
