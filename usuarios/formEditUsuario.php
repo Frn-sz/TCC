@@ -1,8 +1,8 @@
 <?php
 if (!isset($_SESSION)) {
   session_start();
-  include('puxandoUsuario.php');
 }
+include('puxandoUsuario.php');
 ?>
 
 <form action="../usuarios/editar.php" method="post" enctype="multipart/form-data">

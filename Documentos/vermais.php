@@ -49,7 +49,8 @@ $imagem = $documentos['imagem'];
         transition: 0.5s;
     }
 
-    .Fav {
+    .Fav,
+    .botaoModal {
         color: rgba(0, 0, 0, 0) !important;
         font-weight: 600;
         background:
@@ -59,14 +60,16 @@ $imagem = $documentos['imagem'];
         transition: .4s !important;
     }
 
-    .Fav:hover {
+    .Fav:hover,
+    .botaoModal:hover {
         --_p: 0% !important;
     }
 
-    .botaoModal {}
+    .botaoModal {
+        margin-left: 30%;
+        margin-top: 2%;
+    }
 </style>
-
-<br><br><br><br><br><br><br>
 <?php
 include_once "../interfaces/header.php";
 include('../funcoes.php');
@@ -85,7 +88,7 @@ $resultSet = mysqli_query($conexao, $pegandoTopicos);
 $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
 ?>
 <main>
-    <br><br>
+    <br><br><br><br>
 
     <div class="container caixaDocumento">
         <br>
@@ -93,7 +96,7 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
             <div class="col offset-s3">
                 <?php if ($documentos['imagem'] != "") { ?>
                     <?php if (isset($_SESSION['id_usuario'])) {
-                        if ($_SESSION['nvl_usuario'] == 1) { ?>
+                        if ($_SESSION['nvl_usuario'] != 2) { ?>
                             <a href="addTranscricao.php?idDoc=<?= $documentos['idDoc'] ?>" class="adicionarTranscricao"> <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'></a>
                         <?php } else { ?>
                             <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'>
@@ -107,7 +110,7 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
                     <div class='row'> Sem Imagem </div>
 
                 <?php } ?>
-                <a class="waves-effect waves-light btn modal-trigger botaoModal" href="#modalDoc">Modal</a>
+                <a class="waves-effect waves-light btn modal-trigger botaoModal" href="#modalDoc">Mostrar transcrição</a>
             </div>
         </div>
 

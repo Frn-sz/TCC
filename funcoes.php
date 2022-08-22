@@ -2,17 +2,14 @@
 
 function puxartopicos()
 {
-
   include "../conecta.php";
-
-
   $sql = "SELECT * FROM `topicos`";
   $resultado = mysqli_query($conexao, $sql);
   $topicos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
-  foreach ($topicos as $chave => $topico) {
+  echo "<option value = 0> Selecione um tópico </option>";
+  foreach ($topicos as $topico) {
     $titulo = $topico['tituloTop'];
     $id = $topico['idTop'];
-
     echo "<option value = $id> $titulo </option>";
   }
 }

@@ -10,12 +10,13 @@
     padding-bottom: 15px;
   }
 
-  #selectTopicos {
+  label {
     color: black !important;
   }
 
-  label {
-    color: black !important;
+  .TopicosTitulo {
+    display: inline-block;
+    text-align: center;
   }
 </style>
 </head>
@@ -87,13 +88,30 @@
             <label for="plvChaves">Palavras Chaves (Separar com espaço) </label>
           </div>
         </div>
-        <div class="file-field input-field">
-          <div class="btn white">
-            <span><i class="material-icons large black-text">attach_file</i> </span>
-            <input name="arquivo" type="file" accept=".jpg,.jpeg,.png">
-          </div>
-          <div class="file-path-wrapper">
-            <input class="file-path validate" accept=".jpg,.jpeg,.png" type="text" placeholder="Insira uma imagem">
+        <div class="row">
+          <select name="1"><?= puxartopicos() ?> </select>
+        </div>
+        <div class="row">
+          <select name="2"><?= puxartopicos() ?> </select>
+        </div>
+        <div class="row">
+          <select name="3"><?= puxartopicos() ?> </select>
+        </div>
+        <div class="row">
+          <select name="4"><?= puxartopicos() ?> </select>
+        </div>
+        <div class="row">
+          <select name="5"><?= puxartopicos() ?> </select>
+        </div>
+        <div class="row">
+          <div class="file-field input-field">
+            <div class="btn white">
+              <span><i class="material-icons large black-text">attach_file</i> </span>
+              <input name="arquivo" type="file" accept=".jpg,.jpeg,.png">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" accept=".jpg,.jpeg,.png" type="text" placeholder="Insira uma imagem">
+            </div>
           </div>
         </div>
         <div class="row">
@@ -103,6 +121,7 @@
             </button>
           </div>
         </div>
+
     </div>
     </form>
   </main>
