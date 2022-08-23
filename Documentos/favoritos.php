@@ -20,8 +20,9 @@
             <div class='card hoverable'>
               <div class='card-image cardindex'>
 
-                <?php if ($documento['imagem'] != "") {  ?>
-
+                <?php if (!is_null($documento['imagem'])) {
+                  echo "sas";  ?>
+                  
                   <img class='materialboxed imagem' src='../upload/<?= $documento['imagem'] ?>'>
                 <?php } else { ?>
                   <div class='center'>
@@ -32,7 +33,7 @@
 
               </div>
               <div class='card-content'>
-                <span class='card-title'><?= $documento['titulo'] ?></span>
+                <span class='card-title'><?= $documento['tituloDoc'] ?></span>
                 <p> Forma:<?= $documento['forma'] ?> <br></p>
                 <p> Formato:<?= $documento['formato'] ?> <br></p>
                 <p> Espécie:<?= $documento['especie']  ?></p>
