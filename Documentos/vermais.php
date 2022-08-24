@@ -69,6 +69,14 @@ $imagem = $documentos['imagem'];
         margin-left: 30%;
         margin-top: 2%;
     }
+
+    .botaoModalSemImagem {}
+
+    .SemImagem {
+        font-weight: bold;
+        position: absolute !important;
+        margin-left: 13%;
+    }
 </style>
 <?php
 include_once "../interfaces/header.php";
@@ -99,42 +107,43 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
                         if ($_SESSION['nvl_usuario'] != 2) { ?>
                             <a href="addTranscricao.php?idDoc=<?= $documentos['idDoc'] ?>" class="adicionarTranscricao"> <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'></a>
                         <?php } else { ?>
-                            <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'>
+                            <img alt="Imagem do Documento" class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'>
                         <?php }
                     } else { ?>
-                        <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'>
+                        <img alt="Imagem do Documento" class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'>
 
                     <?php } ?>
                 <?php } else { ?>
 
-                    <div class='row'> Sem Imagem </div>
+                    <span class="SemImagem"> Sem Imagem </span>
 
                 <?php } ?>
                 <a class="waves-effect waves-light btn modal-trigger botaoModal" href="#modalDoc">Mostrar transcrição</a>
             </div>
         </div>
-
-        <div class='row'>
-            <li class="docInfo"> Título do documento: <?= $titulo ?> </li>
-        </div>
-        <div class='row'>
-            <li class="docInfo">Forma: <?= $forma  ?></li>
-        </div>
-        <div class='row'>
-            <li class="docInfo">Formato: <?= $formato  ?></li>
-        </div>
-        <div class='row'>
-            <li class="docInfo">Espécie: <?= $especie  ?></li>
-        </div>
-        <div class='row'>
-            <li class="docInfo">Localização: <?= $locali  ?></li>
-        </div>
-        <div class='row'>
-            <li class="docInfo">Gênero: <?= $genero  ?></li>
-        </div>
-        <div class='row'>
-            <li class="docInfo">Ano do Documento: <?= $anoDoc  ?></li>
-        </div>
+        <ul>
+            <div class='row'>
+                <li class="docInfo"> Título do documento: <?= $titulo ?> </li>
+            </div>
+            <div class='row'>
+                <li class="docInfo">Forma: <?= $forma  ?></li>
+            </div>
+            <div class='row'>
+                <li class="docInfo">Formato: <?= $formato  ?></li>
+            </div>
+            <div class='row'>
+                <li class="docInfo">Espécie: <?= $especie  ?></li>
+            </div>
+            <div class='row'>
+                <li class="docInfo">Localização: <?= $locali  ?></li>
+            </div>
+            <div class='row'>
+                <li class="docInfo">Gênero: <?= $genero  ?></li>
+            </div>
+            <div class='row'>
+                <li class="docInfo">Ano do Documento: <?= $anoDoc  ?></li>
+            </div>
+        </ul>
         <div class="row">
             <div class="center">
                 <?php
