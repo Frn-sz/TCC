@@ -26,12 +26,13 @@ if (!isset($_SESSION)) {
      }
      $Busca =
           "SELECT * FROM documentos AS F
-           JOIN topicos As D
-           JOIN tabela_assoc As T 
-           ON T.id_topico = D.idTop 
+           INNER JOIN topicos As D
+           INNER JOIN tabela_assoc As T 
+           ON T.id_topico = D.idTop && F.idDoc = T.id_doc
            WHERE D.tituloTop LIKE '$pesquisa' 
            OR F.tituloDoc LIKE '$pesquisa'
            OR F.plvsChaves LIKE '$pesquisa'
+           OR F.transcricao LIKE '$pesquisa'
            ORDER BY F.tituloDoc
            LIMIT 20";
      ?> <a style="color:white"> </a>

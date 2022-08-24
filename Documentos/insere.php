@@ -44,7 +44,7 @@
 				}
 			}
 		}
-		echo "sus";
+
 		header("location:../Inicio/index.php");
 	}
 
