@@ -35,6 +35,7 @@ if (!isset($_SESSION)) {
            OR F.transcricao LIKE '$pesquisa'
            ORDER BY F.tituloDoc
            LIMIT 20";
+
      ?> <a style="color:white"> </a>
      <?php
      //Fazendo a busca por título e Tópicos e Palavras chaves

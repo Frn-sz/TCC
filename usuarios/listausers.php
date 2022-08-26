@@ -1,8 +1,14 @@
 <?php
+if (!isset($_SESSION)) {
+     session_start();
+}
 include "../conecta.php";
 $sql = "SELECT * FROM `user`";
 $result = mysqli_query($conexao, $sql);
 $usuarios = mysqli_fetch_all($result, MYSQLI_BOTH);
+if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] != "1") {
+     header("location:../Inicio/");
+}
 ?>
 
 
@@ -64,14 +70,18 @@ $usuarios = mysqli_fetch_all($result, MYSQLI_BOTH);
                                                   <td class="center">Sem Imagem</td>
 
                                              <?php } ?>
-                                             <td class="center"><?= $usuario['nome'] ?></td>
+                                             <td style="padding: 41px;" class="center"><?= $usuario['nome'] ?></td>
                                              <td class="center"><?= $usuario['email'] ?></td>
                                              <?php if ($usuario['tipoUsuario'] == 2) { ?>
-                                                  <td class="center"><a class='btn-large buttonListaUser' href='elevarAGerente.php?id=<?= $usuario['id'] ?>'>Elevar a gerente</a></td>
+                                                  <td class="center"><a class='btn buttonListaUser' href="excluirContaADM.php?id=<?= $usuario['id'] ?>">Excluir Usuário</a>
+                                                       <a class='btn buttonListaUser' href='elevarAGerente.php?id=<?= $usuario['id'] ?>'>Elevar a gerente</a>
+                                                  </td>
                                              <?php } else if ($usuario['tipoUsuario'] == 3) { ?>
-                                                  <td class="center"><a class='btn-large buttonListaUser' href='rebaixarGerente.php?id=<?= $usuario['id'] ?>'>Rebaixar gerente</a></td>
+                                                  <td class="center"><a class='btn buttonListaUser' href="excluirContaADM.php?id=<?= $usuario['id'] ?>">Excluir Usuário</a>
+                                                       <a class='btn buttonListaUser' href='rebaixarGerente.php?id=<?= $usuario['id'] ?>'>Rebaixar gerente</a>
+                                                  </td>
                                              <?php } else { ?>
-                                                  <td class="center"><a class="btn-large buttonListaUser" href="#">Administrador</a></td>
+                                                  <td class="center"><a class="btn buttonListaUser" href="#">Administrador</a></td>
                                              <?php } ?>
 
                                         </tr>
