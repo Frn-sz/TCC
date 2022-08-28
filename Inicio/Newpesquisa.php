@@ -24,6 +24,14 @@ if (!isset($_SESSION)) {
      } else {
           $pesquisa = "%%";
      }
+     $totalDeResultados = "2";
+     if (!isset($_GET['pagina'])) {
+          $pgNum = 1;
+     } else {
+          $pgNum =  $_GET['pagina'];
+     }
+     $inicio = $pgNum - 1;
+     $inicio = $inicio * $totalDeResultados;
      $Busca =
           "SELECT * FROM documentos AS F
            INNER JOIN topicos As D
@@ -34,17 +42,25 @@ if (!isset($_SESSION)) {
            OR F.plvsChaves LIKE '$pesquisa'
            OR F.transcricao LIKE '$pesquisa'
            ORDER BY F.tituloDoc
-           LIMIT 20";
-
+           LIMIT $inicio, $totalDeResultados";
+     var_dump($Busca);
      ?> <a style="color:white"> </a>
      <?php
      //Fazendo a busca por título e Tópicos e Palavras chaves
      $resultado = mysqli_query($conexao, $Busca);
+     $linhas = mysqli_num_rows($resultado);
+     $numeroDePaginas = $linhas / $totalDeResultados;
+
      $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+     $proximo = $pgNum + 1;
+     $anterior = $pgNum - 1;
+
+
      ?>
      <div class='container'>
           <div class='row'>
                <?php
+
                if (!is_null($documentos)) {
                     foreach ($documentos as $chave => $documento) { ?>
                          <div class='col s2 m4'>
@@ -91,9 +107,21 @@ if (!isset($_SESSION)) {
           </div>
      </div>
 
-<?php } ?>
+<?php }
+               var_dump($numeroDePaginas);
+               die;
+               if ($pgNum > 1) {
 
+                    echo $_GET['busca']; ?>
 
+     <a href="Newpesquisa.php?pagina=<?= $anterior ?>&busca=<?= $_GET['busca'] ?>">
+          <- Anterior</a>
 
+          <?php }
+               if ($pgNum < $numeroDePaginas) { ?>
+
+               <a href="Newpesquisa.php?pagina=<?= $proximo ?>">
+                    Próxima -> </a>
+          <?php } ?>
 </main>
 <?php require_once "../interfaces/footer.php" ?>

@@ -5,8 +5,10 @@
 		$nome = md5(time()) . $ext;
 		$dir = "../upload/";
 		move_uploaded_file($_FILES['arquivo']['tmp_name'], $dir . $nome);
+		var_dump($_FILES['arquivo']['tmp_name']);
+
 		/*
-		shell_exec('"C:\\Program Files (x86)\\Tesseract-OCR\\tesseract" ' . $_FILES['arquivo']['tmp_name'] . ' out.txt');
+		shell_exec('"C:\\Program Files (x86)\\Tesseract-OCR\\tesseract " ' . $_FILES['arquivo']['tmp_name'] . ' out.txt');
 
 		echo "<br><h3>OCR after reading</h3><br><pre>";
 
@@ -42,7 +44,6 @@
 	$id = mysqli_insert_id($conexao);
 	var_dump($sql);
 	if ($resultado) {
-		echo "sas";
 		foreach ($idsTopicos as $idTopico) {
 
 			//Fazendo a associação de Topicos e Documentos na tabela associativa (tabela_assoc)
