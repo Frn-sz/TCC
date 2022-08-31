@@ -2,10 +2,24 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+require_once('../vendor/autoload.php');
+
+use thiagoalessio\TesseractOCR\TesseractOCR;
+
 include('../conecta.php');
 include('../interfaces/header.php');
 $url = $_SERVER['HTTP_REFERER'];
 $idDoc = $_GET['idDoc'];
+$verificacao = $_GET['auto'];
+$PegandoFoto = "SELECT * FROM documentos WHERE idDoc='$idDoc'";
+$resultSet = mysqli_query($conexao, $PegandoFoto);
+$doc = mysqli_fetch_assoc($resultSet);
+if ($verificacao == 1) {
+    $texto = (new TesseractOCR('../upload/' . $doc['imagem']))
+        ->run();
+} else {
+    $texto = $doc["transcricao"];
+}
 ?>
 <style>
     .box {
@@ -35,7 +49,7 @@ $idDoc = $_GET['idDoc'];
     <form action="addTranscricao2.php" method="post">
         <div class="container box">
             <div class="input-field">
-                <textarea id="transcricao" class="materialize-textarea" name="transcricao"></textarea>
+                <textarea id="transcricao" class="materialize-textarea" name="transcricao"><?= $texto ?></textarea>
                 <label for="transcricao">Adicione a transcrição do Documento</label>
                 <div class="center">
                     <input type="hidden" value=<?= $url ?> name="url">

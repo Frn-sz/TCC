@@ -5,6 +5,15 @@ if (!isset($_SESSION)) {
 }
 ?>
 <title>Resultado da Pesquisa</title>
+<style>
+     .paginacao,
+     .paginacaoNum {
+          color: black;
+          background-color: white;
+          padding: 7px;
+          border-radius: 7px;
+     }
+</style>
 <script>
      //Função que faz um pop-up na tela pra confirmar a exclusão de um documento.
      function confirmacao(id) {
@@ -24,14 +33,26 @@ if (!isset($_SESSION)) {
      } else {
           $pesquisa = "%%";
      }
-     $totalDeResultados = "2";
-     if (!isset($_GET['pagina'])) {
-          $pgNum = 1;
+     if (isset($_GET['pagina'])) {
+          $pag = $_GET['pagina'];
      } else {
-          $pgNum =  $_GET['pagina'];
+          $pag = 1;
      }
-     $inicio = $pgNum - 1;
-     $inicio = $inicio * $totalDeResultados;
+     $limit = 3;
+     $offset = $limit * ($pag - 1);
+     $BuscaTotal =
+          "SELECT count(*) FROM documentos AS F
+           INNER JOIN topicos As D
+           INNER JOIN tabela_assoc As T 
+           ON T.id_topico = D.idTop && F.idDoc = T.id_doc
+           WHERE D.tituloTop LIKE '$pesquisa' 
+           OR F.tituloDoc LIKE '$pesquisa'
+           OR F.plvsChaves LIKE '$pesquisa'
+           OR F.transcricao LIKE '$pesquisa'";
+
+     $resultadoNum = mysqli_query($conexao, $BuscaTotal);
+     $numRows = mysqli_fetch_row($resultadoNum);
+
      $Busca =
           "SELECT * FROM documentos AS F
            INNER JOIN topicos As D
@@ -42,19 +63,13 @@ if (!isset($_SESSION)) {
            OR F.plvsChaves LIKE '$pesquisa'
            OR F.transcricao LIKE '$pesquisa'
            ORDER BY F.tituloDoc
-           LIMIT $inicio, $totalDeResultados";
-     var_dump($Busca);
-     ?> <a style="color:white"> </a>
-     <?php
-     //Fazendo a busca por título e Tópicos e Palavras chaves
+           LIMIT $limit OFFSET $offset";
+
+
+     //Fazendo a busca por título, Tópicos, Palavras chaves e transcricao
      $resultado = mysqli_query($conexao, $Busca);
-     $linhas = mysqli_num_rows($resultado);
-     $numeroDePaginas = $linhas / $totalDeResultados;
-
      $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
-     $proximo = $pgNum + 1;
-     $anterior = $pgNum - 1;
-
+     $ultimaPag = ceil($numRows[0] / $limit);
 
      ?>
      <div class='container'>
@@ -108,20 +123,19 @@ if (!isset($_SESSION)) {
      </div>
 
 <?php }
-               var_dump($numeroDePaginas);
-               die;
-               if ($pgNum > 1) {
-
-                    echo $_GET['busca']; ?>
-
-     <a href="Newpesquisa.php?pagina=<?= $anterior ?>&busca=<?= $_GET['busca'] ?>">
-          <- Anterior</a>
-
-          <?php }
-               if ($pgNum < $numeroDePaginas) { ?>
-
-               <a href="Newpesquisa.php?pagina=<?= $proximo ?>">
-                    Próxima -> </a>
-          <?php } ?>
+               if ($numRows[0] > 0) { ?>
+     <div class="row">
+          <div class="center">
+               <a class="paginacao" href="Newpesquisa.php?pagina=1&&busca=<?= $_GET['busca'] ?>">Primeira página</a>
+               &nbsp
+               <?php
+                    for ($i = 1; $i <= $ultimaPag; $i++) { ?>
+                    <a class="paginacaoNum" href="Newpesquisa.php?pagina=<?= $i ?>&&busca=<?= $_GET['busca'] ?>"><?= $i ?></a>&nbsp
+               <?php } ?>
+               &nbsp
+               <a class="paginacao" href="Newpesquisa.php?pagina=<?= $ultimaPag ?>&&busca=<?= $_GET['busca'] ?>">Ultima página</a>
+          </div>
+     <?php } ?>
+     </div>
 </main>
 <?php require_once "../interfaces/footer.php" ?>

@@ -17,6 +17,7 @@ $anoDoc = $documentos['anoDocumento'];
 $plvsChaves = explode(" ", $documentos['plvsChaves']);
 $transcricao = $documentos['transcricao'];
 $imagem = $documentos['imagem'];
+
 ?>
 <title><?= $titulo ?></title>
 <style>
@@ -30,10 +31,20 @@ $imagem = $documentos['imagem'];
         border-radius: 25px;
     }
 
+    .material-placeholder {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+
+    }
+
     .imagemDocumento {
         border-radius: 15px;
         border-style: solid;
         border-color: black;
+        display: block !important;
+
     }
 
     .adicionarTranscricao {
@@ -50,7 +61,8 @@ $imagem = $documentos['imagem'];
     }
 
     .Fav,
-    .botaoModal {
+    .botaoModal,
+    .botaoTrans {
         color: rgba(0, 0, 0, 0) !important;
         font-weight: 600;
         background:
@@ -61,21 +73,18 @@ $imagem = $documentos['imagem'];
     }
 
     .Fav:hover,
-    .botaoModal:hover {
+    .botaoModal:hover,
+    .botaoTrans:hover {
         --_p: 0% !important;
     }
 
-    .botaoModal {
-        margin-left: 30%;
-        margin-top: 2%;
-    }
+    .botaoModal {}
 
     .botaoModalSemImagem {}
 
     .SemImagem {
         font-weight: bold;
-        position: absolute !important;
-        margin-left: 13%;
+
     }
 </style>
 <?php
@@ -99,28 +108,42 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
     <br><br><br><br>
 
     <div class="container caixaDocumento">
-        <br>
-        <div class="row">
-            <div class="col offset-s3">
-                <?php if ($documentos['imagem'] != "") { ?>
-                    <?php if (isset($_SESSION['id_usuario'])) {
-                        if ($_SESSION['nvl_usuario'] != 2) { ?>
-                            <a href="addTranscricao.php?idDoc=<?= $documentos['idDoc'] ?>" class="adicionarTranscricao"> <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'></a>
-                        <?php } else { ?>
-                            <img alt="Imagem do Documento" class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'>
-                        <?php }
-                    } else { ?>
-                        <img alt="Imagem do Documento" class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'>
-
-                    <?php } ?>
-                <?php } else { ?>
-
-                    <span class="SemImagem"> Sem Imagem </span>
-
-                <?php } ?>
-                <a class="waves-effect waves-light btn modal-trigger botaoModal" href="#modalDoc">Mostrar transcrição</a>
+        <?php if ($documentos['imagem'] != "") { ?>
+            <div class="row">
+                <div class="center">
+                    <a class="adicionarTranscricao"> <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'></a>
+                </div>
             </div>
-        </div>
+        <?php $existeImagem = 1;
+        } else { ?>
+            <div class="row">
+                <div class="center">
+                    <br><br>
+                    <span class="SemImagem"> Sem Imagem </span>
+                </div>
+            </div>
+        <?php $existeImagem = 0;
+        } ?>
+        <?php if (isset($_SESSION['id_usuario']) && $_SESSION['nvl_usuario'] != 2) {
+            if ($existeImagem == 1) { ?>
+                <div class="row">
+                    <div class="center">
+                        <br>
+                        <a class="waves-effect waves-light btn modal-trigger botaoTrans" href="addTranscricao.php?auto=1&&idDoc=<?= $documentos['idDoc'] ?>">Transcrição Automática</a>
+                        <a class="waves-effect waves-light btn modal-trigger botaoTrans" href="addTranscricao.php?auto=0&&idDoc=<?= $documentos['idDoc'] ?>">Transcrição Manual</a>
+                    </div>
+                </div>
+            <?php }
+        }
+        if ($existeImagem == 1) { ?>
+
+            <div class="row">
+                <div class="center">
+                    <a class="waves-effect waves-light btn modal-trigger botaoModal" href="#modalDoc">Mostrar transcrição</a>
+                </div>
+            </div>
+        <?php } ?>
+
         <ul>
             <div class='row'>
                 <li class="docInfo"> Título do documento: <?= $titulo ?> </li>
@@ -158,7 +181,7 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
             </div>
         </div>
         <br>
-        <a href="Transcricao.php?id=<?= $documentos['idDoc']; ?>">Transcrever</a>
+
 
 
         <?php if (isset($_SESSION['id_usuario']) and $existe == false) { ?>

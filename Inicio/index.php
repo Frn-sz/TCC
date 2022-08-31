@@ -25,6 +25,14 @@ if (!isset($_SESSION)) {
      .card-content {
           background-color: rgba(0, 0, 0, 0.8) !important;
      }
+
+     .paginacao,
+     .paginacaoNum {
+          color: black;
+          background-color: white;
+          padding: 7px;
+          border-radius: 7px;
+     }
 </style>
 <main>
 
@@ -46,14 +54,20 @@ if (!isset($_SESSION)) {
      }
 
      //Realizando o comando select para puxar os documentos do Banco de dados
-
-     $sql = "SELECT `idDoc`, `tituloDoc`, `forma`, `formato`, `especie`, `imagem`FROM `documentos` ORDER BY tituloDoc";
-
+     if (isset($_GET['pagina'])) {
+          $pag = $_GET['pagina'];
+     } else {
+          $pag = 1;
+     }
+     $limit = 3;
+     $offset = $limit * ($pag - 1);
+     $sqlTotal = "SELECT count(*) FROM `documentos` ORDER BY tituloDoc";
+     $resultadoNum = mysqli_query($conexao, $sqlTotal);
+     $numRows = mysqli_fetch_row($resultadoNum);
+     $sql = "SELECT * FROM `documentos` ORDER BY tituloDoc LIMIT $limit OFFSET $offset";
      $resultado = mysqli_query($conexao, $sql);
-
-
-
-     $documentos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
+     $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+     $ultimaPag = ceil($numRows[0] / $limit);
      ?>
      <br>
      <div class='container'>
@@ -139,6 +153,18 @@ if (!isset($_SESSION)) {
                <?php    } ?>
           </div>
      </div>
+     </div>
+     <div class="row">
+          <div class="center">
+               <a class="paginacao" href="index.php?pagina=1">Primeira página</a>
+               &nbsp
+               <?php
+               for ($i = 1; $i <= $ultimaPag; $i++) { ?>
+                    <a class="paginacaoNum" href="index.php?pagina=<?= $i ?>"><?= $i ?></a>&nbsp
+               <?php } ?>
+               &nbsp
+               <a class="paginacao" href="index.php?pagina=<?= $ultimaPag ?>">Ultima página</a>
+          </div>
      </div>
 </main>
 
