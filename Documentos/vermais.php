@@ -78,10 +78,6 @@ $imagem = $documentos['imagem'];
         --_p: 0% !important;
     }
 
-    .botaoModal {}
-
-    .botaoModalSemImagem {}
-
     .SemImagem {
         font-weight: bold;
 

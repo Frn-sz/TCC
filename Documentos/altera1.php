@@ -10,6 +10,7 @@ if (isset($_FILES['arquivo'])) {
     move_uploaded_file($_FILES['arquivo']['tmp_name'], $dir . $nome);
 }
 $id = $_POST['id'];
+$idsTopicos = array($_POST[1], $_POST[2], $_POST[3], $_POST[4], $_POST[5]);
 $titulo = $_POST['titulo'];
 $forma = $_POST['forma'];
 $formato = $_POST['formato'];
@@ -17,38 +18,34 @@ $especie = $_POST['especie'];
 $genero = $_POST['genero'];
 $localizacao = $_POST['localizacao'];
 $imagem  = $nome;
-
+$ApagandoAssociacoes = "DELETE FROM `tabela_assoc` WHERE id_doc = $id";
+$result = mysqli_query($conexao, $ApagandoAssociacoes);
 
 if ($_FILES['arquivo']['error'] == 0) {
-
-    $sql = "UPDATE documentos SET titulo='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao', imagem = '$imagem' WHERE id=$id ";
+    $sql = "UPDATE documentos SET tituloDoc='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao', imagem = '$imagem' WHERE idDoc=$id ";
 } else {
 
-    $sql = "UPDATE documentos SET titulo='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao' WHERE id=$id ";
+    $sql = "UPDATE documentos SET tituloDoc='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao' WHERE idDoc=$id ";
 }
 
 $resultado = mysqli_query($conexao, $sql);
 
-$sql2 = "DELETE FROM `tabela_assoc` WHERE id_doc = $id";
-$result = mysqli_query($conexao, $sql2);
+if ($resultado) {
+    foreach ($idsTopicos as $idTopico) {
+        //Fazendo a associação de Topicos e Documentos na tabela associativa (tabela_assoc)
+        if ($idTopico != 0) {
+            $AssociandoDocTopicos = "INSERT INTO tabela_assoc (id_topico, id_doc) VALUES ('$idTopico', '$id')";
+            $resultSet = mysqli_query($conexao, $AssociandoDocTopicos);
+            if ($resultSet) {
+                $erro = true;
+            }
+        }
+    }
 
-for ($i = 0; $i < 5; $i++) {
-    $id_top[$i] = $_POST[$i];
-}
-foreach ($id_top as $chave => $idx) {
-    $array[] = $idx;
-    $id_topico = array_unique($array);
-}
-
-foreach ($id_topico as $chave => $id_topicox) {
-
-    $sql2 = "INSERT INTO `tabela_assoc`(id_doc,id_topico) VALUES ('$id', '$id_topicox')";
-    $resultado2 = mysqli_query($conexao, $sql2);
+    header("location:../Inicio/index.php");
 }
 
-if ($resultado and $resultado2) {
-    header("location:../Inicio/");
-}
+
 
 mysqli_close($conexao);
 
