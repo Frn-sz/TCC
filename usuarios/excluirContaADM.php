@@ -8,7 +8,6 @@ if (!isset($_SESSION['$id_usuario']) || $_SESSION['nvl_usuario'] != 1) {
     header("Location:../Inicio/");
 }
 $id_usuario = $_GET['id'];
-
 $sql = "DELETE FROM user WHERE id='$id_usuario'";
 $result = mysqli_query($conexao, $sql);
 $removerFavoritos = "DELETE FROM favoritos WHERE id_usuario='$id_usuario'";

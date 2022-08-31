@@ -158,7 +158,7 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
             </div>
         </div>
         <br>
-        <a href="../Tesseract-OCR/Transcricao.php?id=<?= $documentos['idDoc']; ?>">Transcrever</a>
+        <a href="Transcricao.php?id=<?= $documentos['idDoc']; ?>">Transcrever</a>
 
 
         <?php if (isset($_SESSION['id_usuario']) and $existe == false) { ?>
