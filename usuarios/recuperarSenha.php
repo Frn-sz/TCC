@@ -50,7 +50,7 @@ if(is_null($usuario)){
                 if($mail -> send()){
                     $_SESSION['mensagem'] = "E-mail enviado com o link para redefinição de senha.";
                     var_dump($token);
-                    header("Location:telalogin.php");
+                        header("Location:telalogin.php");
                 }else{
                     $_SESSION['mensagem'] = "E-mail não foi enviado";
                 }
@@ -59,7 +59,3 @@ if(is_null($usuario)){
         }
         }
     }
-   
-
-
-?>

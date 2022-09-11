@@ -5,7 +5,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 if (!isset($_SESSION['$id_usuario']) || $_SESSION['nvl_usuario'] != 1) {
-    header("Location:../Inicio/");
+    header("Location:../Inicio/listaDocs");
 }
 $id_usuario = $_GET['id'];
 $sql = "DELETE FROM user WHERE id='$id_usuario'";

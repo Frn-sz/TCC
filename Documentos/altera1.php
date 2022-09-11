@@ -42,7 +42,7 @@ if ($resultado) {
         }
     }
 
-    header("location:../Inicio/index.php");
+    header("location:../Inicio/listaDocs.php");
 }
 
 

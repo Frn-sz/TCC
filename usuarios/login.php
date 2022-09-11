@@ -16,7 +16,7 @@ if ($_POST['email'] != "") {
         $_SESSION['nome_usuario'] = $usuario['nome'];
         $_SESSION['email_usuario'] = $usuario['email'];
 
-        header("location:../Inicio/");
+        header("location:../Inicio/listaDocs");
     } else {
 
         $_SESSION['mensagem'] = "Credenciais incorretas";

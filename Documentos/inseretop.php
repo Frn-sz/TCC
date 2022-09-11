@@ -16,5 +16,5 @@ for ($i = 0; $i < count($id_top); $i++) {
 }
 
 if ($result) {
-    header("location:../Inicio/");
+    header("location:../Inicio/listaDocs.php");
 }

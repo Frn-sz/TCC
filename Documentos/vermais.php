@@ -29,8 +29,9 @@ $imagem = $documentos['imagem'];
     }
 
     .caixaDocumento {
-        background-color: rgba(255, 255, 255, 0.9) !important;
-        border-radius: 25px;
+        background-color: rgba(255, 255, 255, 0.8) !important;
+        border-radius: 5px;
+        padding: 10px;
     }
 
     .imagemDoc {
@@ -68,7 +69,7 @@ $imagem = $documentos['imagem'];
         color: rgba(0, 0, 0, 0) !important;
         font-weight: 600;
         background:
-            linear-gradient(90deg, purple 50%, #000 0) var(--_p, 100%)/200% no-repeat !important;
+            linear-gradient(90deg, #620063 50%, #000 0) var(--_p, 100%)/200% no-repeat !important;
         -webkit-background-clip: text !important;
         background-clip: text !important;
         transition: .4s !important;

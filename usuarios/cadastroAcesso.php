@@ -2,7 +2,7 @@
 
 include('../conecta.php');
 
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_start();
 }
 $sql = "SELECT * FROM user WHERE id = '$_SESSION[id_usuario]'";
@@ -14,6 +14,6 @@ $_SESSION['foto'] = $usuario['foto'];
 $_SESSION['nome_usuario'] = $usuario['nome'];
 $_SESSION['email_usuario'] = $usuario['email'];
 
-if($result){
-    header("Location:../Inicio/");
+if ($result) {
+    header("Location:../Inicio/listaDocs");
 }
