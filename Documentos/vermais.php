@@ -3,6 +3,7 @@ include "../conecta.php";
 if (!isset($_SESSION)) {
     session_start();
 }
+include('../funcoes.php');
 $id = $_GET['idDoc'];
 $sql = "SELECT * FROM documentos WHERE idDoc='$id'";
 $resultado = mysqli_query($conexao, $sql);
@@ -14,7 +15,8 @@ $especie = $documentos['especie'];
 $genero = $documentos['genero'];
 $locali = $documentos['localizacao'];
 $anoDoc = $documentos['anoDocumento'];
-$plvsChaves = explode(" ", $documentos['plvsChaves']);
+$plvsChaves = explode(".", $documentos['palavrasChaves']);
+
 $transcricao = $documentos['transcricao'];
 $imagem = $documentos['imagem'];
 
@@ -31,7 +33,7 @@ $imagem = $documentos['imagem'];
         border-radius: 25px;
     }
 
-    .material-placeholder {
+    .imagemDoc {
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -85,7 +87,6 @@ $imagem = $documentos['imagem'];
 </style>
 <?php
 include_once "../interfaces/header.php";
-include('../funcoes.php');
 if (isset($_SESSION['id_usuario'])) {
     $sqlfav = "SELECT id_documento FROM favoritos WHERE id_usuario = '$_SESSION[id_usuario]' and id_documento = '$id'";
     $resultfavs = mysqli_query($conexao, $sqlfav);
@@ -105,7 +106,7 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
 
     <div class="container caixaDocumento">
         <?php if ($documentos['imagem'] != "") { ?>
-            <div class="row">
+            <div class="row imagemDoc">
                 <div class="center">
                     <a class="adicionarTranscricao"> <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'></a>
                 </div>
@@ -170,7 +171,7 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
                     <div class='chip white'><a class="black-text" href=#> <?= $topico['tituloTop'] ?> </a> </div>
                     <?php }
                 foreach ($plvsChaves as $plvChave) {
-                    if (!$plvChave == "") { ?>
+                    if ($plvChave != "." and $plvChave != "") { ?>
                         <div class='chip white'><a class="black-text" href=#> <?= $plvChave ?> </a> </div>
                 <?php }
                 } ?>

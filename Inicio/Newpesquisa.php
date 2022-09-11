@@ -47,30 +47,28 @@ if (!isset($_SESSION)) {
            ON T.id_topico = D.idTop && F.idDoc = T.id_doc
            WHERE D.tituloTop LIKE '$pesquisa' 
            OR F.tituloDoc LIKE '$pesquisa'
-           OR F.plvsChaves LIKE '$pesquisa'
-           OR F.transcricao LIKE '$pesquisa'";
+           OR F.transcricao LIKE '$pesquisa'
+           ";
 
      $resultadoNum = mysqli_query($conexao, $BuscaTotal);
      $numRows = mysqli_fetch_row($resultadoNum);
 
      $Busca =
           "SELECT * FROM documentos AS F
-           INNER JOIN topicos As D
-           INNER JOIN tabela_assoc As T 
-           ON T.id_topico = D.idTop && F.idDoc = T.id_doc
+           INNER JOIN topicos AS D
+           INNER JOIN tabela_assoc AS T
+           ON T.id_topico = D.idTop && F.idDoc = T.id_doc 
            WHERE D.tituloTop LIKE '$pesquisa' 
            OR F.tituloDoc LIKE '$pesquisa'
-           OR F.plvsChaves LIKE '$pesquisa'
            OR F.transcricao LIKE '$pesquisa'
-           ORDER BY F.tituloDoc
-           LIMIT $limit OFFSET $offset";
-
+           ORDER BY F.tituloDoc";
 
      //Fazendo a busca por título, Tópicos, Palavras chaves e transcricao
      $resultado = mysqli_query($conexao, $Busca);
      $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
      $ultimaPag = ceil($numRows[0] / $limit);
-
+     $proximo = $pag + 1;
+     $anterior = $pag - 1;
      ?>
      <div class='container'>
           <div class='row'>
@@ -126,16 +124,25 @@ if (!isset($_SESSION)) {
                if ($numRows[0] > 0) { ?>
      <div class="row">
           <div class="center">
-               <a class="paginacao" href="Newpesquisa.php?pagina=1&&busca=<?= $_GET['busca'] ?>">Primeira página</a>
-               &nbsp
-               <?php
+               <ul class="pagination">
+                    <?php if ($pag == 1) { ?>
+                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <?php } else { ?>
+                         <li class="waves-effect"><a href="Newpesquisa.php?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
+                    <?php }
                     for ($i = 1; $i <= $ultimaPag; $i++) { ?>
-                    <a class="paginacaoNum" href="Newpesquisa.php?pagina=<?= $i ?>&&busca=<?= $_GET['busca'] ?>"><?= $i ?></a>&nbsp
-               <?php } ?>
-               &nbsp
-               <a class="paginacao" href="Newpesquisa.php?pagina=<?= $ultimaPag ?>&&busca=<?= $_GET['busca'] ?>">Ultima página</a>
+                         <li class="active white "><a class="black-text" href="Newpesquisa.php?pagina=<?= $i ?>"><?= $i ?></a></li>
+                    <?php }
+                    if ($pag < $ultimaPag) { ?>
+                         <li class="waves-effect"><a href="Newpesquisa.php?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
+                    <?php } else { ?>
+                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    <?php } ?>
+               </ul>
           </div>
-     <?php } ?>
      </div>
+
+<?php } ?>
+</div>
 </main>
 <?php require_once "../interfaces/footer.php" ?>

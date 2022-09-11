@@ -29,23 +29,22 @@
 	$genero = $_POST['genero'];
 	$anoDoc = $_POST['ano'];
 	$localizacao = $_POST['localizacao'];
-	$chavesChar =  $_POST['plvChaves'];
+	$chavesChar =  str_replace(" ", "", $_POST['plvChaves']);
 	$imagem = $nome;
 	if ($_FILES['arquivo']['error'] == 0) {
 		$sql = "INSERT INTO
-		 `documentos`(`tituloDoc`,`forma`,`formato`, `especie`, `genero`, `localizacao`,`imagem`, anoDocumento, plvsChaves) 
+		 `documentos`(`tituloDoc`,`forma`,`formato`, `especie`, `genero`, `localizacao`,`imagem`, `anoDocumento`, `palavrasChaves`) 
 		VALUES ('$titulo','$forma','$formato','$especie','$genero ','$localizacao', '$imagem', '$anoDoc', '$chavesChar')";
 	} else {
 		$sql = "INSERT INTO 
-		`documentos`(`tituloDoc`,`forma`,`formato`, `especie`, `genero`, `localizacao`, anoDocumento, plvsChaves) 
-		VALUES ('$titulo','$forma','$formato','$especie','$genero ','$localizacao', '$anoDoc', '$chavesChar')";
+		`documentos`(`tituloDoc`,`forma`,`formato`, `especie`, `genero`, `localizacao`, `anoDocumento`, `palavrasChaves`) 
+		VALUES ('$titulo','$forma','$formato','$especie','$genero ','$localizacao', '$anoDoc','$chavesChar')";
 	}
 	$resultado = mysqli_query($conexao, $sql);
 	$id = mysqli_insert_id($conexao);
 	var_dump($sql);
 	if ($resultado) {
 		foreach ($idsTopicos as $idTopico) {
-
 			//Fazendo a associação de Topicos e Documentos na tabela associativa (tabela_assoc)
 			if ($idTopico != 0) {
 				$AssociandoDocTopicos = "INSERT INTO tabela_assoc (id_topico, id_doc) VALUES ('$idTopico', '$id')";
