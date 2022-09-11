@@ -68,6 +68,8 @@ if (!isset($_SESSION)) {
      $resultado = mysqli_query($conexao, $sql);
      $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
      $ultimaPag = ceil($numRows[0] / $limit);
+     $proximo = $pag + 1;
+     $anterior = $pag - 1;
      ?>
      <br>
      <div class='container'>
@@ -154,18 +156,28 @@ if (!isset($_SESSION)) {
           </div>
      </div>
      </div>
+
      <div class="row">
           <div class="center">
-               <a class="paginacao" href="index.php?pagina=1">Primeira página</a>
-               &nbsp
-               <?php
-               for ($i = 1; $i <= $ultimaPag; $i++) { ?>
-                    <a class="paginacaoNum" href="index.php?pagina=<?= $i ?>"><?= $i ?></a>&nbsp
-               <?php } ?>
-               &nbsp
-               <a class="paginacao" href="index.php?pagina=<?= $ultimaPag ?>">Ultima página</a>
+               <ul class="pagination">
+                    <?php if ($pag == 1) { ?>
+                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <?php } else { ?>
+                         <li class="waves-effect"><a href="index.php?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
+                    <?php }
+                    for ($i = 1; $i <= $ultimaPag; $i++) { ?>
+                         <li class="active white "><a class="black-text" href="index.php?pagina=<?= $i ?>"><?= $i ?></a></li>
+                    <?php }
+                    if ($pag < $ultimaPag) { ?>
+                         <li class="waves-effect"><a href="index.php?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
+                    <?php } else { ?>
+                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    <?php } ?>
+               </ul>
           </div>
      </div>
+
+
 </main>
 
 <?php include_once "../interfaces/footer.php"; ?>
