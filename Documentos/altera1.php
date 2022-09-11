@@ -11,13 +11,13 @@ if (isset($_FILES['arquivo'])) {
 }
 $id = $_POST['id'];
 $idsTopicos = array($_POST[1], $_POST[2], $_POST[3], $_POST[4], $_POST[5]);
-$titulo = $_POST['titulo'];
-$forma = $_POST['forma'];
-$formato = $_POST['formato'];
-$especie = $_POST['especie'];
-$genero = $_POST['genero'];
-$localizacao = $_POST['localizacao'];
-$imagem  = $nome;
+$titulo = trim($_POST['titulo']);
+$forma = trim($_POST['forma']);
+$formato = trim($_POST['formato']);
+$especie = trim($_POST['especie']);
+$genero = trim($_POST['genero']);
+$localizacao = trim($_POST['localizacao']);
+$imagem  = trim($nome);
 $ApagandoAssociacoes = "DELETE FROM `tabela_assoc` WHERE id_doc = $id";
 $result = mysqli_query($conexao, $ApagandoAssociacoes);
 

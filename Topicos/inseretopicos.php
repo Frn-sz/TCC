@@ -1,27 +1,54 @@
 <title> Tela de Cadastro de Tópicos</title>
 
 
+<style>
+    .formInsere {
+        color: black !important;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
 
+    label {
+        color: black !important;
+    }
+
+    .TopicosTitulo {
+        display: inline-block;
+        text-align: center;
+    }
+
+    input {
+        color: black !important;
+    }
+
+    button {
+        border-radius: 10% !important;
+    }
+</style>
 <?php require_once "../interfaces/header.php"; ?>
+
 <main>
-    <br>
-    <form class="container" action="cadastrotopicos.php" method="post">
-        <div class="input-field">
-            <input id="titulo" type="text" name="titulo" class="white-text" required>
-            <label for="titulo">Insira o Tópico que deseja cadastrar</label>
-        </div>
-        <div class="center">
-            <button style='border-radius:10px;' class="btn waves-effect waves-light grey darken-1" type="reset">
-                <i class="material-icons">restore</i>
-            </button>
-            <button style='border-radius:10px;' class="btn waves-effect waves-light grey darken-1" type="submit" name="action">
-                <i class="material-icons">check</i>
-            </button>
+    <br><br><br><br>
+    <div class="container formInsere">
+        <form action="cadastrotopicos.php" method="post">
+            <div class="input-field">
+                <input id="titulo" type="text" name="titulo" required>
+                <label for="titulo">Insira o Tópico que deseja cadastrar</label>
+            </div>
+            <div class="center">
+                <button class="btn waves-effect waves-light black-text white" type="submit" name="action">
+                    <i class="material-icons">check</i>
+                </button>
 
 
 
-        </div>
+            </div>
 
-    </form>
+        </form>
+    </div>
 </main>
 <?php include('../interfaces/footer.php') ?>
