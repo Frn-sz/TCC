@@ -84,7 +84,7 @@ if (!isset($_SESSION)) {
 
                                         <?php if ($documento['imagem'] != "") {  ?>
 
-                                             <img class='imagem' src='../upload/<?= $documento['imagem'] ?>'>
+                                             <img class='imagem ' src='../upload/<?= $documento['imagem'] ?>'>
                                         <?php } else { ?>
                                              <div class='center'>
                                                   "Sem imagem"

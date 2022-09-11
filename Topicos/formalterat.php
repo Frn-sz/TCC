@@ -5,20 +5,20 @@
 include "../conecta.php";
 require_once "../interfaces/header.php";
 
-$id = $_GET['id'];
+$id = $_GET['idTop'];
 
-$sql = "SELECT * FROM topicos WHERE id='$id'";
+$sql = "SELECT * FROM topicos WHERE idTop='$id'";
 $resultado = mysqli_query($conexao, $sql);
 $topicos = mysqli_fetch_array($resultado, MYSQLI_BOTH);
 mysqli_close($conexao);
 ?>
 
 <form action="alterat.php" method="post" class="container" T>
-    <input type="hidden" name="id" value="<?= $topicos['id']; ?>">
+    <input type="hidden" name="id" value="<?= $topicos['idTop']; ?>">
 
     <div class="input-field">
         <span class="white-text">Título</span>
-        <input type="text" name="titulo" value="<?= $topicos['titulo']; ?>">
+        <input type="text" name="titulo" value="<?= $topicos['tituloTop']; ?>">
     </div>
 
 

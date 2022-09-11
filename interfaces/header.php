@@ -172,7 +172,7 @@
     select:-webkit-autofill,
     select:-webkit-autofill:hover,
     select:-webkit-autofill:focus {
-
+      box-shadow: none;
       -webkit-text-fill-color: black !important;
       -webkit-box-shadow: 0 0 0px 1000px rgba(232, 230, 234, 255) inset !important;
       transition: background-color 5000s ease-in-out 0s !important;
@@ -186,7 +186,7 @@
     <button href="#" data-target="slide-out" class="sidenav-trigger btn-flat"><i class="material-icons white-text">menu</i></button>
     <div class="nav-wrapper">
       <a href="../Inicio/"><img class="left white-text logo" width=150px src="../Imagens/LogoTCC.png"> </a>
-      <ul class="right hide-on-med-and-med">
+      <ul class="right hide-on-med">
         <?php if (!isset($_SESSION['id_usuario'])) { ?>
           <li><a class="buttonUser" href="../usuarios/cadastrouser.php">Cadastre-se</a></li>
           <li><a class="buttonUser" href="../usuarios/telalogin.php">Entrar</a></li>

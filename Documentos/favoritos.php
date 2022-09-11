@@ -20,10 +20,9 @@
             <div class='card hoverable'>
               <div class='card-image cardindex'>
 
-                <?php if (!is_null($documento['imagem'])) {
-                  echo "sas";  ?>
-                  
-                  <img class='materialboxed imagem' src='../upload/<?= $documento['imagem'] ?>'>
+                <?php if (!is_null($documento['imagem'])) { ?>
+
+                  <img class='imagem' src='../upload/<?= $documento['imagem'] ?>'>
                 <?php } else { ?>
                   <div class='center'>
                     "Sem imagem"
@@ -40,11 +39,11 @@
               </div>
               <div class='card-action center'>
 
-                <a href='../Documentos/vermais.php?id=<?= $documento['id'] ?>' class='btn-large waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
+                <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-large waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
 
 
 
-                <a class="btn-large white black-text" href="removerfavorito.php?id=<?= $documento['id'] ?>">Remover favorito</a>
+                <a class="btn-large white black-text" href="removerfavorito.php?id=<?= $documento['idDoc'] ?>">Remover favorito</a>
 
 
 
@@ -56,7 +55,7 @@
         <?php    }
       } else { ?>
         <div class="center">
-          <h4 class="white-text"> Não há nenhuma favorito na sua lista </h4>
+          <h4 class="white-text"> Não há nenhum favorito na sua lista </h4>
         </div>
       <?php } ?>
 
