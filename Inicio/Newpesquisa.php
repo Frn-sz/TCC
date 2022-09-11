@@ -29,7 +29,7 @@ if (!isset($_SESSION)) {
      include('../conecta.php');
      include('../interfaces/header.php');
      if (isset($_GET['busca'])) {
-          $pesquisa = "%" . trim($_GET['busca']) . "%";
+          $pesquisa = "%" . mysqli_real_escape_string($conexao, trim($_GET['busca'])) . "%";
      } else {
           $pesquisa = "%%";
      }
@@ -48,11 +48,10 @@ if (!isset($_SESSION)) {
            WHERE D.tituloTop LIKE '$pesquisa' 
            OR F.tituloDoc LIKE '$pesquisa'
            OR F.transcricao LIKE '$pesquisa'
+           OR F.palavrasChaves LIKE '$pesquisa'
            ";
-
      $resultadoNum = mysqli_query($conexao, $BuscaTotal);
      $numRows = mysqli_fetch_row($resultadoNum);
-
      $Busca =
           "SELECT * FROM documentos AS F
            INNER JOIN topicos AS D
@@ -61,6 +60,7 @@ if (!isset($_SESSION)) {
            WHERE D.tituloTop LIKE '$pesquisa' 
            OR F.tituloDoc LIKE '$pesquisa'
            OR F.transcricao LIKE '$pesquisa'
+           OR F.palavrasChaves LIKE '$pesquisa'
            ORDER BY F.tituloDoc";
 
      //Fazendo a busca por título, Tópicos, Palavras chaves e transcricao
@@ -100,16 +100,35 @@ if (!isset($_SESSION)) {
               <?php }
                                         if (isset($_SESSION['nvl_usuario'])) {
                                              if ($_SESSION['nvl_usuario'] == 1) { ?>
-               <a href = ' ../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
+                                             <a href = ' ../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
                                              <a href='../Documentos/formaltera.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light white'> <i class='material-icons black-text'>edit</i> </a>
-                                             <a href='#' onclick='confirmacao($documento[idDoc])' class='btn-floating waves-effect waves-light white'> <i class='material-icons black-text'> delete </i> </a>
+                                             <a class="waves-effect waves-light btn-floating modal-trigger white " href="#modal<?= $documento['idDoc'] ?>"><i class="material-icons black-text">delete</i></a>
                                    <?php }
                                         } ?>
                                    </div>
                               </div>
                          </div>
 
-
+                         <div id="modal<?= $documento['idDoc'] ?>" class="modal">
+                              <div class="modal-content">
+                                   <div class="row">
+                                        <div class="center">
+                                             <h4 class="black-text">Deseja mesmo excluir este documento?</h4>
+                                        </div>
+                                   </div>
+                                   <form action="../Documentos/excluir.php" method="get">
+                                        <div class="row">
+                                             <div class="center">
+                                                  <input type="hidden" name="idDoc" value="<?= $documento['idDoc']; ?>">
+                                             </div>
+                                        </div>
+                                        <div class="center">
+                                             <button type="submit" class="btn waves-effect waves-green white black-text">Confirmar</button>
+                                             <a href="#!" class="modal-close waves-effect waves-red white btn black-text">Cancelar</a>
+                                        </div>
+                                   </form>
+                              </div>
+                         </div>
                     <?php } ?>
           </div>
      </div>

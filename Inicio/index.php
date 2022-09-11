@@ -133,53 +133,39 @@ if (!isset($_SESSION)) {
                                    <div class="row">
                                         <div class="center">
                                              <input type="hidden" name="idDoc" value="<?= $documento['idDoc']; ?>">
-
                                         </div>
                                    </div>
-
                                    <div class="center">
                                         <button type="submit" class="btn waves-effect waves-green white black-text">Confirmar</button>
                                         <a href="#!" class="modal-close waves-effect waves-red white btn black-text">Cancelar</a>
                                    </div>
-
                               </form>
                          </div>
-
                     </div>
-
-
-
-
-
-
                <?php    } ?>
           </div>
      </div>
      </div>
-
-     <div class="row">
-          <div class="center">
-               <ul class="pagination">
-                    <?php if ($pag == 1) { ?>
-                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                    <?php } else { ?>
-                         <li class="waves-effect"><a href="index.php?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
-                    <?php }
-                    for ($i = 1; $i <= $ultimaPag; $i++) { ?>
-                         <li class="active white "><a class="black-text" href="index.php?pagina=<?= $i ?>"><?= $i ?></a></li>
-                    <?php }
-                    if ($pag < $ultimaPag) { ?>
-                         <li class="waves-effect"><a href="index.php?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
-                    <?php } else { ?>
-                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                    <?php } ?>
-               </ul>
-          </div>
-     </div>
-
-
 </main>
-
+<div class="row">
+     <div class="center">
+          <ul class="pagination">
+               <?php if ($pag == 1) { ?>
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+               <?php } else { ?>
+                    <li class="waves-effect"><a href="index.php?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
+               <?php }
+               for ($i = 1; $i <= $ultimaPag; $i++) { ?>
+                    <li class="active white "><a class="black-text" href="index.php?pagina=<?= $i ?>"><?= $i ?></a></li>
+               <?php }
+               if ($pag < $ultimaPag) { ?>
+                    <li class="waves-effect"><a href="index.php?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
+               <?php } else { ?>
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+               <?php } ?>
+          </ul>
+     </div>
+</div>
 <?php include_once "../interfaces/footer.php"; ?>
 
 </html>

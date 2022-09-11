@@ -25,8 +25,7 @@
       display: flex;
       min-height: 150vh;
       flex-direction: column;
-      background: rgb(20, 5, 38);
-      background: radial-gradient(circle, rgba(20, 5, 38, 1) 35%, rgba(41, 0, 51, 1) 100%);
+      background-image: linear-gradient(to bottom, #1f0121, #1d0018, #19000f, #100006, #000000);
     }
 
     footer {
@@ -177,6 +176,13 @@
       -webkit-box-shadow: 0 0 0px 1000px rgba(232, 230, 234, 255) inset !important;
       transition: background-color 5000s ease-in-out 0s !important;
     }
+
+    .ordenar {
+      background-color: white !important;
+
+      border-top-left-radius: 5px !important;
+      border-top-right-radius: 5px !important;
+    }
   </style>
 </head>
 <a style="color:white"><?php //var_dump($_SESSION); 
@@ -197,6 +203,7 @@
     </div>
     <div style="max-width:20%;margin-left:75%" class="nav-content">
       <form action="../Inicio/Newpesquisa.php" method="get">
+
         <div class="input-field">
           <input class="barraPesquisa" name="busca" id="search" type="search" required>
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
@@ -205,12 +212,9 @@
     </form>
   </nav>
 </div>
-
 <ul id="slide-out" class="sidenav">
   <li>
     <div class="user-view">
-
-
       <?php if (isset($_SESSION['id_usuario'])) { ?>
         <img style='border-radius:5%' class="hoverable materialboxed" width=200 src="../upload/<?= $_SESSION['foto'] ?>">
         <span class="white-text name large"><?= $_SESSION['nome_usuario'] ?></span>

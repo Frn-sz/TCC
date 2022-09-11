@@ -11,9 +11,6 @@ $idDoc = $_POST['idDoc'];
 $url = $_POST['url'];
 $transcricao = mysqli_real_escape_string($conexao, $_POST['transcricao']);
 $insert = "UPDATE `documentos` SET `transcricao` = '$transcricao' WHERE idDoc = '$idDoc'";
-var_dump(
-    $insert
-);
 $result = mysqli_query($conexao, $insert);
 if ($result) {
     header("location:$url");

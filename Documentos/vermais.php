@@ -15,7 +15,7 @@ $especie = $documentos['especie'];
 $genero = $documentos['genero'];
 $locali = $documentos['localizacao'];
 $anoDoc = $documentos['anoDocumento'];
-$plvsChaves = explode(".", $documentos['palavrasChaves']);
+$plvsChaves = explode(",", $documentos['palavrasChaves']);
 
 $transcricao = $documentos['transcricao'];
 $imagem = $documentos['imagem'];
@@ -29,7 +29,7 @@ $imagem = $documentos['imagem'];
     }
 
     .caixaDocumento {
-        background-color: rgba(255, 255, 255, 0.8) !important;
+        background-color: rgba(255, 255, 255, 0.9) !important;
         border-radius: 25px;
     }
 
@@ -126,8 +126,10 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
                 <div class="row">
                     <div class="center">
                         <br>
-                        <a class="waves-effect waves-light btn modal-trigger botaoTrans" href="addTranscricao.php?auto=1&&idDoc=<?= $documentos['idDoc'] ?>">Transcrição Automática</a>
-                        <a class="waves-effect waves-light btn modal-trigger botaoTrans" href="addTranscricao.php?auto=0&&idDoc=<?= $documentos['idDoc'] ?>">Transcrição Manual</a>
+
+
+                        <a class="waves-effect waves-light btn modal-trigger botaoTrans" href="#modalTrans">Transcrição Automática</a>
+                        <a class="waves-effect waves-light btn botaoTrans" href="addTranscricao.php?auto=0&&idDoc=<?= $documentos['idDoc'] ?>">Transcrição Manual</a>
                     </div>
                 </div>
             <?php }
@@ -178,11 +180,7 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
             </div>
         </div>
         <br>
-
-
-
         <?php if (isset($_SESSION['id_usuario']) and $existe == false) { ?>
-
             <form action="addfav.php" method="get">
                 <div class="row">
                     <div class="center">
@@ -208,10 +206,27 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
     </div>
     <div id="modalDoc" class="modal">
         <div class="modal-content ">
-            <a class="black-text"><?php echo $transcricao ?></a>
+            <a class="black-text"><?= $transcricao ?></a>
         </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+    <div id="modalTrans" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <div class="center">
+                    <h4 class="black-text">Deseja realizar a transcrição automática?</h4>
+                </div>
+                <span class="black-text">A transcrição automática necessita de revisão. Além disso, ela excluirá a transcrição anteriormente salva. Quanto melhor for a qualidade e visibilidade da imagem, melhor será o resultado.</span>
+            </div>
+            <form action="addTranscricao.php?" method="get">
+                <div class="row">
+                    <div class="center">
+                        <input type=hidden name="auto" value="1">
+                        <input type="hidden" name="idDoc" value="<?= $documentos['idDoc'] ?>">
+                        <button type="submit" class="btn waves-effect waves-green white black-text">Confirmar</button>
+                        <a href="#!" class="modal-close waves-effect waves-red white btn black-text">Cancelar</a>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </main>

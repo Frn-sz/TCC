@@ -1,38 +1,58 @@
 <title>Alterar</title>
+<style>
+    .formAltera {
+        color: black !important;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    label {
+        color: black !important;
+    }
+
+    .TopicosTitulo {
+        display: inline-block;
+        text-align: center;
+    }
+
+    input {
+        color: black !important;
+    }
+
+    button {
+        border-radius: 10% !important;
+    }
+</style>
 
 <?php
-
 include "../conecta.php";
 require_once "../interfaces/header.php";
-
 $id = $_GET['idTop'];
-
 $sql = "SELECT * FROM topicos WHERE idTop='$id'";
 $resultado = mysqli_query($conexao, $sql);
 $topicos = mysqli_fetch_array($resultado, MYSQLI_BOTH);
 mysqli_close($conexao);
 ?>
-
-<form action="alterat.php" method="post" class="container" T>
-    <input type="hidden" name="id" value="<?= $topicos['idTop']; ?>">
-
-    <div class="input-field">
-        <span class="white-text">Título</span>
-        <input type="text" name="titulo" value="<?= $topicos['tituloTop']; ?>">
+<main>
+    <br><br><br><br>
+    <div class="container formAltera">
+        <form action="alterat.php" method="post">
+            <input type="hidden" name="id" value="<?= $topicos['idTop']; ?>">
+            <div class="input-field">
+                <input type="text" name="titulo" value="<?= $topicos['tituloTop']; ?>">
+                <label for="titulo">Título</label>
+            </div>
+            <div class="center">
+                <button class="btn waves-effect waves-light black-text white" type="submit" name="action">
+                    <i class="material-icons">check</i>
+                </button>
+            </div>
+        </form>
     </div>
+</main>
 
-
-    <div class="center">
-        <button style='border-radius:10px;' class="btn waves-effect waves-light grey darken-1" type="reset">
-            <i class="material-icons">restore</i>
-        </button>
-        <button style='border-radius:10px;' class="btn waves-effect waves-light grey darken-1" type="submit" name="action">
-            <i class="material-icons">check</i>
-        </button>
-    </div>
-</form>
-
-
-</body>
-
-</html>
+<?php include('../interfaces/footer.php'); ?>
