@@ -42,7 +42,9 @@
 	}
 	$resultado = mysqli_query($conexao, $sql);
 	$id = mysqli_insert_id($conexao);
+	var_dump($sql);
 	if ($resultado) {
+		echo "sus";
 		foreach ($idsTopicos as $idTopico) {
 			//Fazendo a associação de Topicos e Documentos na tabela associativa (tabela_assoc)
 			if ($idTopico != 0) {
@@ -60,6 +62,7 @@
 				}
 			}
 		}
+
 		if ($erro == False) {
 			header("location:../Inicio/listaDocs.php");
 		}
