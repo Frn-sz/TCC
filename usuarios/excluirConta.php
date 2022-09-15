@@ -17,7 +17,7 @@ $resultSet = mysqli_query($conexao,$removerFavoritos);
 if($result and $resultSet)
 session_destroy();
 unlink("../upload/" . $_SESSION['foto']);
-header("location:../Inicio/");
+header("location:../Inicio/listaDocs");
 }else{
     $_SESSION['mensagem'] = "Senha incorreta";
     header("Location:$url");
