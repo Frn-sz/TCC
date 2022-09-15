@@ -11,13 +11,13 @@ if (isset($_FILES['arquivo'])) {
 }
 $id = $_POST['id'];
 $idsTopicos = array($_POST[1], $_POST[2], $_POST[3], $_POST[4], $_POST[5]);
-$titulo = trim($_POST['titulo']);
-$forma = trim($_POST['forma']);
-$formato = trim($_POST['formato']);
-$especie = trim($_POST['especie']);
-$genero = trim($_POST['genero']);
-$localizacao = trim($_POST['localizacao']);
-$imagem  = trim($nome);
+$titulo = mysqli_real_escape_string($conexao, $_POST['titulo']);
+$forma = mysqli_real_escape_string($conexao, $_POST['forma']);
+$formato = mysqli_real_escape_string($conexao, $_POST['formato']);
+$especie = mysqli_real_escape_string($conexao, $_POST['especie']);
+$genero = mysqli_real_escape_string($conexao, $_POST['genero']);
+$localizacao = mysqli_real_escape_string($conexao, $_POST['localizacao']);
+$imagem  = mysqli_real_escape_string($conexao, $nome);
 $ApagandoAssociacoes = "DELETE FROM `tabela_assoc` WHERE id_doc = $id";
 $result = mysqli_query($conexao, $ApagandoAssociacoes);
 
@@ -42,7 +42,7 @@ if ($resultado) {
         }
     }
 
-    header("location:../Inicio/index.php");
+    header("location:../Inicio/listaDocs.php");
 }
 
 

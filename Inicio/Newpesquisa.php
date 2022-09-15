@@ -43,8 +43,8 @@ if (!isset($_SESSION)) {
 
      $Busca =
           "SELECT DISTINCT idDoc FROM documentos AS F
-           INNER JOIN topicos AS D
-           INNER JOIN tabela_assoc AS T
+            JOIN topicos AS D
+            JOIN tabela_assoc AS T
            ON T.id_topico = D.idTop && F.idDoc = T.id_doc 
            WHERE D.tituloTop LIKE '$pesquisa' 
            OR F.tituloDoc LIKE '$pesquisa'

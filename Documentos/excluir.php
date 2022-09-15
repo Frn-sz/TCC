@@ -14,6 +14,6 @@ $resultado = mysqli_query($conexao, $sql);
 mysqli_close($conexao);
 if ($resultado && $resultado2) {
     unlink("../upload/" . $Imagem['imagem']);
-    header("Location:../Inicio/index.php");
+    header("Location:../Inicio/listaDocs.php");
 }
 ?>

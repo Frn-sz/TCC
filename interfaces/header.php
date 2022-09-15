@@ -3,11 +3,9 @@
 
 <head>
   <?php
-
   if (!isset($_SESSION)) {
     session_start();
   }
-
   ?>
   <!-- <span style="color:white"><?php //var_dump($_SESSION); 
                                   ?></span> -->
@@ -21,6 +19,10 @@
   <!--Let  browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    html {
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
     body {
       display: flex;
       min-height: 150vh;
@@ -191,7 +193,7 @@
   <nav class="nav-extended transparent">
     <button href="#" data-target="slide-out" class="sidenav-trigger btn-flat"><i class="material-icons white-text">menu</i></button>
     <div class="nav-wrapper">
-      <a href="../Inicio/"><img class="left white-text logo" width=150px src="../Imagens/LogoTCC.png"> </a>
+      <a href="../Inicio/listaDocs.php"><img class="left white-text logo" width=150px src="../Imagens/LogoTCC.png"> </a>
       <ul class="right hide-on-med">
         <?php if (!isset($_SESSION['id_usuario'])) { ?>
           <li><a class="buttonUser" href="../usuarios/cadastrouser.php">Cadastre-se</a></li>
@@ -234,7 +236,7 @@
 
   <?php } ?>
 
-  <li><a class="white-text" href="../Inicio/index.php">Lista de Documentos</a></li>
+  <li><a class="white-text" href="../Inicio/listaDocs.php">Lista de Documentos</a></li>
   <li><a class="white-text" href="../Topicos/topicos.php">Lista de Tópicos</a></li>
   <?php if (isset($_SESSION['id_usuario'])) { ?>
     <li><a class="white-text" href="../Documentos/favoritos.php"> Lista de Favoritos </a> </li>
@@ -242,7 +244,7 @@
   <?php } ?>
   <?php if (isset($_SESSION['nvl_usuario'])) {
 
-    if ($_SESSION['nvl_usuario'] == 1 or $_SESSION['nvl_usuario'] == 3) { ?>
+    if ($_SESSION['nvl_usuario'] == 1) { ?>
       <li><a class="white-text" href="../usuarios/listausers.php">Lista de Usuários</a></li>
       <?php if ($_SESSION['nvl_usuario'] == 1) { ?>
         <li><a class="white-text" href="../cadastroDeGerentes/formCadastro.php">Cadastrar Gerentes</a></li>

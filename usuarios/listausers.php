@@ -7,12 +7,9 @@ $sql = "SELECT * FROM `user`";
 $result = mysqli_query($conexao, $sql);
 $usuarios = mysqli_fetch_all($result, MYSQLI_BOTH);
 if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] != "1") {
-     header("location:../Inicio/");
+     header("location:../Inicio/listaDocs");
 }
 ?>
-
-
-
 <title>Lista de Usuários</title>
 <style>
      .tabelaUsuarios {

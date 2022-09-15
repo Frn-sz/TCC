@@ -29,8 +29,9 @@ $imagem = $documentos['imagem'];
     }
 
     .caixaDocumento {
-        background-color: rgba(255, 255, 255, 0.9) !important;
-        border-radius: 25px;
+        background-color: rgba(255, 255, 255, 0.8) !important;
+        border-radius: 5px;
+        padding: 10px;
     }
 
     .imagemDoc {
@@ -68,7 +69,7 @@ $imagem = $documentos['imagem'];
         color: rgba(0, 0, 0, 0) !important;
         font-weight: 600;
         background:
-            linear-gradient(90deg, purple 50%, #000 0) var(--_p, 100%)/200% no-repeat !important;
+            linear-gradient(90deg, #620063 50%, #000 0) var(--_p, 100%)/200% no-repeat !important;
         -webkit-background-clip: text !important;
         background-clip: text !important;
         transition: .4s !important;
@@ -97,7 +98,7 @@ if (isset($_SESSION['id_usuario'])) {
         $existe = true;
     }
 }
-$pegandoTopicos = "SELECT tituloTop FROM topicos INNER JOIN tabela_assoc AS T ON T.id_doc = '$id' WHERE idTop = T.id_topico";
+$pegandoTopicos = "SELECT * FROM topicos INNER JOIN tabela_assoc AS T ON T.id_doc = '$id' WHERE idTop = T.id_topico";
 $resultSet = mysqli_query($conexao, $pegandoTopicos);
 $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
 ?>
@@ -169,9 +170,11 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
         <div class="row">
             <div class="center">
                 <?php
-                foreach ($topicos as $chave => $topico) { ?>
-                    <div class='chip white'><a class="black-text" href=#> <?= $topico['tituloTop'] ?> </a> </div>
+                foreach ($topicos as $chave => $topico) {
+                    if ($topico['idTop'] != "33") { ?>
+                        <div class='chip white'><a class="black-text" href=#> <?= $topico['tituloTop'] ?> </a> </div>
                     <?php }
+                }
                 foreach ($plvsChaves as $plvChave) {
                     if ($plvChave != "." and $plvChave != "") { ?>
                         <div class='chip white'><a class="black-text" href=#> <?= $plvChave ?> </a> </div>

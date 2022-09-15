@@ -20,7 +20,7 @@
 		*/
 	}
 	include_once "../conecta.php";
-	$erro = false;
+	$erro = False;
 	$idsTopicos = array($_POST[1], $_POST[2], $_POST[3], $_POST[4], $_POST[5]);
 	$titulo = $_POST['titulo'];
 	$forma = $_POST['forma'];
@@ -44,18 +44,28 @@
 	$id = mysqli_insert_id($conexao);
 	var_dump($sql);
 	if ($resultado) {
+		echo "sus";
 		foreach ($idsTopicos as $idTopico) {
 			//Fazendo a associação de Topicos e Documentos na tabela associativa (tabela_assoc)
 			if ($idTopico != 0) {
 				$AssociandoDocTopicos = "INSERT INTO tabela_assoc (id_topico, id_doc) VALUES ('$idTopico', '$id')";
 				$resultSet = mysqli_query($conexao, $AssociandoDocTopicos);
-				if ($resultSet) {
-					$erro = true;
+				if (!$resultSet) {
+					$erro = True;
+				}
+			} else {
+
+				$AssociandoDocTopicos = "INSERT INTO tabela_assoc (id_topico, id_doc) VALUES ('33', '$id')";
+				$resultSet = mysqli_query($conexao, $AssociandoDocTopicos);
+				if (!$resultSet) {
+					$erro = True;
 				}
 			}
 		}
 
-		header("location:../Inicio/index.php");
+		if ($erro == False) {
+			header("location:../Inicio/listaDocs.php");
+		}
 	}
 
 
