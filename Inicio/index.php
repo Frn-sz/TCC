@@ -33,14 +33,21 @@ foreach ($Keys as $key) {
 }
 
 ?>
-
+<style>
+    .imagemCarousel {
+        min-width: 50%;
+        min-height: 50%;
+        max-width: 70%;
+        max-height: 70%;
+    }
+</style>
 <main>
     <br><br><br><br>
     <div class="owl-carousel owl-theme">
         <?php
         foreach ($documentos as $documento) { ?>
             <div class="zoom">
-                <div class="item"><img width=300 src="../upload/<?= $documento['imagem'] ?>"></div>
+                <div class="item"><img class="imagemCarousel" src="../upload/<?= $documento['imagem'] ?>"></div>
             </div>
         <?php }
 

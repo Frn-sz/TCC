@@ -17,7 +17,8 @@
 
      .TabelaTopicos {
           background-color: rgba(255, 255, 255, 0.8);
-          border-radius: 15px;
+          border-top-right-radius: 15px;
+          border-top-left-radius: 15px;
 
      }
 
@@ -29,6 +30,7 @@
           padding: 10px;
           border-radius: 10px;
           font-weight: bold;
+          background-color: rgba(255, 255, 255, 0.8);
      }
 </style>
 <?php
@@ -60,7 +62,7 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
      } ?>
      <br>
      <div class="container">
-          <span class="white aviso">Obs: Clique nos assuntos para ver os documentos de cada um.</span>
+          <span class="aviso">Obs: Clique nos assuntos para ver os documentos de cada um.</span>
      </div>
      <br>
      <div class="container">
@@ -72,16 +74,18 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <?php } ?>
                </thead>
                <tbody>
-                    <?php foreach ($topicos as $topico) { ?>
-                         <tr>
-                              <td class="center"><a class="linkAssunto black-text LinkTopico" href=" ../Inicio/Newpesquisa.php?busca=<?= $topico['tituloTop'] ?>"><?= $topico['tituloTop'] ?></a></td>
-                              <?php if ($adm) { ?>
-                                   <td class="center"><a class="btn-floating small white" href="formalterat.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons black-text">edit</a>
-                                        &nbsp <a class="btn-floating small white" href="excluirt.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons black-text ">delete</a>
-                                   </td>
-                              <?php } ?>
-                         </tr>
+                    <?php foreach ($topicos as $topico) {
+                         if ($topico['tituloTop'] != "PlaceHolderSystem") { ?>
+                              <tr>
+                                   <td class="center"><a class="linkAssunto black-text LinkTopico" href=" ../Inicio/Newpesquisa.php?busca=<?= $topico['tituloTop'] ?>"><?= $topico['tituloTop'] ?></a></td>
+                                   <?php if ($adm) { ?>
+                                        <td class="center"><a class="btn-floating small white" href="formalterat.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons black-text">edit</a>
+                                             &nbsp <a class="btn-floating small white" href="excluirt.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons black-text ">delete</a>
+                                        </td>
+                                   <?php } ?>
+                              </tr>
                     <?php
+                         }
                     } ?>
                </tbody>
           </table>

@@ -18,32 +18,45 @@ $especie = mysqli_real_escape_string($conexao, $_POST['especie']);
 $genero = mysqli_real_escape_string($conexao, $_POST['genero']);
 $localizacao = mysqli_real_escape_string($conexao, $_POST['localizacao']);
 $imagem  = mysqli_real_escape_string($conexao, $nome);
+$palavrasChaves = mysqli_real_escape_string($conexao, $_POST['plvChaves']);
 $ApagandoAssociacoes = "DELETE FROM `tabela_assoc` WHERE id_doc = $id";
 $result = mysqli_query($conexao, $ApagandoAssociacoes);
 
 if ($_FILES['arquivo']['error'] == 0) {
-    $sql = "UPDATE documentos SET tituloDoc='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao', imagem = '$imagem' WHERE idDoc=$id ";
+    $sql = "UPDATE documentos SET tituloDoc='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao', imagem = '$imagem', palavrasChaves = '$palavrasChaves' WHERE idDoc=$id ";
 } else {
-
-    $sql = "UPDATE documentos SET tituloDoc='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao' WHERE idDoc=$id ";
+    $sql = "UPDATE documentos SET tituloDoc='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao', palavrasChaves = '$palavrasChaves' WHERE idDoc=$id ";
 }
 
 $resultado = mysqli_query($conexao, $sql);
-
+// var_dump($sql);
+// die();
 if ($resultado) {
+    //Fazendo a associação de Topicos e Documentos na tabela associativa (tabela_assoc)
     foreach ($idsTopicos as $idTopico) {
         //Fazendo a associação de Topicos e Documentos na tabela associativa (tabela_assoc)
         if ($idTopico != 0) {
             $AssociandoDocTopicos = "INSERT INTO tabela_assoc (id_topico, id_doc) VALUES ('$idTopico', '$id')";
             $resultSet = mysqli_query($conexao, $AssociandoDocTopicos);
-            if ($resultSet) {
-                $erro = true;
+            if (!$resultSet) {
+                $erro = True;
+            }
+        } else {
+            $AssociandoDocTopicos = "INSERT INTO tabela_assoc (id_topico, id_doc) VALUES ('33', '$id')";
+            $resultSet = mysqli_query($conexao, $AssociandoDocTopicos);
+            if (!$resultSet) {
+                $erro = True;
             }
         }
     }
 
-    header("location:../Inicio/listaDocs.php");
+    if ($erro == False) {
+        header("location:../Inicio/listaDocs.php");
+    }
 }
+
+header("location:../Inicio/listaDocs.php");
+
 
 
 
