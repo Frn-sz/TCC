@@ -7,8 +7,6 @@
     session_start();
   }
   ?>
-  <!-- <span style="color:white"><?php //var_dump($_SESSION); 
-                                  ?></span> -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,22 +41,8 @@
 
     }
 
-    #botaoinsere {
-      margin-left: 50%;
-    }
-
     .usuariologout {
       color: white;
-    }
-
-    .cardindex {
-      height: 40vh;
-
-    }
-
-    .cardpesquisa {
-      height: 50vh;
-      ;
     }
 
     .search {
@@ -183,8 +167,7 @@
     }
   </style>
 </head>
-<a style="color:white"><?php //var_dump($_SESSION); 
-                        ?> </a>
+
 <div class="navbar-fixed">
   <nav class="nav-extended transparent">
     <button href="#" data-target="slide-out" class="sidenav-trigger btn-flat"><i class="material-icons white-text">menu</i></button>
@@ -200,8 +183,7 @@
       </ul>
     </div>
     <div style="max-width:20%;margin-left:75%" class="nav-content">
-      <form action="../Inicio/Newpesquisa.php" method="get">
-
+      <form action="../Inicio/listaDocs.php" method="get">
         <div class="input-field">
           <input class="barraPesquisa" name="busca" id="search" type="search" required>
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
