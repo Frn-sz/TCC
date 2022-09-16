@@ -33,6 +33,13 @@ if (!isset($_SESSION)) {
           padding: 7px;
           border-radius: 7px;
      }
+
+     .card-image {
+          max-height: 30vh;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+     }
 </style>
 <main>
 
@@ -59,7 +66,7 @@ if (!isset($_SESSION)) {
      } else {
           $pag = 1;
      }
-     $limit = 3;
+     $limit = 6;
      $offset = $limit * ($pag - 1);
      $sqlTotal = "SELECT count(*) FROM `documentos` ORDER BY tituloDoc";
      $resultadoNum = mysqli_query($conexao, $sqlTotal);
@@ -78,13 +85,11 @@ if (!isset($_SESSION)) {
                <?php foreach ($documentos as $chave => $documento) { ?>
 
                     <div class="caixa">
-                         <div class='col s2 m4'>
-                              <div class='card hoverable zoom'>
+                         <div class='col s2 m3'>
+                              <div class='card hoverable'>
                                    <div class='card-image cardindex'>
-
                                         <?php if ($documento['imagem'] != "") {  ?>
-
-                                             <img class='imagem ' src='../upload/<?= $documento['imagem'] ?>'>
+                                             <img class='imagem' src='../upload/<?= $documento['imagem'] ?>'>
                                         <?php } else { ?>
                                              <div class='center'>
                                                   "Sem imagem"
@@ -146,26 +151,27 @@ if (!isset($_SESSION)) {
           </div>
      </div>
      </div>
-</main>
-<div class="row">
-     <div class="center">
-          <ul class="pagination">
-               <?php if ($pag == 1) { ?>
-                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-               <?php } else { ?>
-                    <li class="waves-effect"><a href="listaDocs?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
-               <?php }
-               for ($i = 1; $i <= $ultimaPag; $i++) { ?>
-                    <li class="active white "><a class="black-text" href="listaDocs?pagina=<?= $i ?>"><?= $i ?></a></li>
-               <?php }
-               if ($pag < $ultimaPag) { ?>
-                    <li class="waves-effect"><a href="listaDocs?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
-               <?php } else { ?>
-                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-               <?php } ?>
-          </ul>
+     <div class="row">
+          <div class="center">
+               <ul class="pagination">
+                    <?php if ($pag == 1) { ?>
+                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <?php } else { ?>
+                         <li class="waves-effect"><a href="listaDocs?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
+                    <?php }
+                    for ($i = 1; $i <= $ultimaPag; $i++) { ?>
+                         <li class="active white "><a class="black-text" href="listaDocs?pagina=<?= $i ?>"><?= $i ?></a></li>
+                    <?php }
+                    if ($pag < $ultimaPag) { ?>
+                         <li class="waves-effect"><a href="listaDocs?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
+                    <?php } else { ?>
+                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    <?php } ?>
+               </ul>
+          </div>
      </div>
-</div>
+</main>
+
 <?php include_once "../interfaces/footer.php"; ?>
 
 </html>

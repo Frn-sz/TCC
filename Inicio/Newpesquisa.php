@@ -12,6 +12,7 @@ if (!isset($_SESSION)) {
           background-color: white;
           padding: 7px;
           border-radius: 7px;
+
      }
 </style>
 <script>
@@ -38,9 +39,8 @@ if (!isset($_SESSION)) {
      } else {
           $pag = 1;
      }
-     $limit = 3;
+     $limit = 6;
      $offset = $limit * ($pag - 1);
-
      $Busca =
           "SELECT DISTINCT idDoc FROM documentos AS F
             JOIN topicos AS D
@@ -72,7 +72,7 @@ if (!isset($_SESSION)) {
                <?php
                if (isset($documentos)) {
                     foreach ($documentos as $chave => $documento) { ?>
-                         <div class='col s2 m4'>
+                         <div class='col s2 m3'>
                               <div class='card hoverable'>
                                    <div class='card-image cardpesquisa'>
                                         <?php if ($documento['imagem'] != "") {  ?>
@@ -86,8 +86,8 @@ if (!isset($_SESSION)) {
                                         <span class='card-title white-text'><?= $documento['tituloDoc'] ?></span>
                                    </div>
                                    <div class='card-content'>
-                                        <p> Forma:<?= $documento['forma'] ?><br></p>
-                                        <p> Formato:<?= $documento['formato'] ?> <br></p>
+                                        <p> Forma:<?= $documento['forma'] ?> </p>
+                                        <p> Formato:<?= $documento['formato'] ?> </p>
                                         <p> Espécie: <?= $documento['especie'] ?></p>
                                    </div>
                                    <div class='card-action center'>
@@ -136,27 +136,28 @@ if (!isset($_SESSION)) {
      </div>
 
 <?php } ?>
+<div class="row">
+     <div class="center">
+          <ul class="pagination">
+               <?php if ($pag == 1) { ?>
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+               <?php } else { ?>
+                    <li class="waves-effect"><a href="Newpesquisa.php?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
+               <?php }
+               for ($i = 1; $i <= $ultimaPag; $i++) { ?>
+                    <li class="active white "><a class="black-text" href="Newpesquisa.php?pagina=<?= $i ?>"><?= $i ?></a></li>
+               <?php }
+               if ($pag < $ultimaPag) { ?>
+                    <li class="waves-effect"><a href="Newpesquisa.php?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
+               <?php } else { ?>
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+               <?php } ?>
+          </ul>
+     </div>
+</div>
 </main>
 <?php if ($numRows > 0) { ?>
-     <div class="row">
-          <div class="center">
-               <ul class="pagination">
-                    <?php if ($pag == 1) { ?>
-                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                    <?php } else { ?>
-                         <li class="waves-effect"><a href="Newpesquisa.php?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
-                    <?php }
-                    for ($i = 1; $i <= $ultimaPag; $i++) { ?>
-                         <li class="active white "><a class="black-text" href="Newpesquisa.php?pagina=<?= $i ?>"><?= $i ?></a></li>
-                    <?php }
-                    if ($pag < $ultimaPag) { ?>
-                         <li class="waves-effect"><a href="Newpesquisa.php?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
-                    <?php } else { ?>
-                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                    <?php } ?>
-               </ul>
-          </div>
-     </div>
+
 
 <?php } ?>
 <?php require_once "../interfaces/footer.php" ?>

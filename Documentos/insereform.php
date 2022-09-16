@@ -85,9 +85,10 @@
         <div class="row">
           <div class="input-field">
             <textarea type="text" class="materialize-textarea" name="plvChaves" id="plvChaves" required></textarea>
-            <label for="plvChaves">Palavras Chaves (Separar com espaço) </label>
+            <label for="plvChaves">Palavras Chaves (Separar com vírgula) </label>
           </div>
         </div>
+
         <div class="row">
           <select name="1"><?= puxartopicos() ?> </select>
         </div>

@@ -79,10 +79,6 @@
       color: lightgray;
     }
 
-    .imagem {
-      height: 35vh;
-      max-width: 100%;
-    }
 
     .imagemUsuario {
       max-width: 100%;

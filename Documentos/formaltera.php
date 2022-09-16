@@ -78,7 +78,12 @@ mysqli_close($conexao);
       <input id="ano" type="number" name="ano" min="1" value="<?= $documento['anoDocumento'] ?>" required>
       <label for="ano">Ano do documento</label>
     </div>
-
+    <div class="row">
+      <div class="input-field">
+        <textarea type="text" class="materialize-textarea" name="plvChaves" id="plvChaves" required><?= $documento['palavrasChaves'] ?></textarea>
+        <label for="plvChaves">Palavras Chaves (Separar com vírgula) </label>
+      </div>
+    </div>
     <div class="row">
       <span>Tópico 1</span>
       <select name="1"><?php puxartopicos() ?></select>
