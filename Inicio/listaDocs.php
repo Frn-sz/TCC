@@ -46,7 +46,7 @@ if (!isset($_SESSION)) {
                          <div><a id="inserir" class='waves-effect btn-floating white' href='../Documentos/insereform.php'><i class="material-icons black-text">add</i> </a></div>
                     </div>
                </div>
-     <?php
+          <?php
           }
      }
      //Verificando se é uma pesquisa ou a listagem de todos os documentos
@@ -74,6 +74,14 @@ if (!isset($_SESSION)) {
                $sqlDocs = mysqli_query($conexao, $puxandoDocumentos);
                $documentos[] = mysqli_fetch_assoc($sqlDocs);
           }
+          if ($numRows == 0) { ?>
+               <div class="row">
+                    <div class="center">
+                         <h3 class="white-text">Nenhum resultado encontrado</h3>
+                    </div>
+               </div>
+
+     <?php }
           $ultimaPag = ceil($numRows / $limit);
      } else {
           //Puxando todos os documentos do banco de dados
