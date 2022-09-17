@@ -34,24 +34,27 @@ foreach ($Keys as $key) {
 
 ?>
 <style>
-    .imagemCarousel {
-        min-width: 50%;
-        min-height: 50%;
-        max-width: 70%;
-        max-height: 70%;
-    }
+   .item {
+          height: 40vh;
+          max-width: 45vh;
+          overflow: hidden !important;
+          display: flex !important;
+          align-items: flex-start !important;
+     }
 </style>
 <main>
     <br><br><br><br>
+    <div class="container">
     <div class="owl-carousel owl-theme">
         <?php
         foreach ($documentos as $documento) { ?>
             <div class="zoom">
-                <div class="item"><img class="imagemCarousel" src="../upload/<?= $documento['imagem'] ?>"></div>
+                <div class="item"><a href = "../Documentos/vermais.php?idDoc=<?=$documento['idDoc']?>"><img class="imagemCarousel hoverable" src="../upload/<?= $documento['imagem'] ?>"></a></div>
             </div>
         <?php }
 
         ?>
+    </div>
     </div>
 </main>
 
@@ -68,7 +71,7 @@ foreach ($Keys as $key) {
         autoplayTimeout: 2000,
         autoplayHoverPause: true,
         responsiveClass: true,
-
+        autoWidth:true,
         responsive: {
             0: {
                 items: 1,

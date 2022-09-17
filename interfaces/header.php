@@ -16,6 +16,9 @@
   <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
   <!--Let  browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link  href="../node_modules/cropperjs/src/css/cropper.css" rel="stylesheet">
+  <script src="../node_modules/cropperjs/src/js/cropper.js"></script>
+  
   <style>
     html {
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -25,7 +28,7 @@
       display: flex;
       min-height: 150vh;
       flex-direction: column;
-      background-image: linear-gradient(to bottom, #1f0121, #1d0018, #19000f, #100006, #000000);
+      background-image: linear-gradient(to right top, #54317a, #542d76, #542a73, #53266f, #53226b, #3e276a, #292965, #102a5f, #00294d, #002336, #031c21, #101212);
     }
 
     footer {
@@ -249,4 +252,4 @@
 
 
 <body>
-  <br><br><br>
+  <br><br><br><br>

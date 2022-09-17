@@ -5,4 +5,4 @@ if (!isset($_SESSION)) {
 }
 session_destroy();
 
-header("location:../Inicio/listaDocs");
+header("location:../Inicio/listaDocs.php");

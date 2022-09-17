@@ -5,8 +5,6 @@ include('../funcoes.php');
 ?>
 
 <title>Tela de Login</title>
-
-
 <style>
   span.field-icon {
     float: right;

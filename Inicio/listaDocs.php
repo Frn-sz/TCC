@@ -25,9 +25,7 @@ if (!isset($_SESSION)) {
      }
 </style>
 <main>
-
      <?php
-
      require_once "../interfaces/header.php";
      require_once "../conecta.php";
 
@@ -93,48 +91,50 @@ if (!isset($_SESSION)) {
      ?>
      <div class='container'>
           <div class='row'>
-               <?php foreach ($documentos as $chave => $documento) { ?>
-                    <a href="../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>">
-                         <div class="caixa">
-                              <div class='col s6 m4'>
-                                   <div class='card hoverable'>
-                                        <div class='card-image cardindex'>
-                                             <?php if ($documento['imagem'] != "") {  ?>
-                                                  <img class='imagem' src='../upload/<?= $documento['imagem'] ?>'>
-                                             <?php } else { ?>
-                                                  <div class='center'>
-                                                       "Sem imagem"
-                                                  </div>
-                                             <?php } ?>
-                                        </div>
-                                        <div class='card-content'>
-                                             <span class='card-title'><?= $documento['tituloDoc'] ?></span>
-                                             <p> Forma:<?= $documento['forma'] ?> <br></p>
-                                             <p> Formato:<?= $documento['formato'] ?> <br></p>
-                                             <p> Espécie:<?= $documento['especie']  ?></p>
-                                        </div>
-                                        <div class='card-action center'>
+               <?php
+               if (isset($documentos)) {
+                    foreach ($documentos as $chave => $documento) { ?>
+                         <a href="../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>">
+                              <div class="caixa">
+                                   <div class='col s6 m4'>
+                                        <div class='card hoverable'>
+                                             <div class='card-image cardindex'>
+                                                  <?php if ($documento['imagem'] != "") {  ?>
+                                                       <img class='imagem' src='../upload/<?= $documento['imagem'] ?>'>
+                                                  <?php } else { ?>
+                                                       <div class='center'>
+                                                            "Sem imagem"
+                                                       </div>
+                                                  <?php } ?>
+                                             </div>
+                                             <div class='card-content'>
+                                                  <span class='card-title'><?= $documento['tituloDoc'] ?></span>
+                                                  <p> Forma:<?= $documento['forma'] ?> <br></p>
+                                                  <p> Formato:<?= $documento['formato'] ?> <br></p>
+                                                  <p> Espécie:<?= $documento['especie']  ?></p>
+                                             </div>
+                                             <div class='card-action center'>
 
-                                             <?php if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2) { ?>
+                                                  <?php if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2) { ?>
 
-                                                  <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-large waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
+                                                       <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-large waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
 
-                                             <?php } else { ?>
+                                                  <?php } else { ?>
 
-                                                  <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
+                                                       <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
 
-                                             <?php } ?>
+                                                  <?php } ?>
 
-                                             <?php if (isset($_SESSION['nvl_usuario'])) {
+                                                  <?php if (isset($_SESSION['nvl_usuario'])) {
 
-                                                  if ($_SESSION['nvl_usuario'] != 2) { ?>
+                                                       if ($_SESSION['nvl_usuario'] != 2) { ?>
 
-                                                       <a href='../Documentos/formaltera.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light  white'> <i class='material-icons black-text'>edit</i> </a>
+                                                            <a href='../Documentos/formaltera.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light  white'> <i class='material-icons black-text'>edit</i> </a>
 
-                                                       <a class="waves-effect waves-light btn-floating modal-trigger white " href="#modal<?= $documento['idDoc'] ?>"><i class="material-icons black-text">delete</i></a>
-                                             <?php }
-                                             } ?>
-                    </a>
+                                                            <a class="waves-effect waves-light btn-floating modal-trigger white " href="#modal<?= $documento['idDoc'] ?>"><i class="material-icons black-text">delete</i></a>
+                                                  <?php }
+                                                  } ?>
+                         </a>
           </div>
      </div>
      </div>
@@ -159,7 +159,8 @@ if (!isset($_SESSION)) {
                </form>
           </div>
      </div>
-<?php    } ?>
+<?php    }
+               } ?>
 </div>
 </div>
 </div>
@@ -169,13 +170,13 @@ if (!isset($_SESSION)) {
                <?php if ($pag == 1) { ?>
                     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
                <?php } else { ?>
-                    <li class="waves-effect"><a href="listaDocs?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
+                    <li class="waves-effect"><a href="listaDocs.php?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
                <?php }
                for ($i = 1; $i <= $ultimaPag; $i++) { ?>
-                    <li class="active white "><a class="black-text" href="listaDocs?pagina=<?= $i ?>"><?= $i ?></a></li>
+                    <li class="active white "><a class="black-text" href="listaDocs.php?pagina=<?= $i ?>"><?= $i ?></a></li>
                <?php }
                if ($pag < $ultimaPag) { ?>
-                    <li class="waves-effect"><a href="listaDocs?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
+                    <li class="waves-effect"><a href="listaDocs.php?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
                <?php } else { ?>
                     <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                <?php } ?>

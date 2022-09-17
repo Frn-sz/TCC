@@ -1,8 +1,7 @@
 <main>
     <?php
-
     include('../interfaces/header.php');
-
+    include('../funcoes.php');
     ?>
     <style>
         input {
@@ -25,25 +24,57 @@
         }
 
         .formRecupSenha {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            padding: 15px;
+            border-radius: 10px !important;
+        }
+
+        input {
+            color: black;
+        }
+
+        label {
+            color: black;
         }
     </style>
 
-    <form action="recuperarSenha.php" method="Post">
-        <div class="formRecupSenha">
-            <div class="container">
 
+
+    <div class="row">
+        <div class="container formRecupSenha">
+            <div class="center">
+                <h4><?= exibeMensagens() ?></h4>
+            </div>
+            <form action="recuperarSenha.php" method="POST">
                 <div class="input-field">
                     <input type="email" name="email">
                     <label for="email">Email</label>
-                    <div class="center">
-                        <button type="submit" class="btn waves-light waves-effect white black-text">Solicitar recuperação de senha</button>
-
-                    </div>
                 </div>
-            </div>
+                <div class="center">
+                    <button type="submit" class="btn waves-light waves-effect white black-text">Solicitar recuperação de senha</button>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
+    <!-- <div class=" row">
+                        <div class="container">
+                            <div class="row">
+                                <form action="recuperarSenha.php" method="Post">
+                                    <div class="formRecupSenha">
+                                        <div class="input-field">
+                                            <input type="email" name="email">
+                                            <label for="email">Email</label>
+                                            <div class="center">
+                                                <button type="submit" class="btn waves-light waves-effect white black-text">Solicitar recuperação de senha</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                </div> -->
+
 
 
 </main>
