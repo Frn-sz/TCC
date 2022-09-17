@@ -29,9 +29,9 @@ $imagem = $documentos['imagem'];
     }
 
     .caixaDocumento {
-        background-color: rgba(255, 255, 255, 0.8) !important;
+        background-color: rgba(255, 255, 255, 0.6) !important;
         border-radius: 5px;
-        padding: 10px;
+        padding: 20px;
         size: 10vh;
     }
 
@@ -44,9 +44,8 @@ $imagem = $documentos['imagem'];
     }
 
     .imagemDocumento {
-        border-radius: 15px;
-        border-style: solid;
-        border-color: black;
+        border-radius: 10px;
+        
         display: block !important;
 
     }
