@@ -23,11 +23,11 @@ include "../funcoes.php";
 ?>
 
 <main>
+
+
   <br><br><br>
   <div class="row container formCadastro">
-
     <form action="cadastro_usuario.php" method="post" enctype="multipart/form-data">
-
       <div class="row">
         <div class="center">
           <h5 class="red-text darken-4"> <?= exibeMensagens() ?> </h5>
@@ -110,4 +110,5 @@ include "../funcoes.php";
   $('#textarea1').val('New Text');
   M.textareaAutoResize($('#textarea1'));
 </script>
+
 <?php require "../interfaces/footer.php"; ?>

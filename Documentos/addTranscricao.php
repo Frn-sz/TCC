@@ -16,6 +16,7 @@ $resultSet = mysqli_query($conexao, $PegandoFoto);
 $doc = mysqli_fetch_assoc($resultSet);
 if ($verificacao == 1) {
     $texto = (new TesseractOCR('../upload/' . $doc['imagem']))
+        ->language("por")
         ->run();
 } else {
     $texto = $doc["transcricao"];

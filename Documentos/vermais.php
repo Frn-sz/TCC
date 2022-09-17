@@ -29,9 +29,10 @@ $imagem = $documentos['imagem'];
     }
 
     .caixaDocumento {
-        background-color: rgba(255, 255, 255, 0.8) !important;
+        background-color: rgba(255, 255, 255, 0.6) !important;
         border-radius: 5px;
-        padding: 10px;
+        padding: 20px;
+        size: 10vh;
     }
 
     .imagemDoc {
@@ -43,9 +44,8 @@ $imagem = $documentos['imagem'];
     }
 
     .imagemDocumento {
-        border-radius: 15px;
-        border-style: solid;
-        border-color: black;
+        border-radius: 10px;
+        
         display: block !important;
 
     }
@@ -172,12 +172,12 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
                 <?php
                 foreach ($topicos as $chave => $topico) {
                     if ($topico['idTop'] != "33") { ?>
-                        <div class='chip white'><a class="black-text" href=#> <?= $topico['tituloTop'] ?> </a> </div>
+                        <a href="../Inicio/listaDocs.php?busca=<?= $topico['tituloTop'] ?>" class="black-text" href=#><div class='chip white'> <?= $topico['tituloTop'] ?>  </div></a>
                     <?php }
                 }
                 foreach ($plvsChaves as $plvChave) {
                     if ($plvChave != "." and $plvChave != "") { ?>
-                        <div class='chip white'><a class="black-text" href=#> <?= $plvChave ?> </a> </div>
+                        <a class="black-text" href="../Inicio/listaDocs.php?busca=<?= $plvChave ?>"><div class='chip white'> <?= $plvChave ?> </div></a> 
                 <?php }
                 } ?>
             </div>

@@ -77,7 +77,7 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <?php foreach ($topicos as $topico) {
                          if ($topico['tituloTop'] != "PlaceHolderSystem") { ?>
                               <tr>
-                                   <td class="center"><a class="linkAssunto black-text LinkTopico" href=" ../Inicio/Newpesquisa.php?busca=<?= $topico['tituloTop'] ?>"><?= $topico['tituloTop'] ?></a></td>
+                                   <td class="center"><a class="linkAssunto black-text LinkTopico" href=" ../Inicio/listaDocs.php?busca=<?= $topico['tituloTop'] ?>"><?= $topico['tituloTop'] ?></a></td>
                                    <?php if ($adm) { ?>
                                         <td class="center"><a class="btn-floating small white" href="formalterat.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons black-text">edit</a>
                                              &nbsp <a class="btn-floating small white" href="excluirt.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons black-text ">delete</a>

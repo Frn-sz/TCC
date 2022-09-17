@@ -1,6 +1,13 @@
 <title>Favoritos</title>
 
-
+<style>
+  .card-image {
+    height: 40vh !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: flex-start !important;
+  }
+</style>
 <main>
 
   <?php

@@ -25,9 +25,7 @@ if (!isset($_SESSION)) {
      }
 </style>
 <main>
-
      <?php
-
      require_once "../interfaces/header.php";
      require_once "../conecta.php";
 
@@ -180,13 +178,13 @@ if (!isset($_SESSION)) {
                <?php if ($pag == 1) { ?>
                     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
                <?php } else { ?>
-                    <li class="waves-effect"><a href="listaDocs?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
+                    <li class="waves-effect"><a href="listaDocs.php?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
                <?php }
                for ($i = 1; $i <= $ultimaPag; $i++) { ?>
-                    <li class="active white "><a class="black-text" href="listaDocs?pagina=<?= $i ?>"><?= $i ?></a></li>
+                    <li class="active white "><a class="black-text" href="listaDocs.php?pagina=<?= $i ?>"><?= $i ?></a></li>
                <?php }
                if ($pag < $ultimaPag) { ?>
-                    <li class="waves-effect"><a href="listaDocs?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
+                    <li class="waves-effect"><a href="listaDocs.php?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
                <?php } else { ?>
                     <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                <?php } ?>

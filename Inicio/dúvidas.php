@@ -6,7 +6,7 @@ if (!isset($_SESSION)) {
 ?>
 <style>
     .caixaInfo {
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.7);
         border-radius: 10px;
         padding: 12px;
 
@@ -35,7 +35,7 @@ if (!isset($_SESSION)) {
         <span>dsakjdsajda</span>
         <div class="row">
             <div class="right">
-                <img class="arquivoMunicipal hoverable materialboxed" width=800 src="../Imagens/arquivoMunicipal.jpg">
+                <img class="arquivoMunicipal materialboxed" width=800 src="../Imagens/arquivoMunicipal.jpg">
             </div>
         </div>
 
