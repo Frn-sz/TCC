@@ -16,9 +16,10 @@
   <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
   <!--Let  browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link  href="../node_modules/cropperjs/src/css/cropper.css" rel="stylesheet">
+  <link href="../node_modules/cropperjs/src/css/cropper.css" rel="stylesheet">
   <script src="../node_modules/cropperjs/src/js/cropper.js"></script>
-  
+  <link rel="stylesheet" href="../OwlCarousel/dist/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="../OwlCarousel/dist/assets/owl.theme.default.min.css">
   <style>
     html {
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;

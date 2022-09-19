@@ -17,8 +17,7 @@
 
      .TabelaTopicos {
           background-color: rgba(255, 255, 255, 0.8);
-          border-top-right-radius: 15px;
-          border-top-left-radius: 15px;
+
 
      }
 
@@ -48,7 +47,7 @@ $result = mysqli_query($conexao, $sql);
 $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 <main>
-     <h5 class="red-text darken-4 center"> <?= exibeMensagens() ?> </h5>
+
      <br><br><br>
      <?php if (isset($_SESSION['id_usuario'])) {
           if ($_SESSION['nvl_usuario'] != 2) { ?>
@@ -62,6 +61,8 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
      } ?>
      <br>
      <div class="container">
+          <h5 class="red-text darken-4 center"> <?= exibeMensagens() ?> </h5>
+          <br>
           <span class="aviso">Obs: Clique nos assuntos para ver os documentos de cada um.</span>
      </div>
      <br>
@@ -75,13 +76,33 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
                </thead>
                <tbody>
                     <?php foreach ($topicos as $topico) {
-                         if ($topico['tituloTop'] != "PlaceHolderSystem") { ?>
+                         if ($topico['tituloTop'] != "-") { ?>
                               <tr>
                                    <td class="center"><a class="linkAssunto black-text LinkTopico" href=" ../Inicio/listaDocs.php?busca=<?= $topico['tituloTop'] ?>"><?= $topico['tituloTop'] ?></a></td>
                                    <?php if ($adm) { ?>
                                         <td class="center"><a class="btn-floating small white" href="formalterat.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons black-text">edit</a>
-                                             &nbsp <a class="btn-floating small white" href="excluirt.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons black-text ">delete</a>
+                                             &nbsp <a class="btn-floating small white modal-trigger" href="#modal<?= $topico['idTop'] ?>"><i class="material-icons black-text ">delete</a>
                                         </td>
+                                        <div id="modal<?= $topico['idTop'] ?>" class="modal">
+                                             <div class="modal-content">
+                                                  <div class="row">
+                                                       <div class="center">
+                                                            <h4 class="black-text">Deseja mesmo excluir este tópico?</h4>
+                                                       </div>
+                                                  </div>
+                                                  <form action="excluirt.php" method="get">
+                                                       <div class="row">
+                                                            <div class="center">
+                                                                 <input type="hidden" name="idTop" value="<?= $topico['idTop']; ?>">
+                                                            </div>
+                                                       </div>
+                                                       <div class="center">
+                                                            <button type="submit" class="btn waves-effect waves-green white black-text">Confirmar</button>
+                                                            <a href="#!" class="modal-close waves-effect waves-red white btn black-text">Cancelar</a>
+                                                       </div>
+                                                  </form>
+                                             </div>
+                                        </div>
                                    <?php } ?>
                               </tr>
                     <?php

@@ -28,6 +28,7 @@
 
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="../js/materialize.min.js"></script>
+<script src="../OwlCarousel/dist/owl.carousel.js"></script>
 <script>
   $(document).ready(function() {
     $('select').formSelect();
@@ -98,6 +99,22 @@
     } else {
       $(".transparent").removeClass("menu");
     }
+  });
+</script>
+<script type="text/javascript">
+  var owl = $('.owl-carousel');
+  owl.owlCarousel({
+    items: 1,
+    margin: 10,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    autoplayHoverPause: true,
+    responsiveClass: true,
+    autoWidth: true,
+    loop: true,
+    autoHeight: true,
+    autoHeightClass: 'owl-height'
+
   });
 </script>
 

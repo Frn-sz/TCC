@@ -8,7 +8,7 @@ function puxartopicos()
   $topicos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
   echo "<option value = 0> Selecione um tópico </option>";
   foreach ($topicos as $topico) {
-    if ($topico['tituloTop'] != "PlaceHolderSystem") {
+    if ($topico['tituloTop'] != "-") {
       $titulo = $topico['tituloTop'];
       $id = $topico['idTop'];
       echo "<option value = $id> $titulo </option>";

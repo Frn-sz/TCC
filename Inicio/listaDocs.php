@@ -14,14 +14,20 @@ if (!isset($_SESSION)) {
      }
 
      .card-image {
-          height: 40vh !important;
+          height: 30vh !important;
           overflow: hidden !important;
           display: flex !important;
           align-items: flex-start !important;
+          padding: 10px;
+
      }
 
      a {
           color: white !important;
+     }
+
+     .imagem {
+          border-radius: px !important;
      }
 </style>
 <main>
@@ -35,7 +41,7 @@ if (!isset($_SESSION)) {
      } else {
           $pag = 1;
      }
-     $limit = 6;
+     $limit = 8;
      $offset = $limit * ($pag - 1);
 
      if (isset($_SESSION['id_usuario'])) {
@@ -68,6 +74,7 @@ if (!isset($_SESSION)) {
           $resultado = mysqli_query($conexao, $Busca);
           $QtndDocumentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
           $numRows = 0;
+          // var_dump($Busca);
           foreach ($QtndDocumentos as $idDocumento) {
                $numRows++;
                $puxandoDocumentos = "SELECT * FROM documentos WHERE idDoc = '$idDocumento[idDoc]'";
@@ -104,15 +111,13 @@ if (!isset($_SESSION)) {
                     foreach ($documentos as $chave => $documento) { ?>
                          <a href="../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>">
                               <div class="caixa">
-                                   <div class='col s6 m4'>
+                                   <div class='col s6 m3'>
                                         <div class='card hoverable'>
                                              <div class='card-image cardindex'>
                                                   <?php if ($documento['imagem'] != "") {  ?>
                                                        <img class='imagem' src='../upload/<?= $documento['imagem'] ?>'>
                                                   <?php } else { ?>
-                                                       <div class='center'>
-                                                            "Sem imagem"
-                                                       </div>
+                                                       <img class='imagem' src='../Imagens/placeholderSemImagem.png'>
                                                   <?php } ?>
                                              </div>
                                              <div class='card-content'>
@@ -136,9 +141,9 @@ if (!isset($_SESSION)) {
                                                   <?php if (isset($_SESSION['nvl_usuario'])) {
 
                                                        if ($_SESSION['nvl_usuario'] != 2) { ?>
-
+                                                            &nbsp
                                                             <a href='../Documentos/formaltera.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light  white'> <i class='material-icons black-text'>edit</i> </a>
-
+                                                            &nbsp
                                                             <a class="waves-effect waves-light btn-floating modal-trigger white " href="#modal<?= $documento['idDoc'] ?>"><i class="material-icons black-text">delete</i></a>
                                                   <?php }
                                                   } ?>

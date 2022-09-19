@@ -1,7 +1,7 @@
 
 <?php
 include "../conecta.php";
-$id = $_GET['id'];
+$id = $_GET['idTop'];
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -11,7 +11,7 @@ $existe = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 var_dump($existe);
 
 if (!isset($existe[0]['id_tabela'])) {
-    $sql = "DELETE FROM topicos WHERE id=$id";
+    $sql = "DELETE FROM topicos WHERE idTop=$id";
     $resultado = mysqli_query($conexao, $sql);
     if ($resultado) {
         header("Location:topicos.php");

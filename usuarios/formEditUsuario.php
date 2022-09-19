@@ -9,7 +9,7 @@ include('puxandoUsuario.php');
   <div class="row">
 
     <div class="center">
-      <img width="500" id="blah" />
+      <img width="300" id="blah" />
     </div>
 
   </div>

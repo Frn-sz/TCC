@@ -36,17 +36,18 @@ $imagem = $documentos['imagem'];
     }
 
     .imagemDoc {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 40%;
-
+        max-height: 50vh;
+        max-width: 45vh;
+        overflow: hidden !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        border-radius: 10px;
     }
 
+    .imagemDoc:hover {}
+
     .imagemDocumento {
-        border-radius: 10px;
-        
-        display: block !important;
+        margin-left: -10%;
 
     }
 
@@ -109,7 +110,7 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
         <?php if ($documentos['imagem'] != "") { ?>
             <div class="row imagemDoc">
                 <div class="center">
-                    <a class="adicionarTranscricao"> <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'></a>
+                    <a class="adicionarTranscricao"> <img class=' imagemDocumento' width=500 src='../upload/<?= $imagem ?>'></a>
                 </div>
             </div>
         <?php $existeImagem = 1;
@@ -172,12 +173,16 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
                 <?php
                 foreach ($topicos as $chave => $topico) {
                     if ($topico['idTop'] != "33") { ?>
-                        <a href="../Inicio/listaDocs.php?busca=<?= $topico['tituloTop'] ?>" class="black-text" href=#><div class='chip white'> <?= $topico['tituloTop'] ?>  </div></a>
+                        <a href="../Inicio/listaDocs.php?busca=<?= $topico['tituloTop'] ?>" class="black-text" href=#>
+                            <div class='chip white'> <?= $topico['tituloTop'] ?> </div>
+                        </a>
                     <?php }
                 }
                 foreach ($plvsChaves as $plvChave) {
                     if ($plvChave != "." and $plvChave != "") { ?>
-                        <a class="black-text" href="../Inicio/listaDocs.php?busca=<?= $plvChave ?>"><div class='chip white'> <?= $plvChave ?> </div></a> 
+                        <a class="black-text" href="../Inicio/listaDocs.php?busca=<?= $plvChave ?>">
+                            <div class='chip white'> <?= $plvChave ?> </div>
+                        </a>
                 <?php }
                 } ?>
             </div>
@@ -218,7 +223,10 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
                 <div class="center">
                     <h4 class="black-text">Deseja realizar a transcrição automática?</h4>
                 </div>
-                <span class="black-text">A transcrição automática necessita de revisão. Além disso, ela excluirá a transcrição anteriormente salva. Quanto melhor for a qualidade e visibilidade da imagem, melhor será o resultado.</span>
+                <span class="black-text">
+                    A transcrição automática necessita de revisão. Além disso, ela excluirá a transcrição anteriormente salva. Quanto melhor for a qualidade e visibilidade da imagem, melhor será o resultado. Documentos manuscritos tendem a apresentar um resultado ruim.
+
+                </span>
             </div>
             <form action="addTranscricao.php?" method="get">
                 <div class="row">

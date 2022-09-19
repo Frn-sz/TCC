@@ -5,7 +5,7 @@ require_once "../conecta.php";
 
 $id = $_POST['id'];
 $titulo = $_POST['titulo'];
-$sql = "UPDATE `topicos` SET `titulo`='$titulo' WHERE id='$id'";
+$sql = "UPDATE `topicos` SET `tituloTop`='$titulo' WHERE idTop='$id'";
 var_dump($sql);
 $resultado = mysqli_query($conexao, $sql);
 
