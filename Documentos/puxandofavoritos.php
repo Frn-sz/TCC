@@ -16,7 +16,6 @@ $id_documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 
 if (!is_null($id_documentos)) {
     foreach ($id_documentos as $chave => $id) {
-
         $sql2 = "SELECT * FROM documentos WHERE idDoc = $id[id_documento]";
         $result2 = mysqli_query($conexao, $sql2);
         $documentos[] = mysqli_fetch_assoc($result2);

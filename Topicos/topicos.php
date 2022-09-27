@@ -9,15 +9,10 @@
      }
 </script>
 <style>
-     .collection {
-          border-radius: 15px !important;
-          background-color: white;
-
-     }
-
      .TabelaTopicos {
-          background-color: rgba(255, 255, 255, 0.8);
-
+          background-color: rgba(255, 255, 255, 0.6);
+          border-radius: 10px;
+          font-size: large;
 
      }
 
@@ -29,7 +24,7 @@
           padding: 10px;
           border-radius: 10px;
           font-weight: bold;
-          background-color: rgba(255, 255, 255, 0.8);
+          background-color: rgba(255, 255, 255, 0.6);
      }
 </style>
 <?php
@@ -67,7 +62,7 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
      </div>
      <br>
      <div class="container">
-          <table class="striped TabelaTopicos">
+          <table class=" TabelaTopicos">
                <thead>
                     <th class="center">Assuntos</th>
                     <?php if ($adm) { ?>
