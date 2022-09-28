@@ -33,6 +33,9 @@ if (!isset($_SESSION)) {
 <main>
      <?php
      require_once "../interfaces/header.php";
+     ?>
+
+     <?php
      require_once "../conecta.php";
 
      //Definindo limite
@@ -56,40 +59,39 @@ if (!isset($_SESSION)) {
           }
      }
      //Verificando se é uma pesquisa ou a listagem de todos os documentos
-
      if (isset($_GET['busca'])) {
           $pesquisa = "%" . mysqli_real_escape_string($conexao, trim($_GET['busca'])) . "%";
-          $Busca =
-               "SELECT DISTINCT idDoc FROM documentos AS F
-          JOIN topicos AS D
-          JOIN tabela_assoc AS T
-          ON T.id_topico = D.idTop && F.idDoc = T.id_doc 
-          WHERE D.tituloTop LIKE '$pesquisa' 
-          OR F.tituloDoc LIKE '$pesquisa'
-          OR F.transcricao LIKE '$pesquisa'
-          OR F.palavrasChaves LIKE '$pesquisa'
-          ORDER BY F.tituloDoc
-          LIMIT $limit OFFSET $offset";
-          //Fazendo a busca por título, Tópicos, Palavras chaves e transcricao
-          $resultado = mysqli_query($conexao, $Busca);
-          $QtndDocumentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
-          $numRows = 0;
-          // var_dump($Busca);
-          foreach ($QtndDocumentos as $idDocumento) {
-               $numRows++;
-               $puxandoDocumentos = "SELECT * FROM documentos WHERE idDoc = '$idDocumento[idDoc]'";
-               $sqlDocs = mysqli_query($conexao, $puxandoDocumentos);
-               $documentos[] = mysqli_fetch_assoc($sqlDocs);
-          }
+          // $Busca =
+          //      "SELECT DISTINCT idDoc FROM documentos AS F
+          // JOIN topicos AS D
+          // JOIN tabela_assoc AS T
+          // ON T.id_topico = D.idTop && F.idDoc = T.id_doc 
+          // WHERE D.tituloTop LIKE '$pesquisa' 
+          // OR F.tituloDoc LIKE '$pesquisa'
+          // OR F.transcricao LIKE '$pesquisa'
+          // OR F.palavrasChaves LIKE '$pesquisa'
+          // ORDER BY F.tituloDoc
+          // LIMIT $limit OFFSET $offset";
+          //Fazendo a busca por título, Palavras chaves e transcricao
+          $BuscaDocumentos = "SELECT * FROM documentos AS D
+          WHERE D.tituloDoc LIKE '$pesquisa'
+          OR D.transcricao LIKE '$pesquisa'
+          OR D.palavrasChaves LIKE '$pesquisa'";
+          $resultado = mysqli_query($conexao, $BuscaDocumentos);
+          $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+          $numRows = count($documentos);
           if ($numRows == 0) { ?>
                <div class="row">
                     <div class="center">
-                         <h3 class="white-text">Nenhum resultado encontrado</h3>
+                         <h3 class="white-text">Nenhum documento encontrado</h3>
                     </div>
                </div>
-
      <?php }
           $ultimaPag = ceil($numRows / $limit);
+          $pegandoTopicos = "SELECT * FROM topicos AS T WHERE T.tituloTop LIKE '$pesquisa'";
+          $resultTopicos = mysqli_query($conexao, $pegandoTopicos);
+          $topicos = mysqli_fetch_all($resultTopicos, MYSQLI_ASSOC);
+          var_dump($topicos);
      } else {
           //Puxando todos os documentos do banco de dados
           $sqlTotal = "SELECT count(*) FROM `documentos` ORDER BY tituloDoc";
@@ -100,10 +102,10 @@ if (!isset($_SESSION)) {
           $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
           $ultimaPag = ceil($numRows[0] / $limit);
      }
-
      $proximo = $pag + 1;
      $anterior = $pag - 1;
      ?>
+
      <div class='container'>
           <div class='row'>
                <?php
@@ -198,6 +200,10 @@ if (!isset($_SESSION)) {
 </div>
 </main>
 
+<script>
+     $('.tabs').tabs('methodName');
+     $('.tabs').tabs('methodName', paramName);
+</script>
 <?php include_once "../interfaces/footer.php"; ?>
 
 </html>
