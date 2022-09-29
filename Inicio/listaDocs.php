@@ -25,21 +25,42 @@ if (!isset($_SESSION)) {
      a {
           color: white !important;
      }
+
+     .collapsible {
+          color: black;
+          text-align: center;
+          background-color: white;
+          cursor: pointer;
+     }
+
+     .topicosEncontrados {
+          color: white;
+          text-align: center;
+     }
+
+     .aTopicos,
+     .aDocumentos {
+          color: black !important;
+          background-color: white;
+          padding: 10px;
+          font-size: 20px;
+          border-radius: 5px;
+     }
+
+     .aDocumentos:hover,
+     .aTopicos:hover {}
 </style>
 <main>
      <?php
      require_once "../interfaces/header.php";
      ?>
-
      <?php
      require_once "../conecta.php";
-
      if (isset($_GET['escolha'])) {
           $escolha  = $_GET['escolha'];
      } else {
           $escolha = "todos";
      }
-
      //Definindo limite
      if (isset($_GET['pagina'])) {
           $pag = $_GET['pagina'];
@@ -48,7 +69,6 @@ if (!isset($_SESSION)) {
      }
      $limit = 8;
      $offset = $limit * ($pag - 1);
-
      if (isset($_SESSION['id_usuario'])) {
           if ($_SESSION['nvl_usuario'] == 1 or $_SESSION['nvl_usuario'] == 3) {
      ?>
@@ -63,18 +83,6 @@ if (!isset($_SESSION)) {
      //Verificando se é uma pesquisa ou a listagem de todos os documentos
      if (isset($_GET['busca'])) {
           $pesquisa = "%" . mysqli_real_escape_string($conexao, trim($_GET['busca'])) . "%";
-          // $Busca =
-          //      "SELECT DISTINCT idDoc FROM documentos AS F
-          // JOIN topicos AS D
-          // JOIN tabela_assoc AS T
-          // ON T.id_topico = D.idTop && F.idDoc = T.id_doc 
-          // WHERE D.tituloTop LIKE '$pesquisa' 
-          // OR F.tituloDoc LIKE '$pesquisa'
-          // OR F.transcricao LIKE '$pesquisa'
-          // OR F.palavrasChaves LIKE '$pesquisa'
-          // ORDER BY F.tituloDoc
-          // LIMIT $limit OFFSET $offset";
-          //Fazendo a busca por título, Palavras chaves e transcricao
           $BuscaDocumentos = "SELECT * FROM documentos AS D
           WHERE D.tituloDoc LIKE '$pesquisa'
           OR D.transcricao LIKE '$pesquisa'
@@ -93,6 +101,16 @@ if (!isset($_SESSION)) {
           $pegandoTopicos = "SELECT * FROM topicos AS T WHERE T.tituloTop LIKE '$pesquisa'";
           $resultTopicos = mysqli_query($conexao, $pegandoTopicos);
           $topicos = mysqli_fetch_all($resultTopicos, MYSQLI_ASSOC);
+          foreach ($topicos as $topico) {
+               $selectDocTopicos = "SELECT * FROM documentos AS D
+                JOIN tabela_assoc AS t
+                ON D.idDoc = t.id_doc
+                WHERE t.id_topico = '$topico[idTop]'";
+               $query = mysqli_query($conexao, $selectDocTopicos);
+               $topicoName = $topico['tituloTop'];
+               $docTopico[$topicoName] = mysqli_fetch_all($query, MYSQLI_ASSOC);
+          }
+          $docTopico = array_merge($docTopico);
      } else {
           //Puxando todos os documentos do banco de dados
           $sqlTotal = "SELECT count(*) FROM `documentos` ORDER BY tituloDoc";
@@ -109,59 +127,60 @@ if (!isset($_SESSION)) {
      if ($escolha != "todos") {
           ?>
           <div>
-               <a class="botaoTopicos" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=topicos">Tópicos</a>
-               <a class="botaoDocumentos" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=documentos'">Documentos</a>
-          </div>
-     <?php }
-     if ($escolha != "topicos") {
-     ?>
-          <div class='container'>
-               <div class='row'>
-                    <?php
-                    if (isset($documentos)) {
-                         foreach ($documentos as $chave => $documento) { ?>
-                              <a href="../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>">
-                                   <div class="caixa">
-                                        <div class='col s6 m3'>
-                                             <div class='card hoverable'>
-                                                  <div class='card-image cardindex'>
-                                                       <?php if ($documento['imagem'] != "") {  ?>
-                                                            <img class='imagem' src='../upload/<?= $documento['imagem'] ?>'>
-                                                       <?php } else { ?>
-                                                            <img class='imagem' src='../Imagens/placeholderSemImagem.png'>
-                                                       <?php } ?>
-                                                  </div>
-                                                  <div class='card-content'>
-                                                       <span class='card-title'><?= $documento['tituloDoc'] ?></span>
-                                                       <p> Forma:<?= $documento['forma'] ?> <br></p>
-                                                       <p> Formato:<?= $documento['formato'] ?> <br></p>
-                                                       <p> Espécie:<?= $documento['especie']  ?></p>
-                                                  </div>
-                                                  <div class='card-action center'>
-
-                                                       <?php if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2) { ?>
-
-                                                            <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-large waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
-
-                                                       <?php } else { ?>
-
-                                                            <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
-
-                                                       <?php } ?>
-
-                                                       <?php if (isset($_SESSION['nvl_usuario'])) {
-
-                                                            if ($_SESSION['nvl_usuario'] != 2) { ?>
-                                                                 &nbsp
-                                                                 <a href='../Documentos/formaltera.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light  white'> <i class='material-icons black-text'>edit</i> </a>
-                                                                 &nbsp
-                                                                 <a class="waves-effect waves-light btn-floating modal-trigger white " href="#modal<?= $documento['idDoc'] ?>"><i class="material-icons black-text">delete</i></a>
-                                                       <?php }
-                                                       } ?>
-                              </a>
+               <div class="center">
+                    <a class="aTopicos" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=topicos">Tópicos</a>
+                    <a class="aDocumentos" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=documentos'">Documentos</a>
                </div>
-          </div>
-          </div>
+               <br>
+          <?php }
+     if ($escolha != "topicos") {
+          ?>
+               <div class='container'>
+                    <div class='row'>
+                         <?php
+                         if (isset($documentos)) {
+                              foreach ($documentos as $chave => $documento) { ?>
+                                   <a href="../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>">
+                                        <div class="caixa">
+                                             <div class='col s6 m3'>
+                                                  <div class='card hoverable'>
+                                                       <div class='card-image cardindex'>
+                                                            <?php if ($documento['imagem'] != "") {  ?>
+                                                                 <img class='imagem' src='../upload/<?= $documento['imagem'] ?>'>
+                                                            <?php } else { ?>
+                                                                 <img class='imagem' src='../Imagens/placeholderSemImagem.png'>
+                                                            <?php } ?>
+                                                       </div>
+                                                       <div class='card-content'>
+                                                            <span class='card-title'><?= $documento['tituloDoc'] ?></span>
+                                                            <p> Forma:<?= $documento['forma'] ?> <br></p>
+                                                            <p> Formato:<?= $documento['formato'] ?> <br></p>
+                                                            <p> Espécie:<?= $documento['especie']  ?></p>
+                                                       </div>
+                                                       <div class='card-action center'>
+
+                                                            <?php if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2) { ?>
+
+                                                                 <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-large waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
+
+                                                            <?php } else { ?>
+
+                                                                 <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
+
+                                                            <?php } ?>
+
+                                                            <?php if (isset($_SESSION['nvl_usuario'])) {
+
+                                                                 if ($_SESSION['nvl_usuario'] != 2) { ?>
+                                                                      &nbsp
+                                                                      <a href='../Documentos/formaltera.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light  white'> <i class='material-icons black-text'>edit</i> </a>
+                                                                      &nbsp
+                                                                      <a class="waves-effect waves-light btn-floating modal-trigger white " href="#modal<?= $documento['idDoc'] ?>"><i class="material-icons black-text">delete</i></a>
+                                                            <?php }
+                                                            } ?>
+                                   </a>
+                    </div>
+               </div>
           </div>
           <div id="modal<?= $documento['idDoc'] ?>" class="modal">
                <div class="modal-content">
@@ -184,7 +203,7 @@ if (!isset($_SESSION)) {
                </div>
           </div>
 <?php    }
-                    } ?>
+                         } ?>
 </div>
 </div>
 </div>
@@ -208,20 +227,48 @@ if (!isset($_SESSION)) {
      </div>
 </div>
 <?php } else { ?>
-     <div>
-          <span>Tópicos encontrados</span>
+     <div class="container">
 
-          <ul>
+          <h2 class="topicosEncontrados">Tópicos encontrados</h2>
+          <ul class="collapsible">
                <?php
                foreach ($topicos as $topico) { ?>
+                    <li>
+                         <div class="collapsible-header">
+                              <?= $topico['tituloTop'] ?>
+                         </div>
+                         <div class="collapsible-body">
+                              <?php foreach ($docTopico as $key => $doc) {
+                                   var_dump($doc);
+                              ?>
 
-                    <a href="docTopicos.php?idTop=<?= $topico['idTop'] ?>">
-                         <li><?= $topico['tituloTop'] ?></li>
-                    </a>
+                                   <img src="../upload/<?= $doc['imagem'] ?>" alt="">
+
+                              <?php
+                              } ?>
+                         </div>
+                    </li>
+
                <?php } ?>
           </ul>
+
+     <?php } ?>
      </div>
-<?php } ?>
+     <!-- 
+  <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul> -->
 </main>
 
 <script>
@@ -229,5 +276,10 @@ if (!isset($_SESSION)) {
      $('.tabs').tabs('methodName', paramName);
 </script>
 <?php include_once "../interfaces/footer.php"; ?>
+<script>
+     $(document).ready(function() {
+          $('.collapsible').collapsible();
+     });
+</script>
 
 </html>
