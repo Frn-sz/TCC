@@ -110,7 +110,7 @@ if (!isset($_SESSION)) {
           ?>
           <div>
                <a class="botaoTopicos" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=topicos">Tópicos</a>
-               <a class="botaoDocumentos" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=documentos">Documentos</a>
+               <a class="botaoDocumentos" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=documentos'">Documentos</a>
           </div>
      <?php }
      if ($escolha != "topicos") {

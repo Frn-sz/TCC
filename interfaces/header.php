@@ -20,9 +20,12 @@
   <script src="../node_modules/cropperjs/src/js/cropper.js"></script>
   <link rel="stylesheet" href="../OwlCarousel/dist/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="../OwlCarousel/dist/assets/owl.theme.default.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
   <style>
-    html {
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    * {
+      font-family: 'Inter', sans-serif;
     }
 
     body {
