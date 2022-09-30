@@ -29,7 +29,7 @@ if (!isset($_SESSION)) {
      .collapsible {
           color: black;
           text-align: center;
-          background-color: white;
+
           cursor: pointer;
      }
 
@@ -47,8 +47,13 @@ if (!isset($_SESSION)) {
           border-radius: 5px;
      }
 
-     .aDocumentos:hover,
-     .aTopicos:hover {}
+     .imgCollapsible {
+          align-items: flex-start;
+     }
+
+     .collapsible {
+          border: none !important;
+     }
 </style>
 <main>
      <?php
@@ -110,7 +115,6 @@ if (!isset($_SESSION)) {
                $topicoName = $topico['tituloTop'];
                $docTopico[$topicoName] = mysqli_fetch_all($query, MYSQLI_ASSOC);
           }
-          $docTopico = array_merge($docTopico);
      } else {
           //Puxando todos os documentos do banco de dados
           $sqlTotal = "SELECT count(*) FROM `documentos` ORDER BY tituloDoc";
@@ -238,14 +242,17 @@ if (!isset($_SESSION)) {
                               <?= $topico['tituloTop'] ?>
                          </div>
                          <div class="collapsible-body">
+
                               <?php foreach ($docTopico as $key => $doc) {
-                                   var_dump($doc);
+                                   foreach ($doc as $d) {
                               ?>
-
-                                   <img src="../upload/<?= $doc['imagem'] ?>" alt="">
-
+                                        <div>
+                                             <a href="../Documentos/vermais.php?idDoc=<?= $d['idDoc'] ?>"><img class="imgCollapsible" width=400 src="../upload/<?= $d['imagem'] ?>" alt=""></a>
+                                        </div>
                               <?php
+                                   }
                               } ?>
+
                          </div>
                     </li>
 
