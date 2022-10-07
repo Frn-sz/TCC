@@ -14,6 +14,11 @@
     padding-right: 15px;
     border-radius: 10px;
   }
+
+  .userIcon {
+    background-color: black !important;
+    border-radius: 100% !important;
+  }
 </style>
 
 <?php include "../conecta.php";
@@ -37,9 +42,9 @@ include "../funcoes.php";
         <img width="300" id="blah2" />
       </div>
       <div class="file-field input-field">
-        <div class="btn black">
-          <span><i class="material-icons">add_a_photo</i></span>
+        <div class="btn userIcon ">
           <input id="ImagemCadastro" type="file" name="foto" onchange="readURL(this);">
+          <i class="material-icons">account_circle</i></span>
         </div>
         <div class="file-path-wrapper">
           <label for="ImagemCadastro">Escolha uma foto de perfil</label><input class="file-path validate" type="text">
@@ -104,11 +109,9 @@ include "../funcoes.php";
 
   $("#imagemCadastro").change(function() {
     readURL(this);
+
   });
 </script>
-<script>
-  $('#textarea1').val('New Text');
-  M.textareaAutoResize($('#textarea1'));
-</script>
+
 
 <?php require "../interfaces/footer.php"; ?>

@@ -26,6 +26,7 @@
   <style>
     * {
       font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
     }
 
     body {

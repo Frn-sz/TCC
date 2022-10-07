@@ -14,11 +14,11 @@ if (!isset($_SESSION)) {
      }
 
      .card-image {
-          height: 30vh !important;
+          height: 25vh !important;
           overflow: hidden !important;
           display: flex !important;
           align-items: flex-start !important;
-          padding: 10px;
+          padding: 2px;
 
      }
 
