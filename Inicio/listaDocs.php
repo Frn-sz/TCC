@@ -40,19 +40,44 @@ if (!isset($_SESSION)) {
 
      .aTopicos,
      .aDocumentos {
-          color: black !important;
-          background-color: white;
+          color: white !important;
           padding: 10px;
           font-size: 20px;
           border-radius: 5px;
      }
 
      .imgCollapsible {
-          align-items: flex-start;
+          display: flex;
      }
 
      .collapsible {
           border: none !important;
+     }
+
+     div.gallery {
+          margin: 5px;
+          border: 1px solid #ccc;
+          float: left;
+          width: 180px;
+     }
+
+     div.gallery:hover {
+          border: 1px solid #777;
+     }
+
+     div.gallery img {
+          width: 100%;
+          height: auto;
+     }
+
+     div.desc {
+          padding: 15px;
+          text-align: center;
+     }
+
+     .tituloTop {
+          color: white;
+          margin: auto;
      }
 </style>
 <main>
@@ -231,51 +256,30 @@ if (!isset($_SESSION)) {
      </div>
 </div>
 <?php } else { ?>
-     <div class="container">
 
-          <h2 class="topicosEncontrados">Tópicos encontrados</h2>
-          <ul class="collapsible">
-               <?php
-               foreach ($topicos as $topico) { ?>
-                    <li>
-                         <div class="collapsible-header">
-                              <?= $topico['tituloTop'] ?>
-                         </div>
-                         <div class="collapsible-body">
+     <?php
+          foreach ($topicos as $topico) { ?>
+          <h3 class="tituloTop"> <?= $topico['tituloTop'] ?> </h3>
+          <ul>
+               <?php foreach ($docTopico as $key => $doc) {
+                    foreach ($doc as $d) {
+               ?>
+                         <li>
+                              <div class="gallery">
+                                   <div>
+                                        <a href="../Documentos/vermais.php?idDoc=<?= $d['idDoc'] ?>"><img class="imgCollapsible" width=400 src="../upload/<?= $d['imagem'] ?>" alt=""></a>
+                                   </div>
+                                   <div class="desc">Add a description of the image here</div>
+                              </div>
+                         <li>
+                    <?php
+                    }
+               } ?>
 
-                              <?php foreach ($docTopico as $key => $doc) {
-                                   foreach ($doc as $d) {
-                              ?>
-                                        <div>
-                                             <a href="../Documentos/vermais.php?idDoc=<?= $d['idDoc'] ?>"><img class="imgCollapsible" width=400 src="../upload/<?= $d['imagem'] ?>" alt=""></a>
-                                        </div>
-                              <?php
-                                   }
-                              } ?>
-
-                         </div>
-                    </li>
 
                <?php } ?>
           </ul>
-
      <?php } ?>
-     </div>
-     <!-- 
-  <ul class="collapsible">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul> -->
 </main>
 
 <script>
