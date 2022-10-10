@@ -24,8 +24,6 @@
     </div>
   </div>
 </footer>
-
-
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="../js/materialize.min.js"></script>
 <script src="../OwlCarousel/dist/owl.carousel.js"></script>
@@ -64,28 +62,7 @@
   });
 </script>
 
-<script>
-  let senha = document.getElementById('senha');
-  let senhaC = document.getElementById('repetirsenha');
 
-  function validarSenha() {
-    if (senha.value != senhaC.value) {
-      senhaC.setCustomValidity(" ");
-      senhaC.reportValidity();
-      return false;
-      senhaC.addEventListener('input', validarSenha);
-      senha.addEventListener('blur', validarSenha);
-    } else {
-      senhaC.setCustomValidity("");
-      return true;
-
-    }
-
-  }
-  // verificar também quando o campo for modificado, para que a mensagem suma quando as senhas forem iguais
-  senhaC.addEventListener('input', validarSenha);
-  senha.addEventListener('blur', validarSenha);
-</script>
 <script>
   $(document).ready(function() {
     $('.modal').modal();

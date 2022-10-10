@@ -211,9 +211,9 @@
         <span class="white-text name large"><?= $_SESSION['nome_usuario'] ?></span>
         <a href="#email"><span class="white-text email"><? $_SESSION['email_usuario'] ?></span></a>
 
-      <?php } else {
-        echo "<span class = 'usuariologout'> Usuário não logado </span>";
-      } ?>
+      <?php } else { ?>
+        <span class='usuariologout'> Usuário não logado </span>";
+      <?PHP } ?>
 
     </div>
   </li>

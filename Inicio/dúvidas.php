@@ -6,9 +6,10 @@ if (!isset($_SESSION)) {
 ?>
 <style>
     .caixaInfo {
-        background-color: rgba(255, 255, 255, 0.7);
+
         border-radius: 10px;
         padding: 12px;
+        color: white !important;
 
     }
 
@@ -25,14 +26,13 @@ if (!isset($_SESSION)) {
 </style>
 
 <main>
-    <br><br><br><br>
-    <div class="container caixaInfo">
+    <div class="caixaInfo">
         <div class="row">
             <div class="left-on-med">
-                <h3> Sobre o sistema </h3>
+                <h3 class="center"> Sobre o sistema </h3>
             </div>
         </div>
-        <span>dsakjdsajda</span>
+        <p>dsakjdsajda</p>
         <div class="row">
             <div class="right">
                 <img class="arquivoMunicipal materialboxed" width=800 src="../Imagens/arquivoMunicipal.jpg">
