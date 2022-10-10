@@ -9,27 +9,26 @@
      }
 </script>
 <style>
-     .collection {
-          border-radius: 15px !important;
-          background-color: white;
-
-     }
-
-     .TabelaTopicos {
-          background-color: rgba(255, 255, 255, 0.8);
-
-
+     table,
+     tr,
+     td {
+          border: none !important;
      }
 
      .LinkTopico {
-          text-decoration: underline;
+          text-decoration: none;
+          font-size: large;
      }
 
      .aviso {
           padding: 10px;
           border-radius: 10px;
           font-weight: bold;
-          background-color: rgba(255, 255, 255, 0.8);
+
+     }
+
+     body {
+          color: white !important;
      }
 </style>
 <?php
@@ -48,7 +47,6 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 <main>
 
-     <br><br><br>
      <?php if (isset($_SESSION['id_usuario'])) {
           if ($_SESSION['nvl_usuario'] != 2) { ?>
                <div class="row">
@@ -60,57 +58,57 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
      <?php  }
      } ?>
      <br>
-     <div class="container">
-          <h5 class="red-text darken-4 center"> <?= exibeMensagens() ?> </h5>
-          <br>
-          <span class="aviso">Obs: Clique nos assuntos para ver os documentos de cada um.</span>
-     </div>
+
+     <h5 class="red-text darken-4 center"> <?= exibeMensagens() ?> </h5>
      <br>
-     <div class="container">
-          <table class="striped TabelaTopicos">
-               <thead>
-                    <th class="center">Assuntos</th>
-                    <?php if ($adm) { ?>
-                         <th class="center" colspan="4">Operações</th>
-                    <?php } ?>
-               </thead>
-               <tbody>
-                    <?php foreach ($topicos as $topico) {
-                         if ($topico['tituloTop'] != "-") { ?>
-                              <tr>
-                                   <td class="center"><a class="linkAssunto black-text LinkTopico" href=" ../Inicio/listaDocs.php?busca=<?= $topico['tituloTop'] ?>"><?= $topico['tituloTop'] ?></a></td>
-                                   <?php if ($adm) { ?>
-                                        <td class="center"><a class="btn-floating small white" href="formalterat.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons black-text">edit</a>
-                                             &nbsp <a class="btn-floating small white modal-trigger" href="#modal<?= $topico['idTop'] ?>"><i class="material-icons black-text ">delete</a>
-                                        </td>
-                                        <div id="modal<?= $topico['idTop'] ?>" class="modal">
-                                             <div class="modal-content">
+     <span class="aviso">Obs: Clique nos assuntos para ver os documentos de cada um.</span>
+
+     <br><br>
+
+     <table class="TabelaTopicos">
+          <thead>
+               <th class="center">Assuntos</th>
+               <?php if ($adm) { ?>
+                    <th class="center" colspan="4">Operações</th>
+               <?php } ?>
+          </thead>
+          <tbody>
+               <?php foreach ($topicos as $topico) {
+                    if ($topico['tituloTop'] != "-") { ?>
+                         <tr>
+                              <td class="center"><a class="white-text LinkTopico" href=" ../Inicio/listaDocs.php?busca=<?= $topico['tituloTop'] ?>"><?= $topico['tituloTop'] ?></a></td>
+                              <?php if ($adm) { ?>
+                                   <td class="center"><a class="btn-floating small white" href="formalterat.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons ">edit</a>
+                                        &nbsp <a class="btn-floating small white modal-trigger" href="#modal<?= $topico['idTop'] ?>"><i class="material-icons">delete</a>
+                                   </td>
+                                   <div id="modal<?= $topico['idTop'] ?>" class="modal">
+                                        <div class="modal-content">
+                                             <div class="row">
+                                                  <div class="center">
+                                                       <h4 class="black-text">Deseja mesmo excluir este tópico?</h4>
+                                                  </div>
+                                             </div>
+                                             <form action="excluirt.php" method="get">
                                                   <div class="row">
                                                        <div class="center">
-                                                            <h4 class="black-text">Deseja mesmo excluir este tópico?</h4>
+                                                            <input type="hidden" name="idTop" value="<?= $topico['idTop']; ?>">
                                                        </div>
                                                   </div>
-                                                  <form action="excluirt.php" method="get">
-                                                       <div class="row">
-                                                            <div class="center">
-                                                                 <input type="hidden" name="idTop" value="<?= $topico['idTop']; ?>">
-                                                            </div>
-                                                       </div>
-                                                       <div class="center">
-                                                            <button type="submit" class="btn waves-effect waves-green white black-text">Confirmar</button>
-                                                            <a href="#!" class="modal-close waves-effect waves-red white btn black-text">Cancelar</a>
-                                                       </div>
-                                                  </form>
-                                             </div>
+                                                  <div class="center">
+                                                       <button type="submit" class="btn waves-effect waves-green white black-text">Confirmar</button>
+                                                       <a href="#!" class="modal-close waves-effect waves-red white btn black-text">Cancelar</a>
+                                                  </div>
+                                             </form>
                                         </div>
-                                   <?php } ?>
-                              </tr>
-                    <?php
-                         }
-                    } ?>
-               </tbody>
-          </table>
-     </div>
+                                   </div>
+                              <?php } ?>
+                         </tr>
+               <?php
+                    }
+               } ?>
+          </tbody>
+     </table>
+
 
 </main>
 <?php require_once "../interfaces/footer.php"; ?>

@@ -1,22 +1,22 @@
 <title>Cadastro de Usuário</title>
 <style>
   input {
-    color: black;
+    color: white;
   }
 
   label {
-    color: black !important;
+    color: white !important;
   }
 
   .formCadastro {
-    background-color: rgba(255, 255, 255, 0.9);
+
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 10px;
   }
 
   .userIcon {
-    background-color: black !important;
+    background-color: transparent !important;
     border-radius: 100% !important;
   }
 </style>
@@ -93,6 +93,34 @@ include "../funcoes.php";
   </div>
 
 </main>
+
+
+
+<?php require "../interfaces/footer.php"; ?>
+
+<script>
+  let senha = document.getElementById('senha');
+  let senhaC = document.getElementById('repetirsenha');
+
+  function validarSenha() {
+    if (senha.value != senhaC.value) {
+      senhaC.setCustomValidity(" ");
+      senhaC.reportValidity();
+      return false;
+      senhaC.addEventListener('input', validarSenha);
+      senha.addEventListener('blur', validarSenha);
+    } else {
+      senhaC.setCustomValidity("");
+      return true;
+
+    }
+
+  }
+  // verificar também quando o campo for modificado, para que a mensagem suma quando as senhas forem iguais
+  senhaC.addEventListener('input', validarSenha);
+  senha.addEventListener('blur', validarSenha);
+</script>
+
 <script>
   function readURL(input) {
 
@@ -112,6 +140,3 @@ include "../funcoes.php";
 
   });
 </script>
-
-
-<?php require "../interfaces/footer.php"; ?>

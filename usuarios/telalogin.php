@@ -13,18 +13,19 @@ include('../funcoes.php');
     top: 10px;
     cursor: pointer;
     z-index: 2;
+    color: white !important;
   }
 
   input {
-    color: black;
+    color: white;
   }
 
   label {
-    color: black !important;
+    color: white !important;
   }
 
   .formLogin {
-    background-color: rgba(255, 255, 255, 0.9) !important;
+
     padding-left: 15px !important;
     padding-right: 15px !important;
     border-radius: 10px !important;
@@ -32,6 +33,13 @@ include('../funcoes.php');
 
   .buttonCheck {
     margin-left: 30%;
+  }
+
+  .passButton {
+    background-color: white !important;
+    color: black !important;
+    font-weight: bold;
+
   }
 </style>
 <?php
@@ -62,13 +70,13 @@ include "../interfaces/header.php";
       <div class="row">
         <div class="input-field">
           <input id="senha" name="senha" type="password" class="validate">
-          <span toggle="#senha" class="field-icon toggle-password "><span class="material-icons black-text">visibility</span></span>
+          <span toggle="#senha" class="field-icon toggle-password "><span class="material-icons">visibility</span></span>
           <label for="senha">Senha</label>
 
         </div>
       </div>
 
-      <a href="formRecuperarSenha.php" class="btn waves-ligh waves-effect white black-text">Esqueci minha senha</a>
+      <a href="formRecuperarSenha.php" class="btn waves-ligh waves-effect passButton">Esqueci minha senha</a>
       <button class="btn-floating waves-effect waves-light white buttonCheck" type="submit" name="action">
         <i class="material-icons black-text ">check</i>
       </button>

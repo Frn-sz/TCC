@@ -29,7 +29,7 @@ $imagem = $documentos['imagem'];
     }
 
     .caixaDocumento {
-        background-color: rgba(255, 255, 255, 0.6) !important;
+        color: white !important;
         border-radius: 5px;
         padding: 20px;
         size: 10vh;
@@ -60,15 +60,16 @@ $imagem = $documentos['imagem'];
     }
 
     .Transcricao:hover {
-        color: rgba(0, 0, 0, 0.8) !important;
+        color: rgba(255, 255, 255, 0.8) !important;
         transition: 0.5s;
     }
 
     .Fav,
     .botaoModal,
     .botaoTrans {
-        color: rgba(0, 0, 0, 0) !important;
+        color: white !important;
         font-weight: 600;
+        border: none !important;
         background:
             linear-gradient(90deg, #620063 50%, #000 0) var(--_p, 100%)/200% no-repeat !important;
         -webkit-background-clip: text !important;
@@ -85,6 +86,16 @@ $imagem = $documentos['imagem'];
     .SemImagem {
         font-weight: bold;
 
+    }
+
+    .chip {
+        background-color: transparent !important;
+        color: white !important;
+
+    }
+
+    li {
+        list-style-type: none;
     }
 </style>
 <?php
@@ -106,7 +117,7 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
 <main>
     <br><br><br><br>
 
-    <div class="container caixaDocumento">
+    <div class=" caixaDocumento">
         <?php if ($documentos['imagem'] != "") { ?>
             <div class="row imagemDoc">
                 <div class="center">
@@ -174,14 +185,14 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
                 foreach ($topicos as $chave => $topico) {
                     if ($topico['idTop'] != "33") { ?>
                         <a href="../Inicio/listaDocs.php?busca=<?= $topico['tituloTop'] ?>" class="black-text" href=#>
-                            <div class='chip white'> <?= $topico['tituloTop'] ?> </div>
+                            <div class='chip'> <?= $topico['tituloTop'] ?> </div>
                         </a>
                     <?php }
                 }
                 foreach ($plvsChaves as $plvChave) {
                     if ($plvChave != "." and $plvChave != "") { ?>
-                        <a class="black-text" href="../Inicio/listaDocs.php?busca=<?= $plvChave ?>">
-                            <div class='chip white'> <?= $plvChave ?> </div>
+                        <a class="plvChave" href="../Inicio/listaDocs.php?busca=<?= $plvChave ?>">
+                            <div class='chip'> <?= $plvChave ?> </div>
                         </a>
                 <?php }
                 } ?>
