@@ -42,22 +42,22 @@
 	}
 	$resultado = mysqli_query($conexao, $sql);
 	$id = mysqli_insert_id($conexao);
-	var_dump($sql);
 	if ($resultado) {
-		echo "sus";
 		foreach ($idsTopicos as $idTopico) {
 			//Fazendo a associação de Topicos e Documentos na tabela associativa (tabela_assoc)
 			if ($idTopico != 0) {
 				$AssociandoDocTopicos = "INSERT INTO tabela_assoc (id_topico, id_doc) VALUES ('$idTopico', '$id')";
 				$resultSet = mysqli_query($conexao, $AssociandoDocTopicos);
 				if (!$resultSet) {
+					echo "sas";
 					$erro = True;
 				}
 			} else {
-
 				$AssociandoDocTopicos = "INSERT INTO tabela_assoc (id_topico, id_doc) VALUES ('33', '$id')";
 				$resultSet = mysqli_query($conexao, $AssociandoDocTopicos);
+				var_dump($AssociandoDocTopicos);
 				if (!$resultSet) {
+					echo "sas";
 					$erro = True;
 				}
 			}

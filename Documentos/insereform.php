@@ -11,7 +11,7 @@
   }
 
   label {
-    color: black !important;
+    color: white !important;
   }
 
   .TopicosTitulo {

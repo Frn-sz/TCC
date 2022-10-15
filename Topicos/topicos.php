@@ -30,6 +30,9 @@
      body {
           color: white !important;
      }
+
+     .adelete,
+     .aedit {}
 </style>
 <?php
 
@@ -78,8 +81,8 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
                          <tr>
                               <td class="center"><a class="white-text LinkTopico" href=" ../Inicio/listaDocs.php?busca=<?= $topico['tituloTop'] ?>"><?= $topico['tituloTop'] ?></a></td>
                               <?php if ($adm) { ?>
-                                   <td class="center"><a class="btn-floating small white" href="formalterat.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons ">edit</a>
-                                        &nbsp <a class="btn-floating small white modal-trigger" href="#modal<?= $topico['idTop'] ?>"><i class="material-icons">delete</a>
+                                   <td class="center"><a class="btn-floating aedit white" href="formalterat.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons ">edit</a>
+                                        &nbsp <a class="btn-floating  adelete white modal-trigger" href="#modal<?= $topico['idTop'] ?>"><i class="material-icons">delete</a>
                                    </td>
                                    <div id="modal<?= $topico['idTop'] ?>" class="modal">
                                         <div class="modal-content">

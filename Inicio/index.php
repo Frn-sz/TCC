@@ -36,7 +36,7 @@ include('../interfaces/header.php');
 ?>
 <style>
     .item {
-        max-height: 45vh;
+        max-height: 60vh;
         max-width: 40vh;
         overflow: hidden !important;
         display: flex !important;
@@ -44,7 +44,7 @@ include('../interfaces/header.php');
     }
 
     .owl-carousel {
-        background-color: rgba(255, 255, 255, 0.6);
+
         padding: 50px;
         border-radius: 5px;
     }
@@ -99,3 +99,20 @@ include('../interfaces/header.php');
 
 
 <?php include('../interfaces/footer.php'); ?>
+
+<script type="text/javascript">
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+        items: 1,
+        margin: 10,
+        autoplay: true,
+        autoplayTimeout: 2000,
+        autoplayHoverPause: true,
+        responsiveClass: true,
+        autoWidth: true,
+        loop: true,
+        autoHeight: true,
+        autoHeightClass: 'owl-height'
+
+    });
+</script>

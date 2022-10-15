@@ -3,6 +3,8 @@ include("../conecta.php");
 if (!isset($_SESSION)) {
     session_start();
 }
+mysqli_real_escape_string($conexao, $_POST['email']);
+mysqli_real_escape_string($conexao, $_POST['senha']);
 if ($_POST['email'] != "") {
     $sql = "SELECT * FROM user WHERE email= '$_POST[email]' LIMIT 1";
     $result = mysqli_query($conexao, $sql);

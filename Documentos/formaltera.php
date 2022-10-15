@@ -2,8 +2,7 @@
 
 <style>
   .formAltera {
-    color: black !important;
-    background-color: rgba(255, 255, 255, 0.8);
+    color: white !important;
     border-radius: 10px;
     padding-left: 15px;
     padding-right: 15px;
@@ -12,12 +11,19 @@
   }
 
   label {
-    color: black !important;
+    color: white !important;
   }
 
   .TopicosTitulo {
     display: inline-block;
     text-align: center;
+  }
+
+  input,
+  textarea,
+  select,
+  option {
+    color: white !important;
   }
 </style>
 
@@ -125,4 +131,6 @@ mysqli_close($conexao);
       </div>
     </div>
   </form><br>
-</main><?php require_once "../interfaces/footer.php"; ?>
+</main>
+
+<?php require_once "../interfaces/footer.php"; ?>

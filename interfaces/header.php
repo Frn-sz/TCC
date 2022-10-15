@@ -154,6 +154,10 @@
       box-shadow: 0 1px 0 0 black !important;
     }
 
+    .selectTopicos {
+      color: black !important;
+    }
+
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus,

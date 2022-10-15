@@ -49,8 +49,8 @@ if (!isset($_SESSION)) {
      div.gallery {
           margin: 5px;
           border: 1px solid #ccc;
-          float: left;
           width: 180px;
+          color: white;
      }
 
      div.gallery:hover {
@@ -206,70 +206,72 @@ if (!isset($_SESSION)) {
                                                                  <a class="waves-effect waves-light btn-floating modal-trigger white " href="#modal<?= $documento['idDoc'] ?>"><i class="material-icons black-text">delete</i></a>
                                                        <?php }
                                                        } ?>
-                                                       <!-- </div> -->
+                                                  </div>
+                                             </div>
+                                        </div>
                               </a>
                </div>
-          </div>
-          </div>
-          </div>
-          <div id="modal<?= $documento['idDoc'] ?>" class="modal">
-               <div class="modal-content">
-                    <div class="row">
-                         <div class="center">
-                              <h4 class="black-text">Deseja mesmo excluir este documento?</h4>
-                         </div>
-                    </div>
-                    <form action="../Documentos/excluir.php" method="get">
+
+
+
+               <div id="modal<?= $documento['idDoc'] ?>" class="modal">
+                    <div class="modal-content">
                          <div class="row">
                               <div class="center">
-                                   <input type="hidden" name="idDoc" value="<?= $documento['idDoc']; ?>">
+                                   <h4 class="black-text">Deseja mesmo excluir este documento?</h4>
                               </div>
                          </div>
-                         <div class="center">
-                              <button type="submit" class="btn waves-effect waves-green white black-text">Confirmar</button>
-                              <a href="#!" class="modal-close waves-effect waves-red white btn black-text">Cancelar</a>
-                         </div>
-                    </form>
+                         <form action="../Documentos/excluir.php" method="get">
+                              <div class="row">
+                                   <div class="center">
+                                        <input type="hidden" name="idDoc" value="<?= $documento['idDoc']; ?>">
+                                   </div>
+                              </div>
+                              <div class="center">
+                                   <button type="submit" class="btn waves-effect waves-green white black-text">Confirmar</button>
+                                   <a href="#!" class="modal-close waves-effect waves-red white btn black-text">Cancelar</a>
+                              </div>
+                         </form>
+                    </div>
                </div>
-          </div>
-<?php    }
+     <?php    }
                     } ?>
-<div class="row">
+          </div>
+          <div class="center row">
 
-     <ul class="pagination">
-          <?php if ($pag == 1) { ?>
-               <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-          <?php } else { ?>
-               <li class="waves-effect"><a href="listaDocs.php?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
-          <?php }
-          for ($i = 1; $i <= $ultimaPag; $i++) { ?>
-               <li class="active white "><a class="black-text" href="listaDocs.php?pagina=<?= $i ?>"><?= $i ?></a></li>
-          <?php }
-          if ($pag < $ultimaPag) { ?>
-               <li class="waves-effect"><a href="listaDocs.php?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
-          <?php } else { ?>
-               <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-          <?php } ?>
-     </ul>
+               <ul class="pagination">
+                    <?php if ($pag == 1) { ?>
+                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <?php } else { ?>
+                         <li class="waves-effect"><a href="listaDocs.php?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
+                    <?php }
+                    for ($i = 1; $i <= $ultimaPag; $i++) { ?>
+                         <li class="active white "><a class="black-text" href="listaDocs.php?pagina=<?= $i ?>"><?= $i ?></a></li>
+                    <?php }
+                    if ($pag < $ultimaPag) { ?>
+                         <li class="waves-effect"><a href="listaDocs.php?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
+                    <?php } else { ?>
+                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    <?php } ?>
+               </ul>
 
-</div>
-
-<?php } else { ?>
-     <div class="teste1">
-          <?php
-          foreach ($topicos as $topico) { ?>
-               <div class="container teste">
-                    <h3 class="tituloTop"> <?= $topico['tituloTop'] ?> </h3>
+          </div>
+          </div>
+     <?php } else { ?>
+          <div class="teste1">
+               <div class="container teste1">
                     <ul>
-                         <?php foreach ($docTopico as $key => $doc) {
-                              foreach ($doc as $d) {
-                         ?>
+                         <?php
+                         foreach ($docTopico as $key => $doc) {
+                              foreach ($doc as $d) { ?>
+
+                                   <h3 class="tituloTop"><?= $key ?></h3>
                                    <li>
                                         <div class="gallery">
                                              <div>
                                                   <a href="../Documentos/vermais.php?idDoc=<?= $d['idDoc'] ?>"><img class="imgCollapsible" width=400 src="../upload/<?= $d['imagem'] ?>" alt=""></a>
                                              </div>
-                                             <div class="desc">Add a description of the image here</div>
+                                             <div class="desc"><?= $d['tituloDoc']; ?></div>
                                         </div>
                                    <li>
                               <?php
@@ -279,8 +281,8 @@ if (!isset($_SESSION)) {
                </div>
           <?php } ?>
 
-     </div>
-<?php } ?>
+          </div>
+
 </main>
 
 <?php include_once "../interfaces/footer.php"; ?>
