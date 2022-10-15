@@ -19,8 +19,9 @@ $genero = mysqli_real_escape_string($conexao, $_POST['genero']);
 $localizacao = mysqli_real_escape_string($conexao, $_POST['localizacao']);
 $imagem  = mysqli_real_escape_string($conexao, $nome);
 $palavrasChaves = mysqli_real_escape_string($conexao, $_POST['plvChaves']);
-$ApagandoAssociacoes = "DELETE FROM `tabela_assoc` WHERE id_doc = $id";
+$ApagandoAssociacoes = "DELETE FROM `tabela_assoc` WHERE id_doc = '$id'";
 $result = mysqli_query($conexao, $ApagandoAssociacoes);
+
 
 if ($_FILES['arquivo']['error'] == 0) {
     $sql = "UPDATE documentos SET tituloDoc='$titulo',forma='$forma',formato='$formato',especie='$especie',genero='$genero',localizacao='$localizacao', imagem = '$imagem', palavrasChaves = '$palavrasChaves' WHERE idDoc=$id ";
@@ -29,6 +30,7 @@ if ($_FILES['arquivo']['error'] == 0) {
 }
 
 $resultado = mysqli_query($conexao, $sql);
+
 // var_dump($sql);
 // die();
 if ($resultado) {
@@ -38,6 +40,7 @@ if ($resultado) {
         if ($idTopico != 0) {
             $AssociandoDocTopicos = "INSERT INTO tabela_assoc (id_topico, id_doc) VALUES ('$idTopico', '$id')";
             $resultSet = mysqli_query($conexao, $AssociandoDocTopicos);
+            var_dump($AssociandoDocTopicos);
             if (!$resultSet) {
                 $erro = True;
             }

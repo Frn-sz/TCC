@@ -12,7 +12,7 @@ function puxartopicos()
     if ($topico['tituloTop'] != "-") {
       $titulo = $topico['tituloTop'];
       $id = $topico['idTop']; ?>
-      <option class="selectTopicos" value=$id><?= $titulo ?> </option>";
+      <option class="selectTopicos" value=<?= $id ?>><?= $titulo ?> </option>";
 <?php }
   }
 }
