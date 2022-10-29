@@ -28,12 +28,15 @@ if (is_null($passwordReset)) {
 ?>
 <style>
     .formRedefine {
-        background-color: rgba(255, 255, 255, 0.9) !important;
+
         padding: 15px;
     }
 
-    label {
-        color: black !important;
+    input,
+    textarea,
+    select,
+    option {
+        color: white !important;
     }
 </style>
 <main>
@@ -42,12 +45,12 @@ if (is_null($passwordReset)) {
         <div class="row  formRedefine">
             <form action="resetpassword.php" method="post">
                 <div class="input-field">
-                    <span toggle="#senha" class="field-icon toggle-password "><span class="material-icons black-text">visibility</span></span>
+                    <span toggle="#senha" class="field-icon toggle-password "><span class="material-icons white-text">visibility</span></span>
                     <input type="password" name="senha" id="senha" class="validate">
                     <label for="senha">Insira a nova senha</label>
                 </div>
                 <div class="input-field">
-                    <span toggle="#repetirsenha" class="field-icon toggle-password "><span class="material-icons black-text">visibility</span></span>
+                    <span toggle="#repetirsenha" class="field-icon toggle-password "><span class="material-icons white-text">visibility</span></span>
                     <input type="password" name="repetirSenha" id="repetirsenha" class="validate">
                     <label for="repetirSenha">Confirme a senha</label>
                     <span class="helper-text" data-error="Senhas não conferem"></span>

@@ -24,17 +24,15 @@
         }
 
         .formRecupSenha {
-            background-color: rgba(255, 255, 255, 0.9) !important;
             padding: 15px;
             border-radius: 10px !important;
         }
 
-        input {
-            color: black;
-        }
-
-        label {
-            color: black;
+        input,
+        textarea,
+        select,
+        option {
+            color: white !important;
         }
     </style>
 

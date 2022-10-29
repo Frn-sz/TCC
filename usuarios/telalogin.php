@@ -56,7 +56,7 @@ include "../interfaces/header.php";
       <div class="row">
         <div class="col s12">
           <div class="center">
-            <h5 class="black-text"> <?= exibeMensagens() ?> </h5>
+            <h5 class="white-text"> <?= exibeMensagens() ?> </h5>
           </div>
         </div>
       </div>

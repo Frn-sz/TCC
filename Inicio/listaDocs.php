@@ -264,7 +264,6 @@ if (!isset($_SESSION)) {
                          <?php
                          foreach ($docTopico as $key => $doc) {
                               foreach ($doc as $d) { ?>
-
                                    <h3 class="tituloTop"><?= $key ?></h3>
                                    <li>
                                         <div class="gallery">
@@ -291,7 +290,6 @@ if (!isset($_SESSION)) {
           $('.collapsible').collapsible();
      });
 </script>
-
 <script>
      $('.tabs').tabs('methodName');
      $('.tabs').tabs('methodName', paramName);

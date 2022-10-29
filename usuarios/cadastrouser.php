@@ -16,8 +16,22 @@
   }
 
   .userIcon {
-    background-color: transparent !important;
+
     border-radius: 100% !important;
+  }
+
+  #blah2 {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: auto;
+    display: none;
+    align-items: center;
+  }
+
+  .excluirImg {
+    display: none;
   }
 </style>
 
@@ -38,14 +52,17 @@ include "../funcoes.php";
           <h5 class="red-text darken-4"> <?= exibeMensagens() ?> </h5>
         </div>
       </div>
+
       <div class="center">
         <img width="300" id="blah2" />
       </div>
       <div class="file-field input-field">
-        <div class="btn userIcon ">
+        <div class="btn userIcon white">
           <input id="ImagemCadastro" type="file" name="foto" onchange="readURL(this);">
-          <i class="material-icons">account_circle</i></span>
+          <i class="material-icons black-text">account_circle</i></span>
+
         </div>
+
         <div class="file-path-wrapper">
           <label for="ImagemCadastro">Escolha uma foto de perfil</label><input class="file-path validate" type="text">
         </div>
@@ -91,7 +108,6 @@ include "../funcoes.php";
 
     </form>
   </div>
-
 </main>
 
 
@@ -130,11 +146,11 @@ include "../funcoes.php";
       reader.onload = function(e) {
         $('#blah2').attr('src', e.target.result);
       }
+      document.querySelector('#blah2').style.display = "flex"
 
       reader.readAsDataURL(input.files[0]);
     }
   }
-
   $("#imagemCadastro").change(function() {
     readURL(this);
 

@@ -179,6 +179,16 @@
       border-top-left-radius: 5px !important;
       border-top-right-radius: 5px !important;
     }
+
+    .fotoUsuario {
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: auto;
+      display: flex;
+      align-items: center;
+    }
   </style>
 </head>
 
@@ -211,7 +221,7 @@
   <li>
     <div class="user-view">
       <?php if (isset($_SESSION['id_usuario'])) { ?>
-        <img style='border-radius:5%' class="hoverable materialboxed" width=200 src="../upload/<?= $_SESSION['foto'] ?>">
+        <img class="hoverable materialboxed fotoUsuario" width=200 src="../upload/<?= $_SESSION['foto'] ?>">
         <span class="white-text name large"><?= $_SESSION['nome_usuario'] ?></span>
         <a href="#email"><span class="white-text email"><? $_SESSION['email_usuario'] ?></span></a>
 
