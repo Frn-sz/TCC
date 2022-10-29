@@ -18,13 +18,6 @@ if (!isset($_SESSION)) {
           color: white !important;
      }
 
-     .collapsible {
-          color: black;
-          text-align: center;
-
-          cursor: pointer;
-     }
-
      .topicosEncontrados {
           color: white;
           text-align: center;
@@ -36,14 +29,6 @@ if (!isset($_SESSION)) {
           padding: 10px;
           font-size: 20px;
           border-radius: 5px;
-     }
-
-     .imgCollapsible {
-          display: flex;
-     }
-
-     .collapsible {
-          border: none !important;
      }
 
      div.gallery {
@@ -76,6 +61,11 @@ if (!isset($_SESSION)) {
      .teste1 {
           display: flex;
           flex-direction: column;
+     }
+
+     .nenhumTopico {
+          text-align: center;
+          color: white;
      }
 </style>
 <main>
@@ -118,13 +108,6 @@ if (!isset($_SESSION)) {
           $resultado = mysqli_query($conexao, $BuscaDocumentos);
           $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
           $numRows = count($documentos);
-          if ($numRows == 0) { ?>
-               <div class="row">
-                    <div class="center">
-                         <h3 class="white-text">Nenhum documento encontrado</h3>
-                    </div>
-               </div>
-          <?php }
           $ultimaPag = ceil($numRows / $limit);
           $pegandoTopicos = "SELECT * FROM topicos AS T WHERE T.tituloTop LIKE '$pesquisa'";
           $resultTopicos = mysqli_query($conexao, $pegandoTopicos);
@@ -160,9 +143,16 @@ if (!isset($_SESSION)) {
                </div>
                <br>
           </div>
-     <?php }
+          <?php }
      if ($escolha != "topicos") {
-     ?>
+          if ($numRows == 0) { ?>
+               <div class="row">
+                    <div class="center">
+                         <h3 class="white-text">Nenhum documento encontrado</h3>
+                    </div>
+               </div>
+          <?php }
+          ?>
           <div class='container'>
                <div class='row'>
                     <?php
@@ -262,23 +252,36 @@ if (!isset($_SESSION)) {
                <div class="container teste1">
                     <ul>
                          <?php
-                         foreach ($docTopico as $key => $doc) {
-                              foreach ($doc as $d) { ?>
-                                   <h3 class="tituloTop"><?= $key ?></h3>
-                                   <li>
-                                        <div class="gallery">
-                                             <div>
-                                                  <a href="../Documentos/vermais.php?idDoc=<?= $d['idDoc'] ?>"><img class="imgCollapsible" width=400 src="../upload/<?= $d['imagem'] ?>" alt=""></a>
+                         if (isset($docTopico)) {
+                              foreach ($docTopico as $key => $doc) {
+                                   foreach ($doc as $d) { ?>
+
+                                        <h3 class="tituloTop"><?= $key ?></h3>
+                                        <li>
+                                             <div class="gallery">
+                                                  <div>
+                                                       <a href="../Documentos/vermais.php?idDoc=<?= $d['idDoc'] ?>">
+                                                            <?php if ($d['imagem'] != "") { ?>
+                                                                 <img width=400 src="../upload/<?= $d['imagem'] ?>" alt="">
+                                                            <?php
+                                                            } else { ?>
+                                                                 <img src="../Imagens/placeholderSemImagem.png" alt="">
+                                                            <?php } ?>
+                                                       </a>
+                                                  </div>
+                                                  <div class="desc"><?= $d['tituloDoc']; ?></div>
                                              </div>
-                                             <div class="desc"><?= $d['tituloDoc']; ?></div>
-                                        </div>
-                                   <li>
-                              <?php
-                              }
-                         } ?>
+                                        <li>
+                                   <?php
+                                   }
+                              } ?>
                     </ul>
                </div>
-          <?php } ?>
+          <?php } else { ?>
+               <h3 class="nenhumTopico">Nenhum tópico encontrado</h3>
+     <?php
+                         }
+                    } ?>
 
           </div>
 

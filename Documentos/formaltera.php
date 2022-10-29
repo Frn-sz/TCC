@@ -25,6 +25,11 @@
   option {
     color: white !important;
   }
+
+  .dropdown-content li>a,
+  .dropdown-content li>span {
+    color: black !important;
+  }
 </style>
 
 <?php

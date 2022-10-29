@@ -1,8 +1,7 @@
 <title> Tela de Cadastro</title>
 <style>
   .formInsere {
-    color: black !important;
-    background-color: rgba(255, 255, 255, 0.8);
+    color: white !important;
     border-radius: 10px;
     padding-left: 15px;
     padding-right: 15px;
@@ -17,6 +16,18 @@
   .TopicosTitulo {
     display: inline-block;
     text-align: center;
+  }
+
+  input,
+  textarea,
+  select,
+  option {
+    color: white !important;
+  }
+
+  .dropdown-content li>a,
+  .dropdown-content li>span {
+    color: black !important;
   }
 </style>
 </head>
