@@ -220,8 +220,11 @@
 <ul id="slide-out" class="sidenav">
   <li>
     <div class="user-view">
-      <?php if (isset($_SESSION['id_usuario'])) { ?>
-        <img class="hoverable materialboxed fotoUsuario" width=200 src="../upload/<?= $_SESSION['foto'] ?>">
+      <?php if (isset($_SESSION['id_usuario'])) {
+        if ($_SESSION['foto'] != NULL) {
+      ?>
+          <img class="hoverable materialboxed fotoUsuario" width=200 src="../upload/<?= $_SESSION['foto'] ?>">
+        <?php } ?>
         <span class="white-text name large"><?= $_SESSION['nome_usuario'] ?></span>
         <a href="#email"><span class="white-text email"><? $_SESSION['email_usuario'] ?></span></a>
 

@@ -67,6 +67,11 @@ if (!isset($_SESSION)) {
           text-align: center;
           color: white;
      }
+
+     .listaDocumentosTopicos {
+          list-style: none !important;
+          display: inline-block !important;
+     }
 </style>
 <main>
      <?php
@@ -74,6 +79,7 @@ if (!isset($_SESSION)) {
      ?>
      <?php
      require_once "../conecta.php";
+     require("../funcoes.php");
      if (isset($_GET['escolha'])) {
           $escolha  = $_GET['escolha'];
      } else {
@@ -109,18 +115,6 @@ if (!isset($_SESSION)) {
           $documentos = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
           $numRows = count($documentos);
           $ultimaPag = ceil($numRows / $limit);
-          $pegandoTopicos = "SELECT * FROM topicos AS T WHERE T.tituloTop LIKE '$pesquisa'";
-          $resultTopicos = mysqli_query($conexao, $pegandoTopicos);
-          $topicos = mysqli_fetch_all($resultTopicos, MYSQLI_ASSOC);
-          foreach ($topicos as $topico) {
-               $selectDocTopicos = "SELECT * FROM documentos AS D
-                JOIN tabela_assoc AS t
-                ON D.idDoc = t.id_doc
-                WHERE t.id_topico = '$topico[idTop]'";
-               $query = mysqli_query($conexao, $selectDocTopicos);
-               $topicoName = $topico['tituloTop'];
-               $docTopico[$topicoName] = mysqli_fetch_all($query, MYSQLI_ASSOC);
-          }
      } else {
           //Puxando todos os documentos do banco de dados
           $sqlTotal = "SELECT count(*) FROM `documentos` ORDER BY tituloDoc";
@@ -248,42 +242,11 @@ if (!isset($_SESSION)) {
           </div>
           </div>
      <?php } else { ?>
-          <div class="teste1">
-               <div class="container teste1">
-                    <ul>
-                         <?php
-                         if (isset($docTopico)) {
-                              foreach ($docTopico as $key => $doc) {
-                                   foreach ($doc as $d) { ?>
 
-                                        <h3 class="tituloTop"><?= $key ?></h3>
-                                        <li>
-                                             <div class="gallery">
-                                                  <div>
-                                                       <a href="../Documentos/vermais.php?idDoc=<?= $d['idDoc'] ?>">
-                                                            <?php if ($d['imagem'] != "") { ?>
-                                                                 <img width=400 src="../upload/<?= $d['imagem'] ?>" alt="">
-                                                            <?php
-                                                            } else { ?>
-                                                                 <img src="../Imagens/placeholderSemImagem.png" alt="">
-                                                            <?php } ?>
-                                                       </a>
-                                                  </div>
-                                                  <div class="desc"><?= $d['tituloDoc']; ?></div>
-                                             </div>
-                                        <li>
-                                   <?php
-                                   }
-                              } ?>
-                    </ul>
-               </div>
-          <?php } else { ?>
-               <h3 class="nenhumTopico">Nenhum tópico encontrado</h3>
-     <?php
-                         }
-                    } ?>
+     <?php buscaTopicos($_GET['busca']);
+     } ?>
 
-          </div>
+
 
 </main>
 
