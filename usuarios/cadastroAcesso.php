@@ -15,5 +15,5 @@ $_SESSION['nome_usuario'] = $usuario['nome'];
 $_SESSION['email_usuario'] = $usuario['email'];
 
 if ($result) {
-    header("Location:../Inicio/listaDocs");
+    header("Location:../Inicio/listaDocs.php");
 }

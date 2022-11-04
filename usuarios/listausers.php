@@ -13,9 +13,8 @@ if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] != "1") {
 <title>Lista de Usuários</title>
 <style>
      .tabelaUsuarios {
-          background-color: rgba(255, 255, 255, 0.8);
           border-radius: 10px;
-          color: black;
+          color: white;
      }
 
      .imagemUsuarios {
@@ -26,7 +25,7 @@ if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] != "1") {
      }
 
      .buttonListaUser {
-          color: rgba(0, 0, 0, 0) !important;
+          color: white !important;
           font-weight: 600;
           background:
                linear-gradient(90deg, purple 50%, #000 0) var(--_p, 100%)/200% no-repeat !important;
