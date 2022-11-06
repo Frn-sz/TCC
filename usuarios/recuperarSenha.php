@@ -9,7 +9,7 @@ require '../PHPMailer/src/Exception.php';
 require '../PHPMailer/src/PHPMailer.php';
 require '../PHPMailer/src/SMTP.php';
 require_once '../conecta.php';
-$email = $_POST['email'];
+$email = mysqli_real_escape_string($conexao, $_POST['email']);
 $sql = "SELECT email FROM user WHERE email = '$email'";
 $result = mysqli_query($conexao, $sql);
 $usuario = mysqli_fetch_assoc($result);

@@ -80,7 +80,7 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
                <?php foreach ($topicos as $topico) {
                     if ($topico['tituloTop'] != "-") { ?>
                          <tr>
-                              <td class="center"><a class="white-text LinkTopico" href=" ../Inicio/listaDocs.php?busca=<?= $topico['tituloTop'] ?>"><?= $topico['tituloTop'] ?></a></td>
+                              <td class="center"><a class="white-text LinkTopico" href=" ../Documentos/buscaTopicos.php?idTopico=<?= $topico['idTop'] ?>"><?= $topico['tituloTop'] ?></a></td>
                               <?php if ($adm) { ?>
                                    <td class="center"><a class="btn-floating aedit white" href="formalterat.php?idTop=<?= $topico['idTop'] ?>"><i class="material-icons black-text">edit</a>
                                         &nbsp <a class="btn-floating  adelete white modal-trigger" href="#modal<?= $topico['idTop'] ?>"><i class="material-icons     black-text">delete</a>
