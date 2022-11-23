@@ -66,7 +66,7 @@ include('../interfaces/header.php');
     <br><br><br><br><br>
 
     <?php if ($return == True) { ?>
-        <h3 class="Alguns">Alguns documentos cadastrados</h3>
+        <h3 class="Alguns">Confira os documentos cadastrados!</h3>
         <div class="caixaCarrossel">
             <div class="container ">
                 <div class="owl-carousel owl-theme">

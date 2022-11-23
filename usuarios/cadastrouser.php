@@ -49,7 +49,7 @@ include "../funcoes.php";
     <form action="cadastro_usuario.php" method="post" enctype="multipart/form-data">
       <div class="row">
         <div class="center">
-          <h5 class="red-text darken-4"> <?= exibeMensagens() ?> </h5>
+          <h4 class="center white-text"><?= exibeMensagens() ?></h4>
         </div>
       </div>
 

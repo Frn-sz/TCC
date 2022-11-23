@@ -17,7 +17,7 @@ if (!isset($existe[0]['id_tabela'])) {
         header("Location:topicos.php");
     }
 } else {
-    $_SESSION['mensagem'] = "Tópico presente em algum documento. Não é possível exclui-lo.";
+    $_SESSION['mensagem'] = "Tópico presente em algum documento. Não é possível excluí-lo.";
     header("Location:topicos.php");
 }
 ?>

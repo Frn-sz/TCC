@@ -142,6 +142,7 @@ if (!isset($_SESSION)) {
           if ($numRows == 0) { ?>
                <div class="row">
                     <div class="center">
+                         <?php $nenhum = True; ?>
                          <h3 class="white-text">Nenhum documento encontrado</h3>
                     </div>
                </div>
@@ -224,19 +225,23 @@ if (!isset($_SESSION)) {
           <div class="center row">
 
                <ul class="pagination">
-                    <?php if ($pag == 1) { ?>
-                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                    <?php } else { ?>
-                         <li class="waves-effect"><a href="listaDocs.php?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
+                    <?php
+                    if (!isset($nenhum)) {
+                         if ($pag == 1) {
+                    ?>
+                              <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                         <?php } else { ?>
+                              <li class="waves-effect"><a href="listaDocs.php?pagina=<?= $anterior ?>"><i class="material-icons">chevron_left</i></a></li>
+                         <?php }
+                         for ($i = 1; $i <= $ultimaPag; $i++) { ?>
+                              <li class="active white "><a class="black-text" href="listaDocs.php?pagina=<?= $i ?>"><?= $i ?></a></li>
+                         <?php }
+                         if ($pag < $ultimaPag) { ?>
+                              <li class="waves-effect"><a href="listaDocs.php?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
+                         <?php } else { ?>
+                              <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                     <?php }
-                    for ($i = 1; $i <= $ultimaPag; $i++) { ?>
-                         <li class="active white "><a class="black-text" href="listaDocs.php?pagina=<?= $i ?>"><?= $i ?></a></li>
-                    <?php }
-                    if ($pag < $ultimaPag) { ?>
-                         <li class="waves-effect"><a href="listaDocs.php?pagina=<?= $proximo ?>"><i class="material-icons">chevron_right</i></a></li>
-                    <?php } else { ?>
-                         <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                    <?php } ?>
+                    } ?>
                </ul>
 
           </div>

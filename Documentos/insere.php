@@ -6,18 +6,6 @@
 		$dir = "../upload/";
 		move_uploaded_file($_FILES['arquivo']['tmp_name'], $dir . $nome);
 		var_dump($_FILES['arquivo']['tmp_name']);
-
-		/*
-		shell_exec('"C:\\Program Files (x86)\\Tesseract-OCR\\tesseract " ' . $_FILES['arquivo']['tmp_name'] . ' out.txt');
-
-		echo "<br><h3>OCR after reading</h3><br><pre>";
-
-		$myfile = fopen("out.txt", "r") or die("Unable to open file!");
-		echo fread($myfile, filesize("out.txt"));
-		fclose($myfile);
-		echo "</pre>";
-		die;
-		*/
 	}
 	include_once "../conecta.php";
 	$erro = False;

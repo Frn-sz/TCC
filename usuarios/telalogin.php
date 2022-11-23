@@ -56,20 +56,20 @@ include "../interfaces/header.php";
       <div class="row">
         <div class="col s12">
           <div class="center">
-            <h5 class="white-text"> <?= exibeMensagens() ?> </h5>
+            <h4 class="center white-text"><?= exibeMensagens() ?></h4>
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field">
-          <input id="emailx" type="email" name="email" class="validate">
+          <input id="emailx" type="email" name="email" class="validate" required>
           <label for="emailx">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field">
-          <input id="senha" name="senha" type="password" class="validate">
+          <input id="senha" name="senha" type="password" class="validate" required>
           <span toggle="#senha" class="field-icon toggle-password "><span class="material-icons">visibility</span></span>
           <label for="senha">Senha</label>
 

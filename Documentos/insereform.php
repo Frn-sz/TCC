@@ -46,7 +46,7 @@
     <div class="container formInsere">
       <form action="insere.php" method="post" enctype="multipart/form-data">
         <div class="center">
-          <a style="color:red"> <?= exibeMensagens() ?></a>
+          <h4 class="center white-text"><?= exibeMensagens() ?></h4>
         </div>
         <div class="row">
           <div class="input-field">

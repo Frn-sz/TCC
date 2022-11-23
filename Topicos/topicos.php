@@ -63,7 +63,7 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
      } ?>
      <br>
 
-     <h5 class="red-text darken-4 center"> <?= exibeMensagens() ?> </h5>
+     <h4 class="center white-text"><?= exibeMensagens() ?></h4>
      <br>
      <span class="aviso">Obs: Clique nos assuntos para ver os documentos de cada um.</span>
 

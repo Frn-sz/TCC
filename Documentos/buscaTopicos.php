@@ -4,19 +4,31 @@ if (!isset($_SESSION)) {
 }
 include("../conecta.php");
 $idTopico = $_GET['idTopico'];
-$selectDocTopicos = "SELECT * FROM documentos AS D
-                JOIN tabela_assoc AS t
-                ON D.idDoc = t.id_doc
-                WHERE t.id_topico = '$idTopico'";
+$selectDocTopicos =
+
+    "SELECT * FROM documentos AS D
+    JOIN tabela_assoc AS t
+    ON D.idDoc = t.id_doc
+    WHERE t.id_topico = '$idTopico'";
+
 $query = mysqli_query($conexao, $selectDocTopicos);
 $documentos = mysqli_fetch_all($query, MYSQLI_ASSOC);
-include("../interfaces/header.php");
 ?>
 <style>
     a {
         color: white !important;
     }
+
+    .card-image {
+        height: 25vh !important;
+        overflow: hidden !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        padding: 2px;
+
+    }
 </style>
+<?php include("../interfaces/header.php"); ?>
 <main>
     <div class='container'>
         <div class='row'>

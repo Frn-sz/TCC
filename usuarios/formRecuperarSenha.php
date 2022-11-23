@@ -41,11 +41,11 @@
     <div class="row">
         <div class="container formRecupSenha">
             <div class="center">
-                <h4><?= exibeMensagens() ?></h4>
+                <h4 class="center white-text"><?= exibeMensagens() ?></h4>
             </div>
             <form action="recuperarSenha.php" method="POST">
                 <div class="input-field">
-                    <input type="email" name="email">
+                    <input type="email" name="email" required>
                     <label for="email">Email</label>
                 </div>
                 <div class="center">

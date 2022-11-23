@@ -11,11 +11,6 @@
   a {
     color: white !important;
   }
-
-  .semImagem {
-    text-align: center !important;
-    display: flex !important;
-  }
 </style>
 <main>
 
@@ -36,9 +31,7 @@
                   <?php if (!is_null($documento['imagem'])) { ?>
                     <img class='imagem' src='../upload/<?= $documento['imagem'] ?>'>
                   <?php } else { ?>
-                    <div class='semImagem'>
-                      "Sem imagem"
-                    </div>
+                    <img class='imagem' src='../Imagens/placeholderSemImagem.png'>
                   <?php } ?>
                 </div>
                 <div class='card-content'>

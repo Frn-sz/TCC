@@ -46,12 +46,12 @@ if (is_null($passwordReset)) {
             <form action="resetpassword.php" method="post">
                 <div class="input-field">
                     <span toggle="#senha" class="field-icon toggle-password "><span class="material-icons white-text">visibility</span></span>
-                    <input type="password" name="senha" id="senha" class="validate">
+                    <input type="password" name="senha" id="senha" class="validate" required>
                     <label for="senha">Insira a nova senha</label>
                 </div>
                 <div class="input-field">
                     <span toggle="#repetirsenha" class="field-icon toggle-password "><span class="material-icons white-text">visibility</span></span>
-                    <input type="password" name="repetirSenha" id="repetirsenha" class="validate">
+                    <input type="password" name="repetirSenha" id="repetirsenha" class="validate" required>
                     <label for="repetirSenha">Confirme a senha</label>
                     <span class="helper-text" data-error="Senhas não conferem"></span>
                 </div>

@@ -26,16 +26,18 @@ function exibeMensagens()
   }
 }
 
-function verificandoNivelUsuario()
+function verificandoNivelUsuario(): void
 {
-  session_start();
+  if (!isset($_SESSION)) {
+    session_start();
+  }
   if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2) {
 
     header("Location:../Inicio/");
   }
 }
 
-function buscaTopicos($busca)
+function buscaTopicos(string $busca)
 {
   if (!isset($_SESSION)) {
     session_start();
@@ -91,5 +93,25 @@ function buscaTopicos($busca)
       } ?>
     </div>
 <?php
+  }
+}
+function puxarFotoUsuario(int $idUsuario): array
+{
+  include("conecta.php");
+  $sql = "SELECT foto FROM `user` WHERE id = '$idUsuario'";
+  $query = mysqli_query($conexao, $sql);
+  $foto = mysqli_fetch_assoc($query);
+  return $foto;
+}
+
+function deletarFavoritos(int $id, string  $campo): bool
+{
+  include('conecta.php');
+  $sql = "DELETE from favoritos WHERE $campo = $id";
+  $query = mysqli_query($conexao, $sql);
+  if ($query) {
+    return True;
+  } else {
+    return False;
   }
 }

@@ -49,7 +49,7 @@ include "../funcoes.php";
 
       <div class="row">
         <div class="center">
-          <h5 class="red-text darken-4"> <?= exibeMensagens() ?> </h5>
+          <h4 class="center white-text"><?= exibeMensagens() ?></h4>
         </div>
       </div>
       <div class="center">
@@ -74,20 +74,20 @@ include "../funcoes.php";
       <div class="row">
         <div class="input-field">
           <input id="emailx" type="email" name="email" class="validate" autocomplete="off" required>
-          <<<<<<< HEAD <label for="emailx">Email</label>
-            =======
-            <label class="white-text" for="emailx">Email</label>
-            >>>>>>> b49da55 (fds)
+          <label for="emailx">Email</label>
+
+          <label class="white-text" for="emailx">Email</label>
+
         </div>
       </div>
       <div class="row">
         <div class="input-field">
           <input id="senha" name="senha" type="password" class="validate" autocomplete="off">
           <span toggle="#senha" class="field-icon toggle-password "><span class="material-icons white-text">visibility</span></span>
-          <<<<<<< HEAD <label for="senha">Senha</label>
-            =======
-            <label class="white-text" for="senha">Senha</label>
-            >>>>>>> b49da55 (fds)
+          <label for="senha">Senha</label>
+
+          <label class="white-text" for="senha">Senha</label>
+
         </div>
       </div>
       <div class="row">
@@ -95,11 +95,11 @@ include "../funcoes.php";
 
           <input type="password" name="repetirsenha" id="repetirsenha" class="validate">
           <span toggle="#repetirsenha" class="field-icon toggle-password "><span class="material-icons white-text">visibility</span></span>
-          <<<<<<< HEAD <label for="repetirsenha" autocomplete="off">Confirme a senha</label>
-            =======
-            <label class="white-text" for="repetirsenha" autocomplete="off">Confirme a senha</label>
-            >>>>>>> b49da55 (fds)
-            <span class="helper-text" data-error="Senhas não conferem"></span>
+          <label for="repetirsenha" autocomplete="off">Confirme a senha</label>
+
+          <label class="white-text" for="repetirsenha" autocomplete="off">Confirme a senha</label>
+
+          <span class="helper-text" data-error="Senhas não conferem"></span>
         </div>
       </div>
 

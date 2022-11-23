@@ -1,8 +1,6 @@
 <title>Alterar</title>
 <style>
     .formAltera {
-        color: black !important;
-        background-color: rgba(255, 255, 255, 0.8);
         border-radius: 10px;
         padding-left: 15px;
         padding-right: 15px;
@@ -11,7 +9,7 @@
     }
 
     label {
-        color: black !important;
+        color: white !important;
     }
 
     .TopicosTitulo {
@@ -20,7 +18,7 @@
     }
 
     input {
-        color: black !important;
+        color: white !important;
     }
 
     button {

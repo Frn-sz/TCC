@@ -63,7 +63,7 @@ if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] != "1") {
 
                                              <?php } else { ?>
 
-                                                  <td class="center">Sem Imagem</td>
+                                                  <img class='imagem' src='../Imagens/placeholderSemImagem.png'>
 
                                              <?php } ?>
                                              <td style="padding: 41px;" class="center"><?= $usuario['nome'] ?></td>
