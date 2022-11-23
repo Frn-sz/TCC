@@ -3,6 +3,7 @@ include "../conecta.php";
 if (!isset($_SESSION)) {
     session_start();
 }
+
 include('../funcoes.php');
 $id = $_GET['idDoc'];
 $sql = "SELECT * FROM documentos WHERE idDoc='$id'";
