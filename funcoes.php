@@ -160,3 +160,73 @@ function deletarFavoritos(int $id, string  $campo): bool
     return False;
   }
 }
+function listarComentarios(int $idDocumento, int $idAtual)
+{
+  include('conecta.php');
+  $sql = "SELECT * FROM comentarios WHERE idDocumento = '$idDocumento'";
+  $query = mysqli_query($conexao, $sql);
+  $comentarios = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+  foreach ($comentarios as $comentario) {
+    $sql = "SELECT * FROM `user` WHERE id = '$comentario[idUsuario]'";
+    $query = mysqli_query($conexao, $sql);
+    $usuario = mysqli_fetch_assoc($query);
+
+?>
+
+  <div style="display:flex;" class="infoUsuario">
+    <img class="materialboxed" width=50 src="../upload/<?= $usuario['foto']; ?>" alt="">
+    &nbsp&nbsp
+    <p><?= $usuario['nome']; ?></p>
+    &nbsp&nbsp&nbsp
+    <p><?= $comentario['comentario'] ?></p>
+  </div>
+  <p><a class="white-text modal-trigger" href="#modalComentario<?= $comentario['id'] ?>">Responder</a></p>
+  <div id="modalComentario<?= $comentario['id'] ?>" class="modal">
+    <div class="modal-content ">
+      <form action="responder.php" method="post">
+        <textarea name="resposta" class="materialize-textarea black-text" id="resposta"></textarea>
+        <label class="black-text" for="resposta">Insira sua resposta</label>
+        <input type="hidden" name="idComentario" value="<?= $comentario['id'] ?>">
+        <input type="hidden" name="idUsuario" value="<?= $idAtual ?>">
+        <br><br><br>
+        <button type="submit" class="buttonComentario right black white-text">Responder</button>
+        <br><br>
+      </form>
+    </div>
+  </div>
+  <div class="operacoes right" style="margin-top:-8%">
+    <?php if ($idAtual == $usuario['id'] or $_SESSION['nvl_usuario'] == 1) { ?>
+      <a class="white-text" href="excluirComentario.php?id=<?= $comentario['id'] ?>"> <i class="material-icons right">delete</i></a>
+    <?php } ?>
+  </div>
+  <?php
+    $sql = "SELECT * FROM respostas WHERE idComentario = '$comentario[id]'";
+    $query = mysqli_query($conexao, $sql);
+    $respostas = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+    foreach ($respostas as $resposta) {
+      $sql = "SELECT * FROM `user` WHERE id = '$resposta[idUsuario]'";
+      $query = mysqli_query($conexao, $sql);
+      $usuario = mysqli_fetch_assoc($query);
+
+  ?>
+    <div style="margin-left:5%" class="respostas">
+      <div style="display:flex;" class="infoUsuario">
+        <img class="materialboxed" width=50 src="../upload/<?= $usuario['foto']; ?>" alt="">
+        &nbsp&nbsp
+        <p><?= $usuario['nome']; ?></p>
+        &nbsp&nbsp&nbsp
+        <p><?= $resposta['resposta'] ?></p>
+      </div>
+      <div class="operacoes right" style="margin-top:-4%">
+        <?php if ($idAtual == $usuario['id'] or $_SESSION['nvl_usuario'] == 1) { ?>
+          <a class="white-text" href="excluirResposta.php?id=<?= $resposta['id'] ?>"> <i class="material-icons right">delete</i></a>
+        <?php } ?>
+      </div>
+    </div>
+    <br>
+<?php
+    }
+  }
+}

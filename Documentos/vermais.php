@@ -39,17 +39,10 @@ $imagem = $documentos['imagem'];
     .imagemDoc {
         max-height: fit-content;
         max-width: fit-content;
+        margin: auto;
 
-        display: flex !important;
         align-items: flex-start !important;
         border-radius: 10px;
-    }
-
-    .imagemDoc:hover {}
-
-    .imagemDocumento {
-        margin-left: -10%;
-
     }
 
     .adicionarTranscricao {
@@ -98,6 +91,16 @@ $imagem = $documentos['imagem'];
     li {
         list-style-type: none;
     }
+
+    .buttonComentario {
+        border-style: none;
+        padding: 10px;
+        border-radius: 5%;
+    }
+
+    .buttonComentario:hover {
+        background-color: lightgray;
+    }
 </style>
 <?php
 include_once "../interfaces/header.php";
@@ -118,12 +121,12 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
 <main>
     <br><br><br><br>
 
-    <div class=" caixaDocumento">
+    <div class="caixaDocumento">
         <?php if ($documentos['imagem'] != "") { ?>
-            <div class="row imagemDoc">
-                <div class="center">
-                    <a class="adicionarTranscricao"> <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'></a>
-                </div>
+            <div class="row imagemDoc center">
+
+                <a class="adicionarTranscricao"> <img class='materialboxed ' width=500 src='../upload/<?= $imagem ?>'></a>
+
             </div>
         <?php $existeImagem = 1;
         } else { ?>
@@ -225,7 +228,31 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
             </form>
 
             <br>
-        <?php } ?>
+        <?php }
+        ?>
+
+        <div class="container">
+            <p>Sessão de comentários</p>
+            <form action="comentar.php" method="post">
+                <div style="display:flex;" class="infoUsuario">
+                    <?php if ($_SESSION['foto'] != NULL) { ?>
+                        <img class="materialboxed" width=50 src="../upload/<?= $_SESSION['foto']; ?>" alt="">
+                    <?php } else {  ?>
+                        <img class="materialboxed" width=50 src="../Imagens/semImagem.jpg" alt="">
+                    <?php } ?>
+                    &nbsp &nbsp<p><?= $_SESSION['nome_usuario']; ?></p>
+                    &nbsp &nbsp &nbsp <textarea class="materialize-textarea" id="comentario" style="color:white" type="text" name="comentario" placeholder="Escreva sua pergunta"></textarea>
+                    &nbsp &nbsp &nbsp <button class="buttonComentario" type="submit">Comentar</button>
+                </div>
+                <input type="hidden" name="id" value="<?= $_SESSION['id_usuario'] ?>">
+                <input type="hidden" name="idDocumento" value="<?= $_GET['idDoc'] ?>">
+            </form>
+            <br>
+
+            <?php
+            listarComentarios($_GET['idDoc'], $_SESSION['id_usuario']);
+            ?>
+        </div>
     </div>
     <div id="modalDoc" class="modal">
         <div class="modal-content ">
@@ -240,7 +267,6 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
                 </div>
                 <span class="black-text">
                     A transcrição automática necessita de revisão. Além disso, ela excluirá a transcrição anteriormente salva. Quanto melhor for a qualidade e visibilidade da imagem, melhor será o resultado. Documentos manuscritos tendem a apresentar um resultado ruim.
-
                 </span>
             </div>
             <form action="addTranscricao.php?" method="get">
