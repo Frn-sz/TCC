@@ -50,7 +50,7 @@ if (is_null($usuario)) {
             $mail->addAddress("$email");
             $mail->Subject = "Redefinição de senha";
             $mail->addReplyTo('fernando.2020316053@aluno.iffar.edu.br');
-            $mail->Body = "<h1> E-mail de recuperação de senha </h1> <p> Clique no link a seguir para redefinir sua senha: </p> <a href=" . filter_input(INPUT_SERVER, 'SERVER_NAME') . "/TCC/usuarios/redefinirsenha.php?email=" . $email . "&token=" . $token . ">Clique aqui</a>";
+            $mail->Body = "<h1> E-mail de recuperação de senha </h1> <p> Clique no link a seguir para redefinir sua senha: </p> <a href=" . filter_input(INPUT_SERVER, 'SERVER_NAME') . "/TCC/usuarios/redefinirSenha.php?email=" . $email . "&token=" . $token . ">Clique aqui</a>";
             if ($mail->send()) {
                 $_SESSION['mensagem'] = "E-mail enviado com o link para redefinição de senha.";
                 var_dump($token);

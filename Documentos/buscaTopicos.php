@@ -20,7 +20,7 @@ $documentos = mysqli_fetch_all($query, MYSQLI_ASSOC);
     }
 
     .card-image {
-        height: 25vh !important;
+        height: 30vh !important;
         overflow: hidden !important;
         display: flex !important;
         align-items: flex-start !important;

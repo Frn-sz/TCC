@@ -27,6 +27,7 @@
 		$sql = "INSERT INTO 
 		`documentos`(`tituloDoc`,`forma`,`formato`, `especie`, `genero`, `localizacao`, `anoDocumento`, `palavrasChaves`) 
 		VALUES ('$titulo','$forma','$formato','$especie','$genero ','$localizacao', '$anoDoc','$chavesChar')";
+		var_dump($sql);
 	}
 	$resultado = mysqli_query($conexao, $sql);
 	$id = mysqli_insert_id($conexao);

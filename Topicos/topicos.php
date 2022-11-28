@@ -69,7 +69,7 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
      <br><br>
 
-     <table class="TabelaTopicos">
+     <table class="TabelaTopicos ">
           <thead>
                <th class="center">Assuntos</th>
                <?php if ($adm) { ?>
@@ -100,7 +100,7 @@ $topicos = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                                   </div>
                                                   <div class="center">
                                                        <button type="submit" class="btn waves-effect waves-green white black-text">Confirmar</button>
-                                                       <a href="#!" class="modal-close waves-effect waves-red white btn black-text">Cancelar</a>
+                                                       <a href="#!" class="modal-close btn waves-effect waves-red white black-text">Cancelar</a>
                                                   </div>
                                              </form>
                                         </div>

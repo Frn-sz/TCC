@@ -55,25 +55,26 @@ if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] != "1") {
                               <tdbody><br>
 
 
-                                   <?php foreach ($usuarios as $chave => $usuario) { ?>
+                                   <?php foreach ($usuarios as $chave => $usuario) {
+                                   ?>
                                         <tr>
-                                             <?php if ($usuario['foto'] != "") { ?>
+                                             <?php if ($usuario['foto'] != NULL) { ?>
 
                                                   <td> <img class='materialboxed imagemUsuarios' width=200 src=../upload/<?= $usuario['foto'] ?>></td>
 
                                              <?php } else { ?>
 
-                                                  <img class='imagem' src='../Imagens/placeholderSemImagem.png'>
+                                                  <td><img class='imagemUsuarios materialboxed' width=200 src='../Imagens/semImagem.jpg'></td>
 
                                              <?php } ?>
                                              <td style="padding: 41px;" class="center"><?= $usuario['nome'] ?></td>
                                              <td class="center"><?= $usuario['email'] ?></td>
                                              <?php if ($usuario['tipoUsuario'] == 2) { ?>
-                                                  <td class="center"><a class='btn buttonListaUser' href="excluirContaADM.php?id=<?= $usuario['id'] ?>">Excluir Usuário</a>
-                                                       <a class='btn buttonListaUser' href='elevarAGerente.php?id=<?= $usuario['id'] ?>'>Elevar a gerente</a>
+                                                  <td class="center"><a class='btn buttonListaUser modal-trigger' href="#modal<?= $usuario['id'] ?>">Excluir Usuário</a>
+                                                       <a class='btn buttonListaUser' href=''>Elevar a gerente</a>
                                                   </td>
                                              <?php } else if ($usuario['tipoUsuario'] == 3) { ?>
-                                                  <td class="center"><a class='btn buttonListaUser' href="excluirContaADM.php?id=<?= $usuario['id'] ?>">Excluir Usuário</a>
+                                                  <td class="center"><a class='btn buttonListaUser modal-trigger' href="#modal<?= $$usuario['id'] ?>">Excluir Usuário</a>
                                                        <a class='btn buttonListaUser' href='rebaixarGerente.php?id=<?= $usuario['id'] ?>'>Rebaixar gerente</a>
                                                   </td>
                                              <?php } else { ?>
@@ -86,7 +87,31 @@ if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] != "1") {
                                    <?php } ?>
 
                                    <tdbody>
+
      </table>
+
+     <?php foreach ($usuarios as $chave => $usuario) { ?>
+          <div id="modal<?= $usuario['id'] ?>" class="modal">
+               <div class="modal-content">
+                    <div class="row">
+                         <div class="center">
+                              <h4 class="black-text">Deseja mesmo excluir este usuário?</h4>
+                         </div>
+                    </div>
+                    <form action="excluirContaADM.php" method="get">
+                         <div class="row">
+                              <div class="center">
+                                   <input type="hidden" name="id" value="<?= $usuario['id']; ?>">
+                              </div>
+                         </div>
+                         <div class="center">
+                              <button type="submit" class="btn waves-effect waves-green white black-text">Confirmar</button>
+                              <a href="#!" class="modal-close btn waves-effect waves-red white black-text">Cancelar</a>
+                         </div>
+                    </form>
+               </div>
+          </div>
+     <?php } ?>
 
 </main>
 

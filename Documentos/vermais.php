@@ -37,9 +37,9 @@ $imagem = $documentos['imagem'];
     }
 
     .imagemDoc {
-        max-height: 50vh;
-        max-width: 45vh;
-        overflow: hidden !important;
+        max-height: fit-content;
+        max-width: fit-content;
+
         display: flex !important;
         align-items: flex-start !important;
         border-radius: 10px;
@@ -122,7 +122,7 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
         <?php if ($documentos['imagem'] != "") { ?>
             <div class="row imagemDoc">
                 <div class="center">
-                    <a class="adicionarTranscricao"> <img class=' imagemDocumento' width=500 src='../upload/<?= $imagem ?>'></a>
+                    <a class="adicionarTranscricao"> <img class='materialboxed imagemDocumento' width=500 src='../upload/<?= $imagem ?>'></a>
                 </div>
             </div>
         <?php $existeImagem = 1;
@@ -148,14 +148,17 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
                 </div>
             <?php }
         }
-        if ($existeImagem == 1) { ?>
+        if ($existeImagem == 1) {
+            if ($documentos['transcricao'] != NULL) {
+            ?>
 
-            <div class="row">
-                <div class="center">
-                    <a class="waves-effect waves-light btn modal-trigger botaoModal" href="#modalDoc">Mostrar transcrição</a>
+                <div class="row">
+                    <div class="center">
+                        <a class="waves-effect waves-light btn modal-trigger botaoModal" href="#modalDoc">Mostrar transcrição</a>
+                    </div>
                 </div>
-            </div>
-        <?php } ?>
+        <?php }
+        } ?>
 
         <ul>
             <div class='row'>

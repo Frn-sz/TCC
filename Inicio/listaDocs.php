@@ -5,8 +5,15 @@ if (!isset($_SESSION)) {
 ?>
 <title>Lista de Documentos</title>
 <style type="text/css">
+     .card-title {
+          display: flex !important;
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
+          white-space: nowrap !important;
+     }
+
      .card-image {
-          height: 25vh !important;
+          height: 30vh !important;
           overflow: hidden !important;
           display: flex !important;
           align-items: flex-start !important;
@@ -166,8 +173,8 @@ if (!isset($_SESSION)) {
                                                   </div>
                                                   <div class='card-content'>
                                                        <span class='card-title'><?= $documento['tituloDoc'] ?></span>
-                                                       <p> Forma:<?= $documento['forma'] ?> <br></p>
-                                                       <p> Formato:<?= $documento['formato'] ?> <br></p>
+                                                       <p> Forma: <?= $documento['forma'] ?> <br></p>
+                                                       <p> Formato: <?= $documento['formato'] ?> <br></p>
                                                        <p> Espécie:<?= $documento['especie']  ?></p>
                                                   </div>
                                                   <div class='card-action center'>

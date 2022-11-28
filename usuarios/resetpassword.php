@@ -3,13 +3,13 @@ include_once('../conecta.php');
 if (!isset($_SESSION)) {
     session_start();
 }
+$token = $_POST['token'];
+$email = $_POST['email'];
 $verificacaoToken = "SELECT * FROM passwordreset WHERE email='$email' AND token='$token' ";
 $resultado = mysqli_query($conexao, $verificacaoToken);
 $passwordReset = mysqli_fetch_assoc($resultado);
-$token = $_POST['token'];
-$email = $_POST['email'];
 $hoje = new DateTime();
-$dataExpiracao = new DateTime($passwordReset['dataExpiracacao']);
+$dataExpiracao = new DateTime($passwordReset['dataExpiracao']);
 $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 if ($hoje > $dataExpiracao) {
     $_SESSION['mensagem'] = "Token expirado, favor solicitar outro.";

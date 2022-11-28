@@ -189,6 +189,18 @@
       display: flex;
       align-items: center;
     }
+
+    .card-title {
+      display: flex !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+    }
+
+    .lupa {
+      margin-top: -1.5% !important;
+      margin-left: -1.5%;
+    }
   </style>
 </head>
 
@@ -209,8 +221,8 @@
     <div style="max-width:20%;margin-left:75%" class="nav-content">
       <form action="../Inicio/listaDocs.php" method="get">
         <div class="input-field">
-          <input class="barraPesquisa" name="busca" id="search" type="search" required>
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <input class="barraPesquisa black-text" name="busca" id="search" type="search" required>
+          <label class="label-icon lupa" for="search"><i class="material-icons">search</i></label>
           <input type="hidden" name="escolha" value='documentos'>
         </div>
     </div>
@@ -224,6 +236,8 @@
         if ($_SESSION['foto'] != NULL) {
       ?>
           <img class="hoverable materialboxed fotoUsuario" width=200 src="../upload/<?= $_SESSION['foto'] ?>">
+        <?php } else { ?>
+          <img alt="" class="hoverable materialboxed fotoUsuario" width=200 src="../Imagens/semImagem.jpg">
         <?php } ?>
         <span class="white-text name large"><?= $_SESSION['nome_usuario'] ?></span>
         <a href="#email"><span class="white-text email"><? $_SESSION['email_usuario'] ?></span></a>
@@ -241,7 +255,7 @@
 
 
   <?php } ?>
-
+  <li><a class="white-text" href="../Inicio/index.php">Início</a></li>
   <li><a class="white-text" href="../Inicio/listaDocs.php">Lista de Documentos</a></li>
   <li><a class="white-text" href="../Topicos/topicos.php">Lista de Tópicos</a></li>
   <?php if (isset($_SESSION['id_usuario'])) { ?>

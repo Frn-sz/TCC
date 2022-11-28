@@ -21,14 +21,17 @@ if ($verificacao == 1) {
 }
 ?>
 <style>
+    textarea {
+        color: white !important;
+    }
+
     .box {
-        background-color: rgba(255, 255, 255, 0.8);
         padding: 15px;
         border-radius: 10px;
     }
 
     label {
-        color: black !important;
+        color: white !important;
     }
 
     .btn {

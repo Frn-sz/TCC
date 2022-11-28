@@ -71,7 +71,6 @@ include('../interfaces/header.php');
             <div class="container ">
                 <div class="owl-carousel owl-theme">
                     <?php
-
                     foreach ($documentos as $documento) { ?>
                         <div class="zoom">
                             <div class="item">
@@ -104,7 +103,7 @@ include('../interfaces/header.php');
 <script type="text/javascript">
     var owl = $('.owl-carousel');
     owl.owlCarousel({
-        items: 1,
+        items: 3,
         margin: 10,
         autoplay: true,
         autoplayTimeout: 2000,
