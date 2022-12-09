@@ -225,8 +225,9 @@
           <label class="label-icon lupa" for="search"><i class="material-icons">search</i></label>
           <input type="hidden" name="escolha" value='documentos'>
         </div>
+      </form>
     </div>
-    </form>
+
   </nav>
 </div>
 <ul id="slide-out" class="sidenav">
