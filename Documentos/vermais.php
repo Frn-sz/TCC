@@ -101,6 +101,19 @@ $imagem = $documentos['imagem'];
     .buttonComentario:hover {
         background-color: lightgray;
     }
+
+    .fotoUsuarioComentario {
+
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: auto;
+        display: flex;
+        align-items: center;
+
+
+    }
 </style>
 <?php
 include_once "../interfaces/header.php";
@@ -191,14 +204,14 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
                 <?php
                 foreach ($topicos as $chave => $topico) {
                     if ($topico['idTop'] != "33") { ?>
-                        <a href="../Inicio/listaDocs.php?busca=<?= $topico['tituloTop'] ?>" class="black-text" href=#>
+                        <a href="buscaTopicos.php?idTopico=<?= $topico['idTop'] ?>" class="black-text" href=#>
                             <div class='chip'> <?= $topico['tituloTop'] ?> </div>
                         </a>
                     <?php }
                 }
                 foreach ($plvsChaves as $plvChave) {
                     if ($plvChave != "." and $plvChave != "") { ?>
-                        <a class="plvChave" href="../Inicio/listaDocs.php?busca=<?= $plvChave ?>">
+                        <a class="plvChave" href="../Inicio/listaDocs.php?busca=<?= $plvChave ?>&&escolha=documentos">
                             <div class='chip'> <?= $plvChave ?> </div>
                         </a>
                 <?php }
@@ -233,24 +246,30 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
 
         <div class="container">
             <p>Sessão de comentários</p>
-            <form action="comentar.php" method="post">
-                <div style="display:flex;" class="infoUsuario">
-                    <?php if ($_SESSION['foto'] != NULL) { ?>
-                        <img class="materialboxed" width=50 src="../upload/<?= $_SESSION['foto']; ?>" alt="">
-                    <?php } else {  ?>
-                        <img class="materialboxed" width=50 src="../Imagens/semImagem.jpg" alt="">
-                    <?php } ?>
-                    &nbsp &nbsp<p><?= $_SESSION['nome_usuario']; ?></p>
-                    &nbsp &nbsp &nbsp <textarea class="materialize-textarea" id="comentario" style="color:white" type="text" name="comentario" placeholder="Escreva sua pergunta"></textarea>
-                    &nbsp &nbsp &nbsp <button class="buttonComentario" type="submit">Comentar</button>
-                </div>
-                <input type="hidden" name="id" value="<?= $_SESSION['id_usuario'] ?>">
-                <input type="hidden" name="idDocumento" value="<?= $_GET['idDoc'] ?>">
-            </form>
+            <?php if (isset($_SESSION['id_usuario'])) { ?>
+                <form action="comentar.php" method="post">
+                    <div style="display:flex;" class="infoUsuario">
+                        <?php if ($_SESSION['foto'] != NULL) { ?>
+                            <img class="materialboxed fotoUsuarioComentario" width=50 src="../upload/<?= $_SESSION['foto']; ?>" alt="">
+                        <?php } else {  ?>
+                            <img class="materialboxed fotoUsuarioComentario" width=50 src="../Imagens/semImagem.jpg" alt="">
+                        <?php } ?>
+                        &nbsp &nbsp<p><?= $_SESSION['nome_usuario']; ?></p>
+                        &nbsp &nbsp &nbsp <textarea class="materialize-textarea" id="comentario" style="color:white" type="text" name="comentario" placeholder="Escreva sua pergunta"></textarea>
+                        &nbsp &nbsp &nbsp <button class="buttonComentario" type="submit">Comentar</button>
+                    </div>
+                    <input type="hidden" name="id" value="<?= $_SESSION['id_usuario'] ?>">
+                    <input type="hidden" name="idDocumento" value="<?= $_GET['idDoc'] ?>">
+                </form>
+            <?php } ?>
             <br>
 
             <?php
-            listarComentarios($_GET['idDoc'], $_SESSION['id_usuario']);
+            if (isset($_SESSION['id_usuario'])) {
+                listarComentarios($_GET['idDoc'], $_SESSION['id_usuario']);
+            } else {
+                listarComentarios($_GET['idDoc']);
+            }
             ?>
         </div>
     </div>

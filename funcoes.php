@@ -57,57 +57,60 @@ function buscaTopicos(string $busca)
       $sql = "SELECT id_doc FROM tabela_assoc WHERE id_topico = '$idTopico'";
       $query = mysqli_query($conexao, $sql);
       $idDocs = mysqli_fetch_all($query, MYSQLI_ASSOC);
-      foreach ($idDocs as $idDoc) {
-        $idDoc = $idDoc['id_doc'];
-        $sql = "SELECT * FROM documentos WHERE idDoc = '$idDoc'";
-        $query = mysqli_query($conexao, $sql);
-        $documentos[] = mysqli_fetch_assoc($query);
-        foreach ($documentos as $documento) {
+      $numDocs = count($idDocs);
+      if ($numDocs > 0) {
+        foreach ($idDocs as $idDoc) {
+          $idDoc = $idDoc['id_doc'];
+          $sql = "SELECT * FROM documentos WHERE idDoc = '$idDoc'";
+          $query = mysqli_query($conexao, $sql);
+          $documentos[] = mysqli_fetch_assoc($query);
+          foreach ($documentos as $documento) {
+
 
       ?>
 
-          <a href="../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>">
-            <div class="caixa">
-              <div class='col s6 m3'>
-                <div class='card hoverable'>
-                  <div class='card-image cardindex'>
-                    <?php if ($documento['imagem'] != "") {  ?>
-                      <img class='imagem' src='../upload/<?= $documento['imagem'] ?>'>
-                    <?php } else { ?>
-                      <img class='imagem' src='../Imagens/placeholderSemImagem.png'>
-                    <?php } ?>
-                  </div>
-                  <div class='card-content'>
-                    <span class='card-title'><?= $documento['tituloDoc'] ?></span>
-                    <p> Forma: <?= $documento['forma'] ?> <br></p>
-                    <p> Formato: <?= $documento['formato'] ?> <br></p>
-                    <p> Espécie:<?= $documento['especie']  ?></p>
-                  </div>
-                  <div class='card-action center'>
+            <a href="../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>">
+              <div class="caixa">
+                <div class='col s6 m3'>
+                  <div class='card hoverable'>
+                    <div class='card-image cardindex'>
+                      <?php if ($documento['imagem'] != "") {  ?>
+                        <img class='imagem' src='../upload/<?= $documento['imagem'] ?>'>
+                      <?php } else { ?>
+                        <img class='imagem' src='../Imagens/placeholderSemImagem.png'>
+                      <?php } ?>
+                    </div>
+                    <div class='card-content'>
+                      <span class='card-title'><?= $documento['tituloDoc'] ?></span>
+                      <p> Forma: <?= $documento['forma'] ?> <br></p>
+                      <p> Formato: <?= $documento['formato'] ?> <br></p>
+                      <p> Espécie:<?= $documento['especie']  ?></p>
+                    </div>
+                    <div class='card-action center'>
 
-                    <?php if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2) { ?>
+                      <?php if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] == 2) { ?>
 
-                      <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-large waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
+                        <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-large waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
 
-                    <?php } else { ?>
+                      <?php } else { ?>
 
-                      <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
+                        <a href='../Documentos/vermais.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light white'><i class='material-icons black-text'>search</i> </a>
 
-                    <?php } ?>
+                      <?php } ?>
 
-                    <?php if (isset($_SESSION['nvl_usuario'])) {
+                      <?php if (isset($_SESSION['nvl_usuario'])) {
 
-                      if ($_SESSION['nvl_usuario'] != 2) { ?>
-                        &nbsp
-                        <a href='../Documentos/formaltera.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light  white'> <i class='material-icons black-text'>edit</i> </a>
-                        &nbsp
-                        <a class="waves-effect waves-light btn-floating modal-trigger white " href="#modal<?= $documento['idDoc'] ?>"><i class="material-icons black-text">delete</i></a>
-                    <?php }
-                    } ?>
+                        if ($_SESSION['nvl_usuario'] != 2) { ?>
+                          &nbsp
+                          <a href='../Documentos/formaltera.php?idDoc=<?= $documento['idDoc'] ?>' class='btn-floating waves-effect waves-light  white'> <i class='material-icons black-text'>edit</i> </a>
+                          &nbsp
+                          <a class="waves-effect waves-light btn-floating modal-trigger white " href="#modal<?= $documento['idDoc'] ?>"><i class="material-icons black-text">delete</i></a>
+                      <?php }
+                      } ?>
+                    </div>
                   </div>
                 </div>
-              </div>
-          </a>
+            </a>
     </div>
 
 
@@ -133,9 +136,14 @@ function buscaTopicos(string $busca)
       </div>
     </div>
 <?php
-          unset($documentos);
+            unset($documentos);
+          }
         }
-      } ?>
+      } else { ?>
+<br><br>
+<h6 class="white-text center">Nenhum documento cadastrado nesse tópico</h6>
+<br><br>
+<?php  } ?>
 </div>
 <?php
   }
@@ -160,8 +168,9 @@ function deletarFavoritos(int $id, string  $campo): bool
     return False;
   }
 }
-function listarComentarios(int $idDocumento, int $idAtual)
+function listarComentarios(int $idDocumento, int $idAtual = NULL)
 {
+
   include('conecta.php');
   $sql = "SELECT * FROM comentarios WHERE idDocumento = '$idDocumento'";
   $query = mysqli_query($conexao, $sql);
@@ -171,34 +180,45 @@ function listarComentarios(int $idDocumento, int $idAtual)
     $sql = "SELECT * FROM `user` WHERE id = '$comentario[idUsuario]'";
     $query = mysqli_query($conexao, $sql);
     $usuario = mysqli_fetch_assoc($query);
-
 ?>
 
   <div style="display:flex;" class="infoUsuario">
-    <img class="materialboxed" width=50 src="../upload/<?= $usuario['foto']; ?>" alt="">
-    &nbsp&nbsp
-    <p><?= $usuario['nome']; ?></p>
-    &nbsp&nbsp&nbsp
-    <p><?= $comentario['comentario'] ?></p>
-  </div>
-  <p><a class="white-text modal-trigger" href="#modalComentario<?= $comentario['id'] ?>">Responder</a></p>
-  <div id="modalComentario<?= $comentario['id'] ?>" class="modal">
-    <div class="modal-content ">
-      <form action="responder.php" method="post">
-        <textarea name="resposta" class="materialize-textarea black-text" id="resposta"></textarea>
-        <label class="black-text" for="resposta">Insira sua resposta</label>
-        <input type="hidden" name="idComentario" value="<?= $comentario['id'] ?>">
-        <input type="hidden" name="idUsuario" value="<?= $idAtual ?>">
-        <br><br><br>
-        <button type="submit" class="buttonComentario right black white-text">Responder</button>
-        <br><br>
-      </form>
-    </div>
-  </div>
-  <div class="operacoes right" style="margin-top:-8%">
-    <?php if ($idAtual == $usuario['id'] or $_SESSION['nvl_usuario'] == 1) { ?>
-      <a class="white-text" href="excluirComentario.php?id=<?= $comentario['id'] ?>"> <i class="material-icons right">delete</i></a>
+    <?php if ($usuario['foto'] != NULL) { ?>
+      <img class="materialboxed fotoUsuarioComentario" width=50 src="../upload/<?= $usuario['foto']; ?>" alt="">
+    <?php } else {
+    ?>
+      <img class="materialboxed fotoUsuarioComentario" src="../Imagens/semImagem.jpg" alt="">
     <?php } ?>
+    &nbsp&nbsp&nbsp
+    <p><?= $usuario['nome']; ?> : </p>
+    &nbsp&nbsp&nbsp
+    <p> <?= $comentario['comentario'] ?></p>
+  </div>
+  <?php if (isset($_SESSION['id_usuario'])) { ?>
+    <p><a class="white-text modal-trigger" href="#modalComentario<?= $comentario['id'] ?>">Responder</a></p>
+    <div id="modalComentario<?= $comentario['id'] ?>" class="modal">
+      <div class="modal-content ">
+        <form action="responder.php" method="post">
+          <textarea name="resposta" class="materialize-textarea black-text" id="resposta"></textarea>
+          <label class="black-text" for="resposta">Insira sua resposta</label>
+          <input type="hidden" name="idComentario" value="<?= $comentario['id'] ?>">
+          <input type="hidden" name="idUsuario" value="<?= $idAtual ?>">
+          <br><br><br>
+          <button type="submit" class="buttonComentario right black white-text">Responder</button>
+          <br><br>
+        </form>
+      </div>
+    </div>
+  <?php } else { ?>
+    <br>
+  <?php } ?>
+  <div class="operacoes right" style="margin-top:-8%">
+    <?php
+    if (isset($_SESSION['id_usuario'])) {
+      if ($idAtual == $usuario['id'] or $_SESSION['nvl_usuario'] == 1) { ?>
+        <a class="white-text" href="excluirComentario.php?id=<?= $comentario['id'] ?>"> <i class="material-icons right">delete</i></a>
+    <?php }
+    } ?>
   </div>
   <?php
     $sql = "SELECT * FROM respostas WHERE idComentario = '$comentario[id]'";
@@ -213,16 +233,26 @@ function listarComentarios(int $idDocumento, int $idAtual)
   ?>
     <div style="margin-left:5%" class="respostas">
       <div style="display:flex;" class="infoUsuario">
-        <img class="materialboxed" width=50 src="../upload/<?= $usuario['foto']; ?>" alt="">
+        <?php
+
+        if ($usuario['foto'] != NULL) { ?>
+          <img class="materialboxed fotoUsuarioComentario" width=50 src="../upload/<?= $usuario['foto']; ?>" alt="">
+        <?php } else {
+        ?>
+          <img class="materialboxed fotoUsuarioComentario" src="../Imagens/semImagem.jpg" alt="">
+        <?php } ?>
         &nbsp&nbsp
         <p><?= $usuario['nome']; ?></p>
         &nbsp&nbsp&nbsp
         <p><?= $resposta['resposta'] ?></p>
       </div>
       <div class="operacoes right" style="margin-top:-4%">
-        <?php if ($idAtual == $usuario['id'] or $_SESSION['nvl_usuario'] == 1) { ?>
-          <a class="white-text" href="excluirResposta.php?id=<?= $resposta['id'] ?>"> <i class="material-icons right">delete</i></a>
-        <?php } ?>
+        <?php
+        if (isset($_SESSION['id_usuario'])) {
+          if ($idAtual == $usuario['id'] or $_SESSION['nvl_usuario'] == 1) { ?>
+            <a class="white-text" href="excluirResposta.php?id=<?= $resposta['id'] ?>"> <i class="material-icons right">delete</i></a>
+        <?php }
+        } ?>
       </div>
     </div>
     <br>

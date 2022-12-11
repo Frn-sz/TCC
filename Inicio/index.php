@@ -34,6 +34,7 @@ if (!$QtndDocs == "0") {
 }
 include('../interfaces/header.php');
 ?>
+<title>Início</title>
 <style>
     .item {
         max-height: 60vh;
@@ -66,7 +67,7 @@ include('../interfaces/header.php');
     <br><br><br><br><br>
 
     <?php if ($return == True) { ?>
-        <h3 class="Alguns">Confira os documentos cadastrados!</h3>
+        <h3 class="Alguns">Confira alguns dos documentos cadastrados!</h3>
         <div class="caixaCarrossel">
             <div class="container ">
                 <div class="owl-carousel owl-theme">

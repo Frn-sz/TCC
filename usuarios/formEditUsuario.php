@@ -4,7 +4,17 @@ if (!isset($_SESSION)) {
 }
 include('puxandoUsuario.php');
 ?>
-
+<style>
+  #blah {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: auto;
+    display: none;
+    align-items: center;
+  }
+</style>
 <form action="../usuarios/editar.php" method="post" enctype="multipart/form-data">
   <div class="row">
 
@@ -55,7 +65,7 @@ include('puxandoUsuario.php');
       reader.onload = function(e) {
         $('#blah').attr('src', e.target.result);
       }
-
+      document.querySelector("#blah").style.display = "flex";
       reader.readAsDataURL(input.files[0]);
     }
   }
