@@ -114,6 +114,13 @@ $imagem = $documentos['imagem'];
 
 
     }
+
+    .comentarios {
+        background-color: rgba(255, 255, 255, 0.3);
+        padding: 2%;
+        width: 100%;
+        border-radius: 2%;
+    }
 </style>
 <?php
 include_once "../interfaces/header.php";
@@ -175,30 +182,31 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
                 </div>
         <?php }
         } ?>
-
-        <ul>
-            <div class='row'>
-                <li class="docInfo"> Título do documento: <?= $titulo ?> </li>
-            </div>
-            <div class='row'>
-                <li class="docInfo">Forma: <?= $forma  ?></li>
-            </div>
-            <div class='row'>
-                <li class="docInfo">Formato: <?= $formato  ?></li>
-            </div>
-            <div class='row'>
-                <li class="docInfo">Espécie: <?= $especie  ?></li>
-            </div>
-            <div class='row'>
-                <li class="docInfo">Localização: <?= $locali  ?></li>
-            </div>
-            <div class='row'>
-                <li class="docInfo">Gênero: <?= $genero  ?></li>
-            </div>
-            <div class='row'>
-                <li class="docInfo">Ano do Documento: <?= $anoDoc  ?></li>
-            </div>
-        </ul>
+        <div class="container">
+            <ul>
+                <div class='row'>
+                    <li class="docInfo"> Título do documento: <?= $titulo ?> </li>
+                </div>
+                <div class='row'>
+                    <li class="docInfo">Forma: <?= $forma  ?></li>
+                </div>
+                <div class='row'>
+                    <li class="docInfo">Formato: <?= $formato  ?></li>
+                </div>
+                <div class='row'>
+                    <li class="docInfo">Espécie: <?= $especie  ?></li>
+                </div>
+                <div class='row'>
+                    <li class="docInfo">Localização: <?= $locali  ?></li>
+                </div>
+                <div class='row'>
+                    <li class="docInfo">Gênero: <?= $genero  ?></li>
+                </div>
+                <div class='row'>
+                    <li class="docInfo">Ano do Documento: <?= $anoDoc  ?></li>
+                </div>
+            </ul>
+        </div>
         <div class="row">
             <div class="center">
                 <?php
@@ -244,7 +252,7 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
         <?php }
         ?>
 
-        <div class="container">
+        <div class="container comentarios">
             <p>Sessão de comentários</p>
             <?php if (isset($_SESSION['id_usuario'])) { ?>
                 <form action="comentar.php" method="post">
@@ -272,6 +280,7 @@ $topicos = mysqli_fetch_all($resultSet, MYSQLI_ASSOC);
             }
             ?>
         </div>
+
     </div>
     <div id="modalDoc" class="modal">
         <div class="modal-content ">

@@ -33,11 +33,10 @@ $sql = "INSERT INTO `user`(nome, email, senha, foto, tipoUsuario) VALUES ('$_POS
 }else{
 $sql = "INSERT INTO `user`(nome, email, senha, tipoUsuario) VALUES ('$_POST[nome]','$_POST[email]', '$senha', 3)";
 }
-var_dump($sql);
 $resultado = mysqli_query($conexao,$sql);
 
 if($resultado){
-	header("location:$url");
+	header("location:../usuarios/listausers.php");
 }
 
 }else{
@@ -47,5 +46,3 @@ if($resultado){
 	$_SESSION['mensagem'] = "Você deve inserir uma senha";
 	header("location:$url"	);
 }
-
-?>

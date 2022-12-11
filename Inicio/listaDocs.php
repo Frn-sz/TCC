@@ -79,6 +79,10 @@ if (!isset($_SESSION)) {
           list-style: none !important;
           display: inline-block !important;
      }
+
+     .botaoSelecionado {
+          background-color: rgba(255, 255, 255, 0.2);
+     }
 </style>
 <main>
      <?php
@@ -139,8 +143,13 @@ if (!isset($_SESSION)) {
           ?>
           <div>
                <div class="center">
-                    <a class="aTopicos" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=topicos">Tópicos</a>
-                    <a class="aDocumentos" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=documentos'">Documentos</a>
+                    <?php if ($escolha == "topicos") { ?>
+                         <a class="aTopicos botaoSelecionado" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=topicos" ">Tópicos</a>
+                         <a class=" aDocumentos" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=documentos'">Documentos</a>
+                    <?php } else { ?>
+                         <a class="aTopicos" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=topicos">Tópicos</a>
+                         <a class="aDocumentos botaoSelecionado" href="listaDocs.php?busca=<?= $_GET['busca'] ?>&&escolha=documentos'">Documentos</a>
+                    <?php } ?>
                </div>
                <br>
           </div>

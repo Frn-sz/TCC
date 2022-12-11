@@ -69,8 +69,7 @@ if (!isset($_SESSION['id_usuario']) or $_SESSION['nvl_usuario'] != "1") {
                                              <?php } ?>
                                              <td style="padding: 41px;" class="center"><?= $usuario['nome'] ?></td>
                                              <td class="center"><?= $usuario['email'] ?></td>
-                                             <?php if ($usuario['tipoUsuario'] == 2) {
-                                                  var_dump($usuario); ?>
+                                             <?php if ($usuario['tipoUsuario'] == 2) { ?>
                                                   <td class="center"><a class='btn buttonListaUser modal-trigger' href="#modal<?= $usuario['id'] ?>">Excluir Usuário</a>
                                                        <a class='btn buttonListaUser' href='elevarAGerente.php?id=<?= $usuario['id'] ?>'>Elevar a gerente</a>
                                                   </td>

@@ -96,7 +96,7 @@
         <div class="row">
           <div class="input-field">
             <textarea type="text" class="materialize-textarea" name="plvChaves" id="plvChaves" required></textarea>
-            <label for="plvChaves">Palavras Chaves (Separar com vírgula) </label>
+            <label for="plvChaves">Palavras-chave (Separar com vírgula) </label>
           </div>
         </div>
 
