@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 20-Ago-2022 às 20:56
+-- Host: localhost
+-- Tempo de geração: 14/12/2022 às 02:10
 -- Versão do servidor: 10.4.24-MariaDB
--- versão do PHP: 8.1.6
+-- Versão do PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `documentos`
+-- Estrutura para tabela `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `comentario` longtext NOT NULL,
+  `idDocumento` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Despejando dados para a tabela `comentarios`
+--
+
+INSERT INTO `comentarios` (`id`, `idUsuario`, `comentario`, `idDocumento`) VALUES
+(11, 60, 'Olá', 432),
+(15, 75, 'dsadsa', 432),
+(16, 76, 'dadasd', 430);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `documentos`
 --
 
 CREATE TABLE `documentos` (
@@ -35,23 +57,29 @@ CREATE TABLE `documentos` (
   `especie` varchar(255) NOT NULL,
   `genero` varchar(255) NOT NULL,
   `localizacao` varchar(255) NOT NULL,
-  `imagem` varchar(255) NOT NULL,
-  `anoDocumento` year(4) NOT NULL,
-  `plvsChaves` varchar(255) NOT NULL,
-  `transcricao` longtext NOT NULL
+  `imagem` varchar(255) DEFAULT NULL,
+  `anoDocumento` int(4) NOT NULL,
+  `palavrasChaves` varchar(255) NOT NULL,
+  `transcricao` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `documentos`
+-- Despejando dados para a tabela `documentos`
 --
 
-INSERT INTO `documentos` (`idDoc`, `tituloDoc`, `forma`, `formato`, `especie`, `genero`, `localizacao`, `imagem`, `anoDocumento`, `plvsChaves`, `transcricao`) VALUES
-(387, 'a', 'Cópia', 'a', 'asdsadaa', 'a ', 'a', '548ad1b6938baf9106ddd0105e39526e.jpg', 0000, 'a', 'kjkjskdjasdasd\r\n');
+INSERT INTO `documentos` (`idDoc`, `tituloDoc`, `forma`, `formato`, `especie`, `genero`, `localizacao`, `imagem`, `anoDocumento`, `palavrasChaves`, `transcricao`) VALUES
+(430, 'Documento teste', 'Cópia', 'Imagem', 'Imagem', 'Textual', '-', '88febcde4eb76132897e7cdef07a3978.png', 2000, 'Imagem de teste, texto', 'It was the best of\r\ntimes, it was the worst\r\nof times, it was the age\r\nof wisdom, it was the\r\nage of foolishness...'),
+(431, 'Universidade Federal do Pampa', 'Cópia', 'Folha solta', 'Jornal', 'Textual e iconográfico ', 'Caixa - Universidades em Uruguaiana', '9368718029cbf092ba4b497369ac27f7.jpg', 2006, 'Universidade, UNIPAMPA, Uruguaiana', NULL),
+(432, '43ª Feira do Livro de Uruguaiana', 'Cópia', 'Folhas de jornal', 'Jornal', 'Textual e iconográfico ', 'Caixa - Feira do livro em Uruguaiana', '3d93b0ebc196c31904ac4afcc458de09.jpg', 2019, 'Feira do livro, Uruguaiana', '433\r\n\r\nINTERNACIONAL\r\n\r\n=LIVRO\r\n\r\nURUGUAIANA 2019\r\n\r\nAOS/12 * ,\r\n\r\nby 4 i S ak o A W\' =\r\nAL My / Sl _,ﬂ\"\"‘-‘,‘ {3\r\n\r\nRIO BRANCO\r\n\r\nA\r\ns\\ / W\r\nA, S DRIA D W %\r\n\r\nU, S\r\n\r\n(\"A\\, : i}\r\n\r\n§ g\r\n\r\ne feiradolivro@uruguaiana.rs.gov.br\r\n\r\nQ_ wmounl MK ML AT one sooc St'),
+(433, 'Uruguaiana sediará o encontro das sociedades italianas', 'Cópia', 'Folhas de jornal', 'Jornal', 'Textual e iconográfico ', 'Caixa - Imigração', '8dcca1e14b8ec1358f073742e41e1b23.jpg', 1879, 'Imigração em Uruguaiana, Imigração Italiana', '- Uruguaiana sediara Encontro\r\n| . de Sociedades Italianas\r\n\r\nNo préximo dia 4 de julho,\r\nUruguaiana sediar4, no Clube\r\nComercial, Encontro das Socie-\r\ndades Italianas, com represen-\r\ntantes do Brasil, Argentina e\r\nUruguai, em homenagem aos\r\n130 anos da Sociedade ftalo-Bra-\r\nsileira Giuseppe Garibaldi, loca-\r\nlizada em Uruguaiana e fundada\r\nem 1° de junho de 1879. A aber-\r\ntura do evento ser4 as 8h, no\r\nSaldo dos Espelhos do Clube\r\nComercial, com execugdo dos\r\nHinos Nacionais do Brasil, It4-\r\nlia, Argentina e Uruguai, pela\r\nFanfarra da 2°. Brigada de Ca-\r\nvalaria Mecanizada do Exército\r\nBrasileiro. As 9h, apresentagdo\r\ndas entidades representativas.\r\nAp0s, as 9h20min, palestra “A\r\nRepublica da Itilia e as Socie-\r\ndades Italianas da América do\r\n\r\nSul”, com o deputado F4bio Por- -\r\n\r\nta, membro da Comissdo dos\r\nAssuntos Externos e Comunita-\r\nrios da Camara dos Deputados\r\nda Italia, em Roma, representan-\r\nte eleito pela circunscrigio Amé-\r\nrica Meridional, e o Dr. Oscar\r\nJosé Cafless,o, agente consular\r\nda Republica da Itilia para a cir-\r\ncunscrigdo de Santa Maria/RS;\r\n10h30min — Coffee break;\r\n\r\n11h30min — Descerramento da\r\npedra fundamental da Praga It4-\r\nliana Esplanada do Judicirio alu-\r\nsiva aos 130 anos da Sociedade\r\nItaliana; 11h45min — Assinatura\r\ndo edital do concurso para a es-\r\ncolha do projeto do monumento\r\nalusivo aos imigrantes italianos e\r\n\r\nPraga It4lia; 12h — Retomada do -\r\n\r\nEncontro, na Sociedade ftalo-\r\n\r\nBrasileira Giuseppe Garibaldi, si- -\r\n\r\ntuadana rua Domingos de Almei-\r\nda n°. 1703, com apresentacfo\r\ndos homenageados e entrega de\r\ntitulos honorérios ao deputado ita-\r\nliano Fébio Porta, ao Dr. Oscar\r\n\r\n~\r\nTRWTHRT WY A SN TN W WY o~ A wae\r\n\r\nARQUIVO/DF\r\n\r\nJosé Carlesso e ao Bel. Mauro\r\nVieira Maciel; 13h—Almogo ita-\r\nliano (por adesdo), na sede da So-\r\nciedade ftalo-Brasileira Giuseppe\r\nGaribaldi, que tem na presidéncia\r\n\r\n- a professora Thietelina Lunardi-\r\n\r\nni. Integram a atual diretoria: pro-\r\nfessora Thietelina Lunardini Pe-\r\nreira (presidente), Pedro Paulo\r\nChiarelli (1°. Vice-presidente),\r\nDécio Eurico Bortolazzo (2°. Vice-\r\npresidente), Daniel Fantti (1°. Se-\r\ncretario), Gilberto Emilio Melati\r\n(tesoureiro), Nara Ione Jacociu-\r\nnas (diretora social), e Mauro Vi-\r\n\r\n~ eira Maciel (assessor juridico).'),
+(436, 'Tráfico arqueológico', 'Cópia', 'Folhas de jornal', 'Jornal', 'Textual e iconográfico ', 'Caixa -> Arquivologia', 'b97f6965725582def40d1d61ef370285.jpg', 2005, 'Arquivologia, Arqueologia, Uruguaiana', '\r\nPecas paleontolégicas (de animais) e arqueoldgicas de povos indigenas que habitaram ha\r\nmais de 8 mil anos o territério de Uruguaiana, Barra do Quarai e cidades préximas, estdao\r\nsendo contrabandeadas por “piratas” e vendidas a pregos de “banana” para\r\ncolecionadores do outro lado da fronteira. O fato é denunciado pelo mestre Flamarion\r\nGomes, da PUCRS, que tem autorizagéo do Instituto-de Patriménio Histdrico e Artistico\r\n\r\nNacional, para explorar os 34 sitios arqueoldgicos do municipio. PAGINAS\r\n\r\nNﬂmmummummumm“.'),
+(437, 'Manual de preservação de documentos', 'Cópia', 'Livro', 'Manual', 'Textual e iconográfico ', 'Caixa -> Arquivologia', '063046bc0c07794f1d23e4d1523c4b58.jpg', 2000, 'Arquivologia, Preservação, Manual', NULL),
+(443, 'dsad', 'Cópia', 'asdsa', 'dasda', 'das ', 'sdsad', '78399eab7ba6eaf00661ccaa1b20d8ee.jpg', 2000, 'dsdsada,dasdsada,dsadasdas', '~\r\n\r\nreservacao\r\n\r\nde p\r\n\r\n\\\r\n\r\ncumentos\r\n\r\nmanual\r\n\r\nX\r\n\r\nde do\r\n\r\nA\r\n\r\nR 14\r\n\r\n\'ARQUIVO NACIONAL');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `favoritos`
+-- Estrutura para tabela `favoritos`
 --
 
 CREATE TABLE `favoritos` (
@@ -61,20 +89,19 @@ CREATE TABLE `favoritos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `favoritos`
+-- Despejando dados para a tabela `favoritos`
 --
 
 INSERT INTO `favoritos` (`id`, `id_documento`, `id_usuario`) VALUES
-(57, 320, 43),
-(59, 320, 30),
-(64, 320, 22),
-(65, 320, 53),
-(68, 357, 22);
+(76, 433, 60),
+(79, 431, 60),
+(80, 432, 60),
+(81, 437, 60);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `passwordreset`
+-- Estrutura para tabela `passwordreset`
 --
 
 CREATE TABLE `passwordreset` (
@@ -86,7 +113,7 @@ CREATE TABLE `passwordreset` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `passwordreset`
+-- Despejando dados para a tabela `passwordreset`
 --
 
 INSERT INTO `passwordreset` (`id`, `email`, `token`, `dataExpiracao`, `tokenVerificacao`) VALUES
@@ -112,12 +139,38 @@ INSERT INTO `passwordreset` (`id`, `email`, `token`, `dataExpiracao`, `tokenVeri
 (45, 'fernandogdemedeirosw@gmail.com', '50c969e9bca02c2acb5471b099d7fb61536249104e19885f015b58cb385f2062e5b0fdb0f4a5f10014cf01f46ea858ec6116', '2022-07-14 00:42:04', 0),
 (46, 'fernandogdemedeirosw@gmail.com', 'fa97e1dc5a6d6c637c6877d43ff41669f6cdcd94722d8d4f3e41394f03cb50ffe387c7a8c08c21ab2aff6436358047f9f05e', '2022-07-14 00:43:09', 0),
 (47, 'fernandogdemedeirosw@gmail.com', '2a896be8ce98c2a81ec5eb1a0876e649fd8ea949afd62c5fc3e06937c261a31d7fd7b61f0fb5d9929b2ac8a0d820227cb90e', '2022-07-14 13:18:54', 0),
-(48, 'fernandogdemedeirosw@gmail.com', '4f7360c366a17392a71e03be40c1e25690e433fa21fd4c0af395bd3a3033485139f5f0d91a3bc1cb147a6e47c5f27916ab18', '2022-08-17 18:45:38', 1);
+(48, 'fernandogdemedeirosw@gmail.com', '4f7360c366a17392a71e03be40c1e25690e433fa21fd4c0af395bd3a3033485139f5f0d91a3bc1cb147a6e47c5f27916ab18', '2022-08-17 18:45:38', 1),
+(49, 'fernandogdemedeirosw@gmail.com', 'e6a5e53a40e1e2f160e0f36e4456e1430e6be5fa0faa943ab34a9b6c43fb81a322f55660a35947d7dad350536dfc43e32ea5', '2022-11-27 16:48:08', 0),
+(50, 'fernandogdemedeirosw@gmail.com', '8408328bd521ef88276e7c365f96752bc14468e98bbc1b54f144cb7069067760677076d5b73eb6efcf7c6f1e0e5dde352a5c', '2022-11-27 16:49:00', 0),
+(51, 'fernandogdemedeirosw@gmail.com', '49cd623401194899d68c4369e1cbba399b4433488a217fa55faf7f40c2fe7058942c6d081db013afe4c6048d387e629fd4df', '2022-11-28 22:44:13', 1),
+(52, 'fernandogdemedeirosw@gmail.com', '4a0c981c20da503c377f00b4c1ba4a7f355c74c46d11c72e2f89eb3c31279cb0b594a2f794989b049018a6f975a48a2280b4', '2022-11-28 22:45:58', 1),
+(53, 'fernandogdemedeirosw@gmail.com', '29ea85545d257da6fa4c5630f5957839d27095954928579513768644cbd3e60739babdb1c8a741a58b83f8b9281d61d5363d', '2022-12-04 01:16:57', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tabela_assoc`
+-- Estrutura para tabela `respostas`
+--
+
+CREATE TABLE `respostas` (
+  `id` int(11) NOT NULL,
+  `idComentario` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `resposta` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Despejando dados para a tabela `respostas`
+--
+
+INSERT INTO `respostas` (`id`, `idComentario`, `idUsuario`, `resposta`) VALUES
+(20, 11, 60, 'Olá senhor'),
+(25, 16, 76, 'dasdsa');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tabela_assoc`
 --
 
 CREATE TABLE `tabela_assoc` (
@@ -127,16 +180,29 @@ CREATE TABLE `tabela_assoc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `tabela_assoc`
+-- Despejando dados para a tabela `tabela_assoc`
 --
 
 INSERT INTO `tabela_assoc` (`id_tabela`, `id_doc`, `id_topico`) VALUES
-(526, 387, 27);
+(787, 432, 36),
+(792, 433, 37),
+(797, 430, 36),
+(798, 430, 37),
+(802, 431, 36),
+(803, 431, 37),
+(809, 436, 41),
+(810, 436, 33),
+(811, 436, 33),
+(812, 436, 33),
+(813, 436, 33),
+(835, 443, 36),
+(836, 443, 37),
+(837, 443, 38);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipousuario`
+-- Estrutura para tabela `tipousuario`
 --
 
 CREATE TABLE `tipousuario` (
@@ -145,7 +211,7 @@ CREATE TABLE `tipousuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `tipousuario`
+-- Despejando dados para a tabela `tipousuario`
 --
 
 INSERT INTO `tipousuario` (`id`, `tipoUsuario`) VALUES
@@ -156,7 +222,7 @@ INSERT INTO `tipousuario` (`id`, `tipoUsuario`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `topicos`
+-- Estrutura para tabela `topicos`
 --
 
 CREATE TABLE `topicos` (
@@ -165,19 +231,22 @@ CREATE TABLE `topicos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `topicos`
+-- Despejando dados para a tabela `topicos`
 --
 
 INSERT INTO `topicos` (`idTop`, `tituloTop`) VALUES
-(27, 'História'),
-(28, 'Geografia'),
-(29, 'Literatura'),
-(30, 'Jorge');
+(36, 'Feira do livro em Uruguaiana'),
+(37, 'Imigração'),
+(38, 'Movimento negro em Uruguaiana'),
+(40, 'Escolas Públicas'),
+(41, 'Arqueologia em Uruguaiana'),
+(42, 'Geografia'),
+(44, 'Teste');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `user`
+-- Estrutura para tabela `user`
 --
 
 CREATE TABLE `user` (
@@ -185,42 +254,55 @@ CREATE TABLE `user` (
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `foto` varchar(255) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
   `tipoUsuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `user`
+-- Despejando dados para a tabela `user`
 --
 
 INSERT INTO `user` (`id`, `nome`, `email`, `senha`, `foto`, `tipoUsuario`) VALUES
-(22, 'Administrador[Fernando]', 'fernandogdemedeirosw@gmail.com', '$2y$10$rSDR1z1DoMtzb4AMAJ/hbuKcYbSU.VLr.pRxf9/k6/0agYphF7SZK', '4260afd9000f2e18b6ecffec08bf5cc6.jpg', 1),
-(54, 'Jorge', 'jorge@mail', '$2y$10$nR9LZEqD6xDUSaSfQckJkOl7A0ODakZsiiFi6IiNT5M5d8igMHeQm', '22ee331eef60fec07cd175a6de0f1250.jpg', 2);
+(60, 'Administrador', 'fernandogdemedeirosw@gmail.com', '$2y$10$AEuTYKl8tSI3i.p3c0MunuAEqEeIi1b8LA8qidMWTXnUdJGmxl.QC', '234f2392ca3d1d7e0a4c22c6d04feaf4.jpg', 1),
+(75, 'Stéphane', 'stepanhe@gmail.com', '$2y$10$NzpIie6B0XtWYqtUeTszRO23t71f.3Her2tKmijOMB6joFEWiZUm2', 'c118341279004a790160e8f1573c627c.jpg', 3),
+(76, 'teste', 'teste@mail.com', '$2y$10$URvrfr9ogWKCl1yDcMxb1u7hitBuB60lfolOaSF7xNecuQ2stLteC', NULL, 3);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `documentos`
+-- Índices de tabela `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `documentos`
 --
 ALTER TABLE `documentos`
   ADD PRIMARY KEY (`idDoc`);
 
 --
--- Índices para tabela `favoritos`
+-- Índices de tabela `favoritos`
 --
 ALTER TABLE `favoritos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `passwordreset`
+-- Índices de tabela `passwordreset`
 --
 ALTER TABLE `passwordreset`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `tabela_assoc`
+-- Índices de tabela `respostas`
+--
+ALTER TABLE `respostas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tabela_assoc`
 --
 ALTER TABLE `tabela_assoc`
   ADD PRIMARY KEY (`id_tabela`),
@@ -228,51 +310,63 @@ ALTER TABLE `tabela_assoc`
   ADD KEY `fk_top` (`id_topico`);
 
 --
--- Índices para tabela `tipousuario`
+-- Índices de tabela `tipousuario`
 --
 ALTER TABLE `tipousuario`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `topicos`
+-- Índices de tabela `topicos`
 --
 ALTER TABLE `topicos`
   ADD PRIMARY KEY (`idTop`);
 
 --
--- Índices para tabela `user`
+-- Índices de tabela `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD KEY `tipoUsuario` (`tipoUsuario`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `idDoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=390;
+  MODIFY `idDoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=444;
 
 --
 -- AUTO_INCREMENT de tabela `favoritos`
 --
 ALTER TABLE `favoritos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT de tabela `passwordreset`
 --
 ALTER TABLE `passwordreset`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
+-- AUTO_INCREMENT de tabela `respostas`
+--
+ALTER TABLE `respostas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de tabela `tabela_assoc`
 --
 ALTER TABLE `tabela_assoc`
-  MODIFY `id_tabela` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=528;
+  MODIFY `id_tabela` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=838;
 
 --
 -- AUTO_INCREMENT de tabela `tipousuario`
@@ -284,27 +378,20 @@ ALTER TABLE `tipousuario`
 -- AUTO_INCREMENT de tabela `topicos`
 --
 ALTER TABLE `topicos`
-  MODIFY `idTop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idTop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de tabela `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `tabela_assoc`
---
-ALTER TABLE `tabela_assoc`
-  ADD CONSTRAINT `fk_doc` FOREIGN KEY (`id_doc`) REFERENCES `documentos` (`idDoc`),
-  ADD CONSTRAINT `fk_top` FOREIGN KEY (`id_topico`) REFERENCES `topicos` (`idTop`);
-
---
--- Limitadores para a tabela `user`
+-- Restrições para tabelas `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`tipoUsuario`) REFERENCES `tipousuario` (`id`);
