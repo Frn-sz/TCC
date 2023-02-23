@@ -87,10 +87,8 @@ if (!isset($_SESSION)) {
 <main>
      <?php
      require_once "../interfaces/header.php";
-     ?>
-     <?php
      require_once "../conecta.php";
-     require("../funcoes.php");
+     require_once("../funcoes.php");
      if (isset($_GET['escolha'])) {
           $escolha  = $_GET['escolha'];
      } else {
@@ -104,6 +102,7 @@ if (!isset($_SESSION)) {
      }
      $limit = 8;
      $offset = $limit * ($pag - 1);
+
      if (isset($_SESSION['id_usuario'])) {
           if ($_SESSION['nvl_usuario'] == 1 or $_SESSION['nvl_usuario'] == 3) {
      ?>
